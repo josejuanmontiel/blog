@@ -6,8 +6,8 @@
     <atom:link href="http://josejuanmontiel.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>jue, 25 ago 2016 01:21:40 +0200</pubDate>
-    <lastBuildDate>jue, 25 ago 2016 01:21:40 +0200</lastBuildDate>
+    <pubDate>jue, 25 ago 2016 01:27:59 +0200</pubDate>
+    <lastBuildDate>jue, 25 ago 2016 01:27:59 +0200</lastBuildDate>
 
     <item>
       <title>Blog en GitHub Pages con Jbake y Gradle</title>
