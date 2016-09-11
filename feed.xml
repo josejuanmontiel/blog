@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cédric Champeau's blog</title>
+    <title>Jose Juan Montiel's blog</title>
     <link>http://josejuanmontiel.github.io/blog/</link>
     <atom:link href="http://josejuanmontiel.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>jue, 25 ago 2016 01:27:59 +0200</pubDate>
-    <lastBuildDate>jue, 25 ago 2016 01:27:59 +0200</lastBuildDate>
+    <pubDate>dom, 11 sep 2016 18:42:34 +0200</pubDate>
+    <lastBuildDate>dom, 11 sep 2016 18:42:34 +0200</lastBuildDate>
 
     <item>
       <title>Blog en GitHub Pages con Jbake y Gradle</title>
-      <link>http://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.html</link>
+      <link>http://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html</link>
       <pubDate>jue, 25 ago 2016 00:00:00 +0200</pubDate>
-      <guid isPermaLink="false">2016/08/blog-jbake-gradle.html</guid>
+      <guid isPermaLink="false">2016/08/blog-jbake-gradle.es.html</guid>
       	<description>
 	&lt;div class=&quot;sect1&quot;&gt;
 &lt;h2 id=&quot;_es_hora_de_empezar_un_blog_sobre_programacion&quot;&gt;Es hora de empezar un blog sobre programacion&lt;/h2&gt;
@@ -96,7 +96,7 @@ veremos la alternativa.&lt;/p&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;_asciidoctor&quot;&gt;AsciiDoctor&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Preferimos usar algo que esta entre, markdown y latex, y eso se llama [AsciiDoctor &lt;a href=&quot;http://asciidoctor.org/&quot;&gt;http://asciidoctor.org/&lt;/a&gt;] que por
+&lt;p&gt;Preferimos usar algo que esta entre, markdown y latex, y eso se llama &lt;a href=&quot;http://asciidoctor.org/&quot;&gt;AsciiDoctor&lt;/a&gt; que por
 cierto tambien esta &lt;a href=&quot;http://asciidoctor.org/news/2014/02/04/github-asciidoctor-0.1.4-upgrade-5-things-to-know/&quot;&gt;soportado&lt;/a&gt;
 por GitHub.&lt;/p&gt;
 &lt;/div&gt;
@@ -154,6 +154,159 @@ usan &lt;a href=&quot;https://disqus.com/&quot;&gt;Discus&lt;/a&gt; que se inter
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Como bola extra, recordar añadir la analitica.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Keep on Groovying!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Blog in GitHub Pages with Jbake and Gradle</title>
+      <link>http://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.html</link>
+      <pubDate>jue, 25 ago 2016 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2016/08/blog-jbake-gradle.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_it_s_time_to_start_a_blog_about_programming&quot;&gt;It&amp;#8217;s time to start a blog about programming&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The truth is that as time passes, you realize that sharing is winning. Some, are given as much before, but although
+I already intuited, have had to spend over 10 years in the art of programming to realize. Share is to win,
+is to know other opinions, ways of doing things and of course, meet other people&amp;#8230; they call networking.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I already had a &lt;a href=&quot;http://accreativos.blogspot.com.es/&quot;&gt;blog&lt;/a&gt; is more a list of things you&amp;#8217;re finding and take note to
+remember, that really a way to share information and comment on it. Then came the
+&lt;a href=&quot;http://twitter.com/accreativos&quot;&gt;twitter&lt;/a&gt; but in the end, it is a mixture of retweets, and little original information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So, why not, a serious blog, like those used to reading these, those where people end up leaving
+a lot of comments, those that you add to your RSS reader to be aware of what is said in them,
+And if you learn something mounting it, because what else can you ask for.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Therefore, items that will use this blog are:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;English (Spanish)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GitHub Pages&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AsciiDoctor&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Groovy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Jbake&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gradle&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Freemarker (Thymeleaf)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Discus (Discourse)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We see you in a bit of detail each point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_english&quot;&gt;English&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The first thing I take advantage of it to improve my English. So, although I write in Spanish, my native language,
+publishes in English (and I assume that since I write in Spanish, these also the publicare, and I&amp;#8217;ll see as attachment).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_github_pages&quot;&gt;Github Pages&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;GitHub for some time now began to publish static pages allow for all your projects done. If you are looking for
+&lt;a href=&quot;https://pages.github.com&quot;&gt;https://pages.github.com&lt;/a&gt; [Github Pages] will see extensive information, besides, many people already using github
+tapped to mount functionality for small static sites.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Basically it is that everything that you upload to the branch gh-pages of your github repository, will be visible in the domain
+&lt;a href=&quot;http://username.github.io/repo/file&quot;&gt;http://username.github.io/repo/file&lt;/a&gt; where username is your user github, repo is the name of the repo where these
+going up files to the branch gh-pages and file is the file that if an index.html the browser displays,
+and the same for css and js with what you already have ready the web.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;They also provide a default generator, &lt;a href=&quot;https://help.github.com/articles/about-github-pages-and-jekyll/&quot;&gt;Jekyll&lt;/a&gt;
+to generate these static pages from a text in markdown format, but we will not use it,
+We see the alternative.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_asciidoctor&quot;&gt;AsciiDoctor&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We prefer to use something that is between, markdown and latex, and that is called &lt;a href=&quot;http://asciidoctor.org/&quot;&gt;AsciiDoctor&lt;/a&gt; that
+true also this &lt;a href=&quot;http://asciidoctor.org/news/2014/02/04/github-asciidoctor-0.1.4-upgrade-5-things-to-know/&quot;&gt;supported&lt;/a&gt;
+by GitHub.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_groovy&quot;&gt;Groovy&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Like my native language is Spanish, my native language is this in Java programming, and as is
+learn, and I have a few years playing with groovy, and I will not miss the opportunity to mount the blog using it.
+I will tell on another occasion, as I started in this groovy, and what are the places where I learn.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_jbake&quot;&gt;Jbake&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And we have said that we were not going to use &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; that is done in Ruby, because what we mola is
+Groovy;) But we need our written txt in AsciiDoctor be transformed into HTML (or XML we&amp;#8217;ll see how)
+and above all that what we write is inserted in those HTML, we will use &lt;a href=&quot;http://jbake.org/&quot;&gt;Jbake&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_gradle&quot;&gt;Gradle&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But hey, this needs to be automated, at the end, there are a number of steps, why not use Gradle, as well
+&lt;a href=&quot;http://melix.github.io/blog/2014/02/hosting-jbake-github.html&quot;&gt;the creator&lt;/a&gt; of
+&lt;a href=&quot;https://github.com/jbake-org/jbake-gradle-plugin&quot;&gt;plugin&lt;/a&gt;, it is the perfect combination.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A couple of notes, as it has been somewhat outdated &amp;#8230; &lt;a href=&quot;http://www.orany.cz/blog/2014/10/17/migrated-to-jbake.html&quot;&gt;that
+Ornay write time ago&lt;/a&gt; and which faces plugin to upload the pages to the branch, it has also been actualized,
+&lt;a href=&quot;https://plugins.gradle.org/plugin/org.ajoberstar.github-pages&quot;&gt;aqui this&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_freemarker_thymeleaf&quot;&gt;Freemarker (Thymeleaf)&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And this tool is able to use different templating systems (specifically start with Freemarker, and more
+I later migrate to Thymeleaf) to inject the values ​​obtained in asciidoctor txt, along with some
+more variables to help build a blogging system that does not have anything envy to Jeklly, Wordpress or
+what is put forward.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_disqus_discourse&quot;&gt;Disqus (Discourse)&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But finally, a system without the possibility of blog comments, don&amp;#8217;t make sense. To do all these i used
+&lt;a href=&quot;https://disqus.com/&quot;&gt;Discus&lt;/a&gt; that integrate perfectly with a line (almost). As an option, I will try to migrate to
+&lt;a href=&quot;https://www.discourse.org/&quot;&gt;Discourse&lt;/a&gt; but that will come later.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_extra_ball_analytics&quot;&gt;Extra Ball. Analytics.&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As extra ball, remember to add the analitica.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Keep on Groovying!&lt;/p&gt;
