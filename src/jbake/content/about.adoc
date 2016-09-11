@@ -1,0 +1,15 @@
+= About the author
+Jose Juan Montiel
+2016-08-21
+:jbake-type: page
+:jbake-tags: personal
+:jbake-status: published
+:jbake-cached: true
+
+++++
+Misc stuff <a href="http://accreativos.blogspot.com.es/">Blog</a>
+<a class="twitter-timeline" href="https://twitter.com/accreativos">Tweets by accreativos</a> 
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+++++
+
+
