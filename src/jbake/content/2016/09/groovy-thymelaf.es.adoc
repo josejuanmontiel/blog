@@ -1,0 +1,100 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-09-20
+:jbake-type: post
+:jbake-tags: jvm,sprinboot,thymeleaf3,groovy
+:jbake-status: published
+:jbake-lang: en
+:source-highlighter: prettify
+:id: thymeleaf3-groovy
+:icons: font
+
+== Groovy
+
+La primera vez que hoy hablar de groovy seria a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso?
+
+¿Un lenguaje dinamico como Javascript, que podia poner en el nodo de mi mapa mental para que hicera algo? Lo probe he hice cosas como estas, con la ayuda de la documentacion que encontraba por ahi...
+
+== Thymeleaf
+
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+
+Thymeleaf's main goal is to bring elegant natural templates to your development workflow — HTML that can be correctly displayed in browsers and also work as static prototypes, allowing for stronger collaboration in development teams.
+
+With modules for Spring Framework, a host of integrations with your favourite tools, and the ability to plug in your own functionality, Thymeleaf is ideal for modern-day HTML5 JVM web development — although there is much more it can do.
+
+== ¿Porque no mezclarlo?
+
+Una de las caracteristicas nuevas de thymeleaf 3, es que todavia desacoplan mas el diseño del HTML de los parametros para pintar los datos.
+
+https://github.com/thymeleaf/thymeleaf/issues/465
+
+La idea es, si puedo escribir cosas del tipo 
+
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <table id="usersTable">
+      <tr>
+        <td class="username">Jeremy Grapefruit</td>
+        <td class="usertype">Normal User</td>
+      </tr>
+      <tr>
+        <td class="username">Alice Watermelon</td>
+        <td class="usertype">Administrator</td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<?xml version="1.0"?>
+<thlogic>
+  <attr sel="#usersTable" th:remove="all-but-first">
+    <attr sel="/tr[0]" th:each="user : ${users}">
+      <attr sel="td.username" th:text="${user.name}" />
+      <attr sel="td.usertype" th:text="#{|user.type.${user.type}|}" />
+    </attr>
+  </attr>
+</thlogic>
+
+porque no escribirlo en roovy
+	
+thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+            attr(sel:'td.username', 'th:text':'${user.name}')
+            attr(sel:'td.usertype', 'th:text':'${user.type}')
+        }
+    }
+}
+
+http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
+
+== Porque el objetivo final seria poder acer una app web que llevara de un rest a la presentacion
+
+https://github.com/josejuanmontiel/dynamic-rest-template
+
+== Y tambien, que se pudieran inyectar los datos de prueba de manera facil para los test de presentacion...
+
+https://twitter.com/nicolas_frankel/status/760441910272135168
+
+== Jitpack
+
+Asi que lo primero era probar jitpack para meter en una libreria las partes comunes.. dinamic-rest-template
+
+== Este seria el proyecto que las usa
+
+https://github.com/josejuanmontiel/adorable-avatar
+	maven { url "https://jitpack.io" }
+	compile 'com.github.josejuanmontiel:dynamic-rest-template:-SNAPSHOT'
+
+==
+
+
+
+
+
+	
+
+
