@@ -1,9 +1,9 @@
 = Thymeleaf 3 and Groovy
 Jose Juan Montiel
-2016-09-20
+2016-10-09
 :jbake-type: post
 :jbake-tags: jvm,sprinboot,thymeleaf3,groovy
-:jbake-status: published
+:jbake-status: draft
 :jbake-lang: en
 :source-highlighter: prettify
 :id: thymeleaf3-groovy
@@ -11,9 +11,9 @@ Jose Juan Montiel
 
 == Groovy
 
-La primera vez que hoy hablar de groovy seria a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso?
+La primera vez que hoy hablar de groovy fue a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso?
 
-¿Un lenguaje dinamico como Javascript, que podia poner en el nodo de mi mapa mental para que hicera algo? Lo probe he hice cosas como estas, con la ayuda de la documentacion que encontraba por ahi...
+¿Un lenguaje dinamico como Javascript, que podia poner en el nodo de mi mapa mental para que hicera algo? Lo probe he hice algunas cositas, como un script que recopilaba lo tickect de fogbugz y me los mostaba dibujado como nodos del mapa mental.
 
 == Thymeleaf
 
@@ -25,12 +25,11 @@ With modules for Spring Framework, a host of integrations with your favourite to
 
 == ¿Porque no mezclarlo?
 
-Una de las caracteristicas nuevas de thymeleaf 3, es que todavia desacoplan mas el diseño del HTML de los parametros para pintar los datos.
+Una de las caracteristicas nuevas de thymeleaf 3, es que todavia desacoplan mas el diseño del HTML del binding de datos.
 
 https://github.com/thymeleaf/thymeleaf/issues/465
 
 La idea es, si puedo escribir cosas del tipo 
-
 
 <!DOCTYPE html>
 <html>
@@ -58,7 +57,7 @@ La idea es, si puedo escribir cosas del tipo
   </attr>
 </thlogic>
 
-porque no escribirlo en roovy
+porque no escribirlo en groovy
 	
 thlogic {
     attr(sel:'#usersTable', 'th:remove':'all-but-first') {
@@ -69,15 +68,45 @@ thlogic {
     }
 }
 
-http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
+Aqui esta explicacion en el foro de thymeleaf: http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
 
-== Porque el objetivo final seria poder acer una app web que llevara de un rest a la presentacion
+Si aprovechamos este dinamismo, ¿porque no podriamos pensar en un diseño web que pueda ser mas dinamico? ¿Generacion de formularios con un par de lineas? ¿Mostrar datos del modelo con un par de lineas?
+
+== Porque el objetivo final seria poder hacer una aplicacion web que llevara de un rest a la capa de presentacion
 
 https://github.com/josejuanmontiel/dynamic-rest-template
+
+En este proyecto monte un ejemplo de uso de thymeleaf 3, en un proyecto springboot con groovy como lenguaje principal
 
 == Y tambien, que se pudieran inyectar los datos de prueba de manera facil para los test de presentacion...
 
 https://twitter.com/nicolas_frankel/status/760441910272135168
+
+Imaginemos que de alguna manera... a esto
+
+thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+            attr(sel:'td.username', 'th:text':'${user.name}')
+            attr(sel:'td.usertype', 'th:text':'${user.type}')
+        }
+    }
+}
+
+podemos evolucionarlo a 
+
+thlogic {
+	users{
+		user1:admin,
+		user2:editor...
+	}
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+            attr(sel:'td.username', 'th:text':'${user.name}')
+            attr(sel:'td.usertype', 'th:text':'${user.type}')
+        }
+    }
+}
 
 == Jitpack
 
@@ -89,12 +118,10 @@ https://github.com/josejuanmontiel/adorable-avatar
 	maven { url "https://jitpack.io" }
 	compile 'com.github.josejuanmontiel:dynamic-rest-template:-SNAPSHOT'
 
-==
+== Charla: Thymeleaf para maquetadores.
 
-
-
-
-
-	
-
+* https://github.com/josejuanmontiel/charla_gradle[Gradle]
+* https://github.com/josejuanmontiel/thymeleaf_talk[Thymeleaf]
+	http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
+	https://twitter.com/nicolas_frankel/status/760441910272135168
 

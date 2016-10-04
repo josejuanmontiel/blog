@@ -1,6 +1,6 @@
 = Thymeleaf 3 and Groovy
 Jose Juan Montiel
-2016-09-20
+2016-10-09
 :jbake-type: post
 :jbake-tags: jvm,sprinboot,thymeleaf3,groovy
 :jbake-status: published
