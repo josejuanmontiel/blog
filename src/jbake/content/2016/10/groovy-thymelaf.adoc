@@ -9,9 +9,23 @@ Jose Juan Montiel
 :id: thymeleaf3-groovy
 :icons: font
 
-==
+== Groovy
+
+La primera vez que hoy hablar de Groovy fue a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso? Llevaba ya algun tiempo usando Freemind, y me dije, si esta gente lo usa, lo mismo sera interesante.
+
+¿Un lenguaje dinamico como Javascript, que podia interactuar con los mapas mentales, haciendolos dinamicos tambien? ¿Crear nodos, relaciones entre ellos, de una manera dinamica?. Lo probe he hice algunas cositas, un script que recopilaba lo tickect de fogbugz y me los mostaba dibujados como nodos del mapa mental.
+
+== Thymeleaf
+
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+
+Thymeleaf's main goal is to bring elegant natural templates to your development workflow — HTML that can be correctly displayed in browsers and also work as static prototypes, allowing for stronger collaboration in development teams.
+
+With modules for Spring Framework, a host of integrations with your favourite tools, and the ability to plug in your own functionality, Thymeleaf is ideal for modern-day HTML5 JVM web development — although there is much more it can do.
 
 
+
+== *** ===
 
 https://github.com/josejuanmontiel/adorable-avatar
 	maven { url "https://jitpack.io" }

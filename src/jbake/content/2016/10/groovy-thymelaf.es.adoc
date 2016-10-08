@@ -11,23 +11,23 @@ Jose Juan Montiel
 
 == Groovy
 
-La primera vez que hoy hablar de groovy fue a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso?
+La primera vez que hoy hablar de Groovy fue a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso? Llevaba ya algun tiempo usando Freemind, y me dije, si esta gente lo usa, lo mismo sera interesante.
 
-¿Un lenguaje dinamico como Javascript, que podia poner en el nodo de mi mapa mental para que hicera algo? Lo probe he hice algunas cositas, como un script que recopilaba lo tickect de fogbugz y me los mostaba dibujado como nodos del mapa mental.
+¿Un lenguaje dinamico como Javascript, que podia interactuar con los mapas mentales, haciendolos dinamicos tambien? ¿Crear nodos, relaciones entre ellos, de una manera dinamica?. Lo probe he hice algunas cositas, un script que recopilaba lo tickect de fogbugz y me los mostaba dibujados como nodos del mapa mental.
 
 == Thymeleaf
 
-Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+Thymeleaf es un sistema de templating de servidor, tanto web como standalone. Y su principal objetivo es facilitar
 
-Thymeleaf's main goal is to bring elegant natural templates to your development workflow — HTML that can be correctly displayed in browsers and also work as static prototypes, allowing for stronger collaboration in development teams.
+El objetivo principal de thymeleaf es llevar a su flujo de trabajo de desarrollo un sistema de plantillas (no estrictamente HTML), natural y elegante que puede visualizarse correctamente en los navegadores y también funciona como prototipos estáticos, lo que permite una colaboración más estrecha en los equipos de desarrollo.
 
-With modules for Spring Framework, a host of integrations with your favourite tools, and the ability to plug in your own functionality, Thymeleaf is ideal for modern-day HTML5 JVM web development — although there is much more it can do.
+Con módulos de Spring Framework, una serie de integraciones con sus herramientas favoritas, y la capacidad de conectar su propia funcionalidad, thymeleaf es ideal para el día de hoy en el desarrollo web HTML5 JVM - aunque hay mucho más que puede hacer.
 
 == ¿Porque no mezclarlo?
 
 Una de las caracteristicas nuevas de thymeleaf 3, es que todavia desacoplan mas el diseño del HTML del binding de datos.
 
-https://github.com/thymeleaf/thymeleaf/issues/465
+En este [link https://github.com/thymeleaf/thymeleaf/issues/465] cuentan como funciona.
 
 La idea es, si puedo escribir cosas del tipo 
 
@@ -71,6 +71,9 @@ thlogic {
 Aqui esta explicacion en el foro de thymeleaf: http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
 
 Si aprovechamos este dinamismo, ¿porque no podriamos pensar en un diseño web que pueda ser mas dinamico? ¿Generacion de formularios con un par de lineas? ¿Mostrar datos del modelo con un par de lineas?
+
+
+
 
 == Porque el objetivo final seria poder hacer una aplicacion web que llevara de un rest a la capa de presentacion
 
