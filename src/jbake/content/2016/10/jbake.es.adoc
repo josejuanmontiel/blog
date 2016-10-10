@@ -1,0 +1,21 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-10-16
+:jbake-type: post
+:jbake-tags: jvm,jback
+:jbake-status: draft
+:jbake-lang: en
+:source-highlighter: prettify
+:id: hippocms
+:icons: font
+
+== JBake
+
+	- PR para Velocity...
+
+	- Ajustar que apunte a css
+		- Descargar html final...
+	- Probar inclusion de templates
+		- Probar inclusion usando lo que provee el tema
+	- Realizar esquema de jerarquia: tema -> layout -> portlet -> contenido -> template
+
