@@ -1,15 +1,15 @@
 = Thymeleaf 3 and Groovy
 Jose Juan Montiel
-2016-10-23
+2016-10-16
 :jbake-type: post
-:jbake-tags: talk
+:jbake-tags: jvm,thymeleaf
 :jbake-status: draft
 :jbake-lang: es
 :source-highlighter: prettify
-:id: prepare-a-talk
+:id: thymeleaf
 :icons: font
 
-== Prepare a talk
+== Charla: Thymeleaf para maquetadores.
 
 * https://github.com/josejuanmontiel/charla_gradle[Gradle]
 * https://github.com/josejuanmontiel/thymeleaf_talk[Thymeleaf]

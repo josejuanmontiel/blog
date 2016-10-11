@@ -2,11 +2,11 @@
 Jose Juan Montiel
 2016-10-16
 :jbake-type: post
-:jbake-tags: jvm,jback
+:jbake-tags: jvm,jbake
 :jbake-status: draft
 :jbake-lang: en
 :source-highlighter: prettify
-:id: hippocms
+:id: jbake
 :icons: font
 
 == JBake
