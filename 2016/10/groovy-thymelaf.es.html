@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jose Juan Montiel's blog: Thymeleaf 3 and Groovy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Le styles -->
+    <link href="/blog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/blog/css/asciidoctor.css" rel="stylesheet">
+    <link href="/blog/css/base.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+    </head>
+  <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ lang: en_US
+</script>
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+	    <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog">Jose Juan Montiel's blog</a>
+	    </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/blog/about.html">About</a></li>
+
+				<!-- li class="dropdown">
+	          		<a data-toggle="dropdown" href="#">Topics<b class="caret"></b></a>
+			          <ul class="dropdown-menu" role="menu">
+						<li><a href="/blog/tags/groovy.html">Groovy</a></li>
+						<li><a href="/blog/2013/07/30/deck2pdf_exporting_html5_slide_decks.html">deck2pdf</a></li>
+						<li><a href="/blog/tags/jlangdetect.html">JLangDetect</a></li>
+			          </ul>
+	       		</li -->
+                <li><a href="/blog/feed.xml">Feed</a></li>
+              </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="https://github.com/josejuanmontiel"><i class="fa fa-github"></i></a></li>
+	        <li><a href="https://twitter.com/accreativos"><i class="fa fa-twitter"></i></a>
+	      </ul>
+            </div>
+          </div>
+      </div>
+      <div class="container">
+
+	<div class="page-header">
+
+			<h1>Thymeleaf 3 and Groovy <a href="/blog/2016/10/groovy-thymelaf.html">(English version)</a></h1>
+
+	</div>
+
+	<p><em>12 octubre 2016</em></p>
+	<p><em>Tags: </em>
+		<a href="/blog/tags/jvm.html">jvm</a>
+	</em>
+		<a href="/blog/tags/groovy.html">groovy</a>
+	</em>
+		<a href="/blog/tags/thymeleaf3.html">thymeleaf3</a>
+	</em>
+		<a href="/blog/tags/springboot.html">springboot</a>
+	</p>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+	<p><div class="sect1">
+<h2 id="_groovy">Groovy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La primera vez que hoy hablar de Groovy fue a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso?, llevaba ya algun tiempo usando Freemind, y me dije: si esta gente lo usa, lo mismo es interesante.</p>
+</div>
+<div class="paragraph">
+<p>¿Un lenguaje dinamico como Javascript, que podia interactuar con los mapas mentales, haciendolos dinamicos tambien? ¿Crear nodos, relaciones entre ellos, de una manera dinamica?. Lo probe, he hice algunas cositas: un script que recopilaba los ticket de fogbugz y me los mostaba dibujados como nodos del mapa mental.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_thymeleaf">Thymeleaf</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Thymeleaf es un sistema de templating de servidor, tanto web como standalone. Su principal objetivo es brindar un sistema de plantillas (no estrictamente HTML), natural y elegante que ademas funcione como prototipos estáticos, lo que permite una colaboración más estrecha en los equipos de desarrollo.</p>
+</div>
+<div class="paragraph">
+<p>Ademas, con módulos de Spring Framework, una serie de integraciones con sus herramientas favoritas, y la capacidad de conectar su propia funcionalidad, Thymeleaf es ideal para el desarrollo web HTML5 en la JVM y mucho mas.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__porque_no_mezclarlo">¿Porque no mezclarlo?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Una de las caracteristicas nuevas de Thymeleaf 3, es que todavia desacoplan mas el diseño del HTML, del binding de datos.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/thymeleaf/thymeleaf/issues/465">este link</a> cuentan como funciona.</p>
+</div>
+<div class="paragraph">
+<p>La cuestion es, que si puedo maquetar algo asi</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint html language-html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;table id="usersTable"&gt;
+      &lt;tr&gt;
+        &lt;td class="username"&gt;Jeremy Grapefruit&lt;/td&gt;
+        &lt;td class="usertype"&gt;Normal User&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class="username"&gt;Alice Watermelon&lt;/td&gt;
+        &lt;td class="usertype"&gt;Administrator&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>puedo definir asi, como se va a generar el binding de los campos&#8230;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint xml language-xml"><code>&lt;?xml version="1.0"?&gt;
+&lt;thlogic&gt;
+  &lt;attr sel="#usersTable" th:remove="all-but-first"&gt;
+    &lt;attr sel="/tr[0]" th:each="user : ${users}"&gt;
+      &lt;attr sel="td.username" th:text="${user.name}" /&gt;
+      &lt;attr sel="td.usertype" th:text="#{|user.type.${user.type}|}" /&gt;
+    &lt;/attr&gt;
+  &lt;/attr&gt;
+&lt;/thlogic&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>entonces, porque no escribirlo en groovy</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+            attr(sel:'td.username', 'th:text':'${user.name}')
+            attr(sel:'td.usertype', 'th:text':'${user.type}')
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html">Aqui esta</a> la explicacion en el foro de thymeleaf.</p>
+</div>
+<div class="paragraph">
+<p>Y si podemos hacer eso, podriamos hacer <a href="http://groovy-lang.org/processing-xml.html#_markupbuilder">esto</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+			(1..3).each { n -&gt;			<i class="conum" data-value="1"></i><b>(1)</b>
+				attr(sel:'td.username', 'th:text':'${user.name}')
+				attr(sel:'td.usertype', 'th:text':'${user.type}')
+			}
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Incluir logica en la generacion del Xml&#8230;</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_un_ejemplo_con_todo_junto">Un ejemplo con todo junto</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En <a href="https://github.com/josejuanmontiel/adorable-avatar">este</a> monte un ejemplo de uso de thymeleaf 3, en un proyecto springboot con groovy como lenguaje principal, y <a href="https://github.com/josejuanmontiel/dynamic-rest-template">aqui</a> extraje la parte de acceso a servicios rest, y otra cosa que queria probar era jitpack, para generar librerias de projectos git, on-demand.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint gradle language-gradle"><code>	maven { url "https://jitpack.io" }
+	compile 'com.github.josejuanmontiel:dynamic-rest-template:-SNAPSHOT'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_proximos_pasos">Proximos pasos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Muchas aplicaciones son del tipo, llamada a servicios rest, y exposicion en la vista. ¿Porque no hacer una aplicacion front, en el back? Pense que seria bastante interesante, que en esa definicion de binding en groovy se pudiera añadir informacion sobre los servicios rest que se van a consultar, para rellenar los datos de ese binding en la fase de renderizado.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>rest{
+	url{
+		http://...
+	}
+	binding {
+		user.name=response.body.user
+		user.type=response.body.type
+		...
+	}
+}
+thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+            attr(sel:'td.username', 'th:text':'${user.name}')
+            attr(sel:'td.usertype', 'th:text':'${user.type}')
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Y al ver el <a href="https://twitter.com/nicolas_frankel/status/760441910272135168">tweet</a> de Nicolas Frankel, que se indiquen los valores de prueba (maximos y minimos) de cada uno de los campos del binding y que durante desarrollo, sean eso los datos fake que se usen para maquetar el proyecto, mientras se montan los servicios.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint groovy language-groovy"><code>rest{
+	url{ ... }
+	binding { ... }
+	test {
+		user.name=[user1, user2, user3]
+		user.type=[admin, normal, editor]
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para todo esto, metaprogracion&#8230; en groovy. A ver en que termina la idea.</p>
+</div>
+</div>
+</div></p>
+
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'josejuanmontiel';
+	var disqus_identifier = 'thymeleaf3-groovy';
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	<hr>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+	<p class="muted credit">All posts on this blog are published with a <em>Creative Commons by-nc-sa</em> license.<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"/></a></p>
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://twitter.github.com/bootstrap/">Bootstrap v3.0.3</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/blog/js/jquery-1.9.1.min.js"></script>
+    <script src="/blog/js/bootstrap.min.js"></script>
+    <script src="/blog/js/run_prettify.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <script type="text/javascript">
+    var disqus_shortname = 'josejuanmontiel';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+<script type="text/javascript">
+  window.___gcfg = {lang: 'es'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82879918-1', 'josejuanmontiel.github.io');
+  ga('send', 'pageview');
+
+</script>
+<script src="http://cdn.lanyrd.net/badges/person-v1.min.js"></script>
+  </body>
+</html>
