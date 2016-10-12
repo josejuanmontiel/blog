@@ -1,0 +1,150 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-10-12
+:jbake-type: post
+:jbake-tags: jvm,groovy,thymeleaf3,springboot
+:jbake-status: published
+:jbake-lang: es
+:source-highlighter: prettify
+:id: thymeleaf3-groovy
+:icons: font
+
+== Groovy
+
+La primera vez que hoy hablar de Groovy fue a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso?, llevaba ya algun tiempo usando Freemind, y me dije: si esta gente lo usa, lo mismo es interesante.
+
+¿Un lenguaje dinamico como Javascript, que podia interactuar con los mapas mentales, haciendolos dinamicos tambien? ¿Crear nodos, relaciones entre ellos, de una manera dinamica?. Lo probe, he hice algunas cositas: un script que recopilaba los ticket de fogbugz y me los mostaba dibujados como nodos del mapa mental.
+
+== Thymeleaf
+
+Thymeleaf es un sistema de templating de servidor, tanto web como standalone. Su principal objetivo es brindar un sistema de plantillas (no estrictamente HTML), natural y elegante que ademas funcione como prototipos estáticos, lo que permite una colaboración más estrecha en los equipos de desarrollo.
+
+Ademas, con módulos de Spring Framework, una serie de integraciones con sus herramientas favoritas, y la capacidad de conectar su propia funcionalidad, Thymeleaf es ideal para el desarrollo web HTML5 en la JVM y mucho mas.
+
+== ¿Porque no mezclarlo?
+
+Una de las caracteristicas nuevas de Thymeleaf 3, es que todavia desacoplan mas el diseño del HTML, del binding de datos.
+
+En https://github.com/thymeleaf/thymeleaf/issues/465[este link] cuentan como funciona.
+
+La cuestion es, que si puedo maquetar algo asi 
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+  <body>
+    <table id="usersTable">
+      <tr>
+        <td class="username">Jeremy Grapefruit</td>
+        <td class="usertype">Normal User</td>
+      </tr>
+      <tr>
+        <td class="username">Alice Watermelon</td>
+        <td class="usertype">Administrator</td>
+      </tr>
+    </table>
+  </body>
+</html>
+----
+
+puedo definir asi, como se va a generar el binding de los campos...
+
+[source,xml]
+----
+<?xml version="1.0"?>
+<thlogic>
+  <attr sel="#usersTable" th:remove="all-but-first">
+    <attr sel="/tr[0]" th:each="user : ${users}">
+      <attr sel="td.username" th:text="${user.name}" />
+      <attr sel="td.usertype" th:text="#{|user.type.${user.type}|}" />
+    </attr>
+  </attr>
+</thlogic>
+----
+
+entonces, porque no escribirlo en groovy
+	
+[source,groovy]
+----
+thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+            attr(sel:'td.username', 'th:text':'${user.name}')
+            attr(sel:'td.usertype', 'th:text':'${user.type}')
+        }
+    }
+}
+----
+
+http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html[Aqui esta] la explicacion en el foro de thymeleaf.
+
+Y si podemos hacer eso, podriamos hacer http://groovy-lang.org/processing-xml.html#_markupbuilder[esto]
+ 
+[source,groovy]
+----
+thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+			(1..3).each { n ->			// <1>
+				attr(sel:'td.username', 'th:text':'${user.name}')
+				attr(sel:'td.usertype', 'th:text':'${user.type}')
+			}
+        }
+    }
+}
+----
+<1> Incluir logica en la generacion del Xml...
+
+== Un ejemplo con todo junto
+
+En https://github.com/josejuanmontiel/adorable-avatar[este] monte un ejemplo de uso de thymeleaf 3, en un proyecto springboot con groovy como lenguaje principal, y https://github.com/josejuanmontiel/dynamic-rest-template[aqui] extraje la parte de acceso a servicios rest, y otra cosa que queria probar era jitpack, para generar librerias de projectos git, on-demand.
+
+[source,gradle]
+----
+	maven { url "https://jitpack.io" }
+	compile 'com.github.josejuanmontiel:dynamic-rest-template:-SNAPSHOT'
+----
+
+== Proximos pasos
+
+Muchas aplicaciones son del tipo, llamada a servicios rest, y exposicion en la vista. ¿Porque no hacer una aplicacion front, en el back? Pense que seria bastante interesante, que en esa definicion de binding en groovy se pudiera añadir informacion sobre los servicios rest que se van a consultar, para rellenar los datos de ese binding en la fase de renderizado.
+
+[source,groovy]
+----
+rest{
+	url{
+		http://...
+	}
+	binding {
+		user.name=response.body.user
+		user.type=response.body.type
+		...
+	}
+}
+thlogic {
+    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
+        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
+            attr(sel:'td.username', 'th:text':'${user.name}')
+            attr(sel:'td.usertype', 'th:text':'${user.type}')
+        }
+    }
+}
+----
+
+Y al ver el https://twitter.com/nicolas_frankel/status/760441910272135168[tweet] de Nicolas Frankel, que se indiquen los valores de prueba (maximos y minimos) de cada uno de los campos del binding y que durante desarrollo, sean eso los datos fake que se usen para maquetar el proyecto, mientras se montan los servicios.
+
+
+[source,groovy]
+----
+rest{
+	url{ ... }
+	binding { ... }
+	test {
+		user.name=[user1, user2, user3]
+		user.type=[admin, normal, editor]
+	}
+}
+----
+
+Para todo esto, metaprogracion... en groovy. A ver en que termina la idea.
