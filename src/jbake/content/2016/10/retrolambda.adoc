@@ -4,14 +4,14 @@ Jose Juan Montiel
 :jbake-type: post
 :jbake-tags: jvm,retrolambda,hippocms,android,apt
 :jbake-status: published
-:jbake-lang: es
+:jbake-lang: en
 :source-highlighter: prettify
 :id: retrolambda-and-hippocms
 :icons: font
 
-== Retrolambda e Hippo Cms
+== Retrolambda and Hippo Cms
 
-https://code.onehippo.org/cms-community/hippo-cms[Este proyecto], solo se puede compilar con la JDK 8, ya que hace uso intensivo de sus caracteristicas: lambdas, default methods y otras mas.
+https://code.onehippo.org/cms-community/hippo-cms[This project], solo se puede compilar con la JDK 8, ya que hace uso intensivo de sus caracteristicas: lambdas, default methods y otras mas.
 
 Gracias a https://github.com/orfjackal/retrolambda[Retrolambda], muchos proyectos que hacen uso de las nuevas caracteristicas de JDK 8 pueden migrarse a JDK7 (y anteriores) y por tanto tambien a Android, lugar donde se hace principal uso de esta herramienta.
 
