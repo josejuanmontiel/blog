@@ -11,39 +11,49 @@ Jose Juan Montiel
 
 == Retrolambda
 
-Este proyecto, solo se puede compilar con la JDK8, porque usa intensamente sus caracteristicas.
-https://code.onehippo.org/cms-community/hippo-cms 
+https://code.onehippo.org/cms-community/hippo-cms[Este proyecto], solo se puede compilar con la JDK8, porque usa intensamente sus caracteristicas.
 
-Gracias a retrolambda, muchos proyectos que hacen uso de las lambdas de JDK8 pueden migrarse a JDK17 y android.
-https://github.com/orfjackal/retrolambda
+Gracias a https://github.com/orfjackal/retrolambda[Retrolambda], muchos proyectos que hacen uso de las lambdas de JDK8 pueden migrarse a JDK17 y android.
 
-Y con este pluging maven podrias integrarlo en tu buildsystem
-https://github.com/orfjackal/retrolambda#maven-plugin
+Y con https://github.com/orfjackal/retrolambda#maven-plugin[este pluging maven] podrias integrarlo en tu buildsystem. https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml[Aqui] un ejemplo de como hacerlo.
 
-Aqui un ejemplo
-https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml
+Seguro que hay otro https://github.com/evant/gradle-retrolambda[para gradle] por ahí.
 
-Pero hay unas limitaciones bien conocidas, los default method de jdk8 no son tan faciles de portar
-https://github.com/orfjackal/retrolambda#known-limitations
+Pero hay unas https://github.com/orfjackal/retrolambda#known-limitations[limitaciones bien conocidas], que hacen que la migracion de los default method de jdk8 no son tan faciles, "must to be backported together, with one execution of Retrolambda".
 
-Y por defecto vienen deshabilitada su migracion
-http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html
+Por eso, http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html[por defecto], viene deshabilitada su migracion.
 
-Y creo que este pull request podria ayudar
-https://github.com/orfjackal/retrolambda/pull/101
-
-Pero no tengo claro que este sea mi problema con el caso de hippocms, y no sea mas bien la propia limitacion...
-https://github.com/orfjackal/retrolambda/issues/56
-https://github.com/orfjackal/retrolambda/issues/58
+https://github.com/orfjackal/retrolambda#backported-language-features[Default Methods]:
+Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the necessary method implementations to all classes which implement that interface.
 
 
+Supongamos que en un primer modulo maven tenemos esta interfaz con el default method...
+
+	public interface IconProvider extends IClusterable {
+		default Component getIcon(final String id, IconSize size) {
+			return null;
+		}
+	}
+
+Retrolambda lo que hace con esta clase es...
+
+	public abstract interface IconProvider2 extends IClusterable {
+	  public abstract Component getIcon(String paramString, IconSize paramIconSize);
+	}
+
+He implementar ese metodo (a traves de la "companion class") en las clases que implementen la interfaz.
+
+Por tanto, si no procesa todas las clases hijas de esa interfaz en la pasada del modulo, ya no lo hara, por lo que....
+
+public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection
+
+que esta en otro modulo.
+
+[ERROR] /home/jose/git/hippocms/hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7] 
+	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider
 
 
-Si lo que has usado son APIs de JDK como las de streaming..
-https://sourceforge.net/projects/streamsupport/
-
-Aqui un poco de historia
-https://en.wikipedia.org/wiki/Java_backporting_tools 
+En un primer monto, sin leer bien el mensaje de error, y sin comprender la jerarquia del proyecto, pense que https://github.com/orfjackal/retrolambda/pull/101[este pull request podria ayudar]
 
 Aqui unos apuntes sobre el Lifecycle de de maven
 https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle
@@ -51,28 +61,61 @@ https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#
 Y aqui sobre el classloading
 http://maven.apache.org/guides/mini/guide-maven-classloading.html
 
+Luego, leyendo mas en detalle, pense que el problema era que hacia la interfaz abstracta...
 
-TODO: 
-	Explicacion de los default methods.
-		- https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html
-		- https://dzone.com/articles/interface-default-methods-java 
-		- https://blog.idrsolutions.com/2015/01/java-8-default-methods-explained-5-minutes/
+En https://twitter.com/nicolas_frankel/status/786202575150407680[este tweet] se habla de porque https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659[las interfaces interfaces son abstractas (por defecto)]
 
-	export DEFAULT_METHODS=2 ??? https://github.com/orfjackal/retrolambda/issues/31
-	https://github.com/orfjackal/retrolambda/issues/56 ???
+Explicacion de los default methods.
+- https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html
+- https://dzone.com/articles/interface-default-methods-java
+- https://blog.idrsolutions.com/2015/01/java-8-default-methods-explained-5-minutes/
 
-	Optionally also: https://github.com/orfjackal/retrolambda#backported-language-features
+Explicación de oracle sobre "abstract"
+https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html
 
-		Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, 
-		replacing the default methods in the interface with abstract methods, and by adding the necessary method implementations to 
-		all classes which implement that interface.
+Pero el problema en este caso, se resolvia implementando el metodo getIcon(String,IconSize) con el comportamiento por default en las clases del segundo modulo.
 
-		Static methods on interfaces are backported by moving the static methods to a companion class (interface name + "$"), 
-		and by changing all methods calls to call the new method location.[1]
+Ya que el problema rondaba la limitacion inicial...
+https://github.com/orfjackal/retrolambda/issues/56
+https://github.com/orfjackal/retrolambda/issues/58
 
-		[1] The static methods are moved to a companion class even with default method support disabled, because some of them may be 
-		lambda implementation methods, but the method calls to static methods are not updated. This may cause weird error messages if
-		static methods on interfaces are accidentally used without enabling default method support.
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
-	- http://stackoverflow.com/questions/31160831/android-groovy-android-annotation
+??? ??? ??? export DEFAULT_METHODS=2 ??? https://github.com/orfjackal/retrolambda/issues/31
+??? ??? ??? https://github.com/orfjackal/retrolambda/issues/56 ???
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Static methods on interfaces are backported by moving the static methods to a companion class (interface name + "$"), and by changing all methods calls to call the new method location.[1]
+
+[ERROR] /home/jose/git/hippocms/hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
+[ERROR] symbol:   method of(Calendar)
+[ERROR] location: interface DateTimePrinter
+[ERROR] /home/jose/git/hippocms/hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
+[ERROR] symbol:   method of(Calendar)
+[ERROR] location: interface DateTimePrinter
+
+Cambiando los import en el modulo segundo... a la clase companion...
+
+[ERROR] /home/jose/git/hippocms/hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[33,55] error: DateTimePrinter$ is not public in org.hippoecm.frontend.plugins.standards.datetime; cannot be accessed from outside package
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+??? Error de compilacion... debido a plugin...
+
+
+Se hacer referencia en los import a la companion class y ya sigue la compilacion...
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Notas finales:
+
+Si lo que has usado en tu proyecto con JDK8 son las de streaming, puedes usar https://sourceforge.net/projects/streamsupport/[esto].
+
+Aqui un https://en.wikipedia.org/wiki/Java_backporting_tools[poco de historia].
+
+
+
+Bola extra:
+
+http://stackoverflow.com/questions/31160831/android-groovy-android-annotation[Groovy Android y APT]
