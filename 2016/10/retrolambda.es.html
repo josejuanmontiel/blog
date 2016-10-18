@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jose Juan Montiel's blog: Retrolambda and default methods</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Le styles -->
+    <link href="/blog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/blog/css/asciidoctor.css" rel="stylesheet">
+    <link href="/blog/css/base.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+    </head>
+  <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ lang: en_US
+</script>
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+	    <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog">Jose Juan Montiel's blog</a>
+	    </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/blog/about.html">About</a></li>
+
+				<!-- li class="dropdown">
+	          		<a data-toggle="dropdown" href="#">Topics<b class="caret"></b></a>
+			          <ul class="dropdown-menu" role="menu">
+						<li><a href="/blog/tags/groovy.html">Groovy</a></li>
+						<li><a href="/blog/2013/07/30/deck2pdf_exporting_html5_slide_decks.html">deck2pdf</a></li>
+						<li><a href="/blog/tags/jlangdetect.html">JLangDetect</a></li>
+			          </ul>
+	       		</li -->
+                <li><a href="/blog/feed.xml">Feed</a></li>
+              </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="https://github.com/josejuanmontiel"><i class="fa fa-github"></i></a></li>
+	        <li><a href="https://twitter.com/accreativos"><i class="fa fa-twitter"></i></a>
+	      </ul>
+            </div>
+          </div>
+      </div>
+      <div class="container">
+
+	<div class="page-header">
+
+			<h1>Retrolambda and default methods <a href="/blog/2016/10/retrolambda.html">(English version)</a></h1>
+
+	</div>
+
+	<p><em>19 octubre 2016</em></p>
+	<p><em>Tags: </em>
+		<a href="/blog/tags/jvm.html">jvm</a>
+	</em>
+		<a href="/blog/tags/retrolambda.html">retrolambda</a>
+	</em>
+		<a href="/blog/tags/hippocms.html">hippocms</a>
+	</em>
+		<a href="/blog/tags/android.html">android</a>
+	</em>
+		<a href="/blog/tags/apt.html">apt</a>
+	</p>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+	<p><div class="sect1">
+<h2 id="_retrolambda_e_hippo_cms">Retrolambda e Hippo Cms</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://code.onehippo.org/cms-community/hippo-cms">Este proyecto</a>, solo se puede compilar con la JDK 8, ya que hace uso intensivo de sus caracteristicas: lambdas, default methods y otras mas.</p>
+</div>
+<div class="paragraph">
+<p>Gracias a <a href="https://github.com/orfjackal/retrolambda">Retrolambda</a>, muchos proyectos que hacen uso de las nuevas caracteristicas de JDK 8 pueden migrarse a JDK7 (y anteriores) y por tanto tambien a Android, lugar donde se hace principal uso de esta herramienta.</p>
+</div>
+<div class="paragraph">
+<p>Y con <a href="https://github.com/orfjackal/retrolambda#maven-plugin">este pluging maven</a> puedes integrarlo en tu buildsystem. <a href="https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml">Aqui</a> un ejemplo de como usarlo. Y ademas, hay otro <a href="https://github.com/evant/gradle-retrolambda">para gradle</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_limitaciones">Limitaciones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pero hay unas <a href="https://github.com/orfjackal/retrolambda#known-limitations">limitaciones bien conocidas</a>, que hacen que la migracion de los default method de JDK 8 no sean tan faciles, "must to be backported together, with one execution of Retrolambda".</p>
+</div>
+<div class="paragraph">
+<p>Por eso, <a href="http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html">por defecto</a>, viene deshabilitada su migracion.</p>
+</div>
+<div class="paragraph">
+<p>Cuando Retrolmambda migra las <a href="https://github.com/orfjackal/retrolambda#backported-language-features">Default Methods</a>:
+Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the necessary method implementations to all classes which implement that interface.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_retrolambda_e_hippocms">Retrolambda (e HippoCms)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tomemos como ejemplo, <a href="https://code.onehippo.org/cms-community/hippo-cms">el siguiente</a> proyecto.</p>
+</div>
+<div class="paragraph">
+<p>Supongamos que en un primer modulo tenemos esta interfaz con el default method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint java language-java"><code>public interface IconProvider extends IClusterable {
+	default Component getIcon(final String id, IconSize size) {
+		return null;
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Retrolambda lo que hace con esta clase es transformarla en esta otra.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint java language-java"><code>public abstract interface IconProvider2 extends IClusterable {
+  public abstract Component getIcon(String paramString, IconSize paramIconSize);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>E implementa ese metodo (a traves de la "companion class") en las clases que implementen la interfaz, de las clases del mismo modulo.</p>
+</div>
+<div class="paragraph">
+<p>Por tanto, si no procesa todas las clases hijas de esa interfaz en la pasada del modulo, ya no lo hara, por lo que&#8230;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint java language-java"><code>public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>que esta en otro modulo, al intentar ser compilada da este error</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint java language-java"><code>[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
+	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primeras_conclusiones">Primeras conclusiones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En un primer momento, sin leer bien el mensaje de error, y sin comprender la jerarquia de clases del proyecto, pense que <a href="https://github.com/orfjackal/retrolambda/pull/101">este pull request podria ayudar</a></p>
+</div>
+<div class="paragraph">
+<p>Por si quieres entender mas en detalle, <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle">aqui</a> unos apuntes sobre el Lifecycle de de maven. Y <a href="http://maven.apache.org/guides/mini/guide-maven-classloading.html">aqui</a> sobre el classloading.</p>
+</div>
+<div class="paragraph">
+<p>Luego, leyendo mas en detalle, pense que el problema era que al tranformar la interfaz a abstracta&#8230; bueno, que me habia despistado del problema real, y a ese despiste constituyo ver, en <a href="https://twitter.com/nicolas_frankel/status/786202575150407680">este tweet</a> porque <a href="https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659">las interfaces interfaces son abstractas (por defecto)</a>.</p>
+</div>
+<div class="paragraph">
+<p>Y el propio <a href="https://twitter.com/orfjackal">Esko Luontola</a> nos explica el motivo: "pre-Java 8 JVMs support only abstract methods in interfaces (the &lt;clinit&gt; method being an exception). Retrolambda inserts the default method code to all implementing classes, thus emulating what JVM 8 does."</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">Aqui</a> una explicacion mas detallada de como funcionan los Default Methods en JDK 8. Y <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">aqui</a> la explicación de oracle sobre "abstract".</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_explicacion_del_problema_real">Explicacion del problema real</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pero el problema, en este caso, era simplemente la limitacion de la libreria en projectos multi modulo <a href="https://github.com/orfjackal/retrolambda/issues/56">aqui</a> y
+<a href="https://github.com/orfjackal/retrolambda/issues/58">aqui</a> lo comentan tambien en detalle.</p>
+</div>
+<div class="paragraph">
+<p>Una manera de resolverlo, haciendo pequeñas modificaciones en el codigo, seria implementando el metodo getIcon(String,IconSize) con el comportamiento por default en las clases del segundo modulo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint bash language-bash"><code>diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
+index 99bdb0e..9b34ce1 100644
+--- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
++++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
+@@ -18,6 +18,7 @@
+ import javax.jcr.Node;
+ import javax.jcr.RepositoryException;
+
++import org.apache.wicket.Component;
+ import org.apache.wicket.model.IModel;
+ import org.apache.wicket.request.resource.ResourceReference;
+ import org.hippoecm.frontend.l10n.ResourceBundleModel;
+@@ -144,4 +145,10 @@
+         return null;
+     }
+
++    @Override
++    public Component getIcon(String id, IconSize size) {
++    	return null;
++    }
++
++
+ }
+diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
+index 450712b..9d09210 100644
+--- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
++++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
+@@ -56,6 +56,7 @@
+ import org.hippoecm.frontend.service.IconSize;
+ import org.hippoecm.frontend.service.render.RenderPlugin;
+ import org.hippoecm.frontend.skin.Icon;
++import org.hippoecm.frontend.skin.IconProvider;
+ import org.hippoecm.repository.api.HippoNodeType;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+@@ -337,6 +338,11 @@
+     public ResourceReference getIcon(IconSize type) {
+         return null;
+     }
++
++    @Override
++    public Component getIcon(String id, IconSize size) {
++    	return null;
++    }
+
+     private boolean hasSearchResult() {
+         return collection.getType() == DocumentCollectionType.SEARCHRESULT;
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__proximos_pasos">¿Proximos pasos?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/teras">Teras</a> y <a href="https://github.com/orfjackal">Orfjackal</a>, ¿porque el PR 101 no modifica estas clases para hacer ese cambio? ¿Quizas no lo hace porque ya existe un metodo con ese nombre, aunque no con el mismo numero de paramtros?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__y_que_pasa_con_la_compilacion_retrolambda_de_hippocms">¿Y que pasa con la compilacion retrolambda de hippocms?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Aun nos quedaba algun error por resolver&#8230; metodo estaticos&#8230;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint bash language-bash"><code>[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
+[ERROR] symbol:   method of(Calendar)
+[ERROR] location: interface DateTimePrinter
+[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
+[ERROR] symbol:   method of(Calendar)
+[ERROR] location: interface DateTimePrinter</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Static methods on interfaces are backported by moving the static methods to a companion class (interface name + "$"), and by changing all methods calls to call the new method location.[1]</p>
+</div>
+<div class="paragraph">
+<p>En este caso la solucion temporal es cambiar los import en las clases del segundo modulo, a la clase companion.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint bash language-bash"><code>diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
+index 5a97066..ab938b7 100644
+--- a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
++++ b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
+@@ -41,7 +41,7 @@
+ import org.hippoecm.frontend.plugin.IPluginContext;
+ import org.hippoecm.frontend.plugins.reviewedactions.model.Request;
+ import org.hippoecm.frontend.plugins.reviewedactions.model.RequestModel;
+-import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter;
++import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter$;
+ import org.hippoecm.frontend.plugins.standards.icon.HippoIcon;
+ import org.hippoecm.frontend.session.UserSession;
+ import org.hippoecm.frontend.skin.Icon;
+@@ -110,7 +110,7 @@
+                 String state = request.getState();
+
+                 final String parameter = schedule != null ?
+-                        DateTimePrinter.of(schedule).appendDST().print(FormatStyle.FULL) : "??";
++                        DateTimePrinter$.of(schedule).appendDST().print(FormatStyle.FULL) : "??";
+                 return new StringResourceModel("state-" + state, this, null, "unknown", parameter);
+             }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_notas_finales">Notas finales</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Si lo que has usado en tu proyecto con JDK 8 son las APIs de streaming, puedes usar <a href="https://sourceforge.net/projects/streamsupport/">esto</a>.</p>
+</div>
+<div class="paragraph">
+<p>Aqui un <a href="https://en.wikipedia.org/wiki/Java_backporting_tools">poco de historia</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bola_extra">Bola extra</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation">Groovy Android y APT</a></p>
+</div>
+</div>
+</div></p>
+
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'josejuanmontiel';
+	var disqus_identifier = 'retrolambda-and-hippocms';
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	<hr>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+	<p class="muted credit">All posts on this blog are published with a <em>Creative Commons by-nc-sa</em> license.<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"/></a></p>
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://twitter.github.com/bootstrap/">Bootstrap v3.0.3</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/blog/js/jquery-1.9.1.min.js"></script>
+    <script src="/blog/js/bootstrap.min.js"></script>
+    <script src="/blog/js/run_prettify.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <script type="text/javascript">
+    var disqus_shortname = 'josejuanmontiel';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+<script type="text/javascript">
+  window.___gcfg = {lang: 'es'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82879918-1', 'josejuanmontiel.github.io');
+  ga('send', 'pageview');
+
+</script>
+<script src="http://cdn.lanyrd.net/badges/person-v1.min.js"></script>
+  </body>
+</html>
