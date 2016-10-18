@@ -51,7 +51,7 @@ public abstract interface IconProvider2 extends IClusterable {
 }
 ----
 
-He implementar ese metodo (a traves de la "companion class") en las clases que implementen la interfaz, de las clases del mismo modulo.
+E implementa ese metodo (a traves de la "companion class") en las clases que implementen la interfaz, de las clases del mismo modulo.
 
 Por tanto, si no procesa todas las clases hijas de esa interfaz en la pasada del modulo, ya no lo hara, por lo que...
 

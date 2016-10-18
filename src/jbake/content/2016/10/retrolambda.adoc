@@ -11,27 +11,26 @@ Jose Juan Montiel
 
 == Retrolambda and Hippo Cms
 
-https://code.onehippo.org/cms-community/hippo-cms[This project], solo se puede compilar con la JDK 8, ya que hace uso intensivo de sus caracteristicas: lambdas, default methods y otras mas.
+https://code.onehippo.org/cms-community/hippo-cms[This project] can only be compiled with the JDK 8 as it makes heavy use of its features: lambdas, default methods and more.
 
-Gracias a https://github.com/orfjackal/retrolambda[Retrolambda], muchos proyectos que hacen uso de las nuevas caracteristicas de JDK 8 pueden migrarse a JDK7 (y anteriores) y por tanto tambien a Android, lugar donde se hace principal uso de esta herramienta.
+Thanks to https://github.com/orfjackal/retrolambda[Retrolambda], many projects that make use of the new features of JDK 8 can be migrated to JDK7 (and earlier) and therefore also to Android, where primary use is made this tool.
 
-Y con https://github.com/orfjackal/retrolambda#maven-plugin[este pluging maven] puedes integrarlo en tu buildsystem. https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml[Aqui] un ejemplo de como usarlo. Y ademas, hay otro https://github.com/evant/gradle-retrolambda[para gradle].
+And with https://github.com/orfjackal/retrolambda#maven-plugin[this maven plugin] you can integrate it into your buildsystem. https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml[Here is] an example of how to use it. And besides, there is another https://github.com/evant/gradle-retrolambda[for Gradle].
 
-== Limitaciones
+== Limitations
 
-Pero hay unas https://github.com/orfjackal/retrolambda#known-limitations[limitaciones bien conocidas], que hacen que la migracion de los default method de JDK 8 no sean tan faciles, "must to be backported together, with one execution of Retrolambda".
+But there are some well known https://github.com/orfjackal/retrolambda#known-limitations[limitations], which makes the migration of the default method of JDK 8 are not so easy, "must to be backported together, with one execution of Retrolambda".
 
-Por eso, http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html[por defecto], viene deshabilitada su migracion.
+So http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html[by default] is disabled in the migration.
 
-Cuando Retrolmambda migra las https://github.com/orfjackal/retrolambda#backported-language-features[Default Methods]:
-Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the necessary method implementations to all classes which implement that interface.
+When Retrolmambda migrates https://github.com/orfjackal/retrolambda#backported-language-features[Default Methods]:
+Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the Necessary method Implementations to all classes which implement that interface.
 
+== Retrolambda (and HippoCms)
 
-== Retrolambda (e HippoCms)
+Take, for example, https://code.onehippo.org/cms-community/hippo-cms[the following] project.
 
-Tomemos como ejemplo, https://code.onehippo.org/cms-community/hippo-cms[el siguiente] proyecto.
-
-Supongamos que en un primer modulo tenemos esta interfaz con el default method.
+Suppose that initially have this interface module with the default method.
 
 [source,java]
 ----
@@ -42,7 +41,7 @@ public interface IconProvider extends IClusterable {
 }
 ----
 
-Retrolambda lo que hace con esta clase es transformarla en esta otra.
+Retrolambda what makes this class is transformed into this one.
 
 [source,java]
 ----
@@ -51,16 +50,16 @@ public abstract interface IconProvider2 extends IClusterable {
 }
 ----
 
-He implementar ese metodo (a traves de la "companion class") en las clases que implementen la interfaz, de las clases del mismo modulo.
+And implements that method (through the "companion class") in classes that implement the interface, classes in the same module.
 
-Por tanto, si no procesa todas las clases hijas de esa interfaz en la pasada del modulo, ya no lo hara, por lo que...
+Therefore, if not process all child classes that interface module in the past, and will not, so...
 
 [source,java]
 ----
 public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection
 ----
 
-que esta en otro modulo, al intentar ser compilada da este error
+this in another module, trying to be compiled gives this error
 
 [source,java]
 ----
@@ -68,24 +67,24 @@ que esta en otro modulo, al intentar ser compilada da este error
 	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider
 ----
 
-== Primeras conclusiones
+== First conclusions
 
-En un primer momento, sin leer bien el mensaje de error, y sin comprender la jerarquia de clases del proyecto, pense que https://github.com/orfjackal/retrolambda/pull/101[este pull request podria ayudar]
+At first, unread well the error message, and without understanding the class hierarchy of the project, I thought it might help https://github.com/orfjackal/retrolambda/pull/101[this PR]
 
-Por si quieres entender mas en detalle, https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle[aqui] unos apuntes sobre el Lifecycle de de maven. Y http://maven.apache.org/guides/mini/guide-maven-classloading.html[aqui] sobre el classloading.
+If you want to understand more in detail, https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle[here] some notes on the Lifecycle of maven. And http://maven.apache.org/guides/mini/guide-maven-classloading.html[here] on classloading.
 
-Luego, leyendo mas en detalle, pense que el problema era que al tranformar la interfaz a abstracta... bueno, que me habia despistado del problema real, y a ese despiste constituyo ver, en https://twitter.com/nicolas_frankel/status/786202575150407680[este tweet] porque https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659[las interfaces interfaces son abstractas (por defecto)].
+Then read more in detail, I thought the problem was that the transformation the interface to abstract ... well, i admit https://twitter.com/nicolas_frankel/status/786202575150407680[this tweet] had distracted me from the real problem, because https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659[	the interfaces are abstract (by default)].
 
-Y el propio https://twitter.com/orfjackal[Esko Luontola] nos explica el motivo: "pre-Java 8 JVMs support only abstract methods in interfaces (the <clinit> method being an exception). Retrolambda inserts the default method code to all implementing classes, thus emulating what JVM 8 does."
+And the own https://twitter.com/orfjackal[Esko Luontola] explains why. "8 pre-Java JVMs support only abstract methods in interfaces (the <clinit> method being an exception). Retrolambda code inserts the default method implementing to all classes, JVM 8 thus emulating what does."
 
-https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html[Aqui] una explicacion mas detallada de como funcionan los Default Methods en JDK 8. Y https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html[aqui] la explicación de oracle sobre "abstract".
+https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html[Here] a more detailed explanation of how to operate the Default Methods in JDK 8. And https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html[here] oracle's explanation on "abstract".
 
-== Explicacion del problema real
+== Explanation of the real problem
 
-Pero el problema, en este caso, era simplemente la limitacion de la libreria en projectos multi modulo https://github.com/orfjackal/retrolambda/issues/56[aqui] y 
-https://github.com/orfjackal/retrolambda/issues/58[aqui] lo comentan tambien en detalle.
+But the problem, in this case, was simply the limitation of the library in multi module projects https://github.com/orfjackal/retrolambda/issues/56[here] and
+https://github.com/orfjackal/retrolambda/issues/58[here] as also discussed in detail.
 
-Una manera de resolverlo, haciendo pequeñas modificaciones en el codigo, seria implementando el metodo getIcon(String,IconSize) con el comportamiento por default en las clases del segundo modulo.
+A way out by making small manual changes in the code, it would be implementing the method getIcon(String, IconSize) with the default behavior in class the second module.
 
 [source,bash]
 ----
@@ -139,13 +138,13 @@ index 450712b..9d09210 100644
 
 ----
 
-== ¿Proximos pasos?
+== Next steps?
 
-https://github.com/teras[Teras] y https://github.com/orfjackal[Orfjackal], ¿porque el PR 101 no modifica estas clases para hacer ese cambio? ¿Quizas no lo hace porque ya existe un metodo con ese nombre, aunque no con el mismo numero de paramtros?
+https://github.com/teras[Teras] and https://github.com/orfjackal[Orfjackal], why the PR 101 does not modify these classes to make that change? Maybe it does because there is already a method with that name, although not with the same number of parameters?
 
-== ¿Y que pasa con la compilacion retrolambda de hippocms?
+== And what happend with the retrolambda compilation of HippoCms?
 
-Aun nos quedaba algun error por resolver... metodo estaticos...
+Even some mistake ... we have to solve static method ...
 
 [source,bash]
 ----
@@ -159,7 +158,7 @@ Aun nos quedaba algun error por resolver... metodo estaticos...
 
 Static methods on interfaces are backported by moving the static methods to a companion class (interface name + "$"), and by changing all methods calls to call the new method location.[1]
 
-En este caso la solucion temporal es cambiar los import en las clases del segundo modulo, a la clase companion.
+In this case, the temporary solution is to change the import in the classes of the second module, the companion class.
 
 [source,bash]
 ----
@@ -186,12 +185,12 @@ index 5a97066..ab938b7 100644
              }
 ----
 
-== Notas finales
+== Final notes
 
-Si lo que has usado en tu proyecto con JDK 8 son las APIs de streaming, puedes usar https://sourceforge.net/projects/streamsupport/[esto].
+If you've used in your project with JDK 8 are streaming APIs, you can use https://sourceforge.net/projects/streamsupport/[this].
 
-Aqui un https://en.wikipedia.org/wiki/Java_backporting_tools[poco de historia].
+Here is a https://en.wikipedia.org/wiki/Java_backporting_tools[brief history].
 
-== Bola extra
+== Extra ball
 
-http://stackoverflow.com/questions/31160831/android-groovy-android-annotation[Groovy Android y APT]
+http://stackoverflow.com/questions/31160831/android-groovy-android-annotation[Groovy Android and APT]
