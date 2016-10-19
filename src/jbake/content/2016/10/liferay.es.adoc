@@ -1,0 +1,13 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-11-01
+:jbake-type: post
+:jbake-tags: jvm, liferay, osgi
+:jbake-status: draft
+:jbake-lang: en
+:source-highlighter: prettify
+:id: liferay-and-osgi
+:icons: font
+
+== Liferay and OSGi
+
