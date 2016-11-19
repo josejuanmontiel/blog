@@ -24,6 +24,7 @@ Jose Juan Montiel
 - http://bytebuddy.net/#/
 	- https://github.com/raphw/byte-buddy
 	- https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android
+	- https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188
 * http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy
 
 * https://github.com/josejuanmontiel/thymeleaf_talk
