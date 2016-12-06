@@ -1,0 +1,41 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-10-23
+:jbake-type: post
+:jbake-tags: talk
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: prepare-a-talk
+:icons: font
+
+== Prepare a talk
+
+- Escaneo de tickets
+	- http://stackoverflow.com/questions/38618860/tess-two-receipt-recognitions-wide-font-and-different-font-size-give-me-bad-res
+	- http://www.astrojack.com/scanning-and-ocr-ing-a-paper-receipt/
+
+- Ocr
+	- https://github.com/rmtheis/tess-two
+	- https://github.com/tleyden/ocr-parking-ticket
+	
+- Spring-boot
+	- https://github.com/arun0009/ocr-tess4j-rest
+	
+- Google Cloud
+	- http://www.ideyatech.com/cloud-ocr-google-vision-api/
+	
+- Image Panorama Stitching
+	- http://answers.opencv.org/question/27681/image-stitching-java-api/
+	- http://devblog.michalski.im/2012/05/18/combine-multiple-video-frames-into-one-using-opencv/
+	- https://ramsrigoutham.com/2012/11/22/panorama-image-stitching-in-opencv/
+	- http://blog.blackhc.net/2010/07/panorama-stitching/
+	- http://imagej.net/Image_Stitching
+	
+- Java Image stiching
+	- https://github.com/bytedeco/sample-projects/tree/master/opencv-stitching
+	
+	- https://github.com/lessthanoptimal/BoofCV/tree/master/examples/src/boofcv/examples/geometry/ExampleImageStitching.java
+	
+	- 
+
