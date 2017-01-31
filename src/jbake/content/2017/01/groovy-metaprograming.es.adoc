@@ -35,3 +35,15 @@ Jose Juan Montiel
 
 - https://github.com/raphw/byte-buddy/issues/58
 - ASM4 - http://asm.ow2.org/
+
+- Live Change Code
+	- https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/
+	- https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0
+	- http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html
+		- Crash
+		- YouDebug
+
+- Android
+	- http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt
+	- http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken
+	- http://stackoverflow.com/questions/31160831/android-groovy-android-annotation
