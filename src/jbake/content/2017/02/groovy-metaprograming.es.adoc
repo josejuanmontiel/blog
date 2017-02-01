@@ -1,0 +1,49 @@
+= Groovy Metaprograming
+Jose Juan Montiel
+2016-10-16
+:jbake-type: post
+:jbake-tags: jvm,thymeleaf
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: thymeleaf
+:icons: font
+
+== Code generation to model user from thymeleaf groovy model
+
+
+
+- Dagger - https://google.github.io/dagger/users-guide
+- ButterKniffe - http://jakewharton.github.io/butterknife/
+- MagicBuilder - https://github.com/AlbertoSH/MagicBuilder
+- Android Annotation - http://androidannotations.org/
+
+- APT - http://docs.oracle.com/javase/7/docs/technotes/guides/apt/
+
+- SwissKnife - https://github.com/Arasthel/SwissKnife
+- http://bytebuddy.net/#/
+	- https://github.com/raphw/byte-buddy
+	- https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android
+	- https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188
+* http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy
+
+* https://github.com/josejuanmontiel/thymeleaf_talk
+* https://github.com/josejuanmontiel/adorable-avatar
+* https://github.com/josejuanmontiel/dynamic-rest-template
+
+- javapoet - https://github.com/square/javapoet
+
+- https://github.com/raphw/byte-buddy/issues/58
+- ASM4 - http://asm.ow2.org/
+
+- Live Change Code
+	- https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/
+	- https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0
+	- http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html
+		- Crash
+		- YouDebug
+
+- Android
+	- http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt
+	- http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken
+	- http://stackoverflow.com/questions/31160831/android-groovy-android-annotation
