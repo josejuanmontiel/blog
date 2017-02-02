@@ -11,70 +11,60 @@ Jose Juan Montiel
 
 == Generacion de codigo. Del modelo a la vista.
 
-Podriamos dividir la generacion de codigo en las siguientes categorias:
+En https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html[uno]
+de mis anteriores artículos, hablaba de como, usando groovy y thymeleaf, se podía
+separar aun un poco mas, la maqueta de las indicaciones de donde colocar los
+elementos de binding, para mostrar los datos del modelo; y deje planteado unos
+próximos pasos, como se podía generar parte de ese código.
+
+A día de hoy, existen muchas maneras de "generar codigo". Por ejemplo, en
+http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy[este articulo]
+Ivan nos cuenta muy detalladamente las opciones que hay en groovy.
+
+Y en http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html[esta charla],
+Mario, se centra en las ayudas que existen para la Metaprogramacion en groovy, los macros.
+
+Si tuvieramos que hacer una clasificacion, diferente, de las distintas maneras de crear codigo podriamos hacerlo asi:
 
 . Las de java
 .. Las que se ven
-... Las que generan fuentes
-... Las que generan clases
+... Las que generan codigo fuente
+**** Cosas como http://docs.spring.io/spring-roo/reference/html/intro.html[Spring Roo] o http://yeoman.io[Yeoman] son herramientas que generan codigo "scaffolding".
+**** Pero cosas como esta libreria https://github.com/square/javapoet[Javapoet] genera codigo fuente, a partir de un DSL, y asi partimos de unos fuentes comunes.
+... Las que generan codigo compilado. http://docs.oracle.com/javase/7/docs/technotes/guides/apt/[APT].
+**** Por ejemplo, esta libreria, https://github.com/AlbertoSH/MagicBuilder[MagicBuilder]
+genera codigo en tiempo de compilacion, siguiendo el patron builder.
 .. Las que no se ven
 ... Las que usan injeccion de dependencias
 ... Generan/modifican codigo en tiempo de ejecucion
-... Las que cambian el codigo en produccion mediante dinamic attach
-... Las que compilan codigo desde unos fuentes en produccion
+**** http://asm.ow2.org/[ASM4]
+**** http://bytebuddy.net/#/[ByteBuddy]
+***** https://github.com/raphw/byte-buddy
+***** https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android
+***** https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188
+... Las que cambian el codigo en produccion mediante dinamic attach. https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/[Dynamic attach].
+**** En esta charla, nos cuentan  como usar http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html[YouDebug] como un depurador interactivo en produccion.
+... Las que compilan codigo desde unos fuentes en produccion. https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0[Compile sources en runtime].
 . Las de mundo groovy
 .. Metaprogramacion en compilacion
 .. Metaprogramacion en ejecucion
 . El mundo android
-.. Asistidas por gradle
+.. Asistidas por gradle (con el plugin APT)
+*** https://google.github.io/dagger/users-guide[Dagger]
+*** http://jakewharton.github.io/butterknife/[Butterknife]
+- Android Annotation - http://androidannotations.org/
+https://github.com/Arasthel/SwissKnife[SwissKnife] para groovy.
 . Osgi vs Jigsaw
 
 
-En https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html[uno]
-de mis anteriores articulos, hablaba de como usando groovy y thymeleaf se podia
-separar aun un poco mas la maqueta de las indicaciones de donde colocar los
-elemtos de binding, para mostrar los datos del modelo, y deje planteado unos
-proximos pasos, como generar parte del codigo.
-
-A dia de hoy existen muchas maneras de "generar codigo", en http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy[este articulo]
-nos cuentan muy detalladamente las opciones que hay...
-
-Luego, en http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html[esta charla] contaron las ayudas que existen para la Metaprogramacion en groovy, los macros.
-
-- APT - http://docs.oracle.com/javase/7/docs/technotes/guides/apt/
-- MagicBuilder - https://github.com/AlbertoSH/MagicBuilder
-
-
-- Dagger - https://google.github.io/dagger/users-guide
-- ButterKniffe - http://jakewharton.github.io/butterknife/
-- Android Annotation - http://androidannotations.org/
-- SwissKnife - https://github.com/Arasthel/SwissKnife
-
-- http://bytebuddy.net/#/
-	- https://github.com/raphw/byte-buddy
-	- https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android
-	- https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188
-
-- javapoet - https://github.com/square/javapoet
-
-- https://github.com/raphw/byte-buddy/issues/58
-- ASM4 - http://asm.ow2.org/
-
-- Live Change Code
-	- https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/
-	- https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0
-	- http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html
-		- Crash
-		- YouDebug
-
-- Android
-	- http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt
-	- http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken
-	- http://stackoverflow.com/questions/31160831/android-groovy-android-annotation
-
 == Enfoque usando el codigo de ejemplo
+. https://github.com/josejuanmontiel/thymeleaf_talk
+. https://github.com/josejuanmontiel/adorable-avatar
+. https://github.com/josejuanmontiel/dynamic-rest-template
 
+== Bola extra
+Algunas conversaciones en stackoverflow sobre android, groovy y generacion de codigo por APT
 
-	* https://github.com/josejuanmontiel/thymeleaf_talk
-	* https://github.com/josejuanmontiel/adorable-avatar
-	* https://github.com/josejuanmontiel/dynamic-rest-template
+. http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt
+. http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken
+. http://stackoverflow.com/questions/31160831/android-groovy-android-annotation
