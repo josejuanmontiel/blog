@@ -11,6 +11,8 @@ Jose Juan Montiel
 
 == Prepare a talk
 
+https://groups.google.com/forum/#!topic/madrid-gug/GPg3kamXDN4
+
 * https://github.com/josejuanmontiel/charla_gradle[Gradle]
 * https://github.com/josejuanmontiel/thymeleaf_talk[Thymeleaf]
 	http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
