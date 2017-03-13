@@ -1,0 +1,15 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-10-23
+:jbake-type: post
+:jbake-tags: talk
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: prepare-a-talk
+:icons: font
+
+== DDD
+
+- Meetup
+	- https://www.meetup.com/es-ES/dddmadrid/events/237561762/

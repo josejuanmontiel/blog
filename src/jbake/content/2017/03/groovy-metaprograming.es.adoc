@@ -1,6 +1,6 @@
 = Groovy Metaprograming
 Jose Juan Montiel
-2017-02-03
+2017-03-20
 :jbake-type: post
 :jbake-tags: jvm,code,generation,groovy, thymeleaf
 :jbake-status: draft
