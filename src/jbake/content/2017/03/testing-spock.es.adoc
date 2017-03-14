@@ -1,0 +1,23 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-10-16
+:jbake-type: post
+:jbake-tags: jvm,hippocms
+:jbake-status: draft
+:jbake-lang: en
+:source-highlighter: prettify
+:id: hippocms
+:icons: font
+
+== Testing con spock
+
+Nikolas frankel
+	- mock
+	- stubs
+	- dobles..
+
+Ivan spock
+	https://virtualjug.com/vjug24-session-testing-with-spock-the-logical-choice-by-ivan-lopez/
+	https://github.com/ilopmar/virtualjug24-spock
+
+Spring - spock
