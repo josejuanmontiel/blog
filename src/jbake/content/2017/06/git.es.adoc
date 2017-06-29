@@ -1,0 +1,305 @@
+= Git & Merge & Rebase & Flow
+Jose Juan Montiel
+2017-06-30
+:jbake-type: post
+:jbake-tags: git,merge,rebase,git-flow
+:jbake-status: published
+:jbake-lang: en
+:source-highlighter: prettify
+:id: git-merge-rebase-flow
+:imagesdir: /home/jose/git/blog/src/jbake/assets/2017/06
+:icons: font
+
+== Git & Merge & Rebase & Flow
+
+Primero ini ializamos un repositorio (local) y lo clonamos en dos directorios
+distintos.
+
+[source,sh]
+----
+git init --bare --shared ~/sandbox-git/test-repo.git
+git clone test-repo.git repo-clone1
+git clone test-repo.git repo-clone2
+----
+
+Despues nos vamos al directorio 1, y añadimos un primer fichero, en el commit
+indicamos un nombre de usuario: User1.
+
+[source,sh]
+----
+cd repo-clone1
+touch README
+git add .
+git commit --author="User1 <user1@git.com>" -m "Initial commit"
+git push -u origin master
+----
+
+Para ver desde consola podemos añadir lo siguiente a ~/.gitconfig bajo [alias]
+
+TIP: tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
+
+El repo queda entonces asi.
+
+image::git_01.png[]
+
+Despues nos vamos a la segunda carpeta y solo hacemos "fetch", modificamos el
+fichero  y lo comiteamos, luego intentamos push.
+
+[source,sh]
+----
+cd ../repo-clone2
+git fetch
+vi README
+git add README
+git commit --author="User2 <user2@git.com>" -m "Other user change"
+git push
+----
+
+Pero obtenemos el siguiente error.
+
+[source,sh]
+----
+	 ! [rejected]        master -> master (non-fast-forward)
+	error: failed to push some refs to '/home/jose/sandbox-git/test-repo.git'
+	hint: Updates were rejected because the tip of your current branch is behind
+	hint: its remote counterpart. Integrate the remote changes (e.g.
+	hint: 'git pull ...') before pushing again.
+	hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+----
+
+*** No se puede hacer push sino se hace un pull... en este momento el arbol esta asi...
+
+image::git_02.png[]
+
+[source,sh]
+----
+git pull
+----
+
+CAUTION: The default behavior has changed since git 2.9
+
+"git merge" used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.
+
+Entonces probamos con:
+
+[source,sh]
+----
+git pull origin master --allow-unrelated-histories
+----
+
+Y queda esto
+
+image::git_03.png[]
+
+Ahora ya podemos hacer:
+
+[source,sh]
+----
+git push
+----
+
+Y asi queda el repo:
+
+image::git_04.png[]
+
+Vamos ahora a probar en el directorio a crear con git-flow una feature, crear un
+nuevo fichero y luego... crear otra feature en el directorio 2, creando otro
+fichero.
+
+Luego en el directorio 1, cerramos la feature, luego en el directorio 2,
+
+TIP: Mergeamos develop en nuestra rama, y luego mergeamos nuestra rama en develop (cerrando la feature).
+
+[source,sh]
+----
+cd ../repo-clone1
+git flow init
+git flow feature start user1
+
+vi feature-user1.txt
+git add feature-user1.txt
+git commit --author="User1 <user1@git.com>" -m "Commit in feature-user1"
+----
+
+image::git_05.png[]
+
+WARNING: Pero se nos "olvido" hacer fetch/pull antes de empezar... y aqui empieza el lio..
+
+[source,sh]
+----
+git fetch
+git pull origin master
+----
+
+Ahora (a punto de terminar la historia) tenemos el arbol asi.
+
+image::git_06.png[]
+
+Cerramos la feature
+
+[source,sh]
+----
+git flow feature finish
+----
+
+Summary of actions:
+
+* The feature branch 'feature/user1' was merged into 'develop'
+* Feature branch 'feature/user1' has been locally deleted
+* You are now on branch 'develop'
+
+Subimos develop, que aun no lo habiamos hecho.
+
+[source,sh]
+----
+git push origin develop
+----
+
+quedando el arbol, asi:
+
+image::git_07.png[]
+
+Ahora nos vamos al otro directorio, nos actualizamos, creamos una feature,
+hacemos algo en el fichero README comiteamos, pero antes de cerrar la feature,
+cambiamos de carpeta y modificamso el README, volvemos al directorio original y
+antes de cerrar feature, mergeamos develop en nuestra rama.
+
+[source,sh]
+----
+cd ../repo-clone2
+git fetch
+git checkout develop
+git pull
+
+git flow init
+
+git flow feature start user2
+
+vi feature-user2.txt
+git add  feature-user2.txt
+git commit --author="User2 <user2@git.com>" -m "Commit in feature-user2"
+
+cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author="User1 <user1@git.com>" -m "Update develop file feature1"
+git push origin develop
+----
+
+Aqui (carpeta1) todavia no sabemos nada de la feature2, quedando el arbol asi
+
+image::git_08.png[]
+
+El "problema" con rebase es que altera las lineas de historia, para bien o para mal.
+
+Si seguimos el enfoque clasico, para mantener al dia nuestra feature2, debemos
+mergear a menudo con develop, o por lo menos, antes de cerrar la feature.
+
+[source,sh]
+----
+cd ../repo-clone2
+git fetch
+git pull origin develop
+----
+
+Esto, asi escrito no realiza un merge directo.
+
+image::git_09.png[]
+
+El merge podria haber sido manual, un fetch para actualiar, cambiando a develop,
+haciendo pull y luego volviendo a la feature y haciendo merge.
+
+Pero, probemos otra vez (vamos a carpeta 1, hacemos cambio en develop y lo subimos),
+pero esta vez hacemos un rebase (usando git flow)
+
+[source,sh]
+----
+cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author="User1 <user1@git.com>" -m "Update develop file feature1"
+git push origin develop
+cd ../repo-clone2
+git fetch
+git flow feature rebase user2
+----
+
+
+Will try to rebase 'user2' which is based on 'develop'...
+First, rewinding head to replay your work on top of it...
+Applying: Commit in feature-user2
+Applying: Update develop file feature1
+
+image::git_10.png[]
+
+[source,sh]
+----
+git flow feature finish
+----
+
+Branches 'develop' and 'origin/develop' have diverged.
+Fatal: And branch 'develop' may be fast-forwarded.
+
+[source,sh]
+----
+git checkout develop
+
+Switched to branch 'develop'
+Your branch is behind 'origin/develop' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+git pull
+Updating 408fcbf..f76cade
+Fast-forward
+ feature-user1.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+git checkout feature/user2
+Switched to branch 'feature/user2'
+
+git flow feature finish
+Switched to branch 'develop'
+Your branch is up-to-date with 'origin/develop'.
+Auto-merging feature-user1.txt
+CONFLICT (content): Merge conflict in feature-user1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+There were merge conflicts. To resolve the merge conflict manually, use:
+    git mergetool
+    git commit
+
+You can then complete the finish by running it again:
+    git flow feature finish user2
+----
+
+El rebase nos ha generado conflictos, que a la hora de hacer el merge, nos da problemas.
+
+[source,sh]
+----
+git mergetool
+----
+
+image::git_11.png[]
+
+[source,sh]
+----
+git add feature-user1.txt
+git commit --author="User2 <user2@git.com>" -m "Resolve rebase y merge"
+git push origin develop
+----
+
+Nos queda este arbol
+
+image::git_12.png[]
+
+Queda por probar el concepto de mergear una feature en develop, como un solo commit.
+
+	git merge --no-ff
+
+Referencias:
+
+* https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa
+
+* https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull
+* https://mislav.net/2013/02/merge-vs-rebase/
+* https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase

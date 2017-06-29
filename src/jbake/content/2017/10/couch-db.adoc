@@ -1,0 +1,15 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2016-10-23
+:jbake-type: post
+:jbake-tags: talk
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: prepare-a-talk
+:icons: font
+
+== Couch DB
+
+https://pouchdb.com/guides/replication.html
+http://docs.couchdb.org/en/2.0.0/
