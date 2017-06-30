@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jose Juan Montiel's blog: Git &amp; Merge &amp; Rebase &amp; Flow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Le styles -->
+    <link href="/blog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/blog/css/asciidoctor.css" rel="stylesheet">
+    <link href="/blog/css/base.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+    </head>
+  <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ lang: en_US
+</script>
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+	    <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog">Jose Juan Montiel's blog</a>
+	    </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/blog/about.html">About</a></li>
+
+				<!-- li class="dropdown">
+	          		<a data-toggle="dropdown" href="#">Topics<b class="caret"></b></a>
+			          <ul class="dropdown-menu" role="menu">
+						<li><a href="/blog/tags/groovy.html">Groovy</a></li>
+						<li><a href="/blog/2013/07/30/deck2pdf_exporting_html5_slide_decks.html">deck2pdf</a></li>
+						<li><a href="/blog/tags/jlangdetect.html">JLangDetect</a></li>
+			          </ul>
+	       		</li -->
+                <li><a href="/blog/feed.xml">Feed</a></li>
+              </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="https://github.com/josejuanmontiel"><i class="fa fa-github"></i></a></li>
+	        <li><a href="https://twitter.com/accreativos"><i class="fa fa-twitter"></i></a>
+	      </ul>
+            </div>
+          </div>
+      </div>
+      <div class="container">
+
+	<div class="page-header">
+
+			<h1>Git &amp; Merge &amp; Rebase &amp; Flow <a href="/blog/2017/06/git.es.html">(Spanish version)</a></h1>
+
+	</div>
+
+	<p><em>30 junio 2017</em></p>
+	<p><em>Tags: </em>
+		<a href="/blog/tags/git.html">git</a>
+	</em>
+		<a href="/blog/tags/merge.html">merge</a>
+	</em>
+		<a href="/blog/tags/rebase.html">rebase</a>
+	</em>
+		<a href="/blog/tags/git-flow.html">git-flow</a>
+	</p>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2017/06/git.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2017/06/git.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2017/06/git.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2017/06/git.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+	<p><div class="sect1">
+<h2 id="_git_merge_rebase_flow">Git &amp; Merge &amp; Rebase &amp; Flow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On this occasion we will perform a series of operations on a git repository.
+We will try to simulate typical situations of group work, with different
+Ways to focus the union of the different jobs.</p>
+</div>
+<div class="sect2">
+<h3 id="_work_with_two_branches_without_common_ancestors">Work with two branches without common ancestors.</h3>
+<div class="paragraph">
+<p>First, initialize a local repo, with the option of being shared by
+Multiple users.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd ~/sandbox-git
+git init --bare --shared ~/sandbox-git/test-repo.git
+git clone test-repo.git repo-clone1
+git clone test-repo.git repo-clone2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then we go to the directory 1, and we add a first file, in the commit
+We indicate a username: User1.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd repo-clone1
+touch README
+git add .
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Initial commit"
+git push -u origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To view from console we can add the following to ~ / .gitconfig under [alias]</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The repo is thus.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_01.png" alt="git 01">
+</div>
+</div>
+<div class="paragraph">
+<p>Then we go to the second folder and we only do "fetch", and we create the same folder
+File that the other user created. We did it, then we tried to push.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd ../repo-clone2
+git fetch
+vi README
+git add README
+git commit --author="User2 &lt;user2@git.com&gt;" -m "Other user change"
+git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But we get the following error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>	 ! [rejected]        master -&gt; master (non-fast-forward)
+	error: failed to push some refs to '/home/jose/sandbox-git/test-repo.git'
+	hint: Updates were rejected because the tip of your current branch is behind
+	hint: its remote counterpart. Integrate the remote changes (e.g.
+	hint: 'git pull ...') before pushing again.
+	hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+You can not push but you pull &#8230; at this time the tree is like this &#8230;
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_02.png" alt="git 02">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git pull</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The default behavior has changed since git 2.9
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>"git merge" used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.</p>
+</div>
+<div class="paragraph">
+<p>In this case, we have started from 2 independent branches, and the pull of a branch
+(Where we already have a commit) causes a kind of "merge". In this case (for
+Not having common ancestors) we must do it with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git pull origin master --allow-unrelated-histories</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And this is left</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_03.png" alt="git 03">
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And so is the repo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_04.png" alt="git 04">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_in_a_branch_without_having_updated_it">Work in a branch, without having updated it</h3>
+<div class="paragraph">
+<p>Let&#8217;s now test in directory 1, create a git-flow feature, create a
+New file and then &#8230; create another feature in directory 2, creating another
+file.</p>
+</div>
+<div class="paragraph">
+<p>Then in directory 1, we close the feature, then in directory 2.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+We merge develop into our branch, and then merge our branch into develop (closing the feature).
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd ../repo-clone1
+git flow init
+git flow feature start user1
+
+vi feature-user1.txt
+git add feature-user1.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Commit in feature-user1"</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_05.png" alt="git 05">
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+But we "forgot" to do fetch / pull before we start &#8230; and here begins the lesson &#8230;
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git fetch
+git pull origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now (about to finish the story) we have the tree as well.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_06.png" alt="git 06">
+</div>
+</div>
+<div class="paragraph">
+<p>We close feature</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git flow feature finish</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Summary of actions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The feature branch <em>feature/user1</em> was merged into <em>develop</em></p>
+</li>
+<li>
+<p>Feature branch <em>feature/user1</em> has been locally deleted</p>
+</li>
+<li>
+<p>You are now on branch <em>develop</em></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Let&#8217;s upload develop (by default git-flow does not push), which we have not done yet.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git push origin develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Leaving the tree, like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_07.png" alt="git 07">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_keep_branch_updated_with_changes_from_develop">Keep branch updated with changes from develop</h3>
+<div class="paragraph">
+<p>Now we go to the directory 2, we update, create a feature,
+We do something in the file README comiteamos, but before closing the feature,
+Change folder 1 and modify the README, we return to the original directory and
+Before closing feature, mergeamos develop in our branch.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd ../repo-clone2
+git fetch
+git checkout develop
+git pull
+
+git flow init
+
+git flow feature start user2
+
+vi feature-user2.txt
+git add  feature-user2.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "Commit in feature-user2"
+
+cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
+git push origin develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here (folder 1) we still do not know anything about the feature2, leaving the tree as well</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_08.png" alt="git 08">
+</div>
+</div>
+<div class="paragraph">
+<p>The "problem" with overshoot is that it alters the story lines, for better or for worse.</p>
+</div>
+<div class="paragraph">
+<p>If we follow the classic approach, to keep our feature2 current, we must
+Often merge with develop, or at least, before closing the feature.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd ../repo-clone2
+git fetch
+git pull origin develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This, as written, performs a direct merge, since we are pulling another
+Branch (develop) in the of the feature.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A pull of a branch in another that is not yours, is equivalent to a merge.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_09.png" alt="git 09">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_merge_after_a_pull_update_from_one_branch_to_another">Merge, after a pull (update), from one branch to another</h3>
+<div class="paragraph">
+<p>A way, from my point of view, more controlled to focus the merge (or
+Either by having a branch updated, or by mixing it later in another),
+Could have been: a fetch to update, changing to develop,
+Do pull and then return to the feature and doing merge.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_keep_branch_updated_with_an_override">Keep branch updated with an override.</h3>
+<div class="paragraph">
+<p>But, try again (we go to folder 1, we make change in develop and we raise it),
+But this time we make a rebase (using git flow)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
+git push origin develop
+cd ../repo-clone2
+git fetch
+git flow feature rebase user2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Will try to rebase <em>user2</em> which is based on <em>develop</em>&#8230;
+First, rewinding head to replay your work on top of it&#8230;
+Applying: Commit in feature-user2
+Applying: Update develop file feature1</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_10.png" alt="git 10">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git flow feature finish</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Branches <em>develop</em> and <em>origin/develop</em> have diverged.
+Fatal: And branch <em>develop</em> may be fast-forwarded.</p>
+</div>
+<div class="paragraph">
+<p>This only means that the branch where we are working is not present (similar to the first example).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git checkout develop
+
+Switched to branch 'develop'
+Your branch is behind 'origin/develop' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+git pull
+Updating 408fcbf..f76cade
+Fast-forward
+ feature-user1.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+git checkout feature/user2
+Switched to branch 'feature/user2'
+
+git flow feature finish
+Switched to branch 'develop'
+Your branch is up-to-date with 'origin/develop'.
+Auto-merging feature-user1.txt
+CONFLICT (content): Merge conflict in feature-user1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+There were merge conflicts. To resolve the merge conflict manually, use:
+    git mergetool
+    git commit
+
+You can then complete the finish by running it again:
+    git flow feature finish user2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rebase has generated conflicts, which at the time of making the merge, gives us problems.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git mergetool</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_11.png" alt="git 11">
+</div>
+</div>
+<div class="paragraph">
+<p>It alters the timeline of the branch where it does it. We resolve the conflict and make changes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>git add feature-user1.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "Resolve rebase y merge"
+git push origin develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have this tree</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_12.png" alt="git 12">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_tree_police">Git tree police.</h3>
+<div class="paragraph">
+<p>If we consider that a branch is created for a functionality, and the whole set
+Of commits that are related to it, including merge from develop, should not
+Be reflected in the final tree after the merge, --no-ff is our friend.</p>
+</div>
+<div class="paragraph">
+<p>We create a feature3, make some changes, make some changes in develop,
+Let&#8217;s take it to the branch of feature3, and when it&#8217;s done, merge with no-ff.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>cd ~/sandbox-git/repo-clone1
+git fetch
+git pull origin develop
+
+cd ~/sandbox-git/repo-clone2
+git fetch
+git pull origin develop
+
+git flow feature start feature3
+vi feature3-user2.txt
+git add feature3-user2.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
+
+cd ~/sandbox-git/repo-clone1
+vi change-in-develop.txt
+git add change-in-develop.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "change-in-develop"
+git push origin develop
+
+cd ~/sandbox-git/repo-clone2
+git checkout develop
+git fetch
+git pull
+git checkout feature/feature3
+git merge develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The tree we have so &#8230; now after the merge, make another change and reintegrate
+In develop as a single commit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_13.png" alt="git 13">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint sh language-sh"><code>vi feature3-another-user2-file.txt
+git add feature3-another-user2-file.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
+git checkout develop
+git merge feature/feature3 --no-ff
+git push origin --delete feature/feature3
+git branch -d feature/feature3</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git_14.png" alt="git 14">
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s observe how clean the branch develop</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="git-merge-no-ff.png" alt="git merge no ff">
+</div>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa">https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa</a></p>
+</li>
+<li>
+<p><a href="https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull">https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull</a></p>
+</li>
+<li>
+<p><a href="https://mislav.net/2013/02/merge-vs-rebase/">https://mislav.net/2013/02/merge-vs-rebase/</a></p>
+</li>
+<li>
+<p><a href="https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase">https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></p>
+
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2017/06/git.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2017/06/git.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2017/06/git.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2017/06/git.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'josejuanmontiel';
+	var disqus_identifier = 'git-merge-rebase-flow';
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	<hr>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+	<p class="muted credit">All posts on this blog are published with a <em>Creative Commons by-nc-sa</em> license.<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"/></a></p>
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://twitter.github.com/bootstrap/">Bootstrap v3.0.3</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/blog/js/jquery-1.9.1.min.js"></script>
+    <script src="/blog/js/bootstrap.min.js"></script>
+    <script src="/blog/js/run_prettify.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <script type="text/javascript">
+    var disqus_shortname = 'josejuanmontiel';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+<script type="text/javascript">
+  window.___gcfg = {lang: 'es'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82879918-1', 'josejuanmontiel.github.io');
+  ga('send', 'pageview');
+
+</script>
+<script src="http://cdn.lanyrd.net/badges/person-v1.min.js"></script>
+  </body>
+</html>

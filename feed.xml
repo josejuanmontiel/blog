@@ -6,9 +6,1134 @@
     <atom:link href="http://josejuanmontiel.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>mar, 18 oct 2016 23:43:59 +0200</pubDate>
-    <lastBuildDate>mar, 18 oct 2016 23:43:59 +0200</lastBuildDate>
+    <pubDate>sáb, 1 jul 2017 00:50:44 +0200</pubDate>
+    <lastBuildDate>sáb, 1 jul 2017 00:50:44 +0200</lastBuildDate>
 
+    <item>
+      <title>Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow</title>
+      <link>http://josejuanmontiel.github.io/blog/2017/06/git.es.html</link>
+      <pubDate>vie, 30 jun 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2017/06/git.es.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_git_merge_rebase_flow&quot;&gt;Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;En esta ocasion vamos a realizar una serie de operaciones en un repositorio git.
+Intentaremos simular situaciones tipicas de trabajo en grupo, con distintas
+manerasP de enfocar la union de los distintos trabajos.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_trabajar_con_dos_ramas_sin_ancestros_comunes&quot;&gt;Trabajar con dos ramas sin ancestros comunes.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Lo primero, inicializar un repo local, con opcion de que sea compartido por
+varios usuarios.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git
+git init --bare --shared ~/sandbox-git/test-repo.git
+git clone test-repo.git repo-clone1
+git clone test-repo.git repo-clone2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Despues nos vamos al directorio 1, y añadimos un primer fichero, en el commit
+indicamos un nombre de usuario: User1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd repo-clone1
+touch README
+git add .
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Initial commit&quot;
+git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Para ver desde consola podemos añadir lo siguiente a ~/.gitconfig bajo [alias]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;El repo queda entonces asi.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_01.png&quot; alt=&quot;git 01&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Despues nos vamos a la segunda carpeta y solo hacemos &quot;fetch&quot;, y creamos el mismo
+fichero que creo el otro usuario. Lo comiteamos, luego intentamos push.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+vi README
+git add README
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Other user change&quot;
+git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Pero obtenemos el siguiente error.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;	 ! [rejected]        master -&amp;gt; master (non-fast-forward)
+	error: failed to push some refs to &apos;/home/jose/sandbox-git/test-repo.git&apos;
+	hint: Updates were rejected because the tip of your current branch is behind
+	hint: its remote counterpart. Integrate the remote changes (e.g.
+	hint: &apos;git pull ...&apos;) before pushing again.
+	hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+No se puede hacer push sino se hace un pull&amp;#8230; en este momento el arbol esta asi&amp;#8230;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_02.png&quot; alt=&quot;git 02&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock caution&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-caution&quot; title=&quot;Caution&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+The default behavior has changed since git 2.9
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&quot;git merge&quot; used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;En este caso, hemos partido de 2 ramas independientes, y el pull de una rama
+(donde ya tenemos un commit) provoca una especie de &quot;merge&quot;. En este caso (por
+	no tener ancestros comunes) debemos hacerlo con:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull origin master --allow-unrelated-histories&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Y queda esto&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_03.png&quot; alt=&quot;git 03&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Ahora ya podemos hacer:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Y asi queda el repo:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_04.png&quot; alt=&quot;git 04&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_trabajar_en_una_rama_sin_haberla_actualizado&quot;&gt;Trabajar en una rama, sin haberla actualizado&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Vamos ahora a probar en el directorio 1, a crear con git-flow una feature, crear un
+nuevo fichero y luego&amp;#8230; crear otra feature en el directorio 2, creando otro
+fichero.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Luego en el directorio 1, cerramos la feature, luego en el directorio 2,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Mergeamos develop en nuestra rama, y luego mergeamos nuestra rama en develop (cerrando la feature).
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
+git flow init
+git flow feature start user1
+
+vi feature-user1.txt
+git add feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Commit in feature-user1&quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_05.png&quot; alt=&quot;git 05&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Pero se nos &quot;olvido&quot; hacer fetch/pull antes de empezar&amp;#8230; y aqui empieza el lio&amp;#8230;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git fetch
+git pull origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Ahora (a punto de terminar la historia) tenemos el arbol asi.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_06.png&quot; alt=&quot;git 06&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Cerramos la feature&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Summary of actions:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The feature branch &lt;em&gt;feature/user1&lt;/em&gt; was merged into &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Feature branch &lt;em&gt;feature/user1&lt;/em&gt; has been locally deleted&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You are now on branch &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hecho.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;quedando el arbol, asi:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_07.png&quot; alt=&quot;git 07&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_mantener_rama_actualizada_con_los_cambios_de_develop&quot;&gt;Mantener rama actualizada con los cambios de develop&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Ahora nos vamos al directorio 2, nos actualizamos, creamos una feature,
+hacemos algo en el fichero README comiteamos, pero antes de cerrar la feature,
+cambiamos de carpeta 1 y modificamos el README, volvemos al directorio original y
+antes de cerrar feature, mergeamos develop en nuestra rama.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+git checkout develop
+git pull
+
+git flow init
+
+git flow feature start user2
+
+vi feature-user2.txt
+git add  feature-user2.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Commit in feature-user2&quot;
+
+cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
+git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Aqui (carpeta 1) todavia no sabemos nada de la feature2, quedando el arbol asi&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_08.png&quot; alt=&quot;git 08&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;El &quot;problema&quot; con rebase es que altera las lineas de historia, para bien o para mal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Si seguimos el enfoque clasico, para mantener al dia nuestra feature2, debemos
+mergear a menudo con develop, o por lo menos, antes de cerrar la feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+git pull origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Esto, asi escrito realiza un merge directo, pues estamos haciendo pull de otra
+rama (develop) en la de la feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Un pull de una rama en otra que no es la suya, equivale a un merge.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_09.png&quot; alt=&quot;git 09&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_merge_tras_un_pull_actualizacion_de_una_rama_sobre_otra&quot;&gt;Merge, tras un pull (actualizacion), de una rama sobre otra&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Una manera, desde mi punto de vista, mas controlada de enfocar los merge (o
+	bien por tener actualizada una rama, o por mezclarla luego en otra),
+	podria haber sido: un fetch para actualiar, cambiando a develop,
+hacer pull y luego volviendo a la feature y haciendo merge.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_mantener_rama_actualizada_con_un_rebase&quot;&gt;Mantener rama actualizada con un rebase.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Pero, probemos otra vez (vamos a carpeta 1, hacemos cambio en develop y lo subimos),
+pero esta vez hacemos un rebase (usando git flow)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
+git push origin develop
+cd ../repo-clone2
+git fetch
+git flow feature rebase user2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Will try to rebase &lt;em&gt;user2&lt;/em&gt; which is based on &lt;em&gt;develop&lt;/em&gt;&amp;#8230;
+First, rewinding head to replay your work on top of it&amp;#8230;
+Applying: Commit in feature-user2
+Applying: Update develop file feature1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_10.png&quot; alt=&quot;git 10&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Branches &lt;em&gt;develop&lt;/em&gt; and &lt;em&gt;origin/develop&lt;/em&gt; have diverged.
+Fatal: And branch &lt;em&gt;develop&lt;/em&gt; may be fast-forwarded.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Esto solo quiere decir que la rama donde estamos tabajando no esta actulzada (similar
+	al primer ejemplo).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git checkout develop
+
+Switched to branch &apos;develop&apos;
+Your branch is behind &apos;origin/develop&apos; by 2 commits, and can be fast-forwarded.
+  (use &quot;git pull&quot; to update your local branch)
+
+git pull
+Updating 408fcbf..f76cade
+Fast-forward
+ feature-user1.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+git checkout feature/user2
+Switched to branch &apos;feature/user2&apos;
+
+git flow feature finish
+Switched to branch &apos;develop&apos;
+Your branch is up-to-date with &apos;origin/develop&apos;.
+Auto-merging feature-user1.txt
+CONFLICT (content): Merge conflict in feature-user1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+There were merge conflicts. To resolve the merge conflict manually, use:
+    git mergetool
+    git commit
+
+You can then complete the finish by running it again:
+    git flow feature finish user2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;El rebase nos ha generado conflictos, que a la hora de hacer el merge, nos da problemas.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git mergetool&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_11.png&quot; alt=&quot;git 11&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Pues altera la linea de tiempo de la rama donde lo hace. Resolvemos el conflicto y subimos cambios.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git add feature-user1.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Resolve rebase y merge&quot;
+git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Nos queda este arbol&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_12.png&quot; alt=&quot;git 12&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_policia_del_arbol_de_git&quot;&gt;Policia del arbol de git.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Si consideramos que una rama se crea para una funcionalidad, y todo el conjunto
+de commits que se relizan en ella, incluyendo los merge desde develop, no deben
+quedar reflejado en el arbolo final tras el merge, --no-ff es nuestro amigo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Creemos una feature3, hagamos algun cambio, hagamos algun cambio en develop,
+llevemoslo a la rama de la feature3, y cuando terminemos, merge con no-ff.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git/repo-clone1
+git fetch
+git pull origin develop
+
+cd ~/sandbox-git/repo-clone2
+git fetch
+git pull origin develop
+
+git flow feature start feature3
+vi feature3-user2.txt
+git add feature3-user2.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
+
+cd ~/sandbox-git/repo-clone1
+vi change-in-develop.txt
+git add change-in-develop.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;change-in-develop&quot;
+git push origin develop
+
+cd ~/sandbox-git/repo-clone2
+git checkout develop
+git fetch
+git pull
+git checkout feature/feature3
+git merge develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;El arbol lo tenemos asi&amp;#8230; ahora tras el merge, hagamos otro cambio y reintegremos
+en develop como un solo commit.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_13.png&quot; alt=&quot;git 13&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;vi feature3-another-user2-file.txt
+git add feature3-another-user2-file.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
+git checkout develop
+git merge feature/feature3 --no-ff
+git push origin --delete feature/feature3
+git branch -d feature/feature3&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_14.png&quot; alt=&quot;git 14&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Observemos como queda limpio la rama develop&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git-merge-no-ff.png&quot; alt=&quot;git merge no ff&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Referencias:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&quot;&gt;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&quot;&gt;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://mislav.net/2013/02/merge-vs-rebase/&quot;&gt;https://mislav.net/2013/02/merge-vs-rebase/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&quot;&gt;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow</title>
+      <link>http://josejuanmontiel.github.io/blog/2017/06/git.html</link>
+      <pubDate>vie, 30 jun 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2017/06/git.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_git_merge_rebase_flow&quot;&gt;Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;On this occasion we will perform a series of operations on a git repository.
+We will try to simulate typical situations of group work, with different
+Ways to focus the union of the different jobs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_work_with_two_branches_without_common_ancestors&quot;&gt;Work with two branches without common ancestors.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;First, initialize a local repo, with the option of being shared by
+Multiple users.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git
+git init --bare --shared ~/sandbox-git/test-repo.git
+git clone test-repo.git repo-clone1
+git clone test-repo.git repo-clone2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then we go to the directory 1, and we add a first file, in the commit
+We indicate a username: User1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd repo-clone1
+touch README
+git add .
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Initial commit&quot;
+git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To view from console we can add the following to ~ / .gitconfig under [alias]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The repo is thus.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_01.png&quot; alt=&quot;git 01&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then we go to the second folder and we only do &quot;fetch&quot;, and we create the same folder
+File that the other user created. We did it, then we tried to push.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+vi README
+git add README
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Other user change&quot;
+git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But we get the following error.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;	 ! [rejected]        master -&amp;gt; master (non-fast-forward)
+	error: failed to push some refs to &apos;/home/jose/sandbox-git/test-repo.git&apos;
+	hint: Updates were rejected because the tip of your current branch is behind
+	hint: its remote counterpart. Integrate the remote changes (e.g.
+	hint: &apos;git pull ...&apos;) before pushing again.
+	hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+You can not push but you pull &amp;#8230; at this time the tree is like this &amp;#8230;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_02.png&quot; alt=&quot;git 02&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock caution&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-caution&quot; title=&quot;Caution&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+The default behavior has changed since git 2.9
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&quot;git merge&quot; used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In this case, we have started from 2 independent branches, and the pull of a branch
+(Where we already have a commit) causes a kind of &quot;merge&quot;. In this case (for
+Not having common ancestors) we must do it with:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull origin master --allow-unrelated-histories&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And this is left&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_03.png&quot; alt=&quot;git 03&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now we can do:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And so is the repo:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_04.png&quot; alt=&quot;git 04&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_work_in_a_branch_without_having_updated_it&quot;&gt;Work in a branch, without having updated it&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s now test in directory 1, create a git-flow feature, create a
+New file and then &amp;#8230; create another feature in directory 2, creating another
+file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then in directory 1, we close the feature, then in directory 2.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+We merge develop into our branch, and then merge our branch into develop (closing the feature).
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
+git flow init
+git flow feature start user1
+
+vi feature-user1.txt
+git add feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Commit in feature-user1&quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_05.png&quot; alt=&quot;git 05&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+But we &quot;forgot&quot; to do fetch / pull before we start &amp;#8230; and here begins the lesson &amp;#8230;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git fetch
+git pull origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now (about to finish the story) we have the tree as well.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_06.png&quot; alt=&quot;git 06&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We close feature&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Summary of actions:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The feature branch &lt;em&gt;feature/user1&lt;/em&gt; was merged into &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Feature branch &lt;em&gt;feature/user1&lt;/em&gt; has been locally deleted&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You are now on branch &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Let&amp;#8217;s upload develop (by default git-flow does not push), which we have not done yet.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Leaving the tree, like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_07.png&quot; alt=&quot;git 07&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_keep_branch_updated_with_changes_from_develop&quot;&gt;Keep branch updated with changes from develop&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now we go to the directory 2, we update, create a feature,
+We do something in the file README comiteamos, but before closing the feature,
+Change folder 1 and modify the README, we return to the original directory and
+Before closing feature, mergeamos develop in our branch.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+git checkout develop
+git pull
+
+git flow init
+
+git flow feature start user2
+
+vi feature-user2.txt
+git add  feature-user2.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Commit in feature-user2&quot;
+
+cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
+git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here (folder 1) we still do not know anything about the feature2, leaving the tree as well&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_08.png&quot; alt=&quot;git 08&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The &quot;problem&quot; with overshoot is that it alters the story lines, for better or for worse.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If we follow the classic approach, to keep our feature2 current, we must
+Often merge with develop, or at least, before closing the feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+git pull origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This, as written, performs a direct merge, since we are pulling another
+Branch (develop) in the of the feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+A pull of a branch in another that is not yours, is equivalent to a merge.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_09.png&quot; alt=&quot;git 09&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_merge_after_a_pull_update_from_one_branch_to_another&quot;&gt;Merge, after a pull (update), from one branch to another&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A way, from my point of view, more controlled to focus the merge (or
+Either by having a branch updated, or by mixing it later in another),
+Could have been: a fetch to update, changing to develop,
+Do pull and then return to the feature and doing merge.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_keep_branch_updated_with_an_override&quot;&gt;Keep branch updated with an override.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But, try again (we go to folder 1, we make change in develop and we raise it),
+But this time we make a rebase (using git flow)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
+git push origin develop
+cd ../repo-clone2
+git fetch
+git flow feature rebase user2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Will try to rebase &lt;em&gt;user2&lt;/em&gt; which is based on &lt;em&gt;develop&lt;/em&gt;&amp;#8230;
+First, rewinding head to replay your work on top of it&amp;#8230;
+Applying: Commit in feature-user2
+Applying: Update develop file feature1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_10.png&quot; alt=&quot;git 10&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Branches &lt;em&gt;develop&lt;/em&gt; and &lt;em&gt;origin/develop&lt;/em&gt; have diverged.
+Fatal: And branch &lt;em&gt;develop&lt;/em&gt; may be fast-forwarded.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This only means that the branch where we are working is not present (similar to the first example).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git checkout develop
+
+Switched to branch &apos;develop&apos;
+Your branch is behind &apos;origin/develop&apos; by 2 commits, and can be fast-forwarded.
+  (use &quot;git pull&quot; to update your local branch)
+
+git pull
+Updating 408fcbf..f76cade
+Fast-forward
+ feature-user1.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+git checkout feature/user2
+Switched to branch &apos;feature/user2&apos;
+
+git flow feature finish
+Switched to branch &apos;develop&apos;
+Your branch is up-to-date with &apos;origin/develop&apos;.
+Auto-merging feature-user1.txt
+CONFLICT (content): Merge conflict in feature-user1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+There were merge conflicts. To resolve the merge conflict manually, use:
+    git mergetool
+    git commit
+
+You can then complete the finish by running it again:
+    git flow feature finish user2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The rebase has generated conflicts, which at the time of making the merge, gives us problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git mergetool&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_11.png&quot; alt=&quot;git 11&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It alters the timeline of the branch where it does it. We resolve the conflict and make changes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git add feature-user1.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Resolve rebase y merge&quot;
+git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We have this tree&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_12.png&quot; alt=&quot;git 12&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_git_tree_police&quot;&gt;Git tree police.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If we consider that a branch is created for a functionality, and the whole set
+Of commits that are related to it, including merge from develop, should not
+Be reflected in the final tree after the merge, --no-ff is our friend.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We create a feature3, make some changes, make some changes in develop,
+Let&amp;#8217;s take it to the branch of feature3, and when it&amp;#8217;s done, merge with no-ff.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git/repo-clone1
+git fetch
+git pull origin develop
+
+cd ~/sandbox-git/repo-clone2
+git fetch
+git pull origin develop
+
+git flow feature start feature3
+vi feature3-user2.txt
+git add feature3-user2.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
+
+cd ~/sandbox-git/repo-clone1
+vi change-in-develop.txt
+git add change-in-develop.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;change-in-develop&quot;
+git push origin develop
+
+cd ~/sandbox-git/repo-clone2
+git checkout develop
+git fetch
+git pull
+git checkout feature/feature3
+git merge develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The tree we have so &amp;#8230; now after the merge, make another change and reintegrate
+In develop as a single commit.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_13.png&quot; alt=&quot;git 13&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;vi feature3-another-user2-file.txt
+git add feature3-another-user2-file.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
+git checkout develop
+git merge feature/feature3 --no-ff
+git push origin --delete feature/feature3
+git branch -d feature/feature3&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_14.png&quot; alt=&quot;git 14&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s observe how clean the branch develop&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git-merge-no-ff.png&quot; alt=&quot;git merge no ff&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;References:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&quot;&gt;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&quot;&gt;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://mislav.net/2013/02/merge-vs-rebase/&quot;&gt;https://mislav.net/2013/02/merge-vs-rebase/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&quot;&gt;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Retrolambda and default methods</title>
       <link>http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html</link>
