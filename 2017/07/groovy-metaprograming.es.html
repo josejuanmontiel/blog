@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jose Juan Montiel's blog: Groovy Metaprograming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <!-- Le styles -->
+    <link href="/blog/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/blog/css/asciidoctor.css" rel="stylesheet">
+    <link href="/blog/css/base.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+    </head>
+  <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ lang: en_US
+</script>
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+	    <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog">Jose Juan Montiel's blog</a>
+	    </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/blog/about.html">About</a></li>
+
+				<!-- li class="dropdown">
+	          		<a data-toggle="dropdown" href="#">Topics<b class="caret"></b></a>
+			          <ul class="dropdown-menu" role="menu">
+						<li><a href="/blog/tags/groovy.html">Groovy</a></li>
+						<li><a href="/blog/2013/07/30/deck2pdf_exporting_html5_slide_decks.html">deck2pdf</a></li>
+						<li><a href="/blog/tags/jlangdetect.html">JLangDetect</a></li>
+			          </ul>
+	       		</li -->
+                <li><a href="/blog/feed.xml">Feed</a></li>
+              </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="https://github.com/josejuanmontiel"><i class="fa fa-github"></i></a></li>
+	        <li><a href="https://twitter.com/accreativos"><i class="fa fa-twitter"></i></a>
+	      </ul>
+            </div>
+          </div>
+      </div>
+      <div class="container">
+
+	<div class="page-header">
+
+			<h1>Groovy Metaprograming <a href="/blog/2017/07/groovy-metaprograming.html">(English version)</a></h1>
+
+	</div>
+
+	<p><em>08 julio 2017</em></p>
+	<p><em>Tags: </em>
+		<a href="/blog/tags/jvm.html">jvm</a>
+	</em>
+		<a href="/blog/tags/code.html">code</a>
+	</em>
+		<a href="/blog/tags/generation.html">generation</a>
+	</em>
+		<a href="/blog/tags/groovy.html">groovy</a>
+	</em>
+		<a href="/blog/tags/thymeleaf.html"> thymeleaf</a>
+	</p>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+	<p><div class="sect1">
+<h2 id="_generacion_de_codigo_del_modelo_a_la_vista">Generacion de codigo. Del modelo a la vista.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bueno, por fin, mas de 9 meses despues de su inicio, me he animado a terminar
+esta entrada del blog, y fue tras el tweet de <a href="https://twitter.com/jagedn/status/882984377596116992">@jagedn</a>
+que despues de la charla de @ilopmar en <a href="http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html">madridgug</a>,
+hizo que me animara con <a href="https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f">asteroid</a>.</p>
+</div>
+<div class="paragraph">
+<p>Pero bueno, por orden.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html">uno</a>
+de mis anteriores artículos, hablaba de como, usando Groovy y Thymeleaf, se podía
+separar aun un poco mas, la maqueta de las indicaciones de donde colocar los
+elementos de binding, para mostrar los datos del modelo; y deje planteado unos
+próximos pasos, de como se podía generar parte de ese código.</p>
+</div>
+<div class="paragraph">
+<p>Y no voy a hablar de como generar ese codigo en este post, tendra que ser mas
+adelante pero por lo menos, dejare listadas una serie de herramientas "utiles"
+para generar codigo.</p>
+</div>
+<div class="paragraph">
+<p>A día de hoy, existen muchas maneras de "generar codigo". Por ejemplo, en
+<a href="http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy">este articulo</a>
+Ivan nos cuenta las opciones que hay en groovy (en tiempo de compilacion, y en
+uno anterior, las de tiempo de ejecucion).</p>
+</div>
+<div class="paragraph">
+<p>Y en <a href="http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html">esta charla</a>,
+Mario, se centra en las ayudas que existen para la Metaprogramacion en groovy, los macros.
+Y también nos habla de una librería para ayudarnos en ese proceso de creacion de
+macros: <a href="https://github.com/grooviter/asteroid">asteroid</a></p>
+</div>
+<div class="paragraph">
+<p>Si tuvieramos que hacer una clasificacion, diferente, de las distintas maneras
+de crear codigo podriamos hacerlo asi:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Las de "java"</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Las que se ven</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Las que generan codigo fuente</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cosas como <a href="http://docs.spring.io/spring-roo/reference/html/intro.html">Spring Roo</a>
+o <a href="http://yeoman.io">Yeoman</a> o la mas actual <a href="https://jhipster.github.io/">JHipster</a>
+son herramientas que generan codigo "scaffolding".</p>
+</li>
+<li>
+<p>Pero cosas como esta libreria <a href="https://github.com/square/javapoet">Javapoet</a>
+genera codigo fuente, a partir de un DSL, y asi partimos de unos fuentes comunes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que generan codigo "compilado". <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/apt/">APT</a>,
+es la herramienta en la que se basan el "resto" que modifcian el <a href="http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/">AST</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Por ejemplo, esta libreria, <a href="https://github.com/AlbertoSH/MagicBuilder">MagicBuilder</a> genera codigo en tiempo de compilacion, siguiendo el patron builder.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que modifican el bytecode</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://asm.ow2.org/">ASM4</a></p>
+</li>
+<li>
+<p><a href="http://bytebuddy.net/#/">ByteBuddy</a></p>
+</li>
+<li>
+<p><a href="https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android">ByteBuddy para Android</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Las que "no" se ven</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Las que usan injeccion de dependencias.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Al final declarar una variable, y que en tiempo de ejecucion se le haya
+asignado un valor, tambien es una manera de modificar el codigo. Aqui tambien
+tendrian cabida, ese tipo de cosas que, entre otros, hace Spring para generar
+los beans que nos injecta a traves de proxies por ejemplo.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://eclipse.org/aspectj/">AspectJ</a> / <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">AOP</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Esto, de alguna manera modifica el codigo/ast/bytecode, pero la peculiaridad
+es la manera de definir donde van a actuar estas transformaciones. Podrian
+considerarse una especie de AST Globales.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://jnb.ociweb.com/jnb/jnbJan2010.html">Lombock</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Es para aquellos que no pueden usar Groovy, que por lo menos, no tengan
+que hacer ciertas cosas que siempre son igual, como los getter/setter. Esto si
+entra claramente dentro de las AST.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Las que modifican el codigo "cargado" en un "entorno" por otro</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://zeroturnaround.com/software/jrebel/">JRebel</a></p>
+</li>
+<li>
+<p><a href="https://github.com/spring-projects/spring-loaded">spring-loaded</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html">spring-dev-tools</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Vemos <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188">aqui</a>
+como para los test de esta ultima han usado ByteBuddy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que cambian el codigo en produccion mediante dinamic attach. <a href="https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/">Dynamic attach</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>En esta charla, nos cuentan  como usar <a href="http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html">YouDebug</a> como un depurador interactivo en produccion.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que compilan codigo desde unos fuentes en produccion. <a href="https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0">Compile sources en runtime</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>El mundo android</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Asistidas por gradle (con el plugin APT)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://google.github.io/dagger/users-guide">Dagger</a></p>
+</li>
+<li>
+<p><a href="http://jakewharton.github.io/butterknife/">Butterknife</a></p>
+</li>
+<li>
+<p><a href="http://androidannotations.org/">Android Annotation</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Arasthel/SwissKnife">SwissKnife</a> para groovy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Osgi vs Jigsaw
+Jeje, bueno, esto para otro dia :)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Y bueno, para que no se haga "bola" esta entrada del blog, simplemente reflejar
+"las distintas maneras de "generar codigo" que existen en el mundo de la JVM (java, groovy) ¿alguna mas?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bola_extra">Bola extra</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Algunas conversaciones en stackoverflow sobre android, groovy y generacion de codigo por APT</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt">http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken">http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation">http://stackoverflow.com/questions/31160831/android-groovy-android-annotation</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div></p>
+
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" data-via="accreativos" data-lang="es">Tweeter</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<div class="g-plusone" data-size="medium" data-href="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html"></div>
+	<script type="IN/Share" data-url="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+
+<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'josejuanmontiel';
+	var disqus_identifier = 'thymeleaf';
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	<hr>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+	<p class="muted credit">All posts on this blog are published with a <em>Creative Commons by-nc-sa</em> license.<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png"/></a></p>
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://twitter.github.com/bootstrap/">Bootstrap v3.0.3</a> | Baked with <a href="http://jbake.org">JBake v2.3.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/blog/js/jquery-1.9.1.min.js"></script>
+    <script src="/blog/js/bootstrap.min.js"></script>
+    <script src="/blog/js/run_prettify.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <script type="text/javascript">
+    var disqus_shortname = 'josejuanmontiel';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+<script type="text/javascript">
+  window.___gcfg = {lang: 'es'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82879918-1', 'josejuanmontiel.github.io');
+  ga('send', 'pageview');
+
+</script>
+<script src="http://cdn.lanyrd.net/badges/person-v1.min.js"></script>
+  </body>
+</html>

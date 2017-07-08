@@ -6,9 +6,1070 @@
     <atom:link href="http://josejuanmontiel.github.io/blog//feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>sáb, 1 jul 2017 00:50:44 +0200</pubDate>
-    <lastBuildDate>sáb, 1 jul 2017 00:50:44 +0200</lastBuildDate>
+    <pubDate>sáb, 8 jul 2017 17:38:41 +0200</pubDate>
+    <lastBuildDate>sáb, 8 jul 2017 17:38:41 +0200</lastBuildDate>
 
+    <item>
+      <title>Groovy Metaprograming</title>
+      <link>http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html</link>
+      <pubDate>sáb, 8 jul 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2017/07/groovy-metaprograming.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_generation_of_code_from_the_model_to_the_view&quot;&gt;Generation of code. From the model to the view.&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Well, at last, more than 9 months after its beginning, I have encouraged to finish
+this blog post, and it was after the tweet of &lt;a href=&quot;https://twitter.com/jagedn/status/882984377596116992&quot;&gt;@jagedn&lt;/a&gt;
+that after the @ilopmar talk in &lt;a href=&quot;http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html&quot;&gt;madridgug&lt;/a&gt;,
+he encouraged me with &lt;a href=&quot;https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f&quot;&gt;asteroid&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But hey, by order.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In &lt;a href=&quot;https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html&quot;&gt;one&lt;/a&gt;
+of my other articles, talked about how, using Groovy and Thymeleaf, one could
+to separate even a little more, the model of the view of where to place the
+binding elements, to display model data; and leave some next steps,
+how you could generate part of that code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And I will not talk about how to generate this code in this post, it should be more
+forward but at least, I will list a number of &quot;useful&quot; links to generate code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To date, there are many ways to &quot;generate code&quot;. For example in
+&lt;a href=&quot;http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy&quot;&gt;this article&lt;/a&gt;
+Ivan tells us the options that are in groovy (at compile time, and in
+A previous one, those of execution time).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And in &lt;a href=&quot;http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html&quot;&gt;this talk&lt;/a&gt;,
+Mario, focuses on the aids that exist for Metaprogramming in groovy, macros.
+And it also tells us about a library to help us in this process of creating
+Macros: &lt;a href=&quot;https://github.com/grooviter/asteroid&quot;&gt;asteroid&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If we had to make a classification, different, in different ways to create code
+we could do it like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Those of &quot;java&quot;&lt;/p&gt;
+&lt;div class=&quot;olist loweralpha&quot;&gt;
+&lt;ol class=&quot;loweralpha&quot; type=&quot;a&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;The ones that you can see&lt;/p&gt;
+&lt;div class=&quot;olist lowerroman&quot;&gt;
+&lt;ol class=&quot;lowerroman&quot; type=&quot;i&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Those that generate source code&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Things like &lt;a href=&quot;http://docs.spring.io/spring-roo/reference/html/intro.html&quot;&gt;Spring Roo&lt;/a&gt;
+or &lt;a href=&quot;http://yeoman.io&quot;&gt;Yeoman&lt;/a&gt; or the most current &lt;a href=&quot;https://jhipster.github.io/&quot;&gt;JHipster&lt;/a&gt;
+are tools that generate code &quot;scaffolding&quot;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;But things like this library &lt;a href=&quot;https://github.com/square/javapoet&quot;&gt;Javapoet&lt;/a&gt;
+generates source code, from a DSL, and so we start from a common sources.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Those that generate code &quot;compiled&quot;. &lt;a href=&quot;http://docs.oracle.com/javase/7/docs/technotes/guides/apt/&quot;&gt;APT&lt;/a&gt;,
+Is the tool on which the &quot;rest&quot; that modifies the &lt;a href=&quot;http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/&quot;&gt;AST&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;By example, this library, &lt;a href=&quot;https://github.com/AlbertoSH/MagicBuilder&quot;&gt;MagicBuilder&lt;/a&gt; generate code at compile time, following the patron builder.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Those that modify the bytecode&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://asm.ow2.org/&quot;&gt;ASM4&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://bytebuddy.net/#/&quot;&gt;ByteBuddy&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android&quot;&gt;ByteBuddy para Android&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Those that &quot;do not&quot; look&lt;/p&gt;
+&lt;div class=&quot;olist lowerroman&quot;&gt;
+&lt;ol class=&quot;lowerroman&quot; type=&quot;i&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Those that use dependency injection.&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;At the end declare a variable, and that in execution time it has been
+assigned a value, is also a way to modify the code. Here too Would have a place,
+that kind of thing that, among others, makes Spring to generate the beans that
+injects us through proxies for example.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://eclipse.org/aspectj/&quot;&gt;AspectJ&lt;/a&gt; / &lt;a href=&quot;https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html&quot;&gt;AOP&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;This, somehow modifies the code / ast / bytecode, but the peculiarity
+is the way to define where these transformations are going to take place. Could
+considered a kind of global AST.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://jnb.ociweb.com/jnb/jnbJan2010.html&quot;&gt;Lombock&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It is for those who can not use Groovy, at least, do not have they do
+certain things that are always the same, like the getter / setter. This clearly
+enters in the AST field.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Those that modify the code &quot;loaded&quot; in one &quot;environment&quot; by another&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://zeroturnaround.com/software/jrebel/&quot;&gt;JRebel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-loaded&quot;&gt;spring-loaded&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html&quot;&gt;spring-dev-tools&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;We see &lt;a href=&quot;https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188&quot;&gt;here&lt;/a&gt;
+as for the tests of the latter have used ByteBuddy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Those that change the code in production through dinamic attach. &lt;a href=&quot;https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/&quot;&gt;Dynamic attach&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In this talk, we are told how to use &lt;a href=&quot;http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html&quot;&gt;YouDebug&lt;/a&gt; as an interactive debugger in production.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Those that compile code from sources in production. &lt;a href=&quot;https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0&quot;&gt;Compile sources en runtime&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The android world&lt;/p&gt;
+&lt;div class=&quot;olist loweralpha&quot;&gt;
+&lt;ol class=&quot;loweralpha&quot; type=&quot;a&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Assisted by gradle (with the APT plugin)&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://google.github.io/dagger/users-guide&quot;&gt;Dagger&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://jakewharton.github.io/butterknife/&quot;&gt;Butterknife&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://androidannotations.org/&quot;&gt;Android Annotation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Arasthel/SwissKnife&quot;&gt;SwissKnife&lt;/a&gt; for Groovy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Osgi vs Jigsaw
+Hehe, well, this for another day :)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And well, so you do not make &quot;ball&quot; this blog entry, simply reflect
+&quot;The different ways to&quot; generate code &quot;that exist in the world of the JVM (java, groovy) any more?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_extra_ball&quot;&gt;Extra ball&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Some conversations in stackoverflow about android, groovy and code generation by APT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt&quot;&gt;http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken&quot;&gt;http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/31160831/android-groovy-android-annotation&quot;&gt;http://stackoverflow.com/questions/31160831/android-groovy-android-annotation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Groovy Metaprograming</title>
+      <link>http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html</link>
+      <pubDate>sáb, 8 jul 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2017/07/groovy-metaprograming.es.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_generacion_de_codigo_del_modelo_a_la_vista&quot;&gt;Generacion de codigo. Del modelo a la vista.&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Bueno, por fin, mas de 9 meses despues de su inicio, me he animado a terminar
+esta entrada del blog, y fue tras el tweet de &lt;a href=&quot;https://twitter.com/jagedn/status/882984377596116992&quot;&gt;@jagedn&lt;/a&gt;
+que despues de la charla de @ilopmar en &lt;a href=&quot;http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html&quot;&gt;madridgug&lt;/a&gt;,
+hizo que me animara con &lt;a href=&quot;https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f&quot;&gt;asteroid&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Pero bueno, por orden.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;En &lt;a href=&quot;https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html&quot;&gt;uno&lt;/a&gt;
+de mis anteriores artículos, hablaba de como, usando Groovy y Thymeleaf, se podía
+separar aun un poco mas, la maqueta de las indicaciones de donde colocar los
+elementos de binding, para mostrar los datos del modelo; y deje planteado unos
+próximos pasos, de como se podía generar parte de ese código.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Y no voy a hablar de como generar ese codigo en este post, tendra que ser mas
+adelante pero por lo menos, dejare listadas una serie de herramientas &quot;utiles&quot;
+para generar codigo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A día de hoy, existen muchas maneras de &quot;generar codigo&quot;. Por ejemplo, en
+&lt;a href=&quot;http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy&quot;&gt;este articulo&lt;/a&gt;
+Ivan nos cuenta las opciones que hay en groovy (en tiempo de compilacion, y en
+uno anterior, las de tiempo de ejecucion).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Y en &lt;a href=&quot;http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html&quot;&gt;esta charla&lt;/a&gt;,
+Mario, se centra en las ayudas que existen para la Metaprogramacion en groovy, los macros.
+Y también nos habla de una librería para ayudarnos en ese proceso de creacion de
+macros: &lt;a href=&quot;https://github.com/grooviter/asteroid&quot;&gt;asteroid&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Si tuvieramos que hacer una clasificacion, diferente, de las distintas maneras
+de crear codigo podriamos hacerlo asi:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Las de &quot;java&quot;&lt;/p&gt;
+&lt;div class=&quot;olist loweralpha&quot;&gt;
+&lt;ol class=&quot;loweralpha&quot; type=&quot;a&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Las que se ven&lt;/p&gt;
+&lt;div class=&quot;olist lowerroman&quot;&gt;
+&lt;ol class=&quot;lowerroman&quot; type=&quot;i&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Las que generan codigo fuente&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cosas como &lt;a href=&quot;http://docs.spring.io/spring-roo/reference/html/intro.html&quot;&gt;Spring Roo&lt;/a&gt;
+o &lt;a href=&quot;http://yeoman.io&quot;&gt;Yeoman&lt;/a&gt; o la mas actual &lt;a href=&quot;https://jhipster.github.io/&quot;&gt;JHipster&lt;/a&gt;
+son herramientas que generan codigo &quot;scaffolding&quot;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pero cosas como esta libreria &lt;a href=&quot;https://github.com/square/javapoet&quot;&gt;Javapoet&lt;/a&gt;
+genera codigo fuente, a partir de un DSL, y asi partimos de unos fuentes comunes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las que generan codigo &quot;compilado&quot;. &lt;a href=&quot;http://docs.oracle.com/javase/7/docs/technotes/guides/apt/&quot;&gt;APT&lt;/a&gt;,
+es la herramienta en la que se basan el &quot;resto&quot; que modifcian el &lt;a href=&quot;http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/&quot;&gt;AST&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Por ejemplo, esta libreria, &lt;a href=&quot;https://github.com/AlbertoSH/MagicBuilder&quot;&gt;MagicBuilder&lt;/a&gt; genera codigo en tiempo de compilacion, siguiendo el patron builder.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las que modifican el bytecode&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://asm.ow2.org/&quot;&gt;ASM4&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://bytebuddy.net/#/&quot;&gt;ByteBuddy&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android&quot;&gt;ByteBuddy para Android&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las que &quot;no&quot; se ven&lt;/p&gt;
+&lt;div class=&quot;olist lowerroman&quot;&gt;
+&lt;ol class=&quot;lowerroman&quot; type=&quot;i&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Las que usan injeccion de dependencias.&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Al final declarar una variable, y que en tiempo de ejecucion se le haya
+asignado un valor, tambien es una manera de modificar el codigo. Aqui tambien
+tendrian cabida, ese tipo de cosas que, entre otros, hace Spring para generar
+los beans que nos injecta a traves de proxies por ejemplo.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://eclipse.org/aspectj/&quot;&gt;AspectJ&lt;/a&gt; / &lt;a href=&quot;https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html&quot;&gt;AOP&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Esto, de alguna manera modifica el codigo/ast/bytecode, pero la peculiaridad
+es la manera de definir donde van a actuar estas transformaciones. Podrian
+considerarse una especie de AST Globales.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://jnb.ociweb.com/jnb/jnbJan2010.html&quot;&gt;Lombock&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Es para aquellos que no pueden usar Groovy, que por lo menos, no tengan
+que hacer ciertas cosas que siempre son igual, como los getter/setter. Esto si
+entra claramente dentro de las AST.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las que modifican el codigo &quot;cargado&quot; en un &quot;entorno&quot; por otro&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://zeroturnaround.com/software/jrebel/&quot;&gt;JRebel&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-loaded&quot;&gt;spring-loaded&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html&quot;&gt;spring-dev-tools&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Vemos &lt;a href=&quot;https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188&quot;&gt;aqui&lt;/a&gt;
+como para los test de esta ultima han usado ByteBuddy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las que cambian el codigo en produccion mediante dinamic attach. &lt;a href=&quot;https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/&quot;&gt;Dynamic attach&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;En esta charla, nos cuentan  como usar &lt;a href=&quot;http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html&quot;&gt;YouDebug&lt;/a&gt; como un depurador interactivo en produccion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Las que compilan codigo desde unos fuentes en produccion. &lt;a href=&quot;https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0&quot;&gt;Compile sources en runtime&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;El mundo android&lt;/p&gt;
+&lt;div class=&quot;olist loweralpha&quot;&gt;
+&lt;ol class=&quot;loweralpha&quot; type=&quot;a&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Asistidas por gradle (con el plugin APT)&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://google.github.io/dagger/users-guide&quot;&gt;Dagger&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://jakewharton.github.io/butterknife/&quot;&gt;Butterknife&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://androidannotations.org/&quot;&gt;Android Annotation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Arasthel/SwissKnife&quot;&gt;SwissKnife&lt;/a&gt; para groovy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Osgi vs Jigsaw
+Jeje, bueno, esto para otro dia :)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Y bueno, para que no se haga &quot;bola&quot; esta entrada del blog, simplemente reflejar
+&quot;las distintas maneras de &quot;generar codigo&quot; que existen en el mundo de la JVM (java, groovy) ¿alguna mas?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_bola_extra&quot;&gt;Bola extra&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Algunas conversaciones en stackoverflow sobre android, groovy y generacion de codigo por APT&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt&quot;&gt;http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken&quot;&gt;http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/31160831/android-groovy-android-annotation&quot;&gt;http://stackoverflow.com/questions/31160831/android-groovy-android-annotation&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
+    <item>
+      <title>Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow</title>
+      <link>http://josejuanmontiel.github.io/blog/2017/06/git.html</link>
+      <pubDate>vie, 30 jun 2017 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2017/06/git.html</guid>
+      	<description>
+	&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_git_merge_rebase_flow&quot;&gt;Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;On this occasion we will perform a series of operations on a git repository.
+We will try to simulate typical situations of group work, with different
+Ways to focus the union of the different jobs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_work_with_two_branches_without_common_ancestors&quot;&gt;Work with two branches without common ancestors.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;First, initialize a local repo, with the option of being shared by
+Multiple users.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git
+git init --bare --shared ~/sandbox-git/test-repo.git
+git clone test-repo.git repo-clone1
+git clone test-repo.git repo-clone2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then we go to the directory 1, and we add a first file, in the commit
+We indicate a username: User1.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd repo-clone1
+touch README
+git add .
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Initial commit&quot;
+git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To view from console we can add the following to ~ / .gitconfig under [alias]&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The repo is thus.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_01.png&quot; alt=&quot;git 01&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then we go to the second folder and we only do &quot;fetch&quot;, and we create the same folder
+File that the other user created. We did it, then we tried to push.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+vi README
+git add README
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Other user change&quot;
+git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But we get the following error.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;	 ! [rejected]        master -&amp;gt; master (non-fast-forward)
+	error: failed to push some refs to &apos;/home/jose/sandbox-git/test-repo.git&apos;
+	hint: Updates were rejected because the tip of your current branch is behind
+	hint: its remote counterpart. Integrate the remote changes (e.g.
+	hint: &apos;git pull ...&apos;) before pushing again.
+	hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+You can not push but you pull &amp;#8230; at this time the tree is like this &amp;#8230;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_02.png&quot; alt=&quot;git 02&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock caution&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-caution&quot; title=&quot;Caution&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+The default behavior has changed since git 2.9
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&quot;git merge&quot; used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In this case, we have started from 2 independent branches, and the pull of a branch
+(Where we already have a commit) causes a kind of &quot;merge&quot;. In this case (for
+Not having common ancestors) we must do it with:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull origin master --allow-unrelated-histories&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And this is left&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_03.png&quot; alt=&quot;git 03&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now we can do:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And so is the repo:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_04.png&quot; alt=&quot;git 04&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_work_in_a_branch_without_having_updated_it&quot;&gt;Work in a branch, without having updated it&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s now test in directory 1, create a git-flow feature, create a
+New file and then &amp;#8230; create another feature in directory 2, creating another
+file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then in directory 1, we close the feature, then in directory 2.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+We merge develop into our branch, and then merge our branch into develop (closing the feature).
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
+git flow init
+git flow feature start user1
+
+vi feature-user1.txt
+git add feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Commit in feature-user1&quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_05.png&quot; alt=&quot;git 05&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+But we &quot;forgot&quot; to do fetch / pull before we start &amp;#8230; and here begins the lesson &amp;#8230;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git fetch
+git pull origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now (about to finish the story) we have the tree as well.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_06.png&quot; alt=&quot;git 06&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We close feature&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Summary of actions:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The feature branch &lt;em&gt;feature/user1&lt;/em&gt; was merged into &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Feature branch &lt;em&gt;feature/user1&lt;/em&gt; has been locally deleted&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You are now on branch &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Let&amp;#8217;s upload develop (by default git-flow does not push), which we have not done yet.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Leaving the tree, like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_07.png&quot; alt=&quot;git 07&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_keep_branch_updated_with_changes_from_develop&quot;&gt;Keep branch updated with changes from develop&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Now we go to the directory 2, we update, create a feature,
+We do something in the file README comiteamos, but before closing the feature,
+Change folder 1 and modify the README, we return to the original directory and
+Before closing feature, mergeamos develop in our branch.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+git checkout develop
+git pull
+
+git flow init
+
+git flow feature start user2
+
+vi feature-user2.txt
+git add  feature-user2.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Commit in feature-user2&quot;
+
+cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
+git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here (folder 1) we still do not know anything about the feature2, leaving the tree as well&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_08.png&quot; alt=&quot;git 08&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The &quot;problem&quot; with overshoot is that it alters the story lines, for better or for worse.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If we follow the classic approach, to keep our feature2 current, we must
+Often merge with develop, or at least, before closing the feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
+git fetch
+git pull origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This, as written, performs a direct merge, since we are pulling another
+Branch (develop) in the of the feature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+A pull of a branch in another that is not yours, is equivalent to a merge.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_09.png&quot; alt=&quot;git 09&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_merge_after_a_pull_update_from_one_branch_to_another&quot;&gt;Merge, after a pull (update), from one branch to another&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A way, from my point of view, more controlled to focus the merge (or
+Either by having a branch updated, or by mixing it later in another),
+Could have been: a fetch to update, changing to develop,
+Do pull and then return to the feature and doing merge.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_keep_branch_updated_with_an_override&quot;&gt;Keep branch updated with an override.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But, try again (we go to folder 1, we make change in develop and we raise it),
+But this time we make a rebase (using git flow)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
+git push origin develop
+cd ../repo-clone2
+git fetch
+git flow feature rebase user2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Will try to rebase &lt;em&gt;user2&lt;/em&gt; which is based on &lt;em&gt;develop&lt;/em&gt;&amp;#8230;
+First, rewinding head to replay your work on top of it&amp;#8230;
+Applying: Commit in feature-user2
+Applying: Update develop file feature1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_10.png&quot; alt=&quot;git 10&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Branches &lt;em&gt;develop&lt;/em&gt; and &lt;em&gt;origin/develop&lt;/em&gt; have diverged.
+Fatal: And branch &lt;em&gt;develop&lt;/em&gt; may be fast-forwarded.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;This only means that the branch where we are working is not present (similar to the first example).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git checkout develop
+
+Switched to branch &apos;develop&apos;
+Your branch is behind &apos;origin/develop&apos; by 2 commits, and can be fast-forwarded.
+  (use &quot;git pull&quot; to update your local branch)
+
+git pull
+Updating 408fcbf..f76cade
+Fast-forward
+ feature-user1.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+git checkout feature/user2
+Switched to branch &apos;feature/user2&apos;
+
+git flow feature finish
+Switched to branch &apos;develop&apos;
+Your branch is up-to-date with &apos;origin/develop&apos;.
+Auto-merging feature-user1.txt
+CONFLICT (content): Merge conflict in feature-user1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+There were merge conflicts. To resolve the merge conflict manually, use:
+    git mergetool
+    git commit
+
+You can then complete the finish by running it again:
+    git flow feature finish user2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The rebase has generated conflicts, which at the time of making the merge, gives us problems.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git mergetool&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_11.png&quot; alt=&quot;git 11&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It alters the timeline of the branch where it does it. We resolve the conflict and make changes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git add feature-user1.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Resolve rebase y merge&quot;
+git push origin develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We have this tree&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_12.png&quot; alt=&quot;git 12&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_git_tree_police&quot;&gt;Git tree police.&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If we consider that a branch is created for a functionality, and the whole set
+Of commits that are related to it, including merge from develop, should not
+Be reflected in the final tree after the merge, --no-ff is our friend.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We create a feature3, make some changes, make some changes in develop,
+Let&amp;#8217;s take it to the branch of feature3, and when it&amp;#8217;s done, merge with no-ff.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git/repo-clone1
+git fetch
+git pull origin develop
+
+cd ~/sandbox-git/repo-clone2
+git fetch
+git pull origin develop
+
+git flow feature start feature3
+vi feature3-user2.txt
+git add feature3-user2.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
+
+cd ~/sandbox-git/repo-clone1
+vi change-in-develop.txt
+git add change-in-develop.txt
+git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;change-in-develop&quot;
+git push origin develop
+
+cd ~/sandbox-git/repo-clone2
+git checkout develop
+git fetch
+git pull
+git checkout feature/feature3
+git merge develop&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The tree we have so &amp;#8230; now after the merge, make another change and reintegrate
+In develop as a single commit.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_13.png&quot; alt=&quot;git 13&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;vi feature3-another-user2-file.txt
+git add feature3-another-user2-file.txt
+git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
+git checkout develop
+git merge feature/feature3 --no-ff
+git push origin --delete feature/feature3
+git branch -d feature/feature3&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git_14.png&quot; alt=&quot;git 14&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let&amp;#8217;s observe how clean the branch develop&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;git-merge-no-ff.png&quot; alt=&quot;git merge no ff&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;References:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&quot;&gt;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&quot;&gt;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://mislav.net/2013/02/merge-vs-rebase/&quot;&gt;https://mislav.net/2013/02/merge-vs-rebase/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&quot;&gt;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.jonathanoliver.com/my-new-best-friend-git-merge-no-ff/&quot;&gt;http://blog.jonathanoliver.com/my-new-best-friend-git-merge-no-ff/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://paul.stadig.name/2010/12/thou-shalt-not-lie-git-rebase-ammend.html&quot;&gt;http://paul.stadig.name/2010/12/thou-shalt-not-lie-git-rebase-ammend.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+	</description>
+    </item>
     <item>
       <title>Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow</title>
       <link>http://josejuanmontiel.github.io/blog/2017/06/git.es.html</link>
@@ -573,562 +1634,247 @@ git branch -d feature/feature3&lt;/code&gt;&lt;/pre&gt;
 	</description>
     </item>
     <item>
-      <title>Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow</title>
-      <link>http://josejuanmontiel.github.io/blog/2017/06/git.html</link>
-      <pubDate>vie, 30 jun 2017 00:00:00 +0200</pubDate>
-      <guid isPermaLink="false">2017/06/git.html</guid>
+      <title>Retrolambda and default methods</title>
+      <link>http://josejuanmontiel.github.io/blog/2016/10/retrolambda.html</link>
+      <pubDate>mié, 19 oct 2016 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2016/10/retrolambda.html</guid>
       	<description>
 	&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_git_merge_rebase_flow&quot;&gt;Git &amp;amp; Merge &amp;amp; Rebase &amp;amp; Flow&lt;/h2&gt;
+&lt;h2 id=&quot;_retrolambda_and_hippo_cms&quot;&gt;Retrolambda and Hippo Cms&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;On this occasion we will perform a series of operations on a git repository.
-We will try to simulate typical situations of group work, with different
-Ways to focus the union of the different jobs.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://code.onehippo.org/cms-community/hippo-cms&quot;&gt;This project&lt;/a&gt; can only be compiled with the JDK 8 as it makes heavy use of its features: lambdas, default methods and more.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_work_with_two_branches_without_common_ancestors&quot;&gt;Work with two branches without common ancestors.&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;First, initialize a local repo, with the option of being shared by
-Multiple users.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/orfjackal/retrolambda&quot;&gt;Retrolambda&lt;/a&gt;, many projects that make use of the new features of JDK 8 can be migrated to JDK7 (and earlier) and therefore also to Android, where primary use is made this tool.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And with &lt;a href=&quot;https://github.com/orfjackal/retrolambda#maven-plugin&quot;&gt;this maven plugin&lt;/a&gt; you can integrate it into your buildsystem. &lt;a href=&quot;https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml&quot;&gt;Here is&lt;/a&gt; an example of how to use it. And besides, there is another &lt;a href=&quot;https://github.com/evant/gradle-retrolambda&quot;&gt;for Gradle&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_limitations&quot;&gt;Limitations&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But there are some well known &lt;a href=&quot;https://github.com/orfjackal/retrolambda#known-limitations&quot;&gt;limitations&lt;/a&gt;, which makes the migration of the default method of JDK 8 are not so easy, &quot;must to be backported together, with one execution of Retrolambda&quot;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So &lt;a href=&quot;http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html&quot;&gt;by default&lt;/a&gt; is disabled in the migration.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;When Retrolmambda migrates &lt;a href=&quot;https://github.com/orfjackal/retrolambda#backported-language-features&quot;&gt;Default Methods&lt;/a&gt;:
+Default methods are backported by copying the default methods to a companion class (interface name + &quot;$&quot;) as static methods, replacing the default methods in the interface with abstract methods, and by adding the Necessary method Implementations to all classes which implement that interface.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_retrolambda_and_hippocms&quot;&gt;Retrolambda (and HippoCms)&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Take, for example, &lt;a href=&quot;https://code.onehippo.org/cms-community/hippo-cms&quot;&gt;the following&lt;/a&gt; project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Suppose that initially have this interface module with the default method.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git
-git init --bare --shared ~/sandbox-git/test-repo.git
-git clone test-repo.git repo-clone1
-git clone test-repo.git repo-clone2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;public interface IconProvider extends IClusterable {
+	default Component getIcon(final String id, IconSize size) {
+		return null;
+	}
+}&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Then we go to the directory 1, and we add a first file, in the commit
-We indicate a username: User1.&lt;/p&gt;
+&lt;p&gt;Retrolambda what makes this class is transformed into this one.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd repo-clone1
-touch README
-git add .
-git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Initial commit&quot;
-git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;public abstract interface IconProvider2 extends IClusterable {
+  public abstract Component getIcon(String paramString, IconSize paramIconSize);
+}&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;To view from console we can add the following to ~ / .gitconfig under [alias]&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;admonitionblock tip&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
+&lt;p&gt;And implements that method (through the &quot;companion class&quot;) in classes that implement the interface, classes in the same module.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The repo is thus.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_01.png&quot; alt=&quot;git 01&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Then we go to the second folder and we only do &quot;fetch&quot;, and we create the same folder
-File that the other user created. We did it, then we tried to push.&lt;/p&gt;
+&lt;p&gt;Therefore, if not process all child classes that interface module in the past, and will not, so&amp;#8230;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
-git fetch
-vi README
-git add README
-git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Other user change&quot;
-git push&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;But we get the following error.&lt;/p&gt;
+&lt;p&gt;this in another module, trying to be compiled gives this error&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;	 ! [rejected]        master -&amp;gt; master (non-fast-forward)
-	error: failed to push some refs to &apos;/home/jose/sandbox-git/test-repo.git&apos;
-	hint: Updates were rejected because the tip of your current branch is behind
-	hint: its remote counterpart. Integrate the remote changes (e.g.
-	hint: &apos;git pull ...&apos;) before pushing again.
-	hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
+	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;admonitionblock warning&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-You can not push but you pull &amp;#8230; at this time the tree is like this &amp;#8230;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_02.png&quot; alt=&quot;git 02&quot;&gt;
 &lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_first_conclusions&quot;&gt;First conclusions&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;At first, unread well the error message, and without understanding the class hierarchy of the project, I thought it might help &lt;a href=&quot;https://github.com/orfjackal/retrolambda/pull/101&quot;&gt;this PR&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you want to understand more in detail, &lt;a href=&quot;https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle&quot;&gt;here&lt;/a&gt; some notes on the Lifecycle of maven. And &lt;a href=&quot;http://maven.apache.org/guides/mini/guide-maven-classloading.html&quot;&gt;here&lt;/a&gt; on classloading.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then read more in detail, I thought the problem was that the transformation the interface to abstract &amp;#8230; well, i admit &lt;a href=&quot;https://twitter.com/nicolas_frankel/status/786202575150407680&quot;&gt;this tweet&lt;/a&gt; had distracted me from the real problem, because &lt;a href=&quot;https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659&quot;&gt;	the interfaces are abstract (by default)&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And the own &lt;a href=&quot;https://twitter.com/orfjackal&quot;&gt;Esko Luontola&lt;/a&gt; explains why. &quot;8 pre-Java JVMs support only abstract methods in interfaces (the &amp;lt;clinit&amp;gt; method being an exception). Retrolambda code inserts the default method implementing to all classes, JVM 8 thus emulating what does.&quot;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html&quot;&gt;Here&lt;/a&gt; a more detailed explanation of how to operate the Default Methods in JDK 8. And &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html&quot;&gt;here&lt;/a&gt; oracle&amp;#8217;s explanation on &quot;abstract&quot;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_explanation_of_the_real_problem&quot;&gt;Explanation of the real problem&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But the problem, in this case, was simply the limitation of the library in multi module projects &lt;a href=&quot;https://github.com/orfjackal/retrolambda/issues/56&quot;&gt;here&lt;/a&gt; and
+&lt;a href=&quot;https://github.com/orfjackal/retrolambda/issues/58&quot;&gt;here&lt;/a&gt; as also discussed in detail.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A way out by making small manual changes in the code, it would be implementing the method getIcon(String, IconSize) with the default behavior in class the second module.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;admonitionblock caution&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;icon-caution&quot; title=&quot;Caution&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-The default behavior has changed since git 2.9
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&quot;git merge&quot; used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In this case, we have started from 2 independent branches, and the pull of a branch
-(Where we already have a commit) causes a kind of &quot;merge&quot;. In this case (for
-Not having common ancestors) we must do it with:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git pull origin master --allow-unrelated-histories&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And this is left&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_03.png&quot; alt=&quot;git 03&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Now we can do:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And so is the repo:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_04.png&quot; alt=&quot;git 04&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_work_in_a_branch_without_having_updated_it&quot;&gt;Work in a branch, without having updated it&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Let&amp;#8217;s now test in directory 1, create a git-flow feature, create a
-New file and then &amp;#8230; create another feature in directory 2, creating another
-file.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Then in directory 1, we close the feature, then in directory 2.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;admonitionblock tip&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-We merge develop into our branch, and then merge our branch into develop (closing the feature).
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
-git flow init
-git flow feature start user1
+&lt;pre class=&quot;prettyprint bash language-bash&quot;&gt;&lt;code&gt;diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
+index 99bdb0e..9b34ce1 100644
+--- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
++++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
+@@ -18,6 +18,7 @@
+ import javax.jcr.Node;
+ import javax.jcr.RepositoryException;
 
-vi feature-user1.txt
-git add feature-user1.txt
-git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Commit in feature-user1&quot;&lt;/code&gt;&lt;/pre&gt;
++import org.apache.wicket.Component;
+ import org.apache.wicket.model.IModel;
+ import org.apache.wicket.request.resource.ResourceReference;
+ import org.hippoecm.frontend.l10n.ResourceBundleModel;
+@@ -144,4 +145,10 @@
+         return null;
+     }
+
++    @Override
++    public Component getIcon(String id, IconSize size) {
++    	return null;
++    }
++
++
+ }
+diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
+index 450712b..9d09210 100644
+--- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
++++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
+@@ -56,6 +56,7 @@
+ import org.hippoecm.frontend.service.IconSize;
+ import org.hippoecm.frontend.service.render.RenderPlugin;
+ import org.hippoecm.frontend.skin.Icon;
++import org.hippoecm.frontend.skin.IconProvider;
+ import org.hippoecm.repository.api.HippoNodeType;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+@@ -337,6 +338,11 @@
+     public ResourceReference getIcon(IconSize type) {
+         return null;
+     }
++
++    @Override
++    public Component getIcon(String id, IconSize size) {
++    	return null;
++    }
+
+     private boolean hasSearchResult() {
+         return collection.getType() == DocumentCollectionType.SEARCHRESULT;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_05.png&quot; alt=&quot;git 05&quot;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;admonitionblock warning&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-But we &quot;forgot&quot; to do fetch / pull before we start &amp;#8230; and here begins the lesson &amp;#8230;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_next_steps&quot;&gt;Next steps?&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/teras&quot;&gt;Teras&lt;/a&gt; and &lt;a href=&quot;https://github.com/orfjackal&quot;&gt;Orfjackal&lt;/a&gt;, why the PR 101 does not modify these classes to make that change? Maybe it does because there is already a method with that name, although not with the same number of parameters?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_and_what_happend_with_the_retrolambda_compilation_of_hippocms&quot;&gt;And what happend with the retrolambda compilation of HippoCms?&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Even some mistake &amp;#8230; we have to solve static method &amp;#8230;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git fetch
-git pull origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;prettyprint bash language-bash&quot;&gt;&lt;code&gt;[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
+[ERROR] symbol:   method of(Calendar)
+[ERROR] location: interface DateTimePrinter
+[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
+[ERROR] symbol:   method of(Calendar)
+[ERROR] location: interface DateTimePrinter&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Now (about to finish the story) we have the tree as well.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_06.png&quot; alt=&quot;git 06&quot;&gt;
-&lt;/div&gt;
+&lt;p&gt;Static methods on interfaces are backported by moving the static methods to a companion class (interface name + &quot;$&quot;), and by changing all methods calls to call the new method location.[1]&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;We close feature&lt;/p&gt;
+&lt;p&gt;In this case, the temporary solution is to change the import in the classes of the second module, the companion class.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Summary of actions:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ulist&quot;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;The feature branch &lt;em&gt;feature/user1&lt;/em&gt; was merged into &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Feature branch &lt;em&gt;feature/user1&lt;/em&gt; has been locally deleted&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;You are now on branch &lt;em&gt;develop&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&quot;admonitionblock tip&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-Let&amp;#8217;s upload develop (by default git-flow does not push), which we have not done yet.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git push origin develop&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Leaving the tree, like this:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_07.png&quot; alt=&quot;git 07&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_keep_branch_updated_with_changes_from_develop&quot;&gt;Keep branch updated with changes from develop&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Now we go to the directory 2, we update, create a feature,
-We do something in the file README comiteamos, but before closing the feature,
-Change folder 1 and modify the README, we return to the original directory and
-Before closing feature, mergeamos develop in our branch.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
-git fetch
-git checkout develop
-git pull
+&lt;pre class=&quot;prettyprint bash language-bash&quot;&gt;&lt;code&gt;diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
+index 5a97066..ab938b7 100644
+--- a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
++++ b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
+@@ -41,7 +41,7 @@
+ import org.hippoecm.frontend.plugin.IPluginContext;
+ import org.hippoecm.frontend.plugins.reviewedactions.model.Request;
+ import org.hippoecm.frontend.plugins.reviewedactions.model.RequestModel;
+-import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter;
++import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter$;
+ import org.hippoecm.frontend.plugins.standards.icon.HippoIcon;
+ import org.hippoecm.frontend.session.UserSession;
+ import org.hippoecm.frontend.skin.Icon;
+@@ -110,7 +110,7 @@
+                 String state = request.getState();
 
-git flow init
-
-git flow feature start user2
-
-vi feature-user2.txt
-git add  feature-user2.txt
-git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Commit in feature-user2&quot;
-
-cd ../repo-clone1
-vi feature-user1.txt
-git add  feature-user1.txt
-git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
-git push origin develop&lt;/code&gt;&lt;/pre&gt;
+                 final String parameter = schedule != null ?
+-                        DateTimePrinter.of(schedule).appendDST().print(FormatStyle.FULL) : &quot;??&quot;;
++                        DateTimePrinter$.of(schedule).appendDST().print(FormatStyle.FULL) : &quot;??&quot;;
+                 return new StringResourceModel(&quot;state-&quot; + state, this, null, &quot;unknown&quot;, parameter);
+             }&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_final_notes&quot;&gt;Final notes&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you&amp;#8217;ve used in your project with JDK 8 are streaming APIs, you can use &lt;a href=&quot;https://sourceforge.net/projects/streamsupport/&quot;&gt;this&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Here (folder 1) we still do not know anything about the feature2, leaving the tree as well&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_08.png&quot; alt=&quot;git 08&quot;&gt;
+&lt;p&gt;Here is a &lt;a href=&quot;https://en.wikipedia.org/wiki/Java_backporting_tools&quot;&gt;brief history&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_extra_ball&quot;&gt;Extra ball&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The &quot;problem&quot; with overshoot is that it alters the story lines, for better or for worse.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;If we follow the classic approach, to keep our feature2 current, we must
-Often merge with develop, or at least, before closing the feature.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone2
-git fetch
-git pull origin develop&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;This, as written, performs a direct merge, since we are pulling another
-Branch (develop) in the of the feature.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;admonitionblock tip&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-A pull of a branch in another that is not yours, is equivalent to a merge.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_09.png&quot; alt=&quot;git 09&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_merge_after_a_pull_update_from_one_branch_to_another&quot;&gt;Merge, after a pull (update), from one branch to another&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;A way, from my point of view, more controlled to focus the merge (or
-Either by having a branch updated, or by mixing it later in another),
-Could have been: a fetch to update, changing to develop,
-Do pull and then return to the feature and doing merge.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_keep_branch_updated_with_an_override&quot;&gt;Keep branch updated with an override.&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;But, try again (we go to folder 1, we make change in develop and we raise it),
-But this time we make a rebase (using git flow)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ../repo-clone1
-vi feature-user1.txt
-git add  feature-user1.txt
-git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;Update develop file feature1&quot;
-git push origin develop
-cd ../repo-clone2
-git fetch
-git flow feature rebase user2&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Will try to rebase &lt;em&gt;user2&lt;/em&gt; which is based on &lt;em&gt;develop&lt;/em&gt;&amp;#8230;
-First, rewinding head to replay your work on top of it&amp;#8230;
-Applying: Commit in feature-user2
-Applying: Update develop file feature1&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_10.png&quot; alt=&quot;git 10&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git flow feature finish&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Branches &lt;em&gt;develop&lt;/em&gt; and &lt;em&gt;origin/develop&lt;/em&gt; have diverged.
-Fatal: And branch &lt;em&gt;develop&lt;/em&gt; may be fast-forwarded.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;This only means that the branch where we are working is not present (similar to the first example).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git checkout develop
-
-Switched to branch &apos;develop&apos;
-Your branch is behind &apos;origin/develop&apos; by 2 commits, and can be fast-forwarded.
-  (use &quot;git pull&quot; to update your local branch)
-
-git pull
-Updating 408fcbf..f76cade
-Fast-forward
- feature-user1.txt | 3 +++
- 1 file changed, 3 insertions(+)
-
-git checkout feature/user2
-Switched to branch &apos;feature/user2&apos;
-
-git flow feature finish
-Switched to branch &apos;develop&apos;
-Your branch is up-to-date with &apos;origin/develop&apos;.
-Auto-merging feature-user1.txt
-CONFLICT (content): Merge conflict in feature-user1.txt
-Automatic merge failed; fix conflicts and then commit the result.
-
-There were merge conflicts. To resolve the merge conflict manually, use:
-    git mergetool
-    git commit
-
-You can then complete the finish by running it again:
-    git flow feature finish user2&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The rebase has generated conflicts, which at the time of making the merge, gives us problems.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git mergetool&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_11.png&quot; alt=&quot;git 11&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;It alters the timeline of the branch where it does it. We resolve the conflict and make changes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;git add feature-user1.txt
-git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;Resolve rebase y merge&quot;
-git push origin develop&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;We have this tree&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_12.png&quot; alt=&quot;git 12&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_git_tree_police&quot;&gt;Git tree police.&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;If we consider that a branch is created for a functionality, and the whole set
-Of commits that are related to it, including merge from develop, should not
-Be reflected in the final tree after the merge, --no-ff is our friend.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;We create a feature3, make some changes, make some changes in develop,
-Let&amp;#8217;s take it to the branch of feature3, and when it&amp;#8217;s done, merge with no-ff.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;cd ~/sandbox-git/repo-clone1
-git fetch
-git pull origin develop
-
-cd ~/sandbox-git/repo-clone2
-git fetch
-git pull origin develop
-
-git flow feature start feature3
-vi feature3-user2.txt
-git add feature3-user2.txt
-git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
-
-cd ~/sandbox-git/repo-clone1
-vi change-in-develop.txt
-git add change-in-develop.txt
-git commit --author=&quot;User1 &amp;lt;user1@git.com&amp;gt;&quot; -m &quot;change-in-develop&quot;
-git push origin develop
-
-cd ~/sandbox-git/repo-clone2
-git checkout develop
-git fetch
-git pull
-git checkout feature/feature3
-git merge develop&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The tree we have so &amp;#8230; now after the merge, make another change and reintegrate
-In develop as a single commit.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_13.png&quot; alt=&quot;git 13&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint sh language-sh&quot;&gt;&lt;code&gt;vi feature3-another-user2-file.txt
-git add feature3-another-user2-file.txt
-git commit --author=&quot;User2 &amp;lt;user2@git.com&amp;gt;&quot; -m &quot;File from feature 3&quot;
-git checkout develop
-git merge feature/feature3 --no-ff
-git push origin --delete feature/feature3
-git branch -d feature/feature3&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git_14.png&quot; alt=&quot;git 14&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Let&amp;#8217;s observe how clean the branch develop&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;git-merge-no-ff.png&quot; alt=&quot;git merge no ff&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;References:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ulist&quot;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&quot;&gt;https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&quot;&gt;https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://mislav.net/2013/02/merge-vs-rebase/&quot;&gt;https://mislav.net/2013/02/merge-vs-rebase/&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&quot;&gt;https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/31160831/android-groovy-android-annotation&quot;&gt;Groovy Android and APT&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1382,247 +2128,184 @@ index 5a97066..ab938b7 100644
 	</description>
     </item>
     <item>
-      <title>Retrolambda and default methods</title>
-      <link>http://josejuanmontiel.github.io/blog/2016/10/retrolambda.html</link>
-      <pubDate>mié, 19 oct 2016 00:00:00 +0200</pubDate>
-      <guid isPermaLink="false">2016/10/retrolambda.html</guid>
+      <title>Thymeleaf 3 and Groovy</title>
+      <link>http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html</link>
+      <pubDate>mié, 12 oct 2016 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2016/10/groovy-thymelaf.html</guid>
       	<description>
 	&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_retrolambda_and_hippo_cms&quot;&gt;Retrolambda and Hippo Cms&lt;/h2&gt;
+&lt;h2 id=&quot;_groovy&quot;&gt;Groovy&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;https://code.onehippo.org/cms-community/hippo-cms&quot;&gt;This project&lt;/a&gt; can only be compiled with the JDK 8 as it makes heavy use of its features: lambdas, default methods and more.&lt;/p&gt;
+&lt;p&gt;The first time i heard about Groovy, was in late 2010, early 2011. I used Freemind mind mapping, and then version 0.9 was about to release, with support for groovy, what was that?, It took some time using Freemind, and I said, if people use it, maybe could be interesting.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/orfjackal/retrolambda&quot;&gt;Retrolambda&lt;/a&gt;, many projects that make use of the new features of JDK 8 can be migrated to JDK7 (and earlier) and therefore also to Android, where primary use is made this tool.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And with &lt;a href=&quot;https://github.com/orfjackal/retrolambda#maven-plugin&quot;&gt;this maven plugin&lt;/a&gt; you can integrate it into your buildsystem. &lt;a href=&quot;https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml&quot;&gt;Here is&lt;/a&gt; an example of how to use it. And besides, there is another &lt;a href=&quot;https://github.com/evant/gradle-retrolambda&quot;&gt;for Gradle&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A dynamic language like Javascript, which could interact with the mental maps, making them dynamic too? To create nodes, relations between them, in a dynamic way?. I tried it, I did some things: a script that compiled the ticket Fogbugz and show me drawn as nodes in the mental map.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_limitations&quot;&gt;Limitations&lt;/h2&gt;
+&lt;h2 id=&quot;_thymeleaf&quot;&gt;Thymeleaf&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;But there are some well known &lt;a href=&quot;https://github.com/orfjackal/retrolambda#known-limitations&quot;&gt;limitations&lt;/a&gt;, which makes the migration of the default method of JDK 8 are not so easy, &quot;must to be backported together, with one execution of Retrolambda&quot;.&lt;/p&gt;
+&lt;p&gt;Thymeleaf templating system is a server, both as standalone web. Its main objective is to provide a template system (not strictly HTML), natural and elegant that also function as static prototypes, enabling closer collaboration in development teams.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;So &lt;a href=&quot;http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html&quot;&gt;by default&lt;/a&gt; is disabled in the migration.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;When Retrolmambda migrates &lt;a href=&quot;https://github.com/orfjackal/retrolambda#backported-language-features&quot;&gt;Default Methods&lt;/a&gt;:
-Default methods are backported by copying the default methods to a companion class (interface name + &quot;$&quot;) as static methods, replacing the default methods in the interface with abstract methods, and by adding the Necessary method Implementations to all classes which implement that interface.&lt;/p&gt;
+&lt;p&gt;In addition, modules Spring Framework, a series of integrations with their favorite tools, and the ability to connect their own functionality, thymeleaf is ideal for HTML5 web development in the JVM and more.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_retrolambda_and_hippocms&quot;&gt;Retrolambda (and HippoCms)&lt;/h2&gt;
+&lt;h2 id=&quot;_why_no_mix_it&quot;&gt;Why no mix it?&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Take, for example, &lt;a href=&quot;https://code.onehippo.org/cms-community/hippo-cms&quot;&gt;the following&lt;/a&gt; project.&lt;/p&gt;
+&lt;p&gt;One of the new features of thymeleaf 3 is still more design decouple HTML from data binding.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Suppose that initially have this interface module with the default method.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;https://github.com/thymeleaf/thymeleaf/issues/465&quot;&gt;this link&lt;/a&gt; count as work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The question is, if I can lay  something like&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;public interface IconProvider extends IClusterable {
-	default Component getIcon(final String id, IconSize size) {
-		return null;
+&lt;pre class=&quot;prettyprint html language-html&quot;&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;lt;table id=&quot;usersTable&quot;&amp;gt;
+      &amp;lt;tr&amp;gt;
+        &amp;lt;td class=&quot;username&quot;&amp;gt;Jeremy Grapefruit&amp;lt;/td&amp;gt;
+        &amp;lt;td class=&quot;usertype&quot;&amp;gt;Normal User&amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+      &amp;lt;tr&amp;gt;
+        &amp;lt;td class=&quot;username&quot;&amp;gt;Alice Watermelon&amp;lt;/td&amp;gt;
+        &amp;lt;td class=&quot;usertype&quot;&amp;gt;Administrator&amp;lt;/td&amp;gt;
+      &amp;lt;/tr&amp;gt;
+    &amp;lt;/table&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I can define so, as it will generate the binding of the fields&amp;#8230;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint xml language-xml&quot;&gt;&lt;code&gt;&amp;lt;?xml version=&quot;1.0&quot;?&amp;gt;
+&amp;lt;thlogic&amp;gt;
+  &amp;lt;attr sel=&quot;#usersTable&quot; th:remove=&quot;all-but-first&quot;&amp;gt;
+    &amp;lt;attr sel=&quot;/tr[0]&quot; th:each=&quot;user : ${users}&quot;&amp;gt;
+      &amp;lt;attr sel=&quot;td.username&quot; th:text=&quot;${user.name}&quot; /&amp;gt;
+      &amp;lt;attr sel=&quot;td.usertype&quot; th:text=&quot;#{|user.type.${user.type}|}&quot; /&amp;gt;
+    &amp;lt;/attr&amp;gt;
+  &amp;lt;/attr&amp;gt;
+&amp;lt;/thlogic&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;then, why not write in groovy&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;thlogic {
+    attr(sel:&apos;#usersTable&apos;, &apos;th:remove&apos;:&apos;all-but-first&apos;) {
+        attr(sel:&apos;/tr[0]&apos;, &apos;th:each&apos;:&apos;user : ${users}&apos;) {
+            attr(sel:&apos;td.username&apos;, &apos;th:text&apos;:&apos;${user.name}&apos;)
+            attr(sel:&apos;td.usertype&apos;, &apos;th:text&apos;:&apos;${user.type}&apos;)
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html&quot;&gt;Here is&lt;/a&gt; the explanation in thymeleaf&amp;#8217;s forum.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And if we can made this, we could made &lt;a href=&quot;http://groovy-lang.org/processing-xml.html#_markupbuilder&quot;&gt;this one&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;thlogic {
+    attr(sel:&apos;#usersTable&apos;, &apos;th:remove&apos;:&apos;all-but-first&apos;) {
+        attr(sel:&apos;/tr[0]&apos;, &apos;th:each&apos;:&apos;user : ${users}&apos;) {
+			(1..3).each { n -&amp;gt;			&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+				attr(sel:&apos;td.username&apos;, &apos;th:text&apos;:&apos;${user.name}&apos;)
+				attr(sel:&apos;td.usertype&apos;, &apos;th:text&apos;:&apos;${user.type}&apos;)
+			}
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Include the logic in xml generation&amp;#8230;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_one_example_with_all_mixed&quot;&gt;One example with all mixed&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In &lt;a href=&quot;https://github.com/josejuanmontiel/adorable-avatar&quot;&gt;this project&lt;/a&gt; i mount an example of use of thymeleaf 3 in a springboot project with groovy as the main language, and &lt;a href=&quot;https://github.com/josejuanmontiel/dynamic-rest-template&quot;&gt;here&lt;/a&gt; took out the rest of access to services, and wanted to try something else was jitpack to generate libraries git projects, on-demand.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint gradle language-gradle&quot;&gt;&lt;code&gt;	maven { url &quot;https://jitpack.io&quot; }
+	compile &apos;com.github.josejuanmontiel:dynamic-rest-template:-SNAPSHOT&apos;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;_next_steps&quot;&gt;Next steps&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Many applications are the type, called a rest services and exposure in the view. Why not make an application front, in the back? I thought it would be quite interesting, that in the definition of binding in groovy could add information about the rest services to be consulted, to fill the data binding in the rendering phase.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;rest{
+	url{
+		http://...
+	}
+	binding {
+		user.name=response.body.user
+		user.type=response.body.type
+		...
+	}
+}
+thlogic {
+    attr(sel:&apos;#usersTable&apos;, &apos;th:remove&apos;:&apos;all-but-first&apos;) {
+        attr(sel:&apos;/tr[0]&apos;, &apos;th:each&apos;:&apos;user : ${users}&apos;) {
+            attr(sel:&apos;td.username&apos;, &apos;th:text&apos;:&apos;${user.name}&apos;)
+            attr(sel:&apos;td.usertype&apos;, &apos;th:text&apos;:&apos;${user.type}&apos;)
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And seeing the &lt;a href=&quot;https://twitter.com/nicolas_frankel/status/760441910272135168&quot;&gt;tweet&lt;/a&gt; Nicolas Frankel, test values (maximum and minimum) of each of the fields are indicated binding and that during development, are that the fake data used to lay out the project, while services are mounted.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;rest{
+	url{ ... }
+	binding { ... }
+	test {
+		user.name=[user1, user2, user3]
+		user.type=[admin, normal, editor]
 	}
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Retrolambda what makes this class is transformed into this one.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;public abstract interface IconProvider2 extends IClusterable {
-  public abstract Component getIcon(String paramString, IconSize paramIconSize);
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And implements that method (through the &quot;companion class&quot;) in classes that implement the interface, classes in the same module.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Therefore, if not process all child classes that interface module in the past, and will not, so&amp;#8230;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;this in another module, trying to be compiled gives this error&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint java language-java&quot;&gt;&lt;code&gt;[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
-	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_first_conclusions&quot;&gt;First conclusions&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;At first, unread well the error message, and without understanding the class hierarchy of the project, I thought it might help &lt;a href=&quot;https://github.com/orfjackal/retrolambda/pull/101&quot;&gt;this PR&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;If you want to understand more in detail, &lt;a href=&quot;https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle&quot;&gt;here&lt;/a&gt; some notes on the Lifecycle of maven. And &lt;a href=&quot;http://maven.apache.org/guides/mini/guide-maven-classloading.html&quot;&gt;here&lt;/a&gt; on classloading.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Then read more in detail, I thought the problem was that the transformation the interface to abstract &amp;#8230; well, i admit &lt;a href=&quot;https://twitter.com/nicolas_frankel/status/786202575150407680&quot;&gt;this tweet&lt;/a&gt; had distracted me from the real problem, because &lt;a href=&quot;https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659&quot;&gt;	the interfaces are abstract (by default)&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And the own &lt;a href=&quot;https://twitter.com/orfjackal&quot;&gt;Esko Luontola&lt;/a&gt; explains why. &quot;8 pre-Java JVMs support only abstract methods in interfaces (the &amp;lt;clinit&amp;gt; method being an exception). Retrolambda code inserts the default method implementing to all classes, JVM 8 thus emulating what does.&quot;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html&quot;&gt;Here&lt;/a&gt; a more detailed explanation of how to operate the Default Methods in JDK 8. And &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html&quot;&gt;here&lt;/a&gt; oracle&amp;#8217;s explanation on &quot;abstract&quot;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_explanation_of_the_real_problem&quot;&gt;Explanation of the real problem&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;But the problem, in this case, was simply the limitation of the library in multi module projects &lt;a href=&quot;https://github.com/orfjackal/retrolambda/issues/56&quot;&gt;here&lt;/a&gt; and
-&lt;a href=&quot;https://github.com/orfjackal/retrolambda/issues/58&quot;&gt;here&lt;/a&gt; as also discussed in detail.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;A way out by making small manual changes in the code, it would be implementing the method getIcon(String, IconSize) with the default behavior in class the second module.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint bash language-bash&quot;&gt;&lt;code&gt;diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-index 99bdb0e..9b34ce1 100644
---- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-+++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-@@ -18,6 +18,7 @@
- import javax.jcr.Node;
- import javax.jcr.RepositoryException;
-
-+import org.apache.wicket.Component;
- import org.apache.wicket.model.IModel;
- import org.apache.wicket.request.resource.ResourceReference;
- import org.hippoecm.frontend.l10n.ResourceBundleModel;
-@@ -144,4 +145,10 @@
-         return null;
-     }
-
-+    @Override
-+    public Component getIcon(String id, IconSize size) {
-+    	return null;
-+    }
-+
-+
- }
-diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-index 450712b..9d09210 100644
---- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-+++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-@@ -56,6 +56,7 @@
- import org.hippoecm.frontend.service.IconSize;
- import org.hippoecm.frontend.service.render.RenderPlugin;
- import org.hippoecm.frontend.skin.Icon;
-+import org.hippoecm.frontend.skin.IconProvider;
- import org.hippoecm.repository.api.HippoNodeType;
- import org.slf4j.Logger;
- import org.slf4j.LoggerFactory;
-@@ -337,6 +338,11 @@
-     public ResourceReference getIcon(IconSize type) {
-         return null;
-     }
-+
-+    @Override
-+    public Component getIcon(String id, IconSize size) {
-+    	return null;
-+    }
-
-     private boolean hasSearchResult() {
-         return collection.getType() == DocumentCollectionType.SEARCHRESULT;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_next_steps&quot;&gt;Next steps?&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/teras&quot;&gt;Teras&lt;/a&gt; and &lt;a href=&quot;https://github.com/orfjackal&quot;&gt;Orfjackal&lt;/a&gt;, why the PR 101 does not modify these classes to make that change? Maybe it does because there is already a method with that name, although not with the same number of parameters?&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_and_what_happend_with_the_retrolambda_compilation_of_hippocms&quot;&gt;And what happend with the retrolambda compilation of HippoCms?&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Even some mistake &amp;#8230; we have to solve static method &amp;#8230;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint bash language-bash&quot;&gt;&lt;code&gt;[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
-[ERROR] symbol:   method of(Calendar)
-[ERROR] location: interface DateTimePrinter
-[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
-[ERROR] symbol:   method of(Calendar)
-[ERROR] location: interface DateTimePrinter&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Static methods on interfaces are backported by moving the static methods to a companion class (interface name + &quot;$&quot;), and by changing all methods calls to call the new method location.[1]&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In this case, the temporary solution is to change the import in the classes of the second module, the companion class.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint bash language-bash&quot;&gt;&lt;code&gt;diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-index 5a97066..ab938b7 100644
---- a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-+++ b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-@@ -41,7 +41,7 @@
- import org.hippoecm.frontend.plugin.IPluginContext;
- import org.hippoecm.frontend.plugins.reviewedactions.model.Request;
- import org.hippoecm.frontend.plugins.reviewedactions.model.RequestModel;
--import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter;
-+import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter$;
- import org.hippoecm.frontend.plugins.standards.icon.HippoIcon;
- import org.hippoecm.frontend.session.UserSession;
- import org.hippoecm.frontend.skin.Icon;
-@@ -110,7 +110,7 @@
-                 String state = request.getState();
-
-                 final String parameter = schedule != null ?
--                        DateTimePrinter.of(schedule).appendDST().print(FormatStyle.FULL) : &quot;??&quot;;
-+                        DateTimePrinter$.of(schedule).appendDST().print(FormatStyle.FULL) : &quot;??&quot;;
-                 return new StringResourceModel(&quot;state-&quot; + state, this, null, &quot;unknown&quot;, parameter);
-             }&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_final_notes&quot;&gt;Final notes&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;If you&amp;#8217;ve used in your project with JDK 8 are streaming APIs, you can use &lt;a href=&quot;https://sourceforge.net/projects/streamsupport/&quot;&gt;this&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Here is a &lt;a href=&quot;https://en.wikipedia.org/wiki/Java_backporting_tools&quot;&gt;brief history&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_extra_ball&quot;&gt;Extra ball&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/31160831/android-groovy-android-annotation&quot;&gt;Groovy Android and APT&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For all this, metaprogramming &amp;#8230; in groovy. To see what ends the idea.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1813,184 +2496,153 @@ thlogic {
 	</description>
     </item>
     <item>
-      <title>Thymeleaf 3 and Groovy</title>
-      <link>http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html</link>
-      <pubDate>mié, 12 oct 2016 00:00:00 +0200</pubDate>
-      <guid isPermaLink="false">2016/10/groovy-thymelaf.html</guid>
+      <title>Blog in GitHub Pages with Jbake and Gradle</title>
+      <link>http://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.html</link>
+      <pubDate>jue, 25 ago 2016 00:00:00 +0200</pubDate>
+      <guid isPermaLink="false">2016/08/blog-jbake-gradle.html</guid>
       	<description>
 	&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_groovy&quot;&gt;Groovy&lt;/h2&gt;
+&lt;h2 id=&quot;_it_s_time_to_start_a_blog_about_programming&quot;&gt;It&amp;#8217;s time to start a blog about programming&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The first time i heard about Groovy, was in late 2010, early 2011. I used Freemind mind mapping, and then version 0.9 was about to release, with support for groovy, what was that?, It took some time using Freemind, and I said, if people use it, maybe could be interesting.&lt;/p&gt;
+&lt;p&gt;The truth is that as time passes, you realize that sharing is winning. Some, are given as much before, but although
+I already intuited, have had to spend over 10 years in the art of programming to realize. Share is to win,
+is to know other opinions, ways of doing things and of course, meet other people&amp;#8230; they call networking.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;A dynamic language like Javascript, which could interact with the mental maps, making them dynamic too? To create nodes, relations between them, in a dynamic way?. I tried it, I did some things: a script that compiled the ticket Fogbugz and show me drawn as nodes in the mental map.&lt;/p&gt;
+&lt;p&gt;I already had a &lt;a href=&quot;http://accreativos.blogspot.com.es/&quot;&gt;blog&lt;/a&gt; is more a list of things you&amp;#8217;re finding and take note to
+remember, that really a way to share information and comment on it. Then came the
+&lt;a href=&quot;http://twitter.com/accreativos&quot;&gt;twitter&lt;/a&gt; but in the end, it is a mixture of retweets, and little original information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So, why not, a serious blog, like those used to reading these, those where people end up leaving
+a lot of comments, those that you add to your RSS reader to be aware of what is said in them,
+And if you learn something mounting it, because what else can you ask for.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Therefore, items that will use this blog are:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;English (Spanish)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GitHub Pages&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AsciiDoctor&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Groovy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Jbake&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gradle&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Freemarker (Thymeleaf)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Discus (Discourse)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We see you in a bit of detail each point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_english&quot;&gt;English&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The first thing I take advantage of it to improve my English. So, although I write in Spanish, my native language,
+publishes in English (and I assume that since I write in Spanish, these also the publicare, and I&amp;#8217;ll see as attachment).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_github_pages&quot;&gt;Github Pages&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;GitHub for some time now began to publish static pages allow for all your projects done. If you are looking for
+&lt;a href=&quot;https://pages.github.com&quot;&gt;https://pages.github.com&lt;/a&gt; [Github Pages] will see extensive information, besides, many people already using github
+tapped to mount functionality for small static sites.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Basically it is that everything that you upload to the branch gh-pages of your github repository, will be visible in the domain
+&lt;a href=&quot;http://username.github.io/repo/file&quot;&gt;http://username.github.io/repo/file&lt;/a&gt; where username is your user github, repo is the name of the repo where these
+going up files to the branch gh-pages and file is the file that if an index.html the browser displays,
+and the same for css and js with what you already have ready the web.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;They also provide a default generator, &lt;a href=&quot;https://help.github.com/articles/about-github-pages-and-jekyll/&quot;&gt;Jekyll&lt;/a&gt;
+to generate these static pages from a text in markdown format, but we will not use it,
+We see the alternative.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_asciidoctor&quot;&gt;AsciiDoctor&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We prefer to use something that is between, markdown and latex, and that is called &lt;a href=&quot;http://asciidoctor.org/&quot;&gt;AsciiDoctor&lt;/a&gt; that
+true also this &lt;a href=&quot;http://asciidoctor.org/news/2014/02/04/github-asciidoctor-0.1.4-upgrade-5-things-to-know/&quot;&gt;supported&lt;/a&gt;
+by GitHub.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_groovy&quot;&gt;Groovy&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Like my native language is Spanish, my native language is this in Java programming, and as is
+learn, and I have a few years playing with groovy, and I will not miss the opportunity to mount the blog using it.
+I will tell on another occasion, as I started in this groovy, and what are the places where I learn.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_jbake&quot;&gt;Jbake&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And we have said that we were not going to use &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; that is done in Ruby, because what we mola is
+Groovy;) But we need our written txt in AsciiDoctor be transformed into HTML (or XML we&amp;#8217;ll see how)
+and above all that what we write is inserted in those HTML, we will use &lt;a href=&quot;http://jbake.org/&quot;&gt;Jbake&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_gradle&quot;&gt;Gradle&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But hey, this needs to be automated, at the end, there are a number of steps, why not use Gradle, as well
+&lt;a href=&quot;http://melix.github.io/blog/2014/02/hosting-jbake-github.html&quot;&gt;the creator&lt;/a&gt; of
+&lt;a href=&quot;https://github.com/jbake-org/jbake-gradle-plugin&quot;&gt;plugin&lt;/a&gt;, it is the perfect combination.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A couple of notes, as it has been somewhat outdated &amp;#8230; &lt;a href=&quot;http://www.orany.cz/blog/2014/10/17/migrated-to-jbake.html&quot;&gt;that
+Ornay write time ago&lt;/a&gt; and which faces plugin to upload the pages to the branch, it has also been actualized,
+&lt;a href=&quot;https://plugins.gradle.org/plugin/org.ajoberstar.github-pages&quot;&gt;aqui this&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_freemarker_thymeleaf&quot;&gt;Freemarker (Thymeleaf)&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;And this tool is able to use different templating systems (specifically start with Freemarker, and more
+I later migrate to Thymeleaf) to inject the values ​​obtained in asciidoctor txt, along with some
+more variables to help build a blogging system that does not have anything envy to Jeklly, Wordpress or
+what is put forward.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;_disqus_discourse&quot;&gt;Disqus (Discourse)&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But finally, a system without the possibility of blog comments, don&amp;#8217;t make sense. To do all these i used
+&lt;a href=&quot;https://disqus.com/&quot;&gt;Discus&lt;/a&gt; that integrate perfectly with a line (almost). As an option, I will try to migrate to
+&lt;a href=&quot;https://www.discourse.org/&quot;&gt;Discourse&lt;/a&gt; but that will come later.&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_thymeleaf&quot;&gt;Thymeleaf&lt;/h2&gt;
+&lt;h2 id=&quot;_extra_ball_analytics&quot;&gt;Extra Ball. Analytics.&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Thymeleaf templating system is a server, both as standalone web. Its main objective is to provide a template system (not strictly HTML), natural and elegant that also function as static prototypes, enabling closer collaboration in development teams.&lt;/p&gt;
+&lt;p&gt;As extra ball, remember to add the analitica.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In addition, modules Spring Framework, a series of integrations with their favorite tools, and the ability to connect their own functionality, thymeleaf is ideal for HTML5 web development in the JVM and more.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_why_no_mix_it&quot;&gt;Why no mix it?&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;One of the new features of thymeleaf 3 is still more design decouple HTML from data binding.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In &lt;a href=&quot;https://github.com/thymeleaf/thymeleaf/issues/465&quot;&gt;this link&lt;/a&gt; count as work.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The question is, if I can lay  something like&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint html language-html&quot;&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-  &amp;lt;body&amp;gt;
-    &amp;lt;table id=&quot;usersTable&quot;&amp;gt;
-      &amp;lt;tr&amp;gt;
-        &amp;lt;td class=&quot;username&quot;&amp;gt;Jeremy Grapefruit&amp;lt;/td&amp;gt;
-        &amp;lt;td class=&quot;usertype&quot;&amp;gt;Normal User&amp;lt;/td&amp;gt;
-      &amp;lt;/tr&amp;gt;
-      &amp;lt;tr&amp;gt;
-        &amp;lt;td class=&quot;username&quot;&amp;gt;Alice Watermelon&amp;lt;/td&amp;gt;
-        &amp;lt;td class=&quot;usertype&quot;&amp;gt;Administrator&amp;lt;/td&amp;gt;
-      &amp;lt;/tr&amp;gt;
-    &amp;lt;/table&amp;gt;
-  &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;I can define so, as it will generate the binding of the fields&amp;#8230;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint xml language-xml&quot;&gt;&lt;code&gt;&amp;lt;?xml version=&quot;1.0&quot;?&amp;gt;
-&amp;lt;thlogic&amp;gt;
-  &amp;lt;attr sel=&quot;#usersTable&quot; th:remove=&quot;all-but-first&quot;&amp;gt;
-    &amp;lt;attr sel=&quot;/tr[0]&quot; th:each=&quot;user : ${users}&quot;&amp;gt;
-      &amp;lt;attr sel=&quot;td.username&quot; th:text=&quot;${user.name}&quot; /&amp;gt;
-      &amp;lt;attr sel=&quot;td.usertype&quot; th:text=&quot;#{|user.type.${user.type}|}&quot; /&amp;gt;
-    &amp;lt;/attr&amp;gt;
-  &amp;lt;/attr&amp;gt;
-&amp;lt;/thlogic&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;then, why not write in groovy&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;thlogic {
-    attr(sel:&apos;#usersTable&apos;, &apos;th:remove&apos;:&apos;all-but-first&apos;) {
-        attr(sel:&apos;/tr[0]&apos;, &apos;th:each&apos;:&apos;user : ${users}&apos;) {
-            attr(sel:&apos;td.username&apos;, &apos;th:text&apos;:&apos;${user.name}&apos;)
-            attr(sel:&apos;td.usertype&apos;, &apos;th:text&apos;:&apos;${user.type}&apos;)
-        }
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;&lt;a href=&quot;http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html&quot;&gt;Here is&lt;/a&gt; the explanation in thymeleaf&amp;#8217;s forum.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And if we can made this, we could made &lt;a href=&quot;http://groovy-lang.org/processing-xml.html#_markupbuilder&quot;&gt;this one&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;thlogic {
-    attr(sel:&apos;#usersTable&apos;, &apos;th:remove&apos;:&apos;all-but-first&apos;) {
-        attr(sel:&apos;/tr[0]&apos;, &apos;th:each&apos;:&apos;user : ${users}&apos;) {
-			(1..3).each { n -&amp;gt;			&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
-				attr(sel:&apos;td.username&apos;, &apos;th:text&apos;:&apos;${user.name}&apos;)
-				attr(sel:&apos;td.usertype&apos;, &apos;th:text&apos;:&apos;${user.type}&apos;)
-			}
-        }
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;colist arabic&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;Include the logic in xml generation&amp;#8230;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_one_example_with_all_mixed&quot;&gt;One example with all mixed&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In &lt;a href=&quot;https://github.com/josejuanmontiel/adorable-avatar&quot;&gt;this project&lt;/a&gt; i mount an example of use of thymeleaf 3 in a springboot project with groovy as the main language, and &lt;a href=&quot;https://github.com/josejuanmontiel/dynamic-rest-template&quot;&gt;here&lt;/a&gt; took out the rest of access to services, and wanted to try something else was jitpack to generate libraries git projects, on-demand.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint gradle language-gradle&quot;&gt;&lt;code&gt;	maven { url &quot;https://jitpack.io&quot; }
-	compile &apos;com.github.josejuanmontiel:dynamic-rest-template:-SNAPSHOT&apos;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_next_steps&quot;&gt;Next steps&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Many applications are the type, called a rest services and exposure in the view. Why not make an application front, in the back? I thought it would be quite interesting, that in the definition of binding in groovy could add information about the rest services to be consulted, to fill the data binding in the rendering phase.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;rest{
-	url{
-		http://...
-	}
-	binding {
-		user.name=response.body.user
-		user.type=response.body.type
-		...
-	}
-}
-thlogic {
-    attr(sel:&apos;#usersTable&apos;, &apos;th:remove&apos;:&apos;all-but-first&apos;) {
-        attr(sel:&apos;/tr[0]&apos;, &apos;th:each&apos;:&apos;user : ${users}&apos;) {
-            attr(sel:&apos;td.username&apos;, &apos;th:text&apos;:&apos;${user.name}&apos;)
-            attr(sel:&apos;td.usertype&apos;, &apos;th:text&apos;:&apos;${user.type}&apos;)
-        }
-    }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And seeing the &lt;a href=&quot;https://twitter.com/nicolas_frankel/status/760441910272135168&quot;&gt;tweet&lt;/a&gt; Nicolas Frankel, test values (maximum and minimum) of each of the fields are indicated binding and that during development, are that the fake data used to lay out the project, while services are mounted.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;prettyprint groovy language-groovy&quot;&gt;&lt;code&gt;rest{
-	url{ ... }
-	binding { ... }
-	test {
-		user.name=[user1, user2, user3]
-		user.type=[admin, normal, editor]
-	}
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;For all this, metaprogramming &amp;#8230; in groovy. To see what ends the idea.&lt;/p&gt;
+&lt;p&gt;Keep on Groovying!&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2141,159 +2793,6 @@ usan &lt;a href=&quot;https://disqus.com/&quot;&gt;Discus&lt;/a&gt; que se inter
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Como bola extra, recordar añadir la analitica.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Keep on Groovying!&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-	</description>
-    </item>
-    <item>
-      <title>Blog in GitHub Pages with Jbake and Gradle</title>
-      <link>http://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.html</link>
-      <pubDate>jue, 25 ago 2016 00:00:00 +0200</pubDate>
-      <guid isPermaLink="false">2016/08/blog-jbake-gradle.html</guid>
-      	<description>
-	&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_it_s_time_to_start_a_blog_about_programming&quot;&gt;It&amp;#8217;s time to start a blog about programming&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The truth is that as time passes, you realize that sharing is winning. Some, are given as much before, but although
-I already intuited, have had to spend over 10 years in the art of programming to realize. Share is to win,
-is to know other opinions, ways of doing things and of course, meet other people&amp;#8230; they call networking.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;I already had a &lt;a href=&quot;http://accreativos.blogspot.com.es/&quot;&gt;blog&lt;/a&gt; is more a list of things you&amp;#8217;re finding and take note to
-remember, that really a way to share information and comment on it. Then came the
-&lt;a href=&quot;http://twitter.com/accreativos&quot;&gt;twitter&lt;/a&gt; but in the end, it is a mixture of retweets, and little original information.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;So, why not, a serious blog, like those used to reading these, those where people end up leaving
-a lot of comments, those that you add to your RSS reader to be aware of what is said in them,
-And if you learn something mounting it, because what else can you ask for.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Therefore, items that will use this blog are:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ulist&quot;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;English (Spanish)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;GitHub Pages&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;AsciiDoctor&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Groovy&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Jbake&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Gradle&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Freemarker (Thymeleaf)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Discus (Discourse)&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;We see you in a bit of detail each point.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_english&quot;&gt;English&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The first thing I take advantage of it to improve my English. So, although I write in Spanish, my native language,
-publishes in English (and I assume that since I write in Spanish, these also the publicare, and I&amp;#8217;ll see as attachment).&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_github_pages&quot;&gt;Github Pages&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;GitHub for some time now began to publish static pages allow for all your projects done. If you are looking for
-&lt;a href=&quot;https://pages.github.com&quot;&gt;https://pages.github.com&lt;/a&gt; [Github Pages] will see extensive information, besides, many people already using github
-tapped to mount functionality for small static sites.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Basically it is that everything that you upload to the branch gh-pages of your github repository, will be visible in the domain
-&lt;a href=&quot;http://username.github.io/repo/file&quot;&gt;http://username.github.io/repo/file&lt;/a&gt; where username is your user github, repo is the name of the repo where these
-going up files to the branch gh-pages and file is the file that if an index.html the browser displays,
-and the same for css and js with what you already have ready the web.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;They also provide a default generator, &lt;a href=&quot;https://help.github.com/articles/about-github-pages-and-jekyll/&quot;&gt;Jekyll&lt;/a&gt;
-to generate these static pages from a text in markdown format, but we will not use it,
-We see the alternative.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_asciidoctor&quot;&gt;AsciiDoctor&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;We prefer to use something that is between, markdown and latex, and that is called &lt;a href=&quot;http://asciidoctor.org/&quot;&gt;AsciiDoctor&lt;/a&gt; that
-true also this &lt;a href=&quot;http://asciidoctor.org/news/2014/02/04/github-asciidoctor-0.1.4-upgrade-5-things-to-know/&quot;&gt;supported&lt;/a&gt;
-by GitHub.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_groovy&quot;&gt;Groovy&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Like my native language is Spanish, my native language is this in Java programming, and as is
-learn, and I have a few years playing with groovy, and I will not miss the opportunity to mount the blog using it.
-I will tell on another occasion, as I started in this groovy, and what are the places where I learn.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_jbake&quot;&gt;Jbake&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And we have said that we were not going to use &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; that is done in Ruby, because what we mola is
-Groovy;) But we need our written txt in AsciiDoctor be transformed into HTML (or XML we&amp;#8217;ll see how)
-and above all that what we write is inserted in those HTML, we will use &lt;a href=&quot;http://jbake.org/&quot;&gt;Jbake&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_gradle&quot;&gt;Gradle&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;But hey, this needs to be automated, at the end, there are a number of steps, why not use Gradle, as well
-&lt;a href=&quot;http://melix.github.io/blog/2014/02/hosting-jbake-github.html&quot;&gt;the creator&lt;/a&gt; of
-&lt;a href=&quot;https://github.com/jbake-org/jbake-gradle-plugin&quot;&gt;plugin&lt;/a&gt;, it is the perfect combination.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;A couple of notes, as it has been somewhat outdated &amp;#8230; &lt;a href=&quot;http://www.orany.cz/blog/2014/10/17/migrated-to-jbake.html&quot;&gt;that
-Ornay write time ago&lt;/a&gt; and which faces plugin to upload the pages to the branch, it has also been actualized,
-&lt;a href=&quot;https://plugins.gradle.org/plugin/org.ajoberstar.github-pages&quot;&gt;aqui this&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_freemarker_thymeleaf&quot;&gt;Freemarker (Thymeleaf)&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;And this tool is able to use different templating systems (specifically start with Freemarker, and more
-I later migrate to Thymeleaf) to inject the values ​​obtained in asciidoctor txt, along with some
-more variables to help build a blogging system that does not have anything envy to Jeklly, Wordpress or
-what is put forward.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;_disqus_discourse&quot;&gt;Disqus (Discourse)&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;But finally, a system without the possibility of blog comments, don&amp;#8217;t make sense. To do all these i used
-&lt;a href=&quot;https://disqus.com/&quot;&gt;Discus&lt;/a&gt; that integrate perfectly with a line (almost). As an option, I will try to migrate to
-&lt;a href=&quot;https://www.discourse.org/&quot;&gt;Discourse&lt;/a&gt; but that will come later.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;_extra_ball_analytics&quot;&gt;Extra Ball. Analytics.&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;As extra ball, remember to add the analitica.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Keep on Groovying!&lt;/p&gt;
