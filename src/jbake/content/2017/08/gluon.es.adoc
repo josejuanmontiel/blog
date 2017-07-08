@@ -1,12 +1,12 @@
-= Thymeleaf 3 and Groovy
+= Gluon OSS
 Jose Juan Montiel
-2016-10-16
+2017-08-01
 :jbake-type: post
 :jbake-tags: jvm,hippocms
 :jbake-status: draft
-:jbake-lang: en
+:jbake-lang: es
 :source-highlighter: prettify
-:id: hippocms
+:id: gluon
 :icons: font
 
 == Gluon OSS

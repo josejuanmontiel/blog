@@ -1,0 +1,110 @@
+= Groovy Metaprograming
+Jose Juan Montiel
+2017-07-08
+:jbake-type: post
+:jbake-tags: jvm,code,generation,groovy, thymeleaf
+:jbake-status: published
+:jbake-lang: es
+:source-highlighter: prettify
+:id: thymeleaf
+:icons: font
+
+== Generacion de codigo. Del modelo a la vista.
+
+Bueno, por fin, mas de 9 meses despues de su inicio, me he animado a terminar
+esta entrada del blog, y fue tras el tweet de https://twitter.com/jagedn/status/882984377596116992[@jagedn]
+que despues de la charla de @ilopmar en http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html[madridgug],
+hizo que me animara con https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f[asteroid].
+
+Pero bueno, por orden.
+
+En https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html[uno]
+de mis anteriores artículos, hablaba de como, usando Groovy y Thymeleaf, se podía
+separar aun un poco mas, la maqueta de las indicaciones de donde colocar los
+elementos de binding, para mostrar los datos del modelo; y deje planteado unos
+próximos pasos, de como se podía generar parte de ese código.
+
+Y no voy a hablar de como generar ese codigo en este post, tendra que ser mas
+adelante pero por lo menos, dejare listadas una serie de herramientas "utiles"
+para generar codigo.
+
+A día de hoy, existen muchas maneras de "generar codigo". Por ejemplo, en
+http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy[este articulo]
+Ivan nos cuenta las opciones que hay en groovy (en tiempo de compilacion, y en
+uno anterior, las de tiempo de ejecucion).
+
+Y en http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html[esta charla],
+Mario, se centra en las ayudas que existen para la Metaprogramacion en groovy, los macros.
+Y también nos habla de una librería para ayudarnos en ese proceso de creacion de
+macros: https://github.com/grooviter/asteroid[asteroid]
+
+Si tuvieramos que hacer una clasificacion, diferente, de las distintas maneras
+de crear codigo podriamos hacerlo asi:
+
+. Las de "java"
+.. Las que se ven
+
+... Las que generan codigo fuente
+**** Cosas como http://docs.spring.io/spring-roo/reference/html/intro.html[Spring Roo]
+o http://yeoman.io[Yeoman] o la mas actual https://jhipster.github.io/[JHipster]
+son herramientas que generan codigo "scaffolding".
+**** Pero cosas como esta libreria https://github.com/square/javapoet[Javapoet]
+genera codigo fuente, a partir de un DSL, y asi partimos de unos fuentes comunes.
+
+... Las que generan codigo "compilado". http://docs.oracle.com/javase/7/docs/technotes/guides/apt/[APT],
+es la herramienta en la que se basan el "resto" que modifcian el http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/[AST].
+**** Por ejemplo, esta libreria, https://github.com/AlbertoSH/MagicBuilder[MagicBuilder] genera codigo en tiempo de compilacion, siguiendo el patron builder.
+
+... Las que modifican el bytecode
+**** http://asm.ow2.org/[ASM4]
+**** http://bytebuddy.net/#/[ByteBuddy]
+**** https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android[ByteBuddy para Android]
+
+.. Las que "no" se ven
+... Las que usan injeccion de dependencias.
+**** Al final declarar una variable, y que en tiempo de ejecucion se le haya
+asignado un valor, tambien es una manera de modificar el codigo. Aqui tambien
+tendrian cabida, ese tipo de cosas que, entre otros, hace Spring para generar
+los beans que nos injecta a traves de proxies por ejemplo.
+
+... https://eclipse.org/aspectj/[AspectJ] / https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html[AOP]
+**** Esto, de alguna manera modifica el codigo/ast/bytecode, pero la peculiaridad
+es la manera de definir donde van a actuar estas transformaciones. Podrian
+considerarse una especie de AST Globales.
+
+... http://jnb.ociweb.com/jnb/jnbJan2010.html[Lombock]
+**** Es para aquellos que no pueden usar Groovy, que por lo menos, no tengan
+que hacer ciertas cosas que siempre son igual, como los getter/setter. Esto si
+entra claramente dentro de las AST.
+
+.. Las que modifican el codigo "cargado" en un "entorno" por otro
+**** https://zeroturnaround.com/software/jrebel/[JRebel]
+**** https://github.com/spring-projects/spring-loaded[spring-loaded]
+**** https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html[spring-dev-tools]
+***** Vemos https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188[aqui]
+como para los test de esta ultima han usado ByteBuddy.
+
+.. Las que cambian el codigo en produccion mediante dinamic attach. https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/[Dynamic attach].
+**** En esta charla, nos cuentan  como usar http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html[YouDebug] como un depurador interactivo en produccion.
+
+.. Las que compilan codigo desde unos fuentes en produccion. https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0[Compile sources en runtime].
+
+. El mundo android
+.. Asistidas por gradle (con el plugin APT)
+*** https://google.github.io/dagger/users-guide[Dagger]
+*** http://jakewharton.github.io/butterknife/[Butterknife]
+*** http://androidannotations.org/[Android Annotation]
+*** https://github.com/Arasthel/SwissKnife[SwissKnife] para groovy.
+
+. Osgi vs Jigsaw
+Jeje, bueno, esto para otro dia :)
+
+Y bueno, para que no se haga "bola" esta entrada del blog, simplemente reflejar
+"las distintas maneras de "generar codigo" que existen en el mundo de la JVM (java, groovy) ¿alguna mas?
+
+== Bola extra
+Algunas conversaciones en stackoverflow sobre android, groovy y generacion de codigo por APT
+
+. http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt
+. http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken
+. http://stackoverflow.com/questions/31160831/android-groovy-android-annotation

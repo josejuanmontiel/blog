@@ -1,15 +1,15 @@
-= Thymeleaf 3 and Groovy
+= OpenCV
 Jose Juan Montiel
-2016-10-23
+2017-10-01
 :jbake-type: post
-:jbake-tags: talk
+:jbake-tags: graphics
 :jbake-status: draft
 :jbake-lang: es
 :source-highlighter: prettify
-:id: prepare-a-talk
+:id: opencv
 :icons: font
 
-== Open CV
+== OpenCV
 
 - Escaneo de tickets
 	- http://stackoverflow.com/questions/38618860/tess-two-receipt-recognitions-wide-font-and-different-font-size-give-me-bad-res

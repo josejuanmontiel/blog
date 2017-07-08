@@ -4,21 +4,21 @@ Jose Juan Montiel
 :jbake-type: post
 :jbake-tags: git,merge,rebase,git-flow
 :jbake-status: published
-:jbake-lang: es
+:jbake-lang: en
 :source-highlighter: prettify
 :id: git-merge-rebase-flow
 :icons: font
 
 == Git & Merge & Rebase & Flow
 
-En esta ocasion vamos a realizar una serie de operaciones en un repositorio git.
-Intentaremos simular situaciones tipicas de trabajo en grupo, con distintas
-manerasP de enfocar la union de los distintos trabajos.
+On this occasion we will perform a series of operations on a git repository.
+We will try to simulate typical situations of group work, with different
+Ways to focus the union of the different jobs.
 
-=== Trabajar con dos ramas sin ancestros comunes.
+=== Work with two branches without common ancestors.
 
-Lo primero, inicializar un repo local, con opcion de que sea compartido por
-varios usuarios.
+First, initialize a local repo, with the option of being shared by
+Multiple users.
 
 [source,sh]
 ----
@@ -28,8 +28,8 @@ git clone test-repo.git repo-clone1
 git clone test-repo.git repo-clone2
 ----
 
-Despues nos vamos al directorio 1, y añadimos un primer fichero, en el commit
-indicamos un nombre de usuario: User1.
+Then we go to the directory 1, and we add a first file, in the commit
+We indicate a username: User1.
 
 [source,sh]
 ----
@@ -40,16 +40,16 @@ git commit --author="User1 <user1@git.com>" -m "Initial commit"
 git push -u origin master
 ----
 
-Para ver desde consola podemos añadir lo siguiente a ~/.gitconfig bajo [alias]
+To view from console we can add the following to ~ / .gitconfig under [alias]
 
 TIP: tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
 
-El repo queda entonces asi.
+The repo is thus.
 
 image::git_01.png[]
 
-Despues nos vamos a la segunda carpeta y solo hacemos "fetch", y creamos el mismo
-fichero que creo el otro usuario. Lo comiteamos, luego intentamos push.
+Then we go to the second folder and we only do "fetch", and we create the same folder
+File that the other user created. We did it, then we tried to push.
 
 [source,sh]
 ----
@@ -61,7 +61,7 @@ git commit --author="User2 <user2@git.com>" -m "Other user change"
 git push
 ----
 
-Pero obtenemos el siguiente error.
+But we get the following error.
 
 [source,sh]
 ----
@@ -73,7 +73,7 @@ Pero obtenemos el siguiente error.
 	hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ----
 
-WARNING: No se puede hacer push sino se hace un pull... en este momento el arbol esta asi...
+WARNING: You can not push but you pull ... at this time the tree is like this ...
 
 image::git_02.png[]
 
@@ -86,39 +86,39 @@ CAUTION: The default behavior has changed since git 2.9
 
 "git merge" used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.
 
-En este caso, hemos partido de 2 ramas independientes, y el pull de una rama
-(donde ya tenemos un commit) provoca una especie de "merge". En este caso (por
-	no tener ancestros comunes) debemos hacerlo con:
+In this case, we have started from 2 independent branches, and the pull of a branch
+(Where we already have a commit) causes a kind of "merge". In this case (for
+Not having common ancestors) we must do it with:
 
 [source,sh]
 ----
 git pull origin master --allow-unrelated-histories
 ----
 
-Y queda esto
+And this is left
 
 image::git_03.png[]
 
-Ahora ya podemos hacer:
+Now we can do:
 
 [source,sh]
 ----
 git push
 ----
 
-Y asi queda el repo:
+And so is the repo:
 
 image::git_04.png[]
 
-=== Trabajar en una rama, sin haberla actualizado
+=== Work in a branch, without having updated it
 
-Vamos ahora a probar en el directorio 1, a crear con git-flow una feature, crear un
-nuevo fichero y luego... crear otra feature en el directorio 2, creando otro
-fichero.
+Let's now test in directory 1, create a git-flow feature, create a
+New file and then ... create another feature in directory 2, creating another
+file.
 
-Luego en el directorio 1, cerramos la feature, luego en el directorio 2,
+Then in directory 1, we close the feature, then in directory 2.
 
-TIP: Mergeamos develop en nuestra rama, y luego mergeamos nuestra rama en develop (cerrando la feature).
+TIP: We merge develop into our branch, and then merge our branch into develop (closing the feature).
 
 [source,sh]
 ----
@@ -133,7 +133,7 @@ git commit --author="User1 <user1@git.com>" -m "Commit in feature-user1"
 
 image::git_05.png[]
 
-WARNING: Pero se nos "olvido" hacer fetch/pull antes de empezar... y aqui empieza el lio...
+WARNING: But we "forgot" to do fetch / pull before we start ... and here begins the lesson ...
 
 [source,sh]
 ----
@@ -141,11 +141,11 @@ git fetch
 git pull origin master
 ----
 
-Ahora (a punto de terminar la historia) tenemos el arbol asi.
+Now (about to finish the story) we have the tree as well.
 
 image::git_06.png[]
 
-Cerramos la feature
+We close feature
 
 [source,sh]
 ----
@@ -158,23 +158,23 @@ Summary of actions:
 * Feature branch 'feature/user1' has been locally deleted
 * You are now on branch 'develop'
 
-TIP: Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hecho.
+TIP: Let's upload develop (by default git-flow does not push), which we have not done yet.
 
 [source,sh]
 ----
 git push origin develop
 ----
 
-quedando el arbol, asi:
+Leaving the tree, like this:
 
 image::git_07.png[]
 
-=== Mantener rama actualizada con los cambios de develop
+=== Keep branch updated with changes from develop
 
-Ahora nos vamos al directorio 2, nos actualizamos, creamos una feature,
-hacemos algo en el fichero README comiteamos, pero antes de cerrar la feature,
-cambiamos de carpeta 1 y modificamos el README, volvemos al directorio original y
-antes de cerrar feature, mergeamos develop en nuestra rama.
+Now we go to the directory 2, we update, create a feature,
+We do something in the file README comiteamos, but before closing the feature,
+Change folder 1 and modify the README, we return to the original directory and
+Before closing feature, mergeamos develop in our branch.
 
 [source,sh]
 ----
@@ -198,14 +198,14 @@ git commit --author="User1 <user1@git.com>" -m "Update develop file feature1"
 git push origin develop
 ----
 
-Aqui (carpeta 1) todavia no sabemos nada de la feature2, quedando el arbol asi
+Here (folder 1) we still do not know anything about the feature2, leaving the tree as well
 
 image::git_08.png[]
 
-El "problema" con rebase es que altera las lineas de historia, para bien o para mal.
+The "problem" with overshoot is that it alters the story lines, for better or for worse.
 
-Si seguimos el enfoque clasico, para mantener al dia nuestra feature2, debemos
-mergear a menudo con develop, o por lo menos, antes de cerrar la feature.
+If we follow the classic approach, to keep our feature2 current, we must
+Often merge with develop, or at least, before closing the feature.
 
 [source,sh]
 ----
@@ -214,24 +214,24 @@ git fetch
 git pull origin develop
 ----
 
-Esto, asi escrito realiza un merge directo, pues estamos haciendo pull de otra
-rama (develop) en la de la feature.
+This, as written, performs a direct merge, since we are pulling another
+Branch (develop) in the of the feature.
 
-TIP: Un pull de una rama en otra que no es la suya, equivale a un merge.
+TIP: A pull of a branch in another that is not yours, is equivalent to a merge.
 
 image::git_09.png[]
 
-=== Merge, tras un pull (actualizacion), de una rama sobre otra
+=== Merge, after a pull (update), from one branch to another
 
-Una manera, desde mi punto de vista, mas controlada de enfocar los merge (o
-	bien por tener actualizada una rama, o por mezclarla luego en otra),
-	podria haber sido: un fetch para actualiar, cambiando a develop,
-hacer pull y luego volviendo a la feature y haciendo merge.
+A way, from my point of view, more controlled to focus the merge (or
+Either by having a branch updated, or by mixing it later in another),
+Could have been: a fetch to update, changing to develop,
+Do pull and then return to the feature and doing merge.
 
-=== Mantener rama actualizada con un rebase.
+=== Keep branch updated with an override.
 
-Pero, probemos otra vez (vamos a carpeta 1, hacemos cambio en develop y lo subimos),
-pero esta vez hacemos un rebase (usando git flow)
+But, try again (we go to folder 1, we make change in develop and we raise it),
+But this time we make a rebase (using git flow)
 
 [source,sh]
 ----
@@ -244,7 +244,6 @@ cd ../repo-clone2
 git fetch
 git flow feature rebase user2
 ----
-
 
 Will try to rebase 'user2' which is based on 'develop'...
 First, rewinding head to replay your work on top of it...
@@ -261,8 +260,7 @@ git flow feature finish
 Branches 'develop' and 'origin/develop' have diverged.
 Fatal: And branch 'develop' may be fast-forwarded.
 
-Esto solo quiere decir que la rama donde estamos tabajando no esta actulzada (similar
-	al primer ejemplo).
+This only means that the branch where we are working is not present (similar to the first example).
 
 [source,sh]
 ----
@@ -296,7 +294,7 @@ You can then complete the finish by running it again:
     git flow feature finish user2
 ----
 
-El rebase nos ha generado conflictos, que a la hora de hacer el merge, nos da problemas.
+The rebase has generated conflicts, which at the time of making the merge, gives us problems.
 
 [source,sh]
 ----
@@ -305,7 +303,7 @@ git mergetool
 
 image::git_11.png[]
 
-Pues altera la linea de tiempo de la rama donde lo hace. Resolvemos el conflicto y subimos cambios.
+It alters the timeline of the branch where it does it. We resolve the conflict and make changes.
 
 [source,sh]
 ----
@@ -314,18 +312,18 @@ git commit --author="User2 <user2@git.com>" -m "Resolve rebase y merge"
 git push origin develop
 ----
 
-Nos queda este arbol
+We have this tree
 
 image::git_12.png[]
 
-=== Policia del arbol de git.
+=== Git tree police.
 
-Si consideramos que una rama se crea para una funcionalidad, y todo el conjunto
-de commits que se relizan en ella, incluyendo los merge desde develop, no deben
-quedar reflejado en el arbolo final tras el merge, --no-ff es nuestro amigo.
+If we consider that a branch is created for a functionality, and the whole set
+Of commits that are related to it, including merge from develop, should not
+Be reflected in the final tree after the merge, --no-ff is our friend.
 
-Creemos una feature3, hagamos algun cambio, hagamos algun cambio en develop,
-llevemoslo a la rama de la feature3, y cuando terminemos, merge con no-ff.
+We create a feature3, make some changes, make some changes in develop,
+Let's take it to the branch of feature3, and when it's done, merge with no-ff.
 
 [source,sh]
 ----
@@ -356,8 +354,8 @@ git checkout feature/feature3
 git merge develop
 ----
 
-El arbol lo tenemos asi... ahora tras el merge, hagamos otro cambio y reintegremos
-en develop como un solo commit.
+The tree we have so ... now after the merge, make another change and reintegrate
+In develop as a single commit.
 
 image::git_13.png[]
 
@@ -374,14 +372,17 @@ git branch -d feature/feature3
 
 image::git_14.png[]
 
-Observemos como queda limpio la rama develop
+Let's observe how clean the branch develop
 
 image::git-merge-no-ff.png[]
 
-Referencias:
+References:
 
 * https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa
 
 * https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull
 * https://mislav.net/2013/02/merge-vs-rebase/
 * https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase
+
+* http://blog.jonathanoliver.com/my-new-best-friend-git-merge-no-ff/
+* http://paul.stadig.name/2010/12/thou-shalt-not-lie-git-rebase-ammend.html

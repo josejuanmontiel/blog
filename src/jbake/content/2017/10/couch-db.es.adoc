@@ -1,12 +1,12 @@
 = Thymeleaf 3 and Groovy
 Jose Juan Montiel
-2016-10-23
+2017-10-01
 :jbake-type: post
-:jbake-tags: talk
+:jbake-tags: jvm, db
 :jbake-status: draft
 :jbake-lang: es
 :source-highlighter: prettify
-:id: prepare-a-talk
+:id: couch-db
 :icons: font
 
 == Couch DB

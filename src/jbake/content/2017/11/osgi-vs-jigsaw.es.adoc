@@ -1,12 +1,12 @@
-= Liferay and OSGi
+= Osgi vs Jigsaw
 Jose Juan Montiel
-2017-09-01
+2017-11-01
 :jbake-type: post
-:jbake-tags: jvm, liferay, osgi
+:jbake-tags:
 :jbake-status: draft
 :jbake-lang: es
 :source-highlighter: prettify
-:id: liferay-and-osgi
+:id: osgi-vs-jigsaw
 :icons: font
 
-== Liferay and OSGi
+== Osgi vs Jigsaw

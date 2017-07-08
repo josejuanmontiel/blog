@@ -1,0 +1,109 @@
+= Groovy Metaprograming
+Jose Juan Montiel
+2017-07-08
+:jbake-type: post
+:jbake-tags: jvm,code,generation,groovy, thymeleaf
+:jbake-status: published
+:jbake-lang: en
+:source-highlighter: prettify
+:id: thymeleaf
+:icons: font
+
+== Generation of code. From the model to the view.
+
+Well, at last, more than 9 months after its beginning, I have encouraged to finish
+this blog post, and it was after the tweet of https://twitter.com/jagedn/status/882984377596116992[@jagedn]
+that after the @ilopmar talk in http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html[madridgug],
+he encouraged me with https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f[asteroid].
+
+But hey, by order.
+
+In https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html[one]
+of my other articles, talked about how, using Groovy and Thymeleaf, one could
+to separate even a little more, the model of the view of where to place the
+binding elements, to display model data; and leave some next steps,
+how you could generate part of that code.
+
+And I will not talk about how to generate this code in this post, it should be more
+forward but at least, I will list a number of "useful" links to generate code.
+
+To date, there are many ways to "generate code". For example in
+http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy[this article]
+Ivan tells us the options that are in groovy (at compile time, and in
+A previous one, those of execution time).
+
+And in http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html[this talk],
+Mario, focuses on the aids that exist for Metaprogramming in groovy, macros.
+And it also tells us about a library to help us in this process of creating
+Macros: https://github.com/grooviter/asteroid[asteroid]
+
+If we had to make a classification, different, in different ways to create code
+we could do it like this:
+
+. Those of "java"
+.. The ones that you can see
+
+... Those that generate source code
+**** Things like http://docs.spring.io/spring-roo/reference/html/intro.html[Spring Roo]
+or http://yeoman.io[Yeoman] or the most current https://jhipster.github.io/[JHipster]
+are tools that generate code "scaffolding".
+**** But things like this library https://github.com/square/javapoet[Javapoet]
+generates source code, from a DSL, and so we start from a common sources.
+
+... Those that generate code "compiled". http://docs.oracle.com/javase/7/docs/technotes/guides/apt/[APT],
+Is the tool on which the "rest" that modifies the http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/[AST].
+**** By example, this library, https://github.com/AlbertoSH/MagicBuilder[MagicBuilder] generate code at compile time, following the patron builder.
+
+... Those that modify the bytecode
+**** http://asm.ow2.org/[ASM4]
+**** http://bytebuddy.net/#/[ByteBuddy]
+**** https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android[ByteBuddy para Android]
+
+.. Those that "do not" look
+... Those that use dependency injection.
+**** At the end declare a variable, and that in execution time it has been
+assigned a value, is also a way to modify the code. Here too Would have a place,
+that kind of thing that, among others, makes Spring to generate the beans that
+injects us through proxies for example.
+
+... https://eclipse.org/aspectj/[AspectJ] / https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html[AOP]
+**** This, somehow modifies the code / ast / bytecode, but the peculiarity
+is the way to define where these transformations are going to take place. Could
+considered a kind of global AST.
+
+... http://jnb.ociweb.com/jnb/jnbJan2010.html[Lombock]
+**** It is for those who can not use Groovy, at least, do not have they do
+certain things that are always the same, like the getter / setter. This clearly
+enters in the AST field.
+
+.. Those that modify the code "loaded" in one "environment" by another
+**** https://zeroturnaround.com/software/jrebel/[JRebel]
+**** https://github.com/spring-projects/spring-loaded[spring-loaded]
+**** https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html[spring-dev-tools]
+***** We see https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188[here]
+as for the tests of the latter have used ByteBuddy.
+
+.. Those that change the code in production through dinamic attach. https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/[Dynamic attach].
+**** In this talk, we are told how to use http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html[YouDebug] as an interactive debugger in production.
+
+.. Those that compile code from sources in production. https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0[Compile sources en runtime].
+
+. The android world
+.. Assisted by gradle (with the APT plugin)
+*** https://google.github.io/dagger/users-guide[Dagger]
+*** http://jakewharton.github.io/butterknife/[Butterknife]
+*** http://androidannotations.org/[Android Annotation]
+*** https://github.com/Arasthel/SwissKnife[SwissKnife] for Groovy.
+
+. Osgi vs Jigsaw
+Hehe, well, this for another day :)
+
+And well, so you do not make "ball" this blog entry, simply reflect
+"The different ways to" generate code "that exist in the world of the JVM (java, groovy) any more?
+
+== Extra ball
+Some conversations in stackoverflow about android, groovy and code generation by APT
+
+. http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt
+. http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken
+. http://stackoverflow.com/questions/31160831/android-groovy-android-annotation
