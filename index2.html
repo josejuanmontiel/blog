@@ -1,0 +1,800 @@
+<!DOCTYPE HTML>
+<!--
+    Future Imperfect by HTML5 UP
+    html5up.net | @n33co
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="JoseJuanMontiel">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <link rel="stylesheet" href="css/google-font.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/add-on.css" />
+    <link rel="stylesheet" href="css/monokai-sublime.css">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="img/favicon/favicon.png">
+  </head>
+  <body>
+     <!-- Wrapper -->
+        <div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+            <h2><a href="https://josejuanmontiel.github.io/blog">Blog</i></a></h2>
+
+    <nav class="links">
+        <ul>
+        			<li>
+	                    <a href=" https://josejuanmontiel.github.io/blog">
+
+	                            <i class="fa fa-home">&nbsp;</i>Home
+
+	                    </a>
+                	</li>
+
+
+        			<li>
+	                    <a href=" archive.html">
+
+	                            <i class="fa fa-archive">&nbsp;</i>Archive
+
+	                    </a>
+                	</li>
+
+
+        			<li>
+	                    <a href=" about.html">
+
+	                            <i class="fa fa-user">&nbsp;</i>About
+
+	                    </a>
+                	</li>
+
+
+        			<li>
+	                    <a href=" feed.json">
+
+	                            <i class="fa fa-rss">&nbsp;</i>Subscribe
+
+	                    </a>
+                	</li>
+
+
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:https://josejuanmontiel.github.io/blog">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Menu -->
+<section id="menu">
+
+    <!-- Search -->
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:https://josejuanmontiel.github.io/blog">
+            </form>
+        </section>
+
+    <!-- Links -->
+        <section>
+            <ul class="links">
+        		 <li>
+                    <a href=" https://josejuanmontiel.github.io/blog">
+
+                            <i class="fa fa-home">&nbsp;</i>Home
+
+                    </a>
+                </li>
+        		 <li>
+                    <a href=" archive.html">
+
+                            <i class="fa fa-archive">&nbsp;</i>Archive
+
+                    </a>
+                </li>
+        		 <li>
+                    <a href=" about.html">
+
+                            <i class="fa fa-user">&nbsp;</i>About
+
+                    </a>
+                </li>
+        		 <li>
+                    <a href=" feed.json">
+
+                            <i class="fa fa-rss">&nbsp;</i>Subscribe
+
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    <!-- Recent Posts -->
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+            </ul>
+        </section>
+
+    <!-- Actions -->
+        <!--
+        <section>
+            <ul class="actions vertical">
+                <li><a href="#" class="button big fit">Log In</a></li>
+            </ul>
+        </section>
+        -->
+</section>
+
+	<div id="main">
+<article class="post">
+   <header>
+    <div class="title">
+
+                    <h2><a href="2017/07/groovy-metaprograming.es.html">Groovy Metaprograming</a></h2>
+
+    </div>
+    <div class="meta">
+         <time class="published"
+            datetime='jul 08, 2017'>
+            jul 08, 2017</time>
+            <div class="published eta"></div>
+        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
+    </div>
+</header>
+
+    
+  
+         
+    <div id="content">
+       <div class="sect1">
+<h2 id="_generacion_de_codigo_del_modelo_a_la_vista">Generacion de codigo. Del modelo a la vista.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bueno, por fin, mas de 9 meses despues de su inicio, me he animado a terminar
+esta entrada del blog, y fue tras el tweet de <a href="https://twitter.com/jagedn/status/882984377596116992">@jagedn</a>
+que despues de la charla de @ilopmar en <a href="http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html">madridgug</a>,
+hizo que me animara con <a href="https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f">asteroid</a>.</p>
+</div>
+<div class="paragraph">
+<p>Pero bueno, por orden.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html">uno</a>
+de mis anteriores artículos, hablaba de como, usando Groovy y Thymeleaf, se podía
+separar aun un poco mas, la maqueta de las indicaciones de donde colocar los
+elementos de binding, para mostrar los datos del modelo; y deje planteado unos
+próximos pasos, de como se podía generar parte de ese código.</p>
+</div>
+<div class="paragraph">
+<p>Y no voy a hablar de como generar ese codigo en este post, tendra que ser mas
+adelante pero por lo menos, dejare listadas una serie de herramientas "utiles"
+para generar codigo.</p>
+</div>
+<div class="paragraph">
+<p>A día de hoy, existen muchas maneras de "generar codigo". Por ejemplo, en
+<a href="http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy">este articulo</a>
+Ivan nos cuenta las opciones que hay en groovy (en tiempo de compilacion, y en
+uno anterior, las de tiempo de ejecucion).</p>
+</div>
+<div class="paragraph">
+<p>Y en <a href="http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html">esta charla</a>,
+Mario, se centra en las ayudas que existen para la Metaprogramacion en groovy, los macros.
+Y también nos habla de una librería para ayudarnos en ese proceso de creacion de
+macros: <a href="https://github.com/grooviter/asteroid">asteroid</a></p>
+</div>
+<div class="paragraph">
+<p>Si tuvieramos que hacer una clasificacion, diferente, de las distintas maneras
+de crear codigo podriamos hacerlo asi:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Las de "java"</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Las que se ven</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Las que generan codigo fuente</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cosas como <a href="http://docs.spring.io/spring-roo/reference/html/intro.html">Spring Roo</a>
+o <a href="http://yeoman.io">Yeoman</a> o la mas actual <a href="https://jhipster.github.io/">JHipster</a>
+son herramientas que generan codigo "scaffolding".</p>
+</li>
+<li>
+<p>Pero cosas como esta libreria <a href="https://github.com/square/javapoet">Javapoet</a>
+genera codigo fuente, a partir de un DSL, y asi partimos de unos fuentes comunes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que generan codigo "compilado". <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/apt/">APT</a>,
+es la herramienta en la que se basan el "resto" que modifcian el <a href="http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/">AST</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Por ejemplo, esta libreria, <a href="https://github.com/AlbertoSH/MagicBuilder">MagicBuilder</a> genera codigo en tiempo de compilacion, siguiendo el patron builder.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que modifican el bytecode</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://asm.ow2.org/">ASM4</a></p>
+</li>
+<li>
+<p><a href="http://bytebuddy.net/#/">ByteBuddy</a></p>
+</li>
+<li>
+<p><a href="https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android">ByteBuddy para Android</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Las que "no" se ven</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Las que usan injeccion de dependencias.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Al final declarar una variable, y que en tiempo de ejecucion se le haya
+asignado un valor, tambien es una manera de modificar el codigo. Aqui tambien
+tendrian cabida, ese tipo de cosas que, entre otros, hace Spring para generar
+los beans que nos injecta a traves de proxies por ejemplo.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://eclipse.org/aspectj/">AspectJ</a> / <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">AOP</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Esto, de alguna manera modifica el codigo/ast/bytecode, pero la peculiaridad
+es la manera de definir donde van a actuar estas transformaciones. Podrian
+considerarse una especie de AST Globales.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://jnb.ociweb.com/jnb/jnbJan2010.html">Lombock</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Es para aquellos que no pueden usar Groovy, que por lo menos, no tengan
+que hacer ciertas cosas que siempre son igual, como los getter/setter. Esto si
+entra claramente dentro de las AST.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Las que modifican el codigo "cargado" en un "entorno" por otro</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://zeroturnaround.com/software/jrebel/">JRebel</a></p>
+</li>
+<li>
+<p><a href="https://github.com/spring-projects/spring-loaded">spring-loaded</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html">spring-dev-tools</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Vemos <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188">aqui</a>
+como para los test de esta ultima han usado ByteBuddy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que cambian el codigo en produccion mediante dinamic attach. <a href="https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/">Dynamic attach</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>En esta charla, nos cuentan  como usar <a href="http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html">YouDebug</a> como un depurador interactivo en produccion.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que compilan codigo desde unos fuentes en produccion. <a href="https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0">Compile sources en runtime</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>El mundo android</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Asistidas por gradle (con el plugin APT)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://google.github.io/dagger/users-guide">Dagger</a></p>
+</li>
+<li>
+<p><a href="http://jakewharton.github.io/butterknife/">Butterknife</a></p>
+</li>
+<li>
+<p><a href="http://androidannotations.org/">Android Annotation</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Arasthel/SwissKnife">SwissKnife</a> para groovy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Osgi vs Jigsaw
+Jeje, bueno, esto para otro dia :)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Y bueno, para que no se haga "bola" esta entrada del blog, simplemente reflejar
+"las distintas maneras de "generar codigo" que existen en el mundo de la JVM (java, groovy) ¿alguna mas?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bola_extra">Bola extra</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Algunas conversaciones en stackoverflow sobre android, groovy y generacion de codigo por APT</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt" class="bare">http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken" class="bare">http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation" class="bare">http://stackoverflow.com/questions/31160831/android-groovy-android-annotation</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+    </div>
+	
+	<section id="social-share">
+        <ul class="icons">
+<!-- Social Share Button HTML -->
+
+<!-- Twitter -->
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&text=Groovy Metaprograming&via=accreativos" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+<!-- Google Plus -->
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+<!-- Facebook -->
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+<!-- Reddit (url, title) -->
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+<!-- LinkedIn -->
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+<!-- StumbleUpon (url, title) -->
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+<!-- Email -->
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+        </ul>
+    </section>
+     
+
+    <footer>
+	
+		<ul class="stats">
+    	    <!-- Display the categories associated with this post -->
+    	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
+ 	        <li><a href='tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='tags/code.html'>code</a></li>
+ 	        <li><a href='tags/generation.html'>generation</a></li>
+ 	        <li><a href='tags/groovy.html'>groovy</a></li>
+ 	        <li><a href='tags/thymeleaf.html'>thymeleaf</a></li>
+
+				<li><a class="icon fa-comment" href="2017/07/groovy-metaprograming.es.html#disqus_thread"> &nbsp;</a></li>
+ 		</ul>
+    	
+    </footer>
+</article>
+
+		<!-- #include "post/prev-next.ftl" -->
+	 </div>
+
+<!-- Sidebar -->
+<section id="sidebar">
+
+    <!-- Intro -->
+        <section id="intro">
+                                    <a href="" class="logo"><img src="img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
+
+
+                <header>
+                    <h2>Blog</h2>
+                    <p>Personal blog</p>
+                </header>
+
+            <ul class="icons">
+                    <li><a href="feed.json" type="application/rss+xml"
+                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
+<li><a href="//github.com/josejuanmontiel" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+<li><a href="//jsfiddle.com/josejuanmontiel" target="_blank" title="JSFiddle" class="fa fa-jsfiddle"></a></li>
+
+<li><a href="//codepen.io/josejuanmontiel" target="_blank" title="CodePen" class="fa fa-codepen"></a></li>
+
+
+
+
+
+
+<li><a href="//instagram.com/josejuanmontiel" target="_blank" title="Instagram" class="fa fa-instagram"></a></li>
+
+
+
+
+
+
+
+
+<li><a href="//linkedin.com/in/josejuanmontielmartinez" target="_blank" title="LinkedIn" class="fa fa-linkedin"></a></li>
+
+<li><a href="//slideshare.com/josejuanmontiel" target="_blank" title="SlideShare" class="fa fa-slideshare"></a></li>
+
+<li><a href="//stackoverflow.com/users/1713/accreativos" target="_blank" title="Stack Overflow" class="fa fa-stack-overflow"></a></li>
+
+
+
+<li><a href="//plus.google.com/+101229557097091502974" target="_blank" title="Google+" class="fa fa-google-plus"></a></li>
+
+
+<li><a href="//twitter.com/accreativos" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+<li><a href="mailto:josejuan.montiel@gmail.com" title="Email" class="fa fa-envelope"></a></li>
+            </ul>
+        </section>
+
+    <!-- Posts List -->
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+
+            </ul>
+        </section>
+
+    <!-- Tags List can be show/hide from config-->
+        <section id="tags">
+            <ul class="posts">
+                <header>
+                    <h3>Tags</h3>
+                </header>
+
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/jvm.html">jvm</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/jbake.html">jbake</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/generation.html">generation</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/rebase.html">rebase</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/github.html">github</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/code.html">code</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/apt.html">apt</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/android.html">android</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/personal.html">personal</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/git-flow.html">git-flow</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/thymeleaf.html">thymeleaf</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/blog.html">blog</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/springboot.html">springboot</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/gradle.html">gradle</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/groovy.html">groovy</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/git.html">git</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/merge.html">merge</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/thymeleaf3.html">thymeleaf3</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/hippocms.html">hippocms</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+            </ul>
+        </section>
+
+
+    <!-- About -->
+        <section class="blurb">
+            <h2>About</h2>
+            <p>Personal blog</p>
+
+            <ul class="actions">
+                <li><a href="about.html" class="button">Learn More</a></li>
+            </ul>
+        </section>
+
+
+        <section id="footer">
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.5.1</a>.
+            <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
+        </section>
+
+</section>
+		</div>
+		<a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+		<div id="push"></div>
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/util.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/backToTop.js"></script>
+		<script src="js/highlight.pack.js"></script>
+		<script src="js/readingTime.js"></script>
+
+			<script id="dsq-count-scr" src="//josejuanmontiel.disqus.com/count.js" async></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82879918-1', 'auto');
+  ga('send', 'pageview', {
+    'page': 'https://josejuanmontiel.github.io/blog',
+    'title': 'Blog'
+      });
+</script>
+		<!-- This is called by default since this theme uses highlight.js -->
+		<script>hljs.initHighlightingOnLoad();</script>
+		<!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
+
+  </body>
+</html>

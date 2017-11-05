@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/about.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/about.html</loc>
         <lastmod>2016-08-21</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html</loc>
         <lastmod>2017-07-08</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html</loc>
         <lastmod>2017-07-08</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2017/06/git.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2017/06/git.html</loc>
         <lastmod>2017-06-30</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2017/06/git.es.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2017/06/git.es.html</loc>
         <lastmod>2017-06-30</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2016/10/retrolambda.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html</loc>
         <lastmod>2016-10-19</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html</loc>
         <lastmod>2016-10-19</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html</loc>
         <lastmod>2016-10-12</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html</loc>
         <lastmod>2016-10-12</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.html</loc>
         <lastmod>2016-08-25</lastmod>
     </url>
     <url>
-        <loc>http://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html</loc>
+        <loc>https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html</loc>
         <lastmod>2016-08-25</lastmod>
     </url>
 </urlset>
