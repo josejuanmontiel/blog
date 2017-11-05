@@ -1,0 +1,12 @@
+= HippoCMS
+Jose Juan Montiel
+2018-02-02
+:jbake-type: post
+:jbake-tags: jvm,hippocms
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: hippocms
+:icons: font
+
+== HippoCMS

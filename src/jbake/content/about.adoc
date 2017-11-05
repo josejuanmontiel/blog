@@ -7,9 +7,8 @@ Jose Juan Montiel
 :jbake-cached: true
 
 ++++
-Misc stuff <a href="http://accreativos.blogspot.com.es/">Blog</a>
-<a class="twitter-timeline" href="https://twitter.com/accreativos">Tweets by accreativos</a> 
+Misc stuff about me: <br /> <a href="http://accreativos.blogspot.com.es/">Blog</a>
+<br />
+<a class="twitter-timeline" href="https://twitter.com/accreativos">Tweets by accreativos</a>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 ++++
-
-

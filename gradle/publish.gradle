@@ -1,0 +1,16 @@
+apply plugin: 'org.ajoberstar.github-pages'
+
+githubPages {
+
+  repoUri = 'https://github.com/pacotheai/blog.git'
+
+  credentials {
+      username = System.getenv('GH_TOKEN')
+      password = ''
+  }
+
+  pages {
+     from file('build/jbake')
+  }
+
+}

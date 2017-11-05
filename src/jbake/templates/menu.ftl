@@ -1,33 +1,114 @@
-	<!-- Fixed navbar -->
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-          <div class="container">
-	    <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/blog">Jose Juan Montiel's blog</a>
-	    </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="/blog/about.html">About</a></li>
+<!-- Header -->
+<header id="header">
+    <#if (content == null)??>
+        <h1><a href="${config.site_host}">${config.site_title}</i></a></h1>
+    <#else>
+        <h2><a href="${config.site_host}">${config.site_title}</i></a></h2>
+    </#if>
 
-				<!-- li class="dropdown">
-	          		<a data-toggle="dropdown" href="#">Topics<b class="caret"></b></a>
-			          <ul class="dropdown-menu" role="menu">
-						<li><a href="/blog/tags/groovy.html">Groovy</a></li>
-						<li><a href="/blog/2013/07/30/deck2pdf_exporting_html5_slide_decks.html">deck2pdf</a></li>
-						<li><a href="/blog/tags/jlangdetect.html">JLangDetect</a></li>
-			          </ul>
-	       		</li -->
-                <li><a href="/blog/${config.feed_file}">Feed</a></li>
-              </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="https://github.com/josejuanmontiel"><i class="fa fa-github"></i></a></li>
-	        <li><a href="https://twitter.com/accreativos"><i class="fa fa-twitter"></i></a>
-	      </ul>
-            </div>
-          </div>
-      </div>
-      <div class="container">
+    <nav class="links">
+        <ul>
+        	<#list config.site_menus_main as menuItem1>
+        		<#if (config.site_menus_main_showTagsDropdown?boolean)?? == true && menuItem1 == 'tags'>
+        			<li>
+	                    <a href="<#if (config['site_menus_main_' + menuItem1 + '_url'] != "/")> ${content.rootpath}${config['site_menus_main_' + menuItem1 + '_url']}<#else> ${config.site_host}</#if>">
+
+
+	                       <i class="${config['site_menus_main_' + menuItem1 + '_icon']}">&nbsp;</i>${config['site_menus_main_' + menuItem1 + '_label']}
+
+	                    </a>
+	                    <ul class="dropdown-menu">
+				            <#list alltags as tag>
+									<li><a class="plain" href="/${config.tag_path}/${tag}">${tag}</a></li>
+							</#list>
+			          	</ul>
+
+                	</li>
+
+        		<#else>
+        			<li>
+	                    <a href="<#if (config['site_menus_main_' + menuItem1 + '_url'] != "/")> ${content.rootpath}${config['site_menus_main_' + menuItem1 + '_url']}<#else> ${config.site_host}</#if>">
+
+	                            <i class="${config['site_menus_main_' + menuItem1 + '_icon']}">&nbsp;</i>${config['site_menus_main_' + menuItem1 + '_label']}
+
+	                    </a>
+                	</li>
+
+        		</#if>
+
+			</#list>
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            <#if content.shareNav??>
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            </#if>
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:${config.site_host}">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Menu -->
+<section id="menu">
+
+    <!-- Search -->
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:${config.site_host}">
+            </form>
+        </section>
+
+    <!-- Links -->
+        <section>
+            <ul class="links">
+                <#list config.site_menus_main as menuItem>
+        		 <li>
+                    <a href="<#if (config['site_menus_main_' + menuItem + '_url'] != "/")> ${content.rootpath}${config['site_menus_main_' + menuItem + '_url']}<#else> ${config.site_host}</#if>">
+
+                            <i class="${config['site_menus_main_' + menuItem + '_icon']}">&nbsp;</i>${config['site_menus_main_' + menuItem + '_label']}
+
+                    </a>
+                </li>
+				</#list>
+            </ul>
+        </section>
+
+    <!-- Recent Posts -->
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                <#list published_posts as menuPost1>
+                  <#if (menuPost1.lang = "en")>
+                  	<#if (menuPost1?counter > config.sidebar_postAmount?number) ><#break/></#if>
+                      <li>
+                          <a href="${content.rootpath}${content.rootpath}${menuPost1.noExtensionUri!menuPost1.uri}"><p>${menuPost1.title}</p></a>
+                      </li>
+                  </#if>
+                </#list>
+            </ul>
+        </section>
+
+    <!-- Actions -->
+        <!--
+        <section>
+            <ul class="actions vertical">
+                <li><a href="#" class="button big fit">Log In</a></li>
+            </ul>
+        </section>
+        -->
+</section>

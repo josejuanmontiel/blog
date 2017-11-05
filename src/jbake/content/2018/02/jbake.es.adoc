@@ -1,0 +1,20 @@
+= JBake
+Jose Juan Montiel
+2018-02-09
+:jbake-type: post
+:jbake-tags: jvm,jbake
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: jbake
+:icons: font
+
+== JBake
+
+	- PR para Velocity...
+
+	- Ajustar que apunte a css
+		- Descargar html final...
+	- Probar inclusion de templates
+		- Probar inclusion usando lo que provee el tema
+	- Realizar esquema de jerarquia: tema -> layout -> portlet -> contenido -> template

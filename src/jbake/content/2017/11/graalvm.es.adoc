@@ -1,0 +1,12 @@
+= Graalvm
+Jose Juan Montiel
+2017-11-18
+:jbake-type: post
+:jbake-tags: jvm
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: graalvm
+:icons: font
+
+== Graalvm

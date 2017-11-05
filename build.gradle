@@ -1,27 +1,33 @@
 buildscript {
   repositories {
       mavenLocal()
-      mavenCentral()   
+      mavenCentral()
       jcenter()
+      maven {
+          url "http://dl.bintray.com/calmdev/gradle-plugins"
+      }
   }
 
-  dependencies { 
-    classpath 'me.champeau.gradle:jbake-gradle-plugin:0.1'
-    classpath 'org.asciidoctor:asciidoctor-java-integration:0.1.4'
-    classpath 'org.freemarker:freemarker:2.3.19'
+  dependencies {
+      classpath "org.jbake:jbake-gradle-plugin:$jbake_plugin"
+      classpath "org.akhikhl.gretty:gretty:$gretty_plugin"
+      classpath "org.ajoberstar:gradle-git:$gradle_git"
+      classpath "org.asciidoctor:asciidoctorj-diagram:1.5.0"
   }
 }
 
-apply plugin: 'jbake'
+apply plugin: 'groovy'
+apply plugin: 'org.jbake.site'
+apply from: 'gradle/gretty.gradle'
+apply from: 'gradle/publish.gradle'
 
-jbake {
-   input = file('src/jbake')
-   output = file('build/jbake')
-   clearCache = true
-   configuration['render.tag'] = 'true'
-}
-
-task publish(type: GradleBuild) {
-    buildFile = 'publish.gradle'
-    tasks = ['publishGhPages']
+jbake{
+  configuration['asciidoctor.option.requires'] = "asciidoctor-diagram"
+  configuration['asciidoctor.attributes'] = [
+  "sourceDir=${projectDir}",
+  "imagesdir=/blog/img",
+  "imagesoutdir=${bake.input}/assets/img",
+  "source-highlighter=highlight.js",
+  "icons=font"
+]
 }

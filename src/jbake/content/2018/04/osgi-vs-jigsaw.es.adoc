@@ -1,0 +1,12 @@
+= Osgi vs Jigsaw
+Jose Juan Montiel
+2018-04-01
+:jbake-type: post
+:jbake-tags:
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: osgi-vs-jigsaw
+:icons: font
+
+== Osgi vs Jigsaw

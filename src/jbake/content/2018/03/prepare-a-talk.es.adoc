@@ -1,0 +1,20 @@
+= Thymeleaf 3 and Groovy
+Jose Juan Montiel
+2018-03-04
+:jbake-type: post
+:jbake-tags: talk
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: prepare-a-talk
+:icons: font
+
+== Prepare a talk
+
+https://groups.google.com/forum/#!topic/madrid-gug/GPg3kamXDN4
+	https://groups.google.com/forum/#!msg/madrid-gug/GPg3kamXDN4/aTK8kMu2DQAJ
+
+* https://github.com/josejuanmontiel/charla_gradle[Gradle]
+* https://github.com/josejuanmontiel/thymeleaf_talk[Thymeleaf]
+	http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
+	https://twitter.com/nicolas_frankel/status/760441910272135168

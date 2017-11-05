@@ -1,0 +1,28 @@
+= Charla: Thymeleaf para maquetadores.
+Jose Juan Montiel
+2018-02-23
+:jbake-type: post
+:jbake-tags: jvm,thymeleaf
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: thymeleaf-for-frontender
+:icons: font
+
+== Charla: Thymeleaf para maquetadores.
+
+Retomar,
+- https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html
+- /home/jose/git/blog/src/jbake/content/2017/07/groovy-metaprograming.es.adoc
+
+== Enfoque usando el codigo de ejemplo
+. https://github.com/josejuanmontiel/thymeleaf_talk
+. https://github.com/josejuanmontiel/adorable-avatar
+. https://github.com/josejuanmontiel/dynamic-rest-template
+
+
+
+* https://github.com/josejuanmontiel/charla_gradle[Gradle]
+* https://github.com/josejuanmontiel/thymeleaf_talk[Thymeleaf]
+	http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html
+	https://twitter.com/nicolas_frankel/status/760441910272135168
