@@ -2,12 +2,7 @@ apply plugin: 'org.ajoberstar.github-pages'
 
 githubPages {
 
-  repoUri = 'https://github.com/pacotheai/blog.git'
-
-  credentials {
-      username = System.getenv('GH_TOKEN')
-      password = ''
-  }
+  repoUri = 'git@github.com:josejuanmontiel/blog.git'
 
   pages {
      from file('build/jbake')

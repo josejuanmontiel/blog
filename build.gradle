@@ -31,3 +31,8 @@ jbake{
   "icons=font"
 ]
 }
+
+task publish(type: GradleBuild) {
+    buildFile = 'publish.gradle'
+    tasks = ['publishGhPages']
+}
