@@ -1,0 +1,15 @@
+= Groovy Metaprograming V2
+Jose Juan Montiel
+2017-07-08
+:jbake-type: post
+:jbake-tags: jvm,code,generation,groovy, thymeleaf
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: thymeleaf
+:icons: font
+
+== DSL
+https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/expressions.html#expressions-spel-compilation
+https://coderanch.com/t/408600/java/dealing-formula-objects
+http://www.formula4j.com/examples.html

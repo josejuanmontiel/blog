@@ -46,7 +46,7 @@ TIP: tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h
 
 The repo is thus.
 
-image::git_01.png[]
+image::2017/06/git_01.png[]
 
 Then we go to the second folder and we only do "fetch", and we create the same folder
 File that the other user created. We did it, then we tried to push.
@@ -75,7 +75,7 @@ But we get the following error.
 
 WARNING: You can not push but you pull ... at this time the tree is like this ...
 
-image::git_02.png[]
+image::2017/06/git_02.png[]
 
 [source,sh]
 ----
@@ -97,7 +97,7 @@ git pull origin master --allow-unrelated-histories
 
 And this is left
 
-image::git_03.png[]
+image::2017/06/git_03.png[]
 
 Now we can do:
 
@@ -108,7 +108,7 @@ git push
 
 And so is the repo:
 
-image::git_04.png[]
+image::2017/06/git_04.png[]
 
 === Work in a branch, without having updated it
 
@@ -131,7 +131,7 @@ git add feature-user1.txt
 git commit --author="User1 <user1@git.com>" -m "Commit in feature-user1"
 ----
 
-image::git_05.png[]
+image::2017/06/git_05.png[]
 
 WARNING: But we "forgot" to do fetch / pull before we start ... and here begins the lesson ...
 
@@ -143,7 +143,7 @@ git pull origin master
 
 Now (about to finish the story) we have the tree as well.
 
-image::git_06.png[]
+image::2017/06/git_06.png[]
 
 We close feature
 
@@ -167,7 +167,7 @@ git push origin develop
 
 Leaving the tree, like this:
 
-image::git_07.png[]
+image::2017/06/git_07.png[]
 
 === Keep branch updated with changes from develop
 
@@ -200,7 +200,7 @@ git push origin develop
 
 Here (folder 1) we still do not know anything about the feature2, leaving the tree as well
 
-image::git_08.png[]
+image::2017/06/git_08.png[]
 
 The "problem" with overshoot is that it alters the story lines, for better or for worse.
 
@@ -219,7 +219,7 @@ Branch (develop) in the of the feature.
 
 TIP: A pull of a branch in another that is not yours, is equivalent to a merge.
 
-image::git_09.png[]
+image::2017/06/git_09.png[]
 
 === Merge, after a pull (update), from one branch to another
 
@@ -250,7 +250,7 @@ First, rewinding head to replay your work on top of it...
 Applying: Commit in feature-user2
 Applying: Update develop file feature1
 
-image::git_10.png[]
+image::2017/06/git_10.png[]
 
 [source,sh]
 ----
@@ -301,7 +301,7 @@ The rebase has generated conflicts, which at the time of making the merge, gives
 git mergetool
 ----
 
-image::git_11.png[]
+image::2017/06/git_11.png[]
 
 It alters the timeline of the branch where it does it. We resolve the conflict and make changes.
 
@@ -314,7 +314,7 @@ git push origin develop
 
 We have this tree
 
-image::git_12.png[]
+image::2017/06/git_12.png[]
 
 === Git tree police.
 
@@ -357,7 +357,7 @@ git merge develop
 The tree we have so ... now after the merge, make another change and reintegrate
 In develop as a single commit.
 
-image::git_13.png[]
+image::2017/06/git_13.png[]
 
 [source,sh]
 ----
@@ -370,11 +370,11 @@ git push origin --delete feature/feature3
 git branch -d feature/feature3
 ----
 
-image::git_14.png[]
+image::2017/06/git_14.png[]
 
 Let's observe how clean the branch develop
 
-image::git-merge-no-ff.png[]
+image::2017/06/git-merge-no-ff.png[]
 
 References:
 

@@ -46,7 +46,7 @@ TIP: tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h
 
 El repo queda entonces asi.
 
-image::git_01.png[]
+image::2017/06/git_01.png[]
 
 Despues nos vamos a la segunda carpeta y solo hacemos "fetch", y creamos el mismo
 fichero que creo el otro usuario. Lo comiteamos, luego intentamos push.
@@ -75,7 +75,7 @@ Pero obtenemos el siguiente error.
 
 WARNING: No se puede hacer push sino se hace un pull... en este momento el arbol esta asi...
 
-image::git_02.png[]
+image::2017/06/git_02.png[]
 
 [source,sh]
 ----
@@ -97,7 +97,7 @@ git pull origin master --allow-unrelated-histories
 
 Y queda esto
 
-image::git_03.png[]
+image::2017/06/git_03.png[]
 
 Ahora ya podemos hacer:
 
@@ -108,7 +108,7 @@ git push
 
 Y asi queda el repo:
 
-image::git_04.png[]
+image::2017/06/git_04.png[]
 
 === Trabajar en una rama, sin haberla actualizado
 
@@ -131,7 +131,7 @@ git add feature-user1.txt
 git commit --author="User1 <user1@git.com>" -m "Commit in feature-user1"
 ----
 
-image::git_05.png[]
+image::2017/06/git_05.png[]
 
 WARNING: Pero se nos "olvido" hacer fetch/pull antes de empezar... y aqui empieza el lio...
 
@@ -143,7 +143,7 @@ git pull origin master
 
 Ahora (a punto de terminar la historia) tenemos el arbol asi.
 
-image::git_06.png[]
+image::2017/06/git_06.png[]
 
 Cerramos la feature
 
@@ -167,7 +167,7 @@ git push origin develop
 
 quedando el arbol, asi:
 
-image::git_07.png[]
+image::2017/06/git_07.png[]
 
 === Mantener rama actualizada con los cambios de develop
 
@@ -200,7 +200,7 @@ git push origin develop
 
 Aqui (carpeta 1) todavia no sabemos nada de la feature2, quedando el arbol asi
 
-image::git_08.png[]
+image::2017/06/git_08.png[]
 
 El "problema" con rebase es que altera las lineas de historia, para bien o para mal.
 
@@ -219,7 +219,7 @@ rama (develop) en la de la feature.
 
 TIP: Un pull de una rama en otra que no es la suya, equivale a un merge.
 
-image::git_09.png[]
+image::2017/06/git_09.png[]
 
 === Merge, tras un pull (actualizacion), de una rama sobre otra
 
@@ -251,7 +251,7 @@ First, rewinding head to replay your work on top of it...
 Applying: Commit in feature-user2
 Applying: Update develop file feature1
 
-image::git_10.png[]
+image::2017/06/git_10.png[]
 
 [source,sh]
 ----
@@ -303,7 +303,7 @@ El rebase nos ha generado conflictos, que a la hora de hacer el merge, nos da pr
 git mergetool
 ----
 
-image::git_11.png[]
+image::2017/06/git_11.png[]
 
 Pues altera la linea de tiempo de la rama donde lo hace. Resolvemos el conflicto y subimos cambios.
 
@@ -316,7 +316,7 @@ git push origin develop
 
 Nos queda este arbol
 
-image::git_12.png[]
+image::2017/06/git_12.png[]
 
 === Policia del arbol de git.
 
@@ -359,7 +359,7 @@ git merge develop
 El arbol lo tenemos asi... ahora tras el merge, hagamos otro cambio y reintegremos
 en develop como un solo commit.
 
-image::git_13.png[]
+image::2017/06/git_13.png[]
 
 [source,sh]
 ----
@@ -372,11 +372,11 @@ git push origin --delete feature/feature3
 git branch -d feature/feature3
 ----
 
-image::git_14.png[]
+image::2017/06/git_14.png[]
 
 Observemos como queda limpio la rama develop
 
-image::git-merge-no-ff.png[]
+image::2017/06/git-merge-no-ff.png[]
 
 Referencias:
 

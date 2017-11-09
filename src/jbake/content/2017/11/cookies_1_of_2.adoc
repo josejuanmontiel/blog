@@ -1,0 +1,191 @@
+= Cookies (1 of 2)
+Jose Juan Montiel
+2017-11-11
+:jbake-type: post
+:jbake-tags: jvm,cookies
+:jbake-status: draft
+:jbake-lang: en
+:source-highlighter: prettify
+:id: cookies
+:icons: font
+
+== Paso previos
+Para realizar las pruebas bajo disintos dominios, usarmos http://xip.io[xip.io]
+Ademas de levantar el mismo codigo con:
+
+----
+mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9000"
+mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9001"
+----
+
+== Cookies
+
+Las https://en.wikipedia.org/wiki/HTTP_cookie[cookies], descrito de una manera simple,
+son el mecanismo que se inventaron los navegadores, para almacenar informacion enviada
+por los servidores, y que se mantuviera entre peticion y peticion, es decir, entre
+una pagina web servida y la siguiente. Ademas, tenia que ser confiable, por tanto
+un uso, fue mantener la "session" entre distintas peticiones a server, algo no
+concebido en el HTTP que es "sin estado", por tanto tambien se uso para la seguridad
+o autenticacion.
+
+Y para evitar problemas de seguridad, un server solo puede emitir cookies de su
+dominio y una pagina, solo puede leer (desde javascript) las que pertenecen a su
+dominio.
+
+=== Cross domain cookies
+
+La manera en que una "pagina" puede comunicarse con otra "pagina" es algo que cuentan
+https://stackoverflow.com/questions/6761415/how-to-set-a-cookie-for-another-domain[aqui].
+Y https://subinsb.com/set-same-cookie-on-different-domains[aqui] lo explican con mas detalle
+
+Pero como a andar, se aprende andando, vamos a utilizar SpringBoot para montar
+una prueba de concepto. Creamos un proyecto con el siguiente controlador.
+
+[source,java,indent=4]
+----
+@RequestMapping("/cookie1")
+public String greeting(
+		@RequestParam(value = "rp", required = false) String reqparam, // <1>
+		@RequestParam(value = "sp", required = false) String sesparam, // <2>
+		@RequestParam(value = "cp", required = false) String cookiparam, // <3>
+		HttpSession session,
+		HttpServletResponse response,
+		Model model) {
+
+			if (reqparam!=null) model.addAttribute("rp", reqparam); // <1>
+			if (sesparam!=null) session.setAttribute("sp", sesparam); // <2>
+			System.out.println("sp="+sesparam);
+
+			if (cookiparam!=null) {
+				Cookie newCookie = new Cookie("cp", cookiparam); // <3>
+				newCookie.setMaxAge(24 * 60 * 60);
+				response.addCookie(newCookie);
+			}
+
+	return "cookie1";
+}
+
+public static String getCookieValue(HttpServletRequest req, String cookieName) {
+	return Arrays.stream(req.getCookies()).
+			filter(c -> c.getName().equals(cookieName)).
+			findFirst().
+			map(Cookie::getValue).
+			orElse(null);
+}
+----
+<1> Recibimos un paramtro por querystring, que añadimos al modelo
+<2> Recibimos un paramtro por querystring, que guardamos en sesion
+<3> Recibimos un paramtro por querystring, que guardamos en una cookie
+
+Si nos centramos en el caso 2, recibe un parametro por url, que almancena en la
+session del servidor, y esto genera una cookie, la famasa JSESSIONID que permite
+establecer que hueco de la sessiond del servidor, le corresponde al usuario.
+
+El caso 3, es una generalizacion del mismo, donde el servidor en este caso, genera
+una cookie que llega al navegador.
+
+[source,html,indent=4]
+----
+<p th:text="'Request param: ' + ${rp}" /> // <1>
+<p th:unless="${session == null}"
+	 th:text="'Session param: ' + ${session.sp}" /> // <2>
+<p th:unless="${#ctx.httpServletRequest.getCookies()==null}"
+	 th:text="'Cookie param: ' + ${T(com.example.demo.Cookie1Controller).getCookieValue(#ctx.httpServletRequest,'cp')}" /> // <3>
+
+<img th:if="${#strings.startsWith(#httpServletRequest.getHeader('Host'),'a.')}"
+		 src="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a" style="display:none;" /> // <4>
+----
+<1> Pintamos el paramtro del modelo
+<2> Pintamos el paretro de la sesion
+<3> Pintamos el parametro de la cookie
+<4> Invocamos al otro dominio, solo si no estamos en el
+
+En esta pagina, vemos como se pintan los valores de lo almacenado en la sesion, y en la cookie.
+
+Y ahora empieza lo bueno, cuando abrimos: http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&sp=a&cp=a
+esta pagina a parte de setear los valores de la ulr en session y en una cookie,
+hace una peticion a una url del dominio B (a traves de un img)
+http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a
+y podemos observar los resultados viendo: http://b.127.0.0.1.xip.io:9001/setcookie
+
+La navegacion seria algo de este estilo.
+
+[[main-classes]]
+.Flujo de navegacion de las cookies
+[plantuml, cookie-plantuml-diagram-1, alt="Class diagram", width=640, height=480]
+----
+Browser -> DomainA: Se envian parametros
+Browser -> DomainB: Se envian parmetros
+DomainA -> Browser: Genera cookie
+DomainB -> Browser: Genera cookie
+----
+
+Y aqui vemos los resultados, que pasamos a comentar:
+
+image::2017/11/a.domain.img1.png[a domain img1]
+
+En la primera peticion desde A, observamos como se genera en A la cookie de JSESSIONID,
+que nos indica que en servidor se ha guardo algo en sesion, y ese valor, lo observamos
+en el navegador al pintar el valor del objeto en session sp, que es b. Lo que aun no
+observamos en la pagina, es como recibe la cookie que se genera en servidor, aunque
+si la veriamos en el inspector de cookies.
+
+Por otro lado, observamos en el inspector de red, como se lanza una peticion al
+dominio B, que nos genera en el navegador la cookie JSESSIONID pero para el dominio B.
+En la cuarta imagen veremos como el System.out nos muestra que llega el querystring
+y se ha almacenado en session, pero ojo la del dominio B.
+
+image::2017/11/a.domain.img2.png[a domain img2]
+
+En una segunda recarga, ya veriamos la cookie generada en el server A, en base
+a la peticion anterior.
+
+image::2017/11/b.domain.img1.png[b domain img1]
+
+Lo curioso empieza ahora, en una tercera peticion al dominio B directamente, sin
+parametros. Como nuestro controlador no hace nada si no llegan parametros, vemos,
+al entrar al dominio B, como el navegador lee las cookies de dominio B, generadas
+al navegadar por A, pero con una peticion a B desde un IMG, como el servdor nos
+devuelve lo que tiene almacenado en session para nosotros, navegantes de su dominio.
+Y esto es, lo que se genera desde otro dominio, haciendo esa peticion desde una imagen.
+
+image::2017/11/b.domain.img2.png[b domain img2]
+
+Aqui vemos el System.out
+
+==== Conclusion
+
+Mientras se navega por un dominio A, podemos "enviar" a un dominio B informacion,
+que el dominio B, al recibirla en esa peticion de imagen, puede almacenar en su
+sesion para nosotros usuarios que navegamos, para que cuando vayamos al dominio
+B, nos la recupere de sesion y nos la muestre.
+
+Los proximos pasos, serian intentar hacer que un servicios de terceros (dominio A),
+que podemos integrar en nuestras webs (dominio B), via APIs JS, "nos envie desde
+ese JS" informacion, que nos permita por debajo (desde el back en el dominio B)
+hacerle una peticion al ellos (dominio A) y recupere lo que el servicio de terceros
+(dominio A) almacena en su session para nosotros usuarios que navegamos, por
+ejemplo que estamos logados en su servicio.
+
+[[main-classes]]
+.Flujo de navegacion de con servicio de terceros
+[plantuml, cookie-plantuml-diagram-2, alt="Class diagram 3rd API", width=640, height=480]
+----
+Browser -> DomainB: Step1
+Browser -> DomainA: Step2
+Browser -> DomainA: Step3
+DomainA -> Browser: Step4
+Browser -> Browser: Step5
+Browser -> DomainB: Step6
+DomainB -> DomainA: Step7
+DomainB -> Browser: Step8
+----
+
+* Step1: DomainB: Navegamos por nuestra web
+* Step2: El API JS llama al servicio de terceros y nos muestra login
+* Step3: Nos logamos en servicio de terceros usando API JS
+* Step4: El servicio de terceros genera cookie de session
+* Step5: El navegador, genera un <img> apuntando a B, con la informacion del JSESSIONID que A nos genera.
+* Step6: Esa imagen, generada por el API de terceros, en la pagina que servimos desde B, nos llama y almacena en session de B ese valor.
+* Step7: B realiza peticion a A, desde servidor, usando el JSESSIONID de A, para hacerse pasar por nosotros que navegamos B, usando API JS de A.
+* Step8: Podemos mostrar a nosotros que navegamos, info provista por A, via comunicacion backend, tras logarnos.

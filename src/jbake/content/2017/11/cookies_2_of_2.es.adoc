@@ -1,0 +1,25 @@
+= Cookies (2 de 2)
+Jose Juan Montiel
+2017-11-11
+:jbake-type: post
+:jbake-tags: jvm,cookies
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: cookies
+:icons: font
+
+=== Otros
+https://stackoverflow.com/questions/3342140/cross-domain-cookies
+https://github.com/contently/xdomain-cookies
+https://medium.com/building-contently/tracking-people-across-multiple-domains-when-cookies-just-arent-enough-b270cc95beb1
+
+=== Proxy de servicios
+
+=== Cors
+https://es.slideshare.net/michaelneale/cors-michael-webdirections
+https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS
+
+=== JWT
+http://openid.net/developers/jwt/
+https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3
