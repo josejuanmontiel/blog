@@ -9,16 +9,44 @@ Jose Juan Montiel
 :id: cookies
 :icons: font
 
+== Y ahora que...
+
+Montamos pagina de login
+
+Guradamos en session el usuario logados
+
+Mostramos pagina que muestra el resultado del login
+
+Montamos end-point de logout
+
+Montamos llamada extra desde javascript a A, desde B, para logarnos
+
+Access-Control-Allow-Origin
+
+https://spring.io/guides/gs/rest-service-cors/#_enabling_cors
+https://stackoverflow.com/questions/35091524/spring-cors-no-access-control-allow-origin-header-is-present
+https://stackoverflow.com/questions/42652336/enabling-cross-origin-requests-in-spring-data-rest
+
+¿Porque las apliaciones "tipo linkedin" necesitan saber desde que ulr vas a acceder a ellas?
+
+Leemos las cookies o el JSESSIONID en la llamada Javascript, pues al no hacerla el navegador tenemos que hacerlo a mano.
+
+=== Otros links de cors
+https://es.slideshare.net/michaelneale/cors-michael-webdirections
+https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS
+
+=== JSONP
+
+=== El codigo
+
+En https://github.com/josejuanmontiel/cookies[este repositorio] de github.
+
+=== Proxy de servicios
+
 === Otros
 https://stackoverflow.com/questions/3342140/cross-domain-cookies
 https://github.com/contently/xdomain-cookies
 https://medium.com/building-contently/tracking-people-across-multiple-domains-when-cookies-just-arent-enough-b270cc95beb1
-
-=== Proxy de servicios
-
-=== Cors
-https://es.slideshare.net/michaelneale/cors-michael-webdirections
-https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS
 
 === JWT
 http://openid.net/developers/jwt/

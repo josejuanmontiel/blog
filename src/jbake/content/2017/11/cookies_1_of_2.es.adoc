@@ -78,7 +78,7 @@ public static String getCookieValue(HttpServletRequest req, String cookieName) {
 <3> Recibimos un paramtro por querystring, que guardamos en una cookie
 
 Si nos centramos en el caso 2, recibe un parametro por url, que almancena en la
-session del servidor, y esto genera una cookie, la famasa JSESSIONID que permite
+session del servidor, y esto genera una cookie, la fomasa JSESSIONID que permite
 establecer que hueco de la sessiond del servidor, le corresponde al usuario.
 
 El caso 3, es una generalizacion del mismo, donde el servidor en este caso, genera
