@@ -1,12 +1,12 @@
 = Cookies (1 of 2)
 Jose Juan Montiel
-2017-11-11
+2017-11-09
 :jbake-type: post
 :jbake-tags: jvm,cookies
 :jbake-status: draft
 :jbake-lang: en
 :source-highlighter: prettify
-:id: cookies
+:id: cookies_1_of_2
 :icons: font
 
 == Paso previos
@@ -78,7 +78,7 @@ public static String getCookieValue(HttpServletRequest req, String cookieName) {
 <3> Recibimos un paramtro por querystring, que guardamos en una cookie
 
 Si nos centramos en el caso 2, recibe un parametro por url, que almancena en la
-session del servidor, y esto genera una cookie, la famasa JSESSIONID que permite
+session del servidor, y esto genera una cookie, la fomasa JSESSIONID que permite
 establecer que hueco de la sessiond del servidor, le corresponde al usuario.
 
 El caso 3, es una generalizacion del mismo, donde el servidor en este caso, genera
@@ -153,7 +153,7 @@ image::2017/11/b.domain.img2.png[b domain img2]
 
 Aqui vemos el System.out
 
-==== Conclusion
+=== Conclusion
 
 Mientras se navega por un dominio A, podemos "enviar" a un dominio B informacion,
 que el dominio B, al recibirla en esa peticion de imagen, puede almacenar en su
@@ -181,7 +181,7 @@ DomainB -> DomainA: Step7
 DomainB -> Browser: Step8
 ----
 
-* Step1: DomainB: Navegamos por nuestra web
+* Step1: Navegamos por nuestra web
 * Step2: El API JS llama al servicio de terceros y nos muestra login
 * Step3: Nos logamos en servicio de terceros usando API JS
 * Step4: El servicio de terceros genera cookie de session

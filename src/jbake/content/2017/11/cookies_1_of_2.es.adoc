@@ -1,12 +1,12 @@
 = Cookies (1 de 2)
 Jose Juan Montiel
-2017-11-11
+2017-11-09
 :jbake-type: post
 :jbake-tags: jvm,cookies
 :jbake-status: published
 :jbake-lang: es
 :source-highlighter: prettify
-:id: cookies
+:id: cookies_1_of_2
 :icons: font
 
 == Paso previos
@@ -153,7 +153,7 @@ image::2017/11/b.domain.img2.png[b domain img2]
 
 Aqui vemos el System.out
 
-==== Conclusion
+=== Conclusion
 
 Mientras se navega por un dominio A, podemos "enviar" a un dominio B informacion,
 que el dominio B, al recibirla en esa peticion de imagen, puede almacenar en su

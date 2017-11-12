@@ -1,53 +1,263 @@
 = Cookies (2 de 2)
 Jose Juan Montiel
-2017-11-11
+2017-11-12
 :jbake-type: post
 :jbake-tags: jvm,cookies
-:jbake-status: draft
+:jbake-status: published
 :jbake-lang: es
 :source-highlighter: prettify
-:id: cookies
+:id: cookies_2_of_2
 :icons: font
 
 == Y ahora que...
 
-Montamos pagina de login
+Tras los ejemplos comentados en la primera parte, donde el protagonista solo era
+el navegador y el html, y donde hemos visto como una pagina puede invocar (y de
+hecho es lo normal) imágenes de otros dominios, si en la urls de invocación se
+pasan párametros, estos llegan al servidor destino, y si este genera una sesión,
+el navegador se encarga de crear las cookies necesarias para mantenerla.
 
-Guradamos en session el usuario logados
+Pero la cosa cambia, cuando es el javascript el encargado de hacer la petición,
+y además es otro dominio. Cors y gestion de cookies serán los principales problemas.
+Veamos.
 
-Mostramos pagina que muestra el resultado del login
+=== Autenticacion
 
-Montamos end-point de logout
+Para llevar un poco mas allá el uso de la sesión, vamos a crear una pagina de
+login. Recordar que aquí, A representa a la 3rd party, y B a la pagina por la que
+navegamos.
 
-Montamos llamada extra desde javascript a A, desde B, para logarnos
+Con esta pagina de login
 
-Access-Control-Allow-Origin
+[source,html]
+----
+<form name='f' action="login" method='POST'>
+   <table>
+      <tr>
+         <td>User:</td>
+         <td><input type="text" id="username" name="username" value="" /></td>
+      </tr>
+      <tr>
+         <td>Password:</td>
+         <td><input type="password" id="password" name="password" /></td>
+      </tr>
+      <tr>
+         <td><input name="submit" type="submit" value="submit" /></td>
+      </tr>
+   </table>
+</form>
+----
 
-https://spring.io/guides/gs/rest-service-cors/#_enabling_cors
-https://stackoverflow.com/questions/35091524/spring-cors-no-access-control-allow-origin-header-is-present
-https://stackoverflow.com/questions/42652336/enabling-cross-origin-requests-in-spring-data-rest
+Podemos llamar a este controlador, donde si el usuario/password coinciden con
+admin/password guardamos en session, con la clave user, el valor del username.
 
-¿Porque las apliaciones "tipo linkedin" necesitan saber desde que ulr vas a acceder a ellas?
+[source,java,indent=4]
+----
+@PostMapping("/login")
+public String login(
+    @RequestParam(value="username", required=false) String username,
+    @RequestParam(value="password", required=false) String password,
+    HttpSession session) {
 
-Leemos las cookies o el JSESSIONID en la llamada Javascript, pues al no hacerla el navegador tenemos que hacerlo a mano.
+  if (session.getAttribute("user")!=null) {
+    return "redirect:/isLogged";
+  } else if ("admin".equals(username) && "password".equals(password)) {
+    session.setAttribute("user", username);
+    return "redirect:/isLogged";
+  } else {
+    return "redirect:/login";
+  }
+}
+----
 
-=== Otros links de cors
-https://es.slideshare.net/michaelneale/cors-michael-webdirections
-https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS
+Y tras eso, redirigimos a la pagina de isLogged, donde se muestra si estamos logados.
 
-=== JSONP
+[source,html]
+----
+<p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" />
+<p th:text="'isLogged? ' + ${isLogged}" />
+----
+
+donde el valor true/false viene de que sea admin, ese valor en sesion para user.
+
+[source,java,indent=4]
+----
+model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));
+----
+
+Para testear el funcionamiento, montamos un end-point de logout, que invalida la sesión.
+
+[source,java,indent=4]
+----
+@GetMapping("/logout")
+public String login(HttpSession session) {
+  session.invalidate();
+  return "redirect:/login";
+}
+----
+
+Ahora, empieza la parte interesante del experimento, vamos a simular lo que el
+navegador haría por nosotros si montáramos un formulario de login en nuestra
+pagina B a otro dominio A, pero de tal manera que se haga por javascript y
+sin refrescar la pagina.
+
+[source,javascript,indent=4]
+----
+function loginRemoto() {
+  var username = document.getElementById("username").value; // <1>
+  var password = document.getElementById("password").value; // <2>
+
+  var http = new XMLHttpRequest();
+  var url = "http://a.127.0.0.1.xip.io:9000/login";
+  var params = "username="+username+"&password="+password;
+  http.open("POST", url, true); // <3>
+
+  //Send the proper header information along with the request
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // <4>
+
+  http.onreadystatechange = function() { //Call a function when the state changes.
+      if(http.readyState == 4 && http.status == 200) {
+        var jsessionid = getJSessionId(http.responseURL); // <5>
+        document.cookie = "jsessionfroma="+jsessionid;
+      }
+  }
+  http.send(params);
+}
+----
+<1> Obtenemos el usuario
+<2> Obtenemos el password
+<3> Construimos una petición POST al login de A
+<4> Este es el content-type que el navegador envía en los formularios
+<5> Esto lo veremos mas adelante
+
+=== Access-Control-Allow-Origin
+
+El problema, es que, el navegador puede dejarnos pedir en A, imágenes de B, pero
+el envío de peticiones XMLHttpRequest (o lo que venimos conociendo por ajax) ya
+son otro tema. Y el tema es que en este caso, A que seria el receptor de esta
+petición, por defecto no permite la recepción de peticiones desde otro dominio
+distinto al suyo. https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin[Aqui]
+detallan como funciona esto. Y https://spring.io/guides/gs/rest-service-cors/#_enabling_cors[aqui]
+cuentan como gestiona Spring el tema.
+
+==== APIs JS de servicios de terceros en tu Web
+Llegado este punto, podrías llegar a preguntarte, porque cierto tipo de webs,
+que permiten hacer uso de sus servicios en tu web, o siendo un poco mas precisos,
+permiten que tus usuarios hagan uso de sus servicios en tu web, necesitan que
+registres la url de tu web.
+
+Pues nunca lo tuve claro, pero después de estas pruebas de concepto, diría que
+porque necesitan configurar sus servidores, para que cuando el "remote address"
+de la petición sea igual, al de alguno de los que tienen registrados de "clientes",
+devuelvan un "Access-Control-Allow-Origin" con ese host.
+
+Este seria el filtro, que controla esto.
+
+[source,java,indent=4]
+----
+@Component
+public class CorsFilter extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
+                                    final FilterChain filterChain) throws ServletException, IOException {
+        response.addHeader("Access-Control-Allow-Origin", "b.127.0.0.1.xip.io");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD, OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+        response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials");
+        response.addHeader("Access-Control-Allow-Credentials", "true");
+        response.addIntHeader("Access-Control-Max-Age", 10);
+        filterChain.doFilter(request, response);
+    }
+}
+----
+
+=== ¿Y las cookies?
+
+Recordemos, que el objetivo es que desde una pagina de B, exista un Javascript
+que conecte con A para validar un user/password y que posteriormente, B pueda
+leer una cookie generada por ese Javascript, realmente en B, para hacer una
+llamada desde el servidor B al servidor A, haciéndose pasar por el usuario de B,
+que realizo la petición a A, para guardar en la sesión de B, la confianza en ese
+login realizado en A. El flujo que describimos al final del primer articulo.
+
+Lo primero, recordar el paso (5) que dejamos sin explicar
+
+[source,javascript,indent=4]
+----
+var jsessionid = getJSessionId(http.responseURL); // <5>
+document.cookie = "jsessionfroma="+jsessionid;
+----
+
+es el que se encarga de setear la cookie en B. Hay mas maneras, que no he explorado,
+pero en este caso, en la url devuelta por el proceso de login, como el servidor
+A ve que B, no puede recibir una cookie, genera una url de redirección que lleva
+como parámetro el JSESSIONID, valor para poder correlacionar la sesión que nos
+ha generado A a nosotros que navegamos desde B, y hemos lanzado el XMLHttpRequest
+de login.
+
+Asi que parseamos esa URL (getJSessionId) y nos quedamos con el JSESSIONID y lo
+guardamos en una cookie (document.cookie) de B, que es donde estamos navegando.
+
+Ahora, evolucionamos el código del controlador de isLogged de B (y A, es el mismo
+código, aunque ahora estamos navegando desde B) para:
+
+[source,java,indent=4]
+----
+@GetMapping("/isLogged")
+	public String isLogged(@CookieValue(value="jsessionfroma", required=false) String jsessionfroma, // <1>
+  HttpSession session, Model model) {
+		model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));
+
+		if (jsessionfroma!=null) {  // <2>
+			ParameterizedTypeReference<String> typeRef = new ParameterizedTypeReference<String>() {};
+			HttpHeaders requestHeaders = new HttpHeaders();
+			requestHeaders.add("Cookie", "JSESSIONID=" + jsessionfroma + "; domain=a.127.0.0.1.xip.io;");  // <3>
+			HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+
+			ResponseEntity<String> response = restTemplate.exchange("http://a.127.0.0.1.xip.io:9000/isLogged", HttpMethod.GET, requestEntity, typeRef);
+
+			boolean isRemoteLogged = response.getBody().contains("isLogged? true");  // <4>
+
+			Pattern pattern = Pattern.compile("---(.*?)---");
+			Matcher matcher = pattern.matcher(response.getBody());
+			String username = "";
+			while (matcher.find()) {
+				username = matcher.group(1);  // <5>
+			}
+			if (isRemoteLogged) {
+				session.setAttribute("user",username);  // <6>
+			}
+
+			System.out.println(response.getBody());
+		}
+
+		return "isLogged";
+	}
+----
+<1> Leer la cookie jsessionfroma que es la que hemos generado desde el Javascript
+que llamo a A desde B para hacer el login. El "paso 5"
+<2> Si tenemos esa cookie, entonces procedemos a realizar la llamada a A desde el
+back de B.
+<3> En la petición que vamos a hacer a A, vamos a añadir el header cookie, con el
+valor del JSESSIONID obtenido, es decir, le vamos a enviar a A la cookie para
+que vea que estábamos logado.
+<4> Parseamos la respuesta, para ver si en A pintamos que estamos logados.
+<5> Nos quedamos con el nombre de usuario logado.
+<6> Y si estamos logados en el remoto, entonces guardamos en la sesión de B,
+el usuario logado.
+
+Por tanto de esta forma hemos conseguido, logarnos desde Javascript en un servicio
+de terceros, y desde una comunicación back, con ese servicio y con la cookie que
+ese javascript nos ha generado, comprobar que estamos logados correctamente,
+para logarnos automaticamente en nuestra web.
 
 === El codigo
 
 En https://github.com/josejuanmontiel/cookies[este repositorio] de github.
 
-=== Proxy de servicios
+Pero me da, que se me quedan bastantes preguntas en el tintero, y otros enfoques
+posibles. ¿JSON-P? ¿Publicidad de google? ¿Problemas de seguridad? ¿SSO? ¿Proxy
+de servicios en Apache o Nginx? ¿JWT?
 
-=== Otros
-https://stackoverflow.com/questions/3342140/cross-domain-cookies
-https://github.com/contently/xdomain-cookies
-https://medium.com/building-contently/tracking-people-across-multiple-domains-when-cookies-just-arent-enough-b270cc95beb1
-
-=== JWT
-http://openid.net/developers/jwt/
-https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3
+¿Un capitulo 3?

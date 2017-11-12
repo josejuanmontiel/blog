@@ -1,0 +1,29 @@
+= Cookies 3
+Jose Juan Montiel
+2017-11-11
+:jbake-type: post
+:jbake-tags: jvm,cookies
+:jbake-status: draft
+:jbake-lang: en
+:source-highlighter: prettify
+:id: cookies
+:icons: font
+
+== JSONP
+
+== Publicidad de google
+
+== Problemas de seguridad.
+
+== SSO
+
+== Proxy de servicios
+
+== JWT
+http://openid.net/developers/jwt/
+https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3
+
+== Otros
+https://stackoverflow.com/questions/3342140/cross-domain-cookies
+https://github.com/contently/xdomain-cookies
+https://medium.com/building-contently/tracking-people-across-multiple-domains-when-cookies-just-arent-enough-b270cc95beb1
