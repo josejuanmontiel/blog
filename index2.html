@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="2017/07/groovy-metaprograming.html"><p>Groovy Metaprograming</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2017/07/groovy-metaprograming.html">Groovy Metaprograming</a></h2>
+                    <h2><a href="2017/11/cookies_1_of_2.es.html">Cookies (1 de 2)</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='jul 08, 2017'>
-            jul 08, 2017</time>
+            datetime='nov 09, 2017'>
+            nov 09, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,240 +182,259 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_generation_of_code_from_the_model_to_the_view">Generation of code. From the model to the view.</h2>
+<h2 id="_paso_previos">Paso previos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Well, at last, more than 9 months after its beginning, I have encouraged to finish
-this blog post, and it was after the tweet of <a href="https://twitter.com/jagedn/status/882984377596116992">@jagedn</a>
-that after the @ilopmar talk in <a href="http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html">madridgug</a>,
-he encouraged me with <a href="https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f">asteroid</a>.</p>
+<p>Para realizar las pruebas bajo disintos dominios, usarmos <a href="http://xip.io">xip.io</a>
+Ademas de levantar el mismo codigo con:</p>
 </div>
-<div class="paragraph">
-<p>But hey, by order.</p>
+<div class="listingblock">
+<div class="content">
+<pre>mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9000"
+mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9001"</pre>
 </div>
-<div class="paragraph">
-<p>In <a href="https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html">one</a>
-of my other articles, talked about how, using Groovy and Thymeleaf, one could
-to separate even a little more, the model of the view of where to place the
-binding elements, to display model data; and leave some next steps,
-how you could generate part of that code.</p>
-</div>
-<div class="paragraph">
-<p>And I will not talk about how to generate this code in this post, it should be more
-forward but at least, I will list a number of "useful" links to generate code.</p>
-</div>
-<div class="paragraph">
-<p>To date, there are many ways to "generate code". For example in
-<a href="http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy">this article</a>
-Ivan tells us the options that are in groovy (at compile time, and in
-A previous one, those of execution time).</p>
-</div>
-<div class="paragraph">
-<p>And in <a href="http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html">this talk</a>,
-Mario, focuses on the aids that exist for Metaprogramming in groovy, macros.
-And it also tells us about a library to help us in this process of creating
-Macros: <a href="https://github.com/grooviter/asteroid">asteroid</a></p>
-</div>
-<div class="paragraph">
-<p>If we had to make a classification, different, in different ways to create code
-we could do it like this:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Those of "java"</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>The ones that you can see</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Those that generate source code</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Things like <a href="http://docs.spring.io/spring-roo/reference/html/intro.html">Spring Roo</a>
-or <a href="http://yeoman.io">Yeoman</a> or the most current <a href="https://jhipster.github.io/">JHipster</a>
-are tools that generate code "scaffolding".</p>
-</li>
-<li>
-<p>But things like this library <a href="https://github.com/square/javapoet">Javapoet</a>
-generates source code, from a DSL, and so we start from a common sources.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Those that generate code "compiled". <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/apt/">APT</a>,
-Is the tool on which the "rest" that modifies the <a href="http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/">AST</a>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>By example, this library, <a href="https://github.com/AlbertoSH/MagicBuilder">MagicBuilder</a> generate code at compile time, following the patron builder.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Those that modify the bytecode</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://asm.ow2.org/">ASM4</a></p>
-</li>
-<li>
-<p><a href="http://bytebuddy.net/#/">ByteBuddy</a></p>
-</li>
-<li>
-<p><a href="https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android">ByteBuddy para Android</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Those that "do not" look</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Those that use dependency injection.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>At the end declare a variable, and that in execution time it has been
-assigned a value, is also a way to modify the code. Here too Would have a place,
-that kind of thing that, among others, makes Spring to generate the beans that
-injects us through proxies for example.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="https://eclipse.org/aspectj/">AspectJ</a> / <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">AOP</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p>This, somehow modifies the code / ast / bytecode, but the peculiarity
-is the way to define where these transformations are going to take place. Could
-considered a kind of global AST.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="http://jnb.ociweb.com/jnb/jnbJan2010.html">Lombock</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p>It is for those who can not use Groovy, at least, do not have they do
-certain things that are always the same, like the getter / setter. This clearly
-enters in the AST field.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Those that modify the code "loaded" in one "environment" by another</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://zeroturnaround.com/software/jrebel/">JRebel</a></p>
-</li>
-<li>
-<p><a href="https://github.com/spring-projects/spring-loaded">spring-loaded</a></p>
-</li>
-<li>
-<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html">spring-dev-tools</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p>We see <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188">here</a>
-as for the tests of the latter have used ByteBuddy.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Those that change the code in production through dinamic attach. <a href="https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/">Dynamic attach</a>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>In this talk, we are told how to use <a href="http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html">YouDebug</a> as an interactive debugger in production.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Those that compile code from sources in production. <a href="https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0">Compile sources en runtime</a>.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>The android world</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Assisted by gradle (with the APT plugin)</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://google.github.io/dagger/users-guide">Dagger</a></p>
-</li>
-<li>
-<p><a href="http://jakewharton.github.io/butterknife/">Butterknife</a></p>
-</li>
-<li>
-<p><a href="http://androidannotations.org/">Android Annotation</a></p>
-</li>
-<li>
-<p><a href="https://github.com/Arasthel/SwissKnife">SwissKnife</a> for Groovy.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Osgi vs Jigsaw
-Hehe, well, this for another day :)</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>And well, so you do not make "ball" this blog entry, simply reflect
-"The different ways to" generate code "that exist in the world of the JVM (java, groovy) any more?</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_extra_ball">Extra ball</h2>
+<h2 id="_cookies">Cookies</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Some conversations in stackoverflow about android, groovy and code generation by APT</p>
+<p>Las <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>, descrito de una manera simple,
+son el mecanismo que se inventaron los navegadores, para almacenar informacion enviada
+por los servidores, y que se mantuviera entre peticion y peticion, es decir, entre
+una pagina web servida y la siguiente. Ademas, tenia que ser confiable, por tanto
+un uso, fue mantener la "session" entre distintas peticiones a server, algo no
+concebido en el HTTP que es "sin estado", por tanto tambien se uso para la seguridad
+o autenticacion.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="paragraph">
+<p>Y para evitar problemas de seguridad, un server solo puede emitir cookies de su
+dominio y una pagina, solo puede leer (desde javascript) las que pertenecen a su
+dominio.</p>
+</div>
+<div class="sect2">
+<h3 id="_cross_domain_cookies">Cross domain cookies</h3>
+<div class="paragraph">
+<p>La manera en que una "pagina" puede comunicarse con otra "pagina" es algo que cuentan
+<a href="https://stackoverflow.com/questions/6761415/how-to-set-a-cookie-for-another-domain">aqui</a>.
+Y <a href="https://subinsb.com/set-same-cookie-on-different-domains">aqui</a> lo explican con mas detalle</p>
+</div>
+<div class="paragraph">
+<p>Pero como a andar, se aprende andando, vamos a utilizar SpringBoot para montar
+una prueba de concepto. Creamos un proyecto con el siguiente controlador.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @RequestMapping("/cookie1")
+    public String greeting(
+    		@RequestParam(value = "rp", required = false) String reqparam, <i class="conum" data-value="1"></i><b>(1)</b>
+    		@RequestParam(value = "sp", required = false) String sesparam, <i class="conum" data-value="2"></i><b>(2)</b>
+    		@RequestParam(value = "cp", required = false) String cookiparam, <i class="conum" data-value="3"></i><b>(3)</b>
+    		HttpSession session,
+    		HttpServletResponse response,
+    		Model model) {
+
+    			if (reqparam!=null) model.addAttribute("rp", reqparam); <i class="conum" data-value="1"></i><b>(1)</b>
+    			if (sesparam!=null) session.setAttribute("sp", sesparam); <i class="conum" data-value="2"></i><b>(2)</b>
+    			System.out.println("sp="+sesparam);
+
+    			if (cookiparam!=null) {
+    				Cookie newCookie = new Cookie("cp", cookiparam); <i class="conum" data-value="3"></i><b>(3)</b>
+    				newCookie.setMaxAge(24 * 60 * 60);
+    				response.addCookie(newCookie);
+    			}
+
+    	return "cookie1";
+    }
+
+    public static String getCookieValue(HttpServletRequest req, String cookieName) {
+    	return Arrays.stream(req.getCookies()).
+    			filter(c -&gt; c.getName().equals(cookieName)).
+    			findFirst().
+    			map(Cookie::getValue).
+    			orElse(null);
+    }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Recibimos un paramtro por querystring, que añadimos al modelo</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Recibimos un paramtro por querystring, que guardamos en sesion</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Recibimos un paramtro por querystring, que guardamos en una cookie</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Si nos centramos en el caso 2, recibe un parametro por url, que almancena en la
+session del servidor, y esto genera una cookie, la fomasa JSESSIONID que permite
+establecer que hueco de la sessiond del servidor, le corresponde al usuario.</p>
+</div>
+<div class="paragraph">
+<p>El caso 3, es una generalizacion del mismo, donde el servidor en este caso, genera
+una cookie que llega al navegador.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html" data-lang="html">    &lt;p th:text="'Request param: ' + ${rp}" /&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;p th:unless="${session == null}"
+    	 th:text="'Session param: ' + ${session.sp}" /&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+    &lt;p th:unless="${#ctx.httpServletRequest.getCookies()==null}"
+    	 th:text="'Cookie param: ' + ${T(com.example.demo.Cookie1Controller).getCookieValue(#ctx.httpServletRequest,'cp')}" /&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+
+    &lt;img th:if="${#strings.startsWith(#httpServletRequest.getHeader('Host'),'a.')}"
+    		 src="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;amp;sp=session_from_a&amp;amp;cp=cookie_from_a" style="display:none;" /&gt; <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Pintamos el paramtro del modelo</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Pintamos el paretro de la sesion</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Pintamos el parametro de la cookie</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Invocamos al otro dominio, solo si no estamos en el</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En esta pagina, vemos como se pintan los valores de lo almacenado en la sesion, y en la cookie.</p>
+</div>
+<div class="paragraph">
+<p>Y ahora empieza lo bueno, cuando abrimos: <a href="http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a" class="bare">http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a</a>
+esta pagina a parte de setear los valores de la ulr en session y en una cookie,
+hace una peticion a una url del dominio B (a traves de un img)
+<a href="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a" class="bare">http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a</a>
+y podemos observar los resultados viendo: <a href="http://b.127.0.0.1.xip.io:9001/setcookie" class="bare">http://b.127.0.0.1.xip.io:9001/setcookie</a></p>
+</div>
+<div class="paragraph">
+<p>La navegacion seria algo de este estilo.</p>
+</div>
+<div id="main-classes" class="imageblock">
+<div class="content">
+<img src="/blog/img/cookie-plantuml-diagram-1.png" alt="Class diagram" width="640" height="480">
+</div>
+<div class="title">Figure 1. Flujo de navegacion de las cookies</div>
+</div>
+<div class="paragraph">
+<p>Y aqui vemos los resultados, que pasamos a comentar:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/11/a.domain.img1.png" alt="a domain img1">
+</div>
+</div>
+<div class="paragraph">
+<p>En la primera peticion desde A, observamos como se genera en A la cookie de JSESSIONID,
+que nos indica que en servidor se ha guardo algo en sesion, y ese valor, lo observamos
+en el navegador al pintar el valor del objeto en session sp, que es b. Lo que aun no
+observamos en la pagina, es como recibe la cookie que se genera en servidor, aunque
+si la veriamos en el inspector de cookies.</p>
+</div>
+<div class="paragraph">
+<p>Por otro lado, observamos en el inspector de red, como se lanza una peticion al
+dominio B, que nos genera en el navegador la cookie JSESSIONID pero para el dominio B.
+En la cuarta imagen veremos como el System.out nos muestra que llega el querystring
+y se ha almacenado en session, pero ojo la del dominio B.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/11/a.domain.img2.png" alt="a domain img2">
+</div>
+</div>
+<div class="paragraph">
+<p>En una segunda recarga, ya veriamos la cookie generada en el server A, en base
+a la peticion anterior.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/11/b.domain.img1.png" alt="b domain img1">
+</div>
+</div>
+<div class="paragraph">
+<p>Lo curioso empieza ahora, en una tercera peticion al dominio B directamente, sin
+parametros. Como nuestro controlador no hace nada si no llegan parametros, vemos,
+al entrar al dominio B, como el navegador lee las cookies de dominio B, generadas
+al navegadar por A, pero con una peticion a B desde un IMG, como el servdor nos
+devuelve lo que tiene almacenado en session para nosotros, navegantes de su dominio.
+Y esto es, lo que se genera desde otro dominio, haciendo esa peticion desde una imagen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/11/b.domain.img2.png" alt="b domain img2">
+</div>
+</div>
+<div class="paragraph">
+<p>Aqui vemos el System.out</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>Mientras se navega por un dominio A, podemos "enviar" a un dominio B informacion,
+que el dominio B, al recibirla en esa peticion de imagen, puede almacenar en su
+sesion para nosotros usuarios que navegamos, para que cuando vayamos al dominio
+B, nos la recupere de sesion y nos la muestre.</p>
+</div>
+<div class="paragraph">
+<p>Los proximos pasos, serian intentar hacer que un servicios de terceros (dominio A),
+que podemos integrar en nuestras webs (dominio B), via APIs JS, "nos envie desde
+ese JS" informacion, que nos permita por debajo (desde el back en el dominio B)
+hacerle una peticion al ellos (dominio A) y recupere lo que el servicio de terceros
+(dominio A) almacena en su session para nosotros usuarios que navegamos, por
+ejemplo que estamos logados en su servicio.</p>
+</div>
+<div id="main-classes" class="imageblock">
+<div class="content">
+<img src="/blog/img/cookie-plantuml-diagram-2.png" alt="Class diagram 3rd API" width="640" height="480">
+</div>
+<div class="title">Figure 2. Flujo de navegacion de con servicio de terceros</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><a href="http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt" class="bare">http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt</a></p>
+<p>Step1: Navegamos por nuestra web</p>
 </li>
 <li>
-<p><a href="http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken" class="bare">http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken</a></p>
+<p>Step2: El API JS llama al servicio de terceros y nos muestra login</p>
 </li>
 <li>
-<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation" class="bare">http://stackoverflow.com/questions/31160831/android-groovy-android-annotation</a></p>
+<p>Step3: Nos logamos en servicio de terceros usando API JS</p>
 </li>
-</ol>
+<li>
+<p>Step4: El servicio de terceros genera cookie de session</p>
+</li>
+<li>
+<p>Step5: El navegador, genera un &lt;img&gt; apuntando a B, con la informacion del JSESSIONID que A nos genera.</p>
+</li>
+<li>
+<p>Step6: Esa imagen, generada por el API de terceros, en la pagina que servimos desde B, nos llama y almacena en session de B ese valor.</p>
+</li>
+<li>
+<p>Step7: B realiza peticion a A, desde servidor, usando el JSESSIONID de A, para hacerse pasar por nosotros que navegamos B, usando API JS de A.</p>
+</li>
+<li>
+<p>Step8: Podemos mostrar a nosotros que navegamos, info provista por A, via comunicacion backend, tras logarnos.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -429,43 +445,43 @@ Hehe, well, this for another day :)</p>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&text=Groovy Metaprograming&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&text=Cookies (1 de 2)&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&title=Groovy Metaprograming" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&title=Groovy Metaprograming" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&title=Groovy Metaprograming" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -479,12 +495,9 @@ Hehe, well, this for another day :)</p>
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
  	        <li><a href='tags/jvm.html'>jvm</a></li>
- 	        <li><a href='tags/code.html'>code</a></li>
- 	        <li><a href='tags/generation.html'>generation</a></li>
- 	        <li><a href='tags/groovy.html'>groovy</a></li>
- 	        <li><a href='tags/thymeleaf.html'>thymeleaf</a></li>
+ 	        <li><a href='tags/cookies.html'>cookies</a></li>
 
-				<li><a class="icon fa-comment" href="2017/07/groovy-metaprograming.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2017/11/cookies_1_of_2.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -553,16 +566,6 @@ Hehe, well, this for another day :)</p>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="2017/07/groovy-metaprograming.html">Groovy Metaprograming</a></h3>
-                                   <time class="published"
-  							            datetime='jul 08, 2017'>
-  							            jul 08, 2017</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>
