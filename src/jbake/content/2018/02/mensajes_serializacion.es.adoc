@@ -1,0 +1,87 @@
+= Mensajes, serializacion y otras cosas
+Jose Juan Montiel
+2018-01-12
+:jbake-type: post
+:jbake-tags: jvm,serilize
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: messages-serialize
+:icons: font
+
+== Mensajes, serialización y otras cosas
+
+Recuerdo una vez que un compañero me dijo, algo así: "Mi jefe decía, que el que
+maneje los string, lo maneja todo". Sacada fuera de contexto, puede que parezca
+pretencioso, pero ¿no os da la sensación que la mayor parte de la programación se
+reduce a la "manipulación"?
+
+Y si os paráis a pensar, hoy día, ¿no se reduce al las comunicación? ¿al envío de
+"mensajes"? Y ahí es donde quiero llegar en este artículo, a la famosa serialización
+y deserialización.
+
+Yo no llegue a vivirlo, pero cuando empezaba en el mundo del Java, todavia se hablaba
+de https://es.wikipedia.org/wiki/CORBA[Corba] y https://es.wikipedia.org/wiki/Java_Remote_Method_Invocation[RMI].
+No me voy a detener mucho, para eso tenemos la wikipedia, pero el primero digamos
+servia para comunicar sistemas separados y distintos, y el segundo mas "cercanos".
+
+A lo que si llegue, y de lleno fue al mundo https://es.wikipedia.org/wiki/Simple_Object_Access_Protocol[SOAP].
+Si echamos la vista atras, el "XML se invento" en https://es.wikipedia.org/wiki/Extensible_Markup_Language#Historia[1998],
+hasta recuerdo haber echo alguna entrevista en mis inicios para la "xml company".
+Y en XML se basa SOAP para la transmision de mensajes. Aqui empieza a dejarse de
+lado los menajes "binarios" para pasar al XML, con sus supuestas ventajas, y desventajas.
+Porque parsear y carga en memoria XML era costoso, agil porque podias acceder a
+cualquier parte del mensaje, pero costoso.
+
+No me exiendo mas aqui, simplemente recordar DTD, XSD, XSLT, y una serie mas de siglas relacionadas con el mundo XML.
+
+Pero la gente se canson pronto del XML, en el 2000 llego el REST[https://en.wikipedia.org/wiki/Representational_state_transfer#History].
+La gente estaba cansada de esquemas, de la rigidez, el nuevo milenio queria flexibilidad,
+los navegadores querian poder buscar lo que quisieran.
+
+Digamos que el REST, trajo el JSON, un formato donde la "tabulacion" daba el formato,
+y no hacia falta tanta etiqueta, con lo que se reducia el tamaño de los mensajes,
+pero bueno, seguia haciendo falta parsearlos.
+
+Por aquella epoca Google empieza a usar internamente https://en.wikipedia.org/wiki/Protocol_Buffers[Protocol Buffer],
+un lenguaje de especificacion binario. Lo mismo pensaban que al final, tampoco
+tenia mucho sentido que nos mensajes fueran "human-readable", y aunque pudiera
+existir compresion de un mensaje XML en una capa superior, al final es esfuerzo
+de serializar y desserializar de una manera "human-readable" tampoco era obice
+para no poner un campo detras de otro.
+
+Por otro lado, la https://martinfowler.com/articles/richardsonMaturityModel.html[piramide REST]
+empezo a evolucionar.
+
+image::2018/02/glory-of-rest.png[Glory of rest]
+
+Y empezaron a aparecer cosas como: https://swagger.io/[Swagger] y https://raml.org/[RAML],
+que terminan fusionandose en https://www.openapis.org/[OPENAPI] y cosas como:
+https://es.wikipedia.org/wiki/Hateoas[Hateoas], http://json-schema.org/[Json Schema],
+incluso http://graphql.org/learn/[GraphQL], que para ser el lenguaje de consulta
+que conocemos, parte de un lenguaje de definicion de estructuras.
+
+Al final, en el mundo Java, y supongo que en el resto de lenguajes tambien, toda
+transmision requiere una serializacion y una deserializacion (que pueden ser mas
+o menos complejas).
+
+Por ejemplo, la transmision de un XML grande a un destino, donde solo le interese
+ciertos datos del mismo, no tiene porque serializarlo en memoria para hacer un
+recorrido sobre el DOM, puede usarse un parser https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html[stax]
+para buscar lo que se necesita, y da igual el tamaño del XML, tardara mas o menos igual,
+pues el overhead se produce cuando se carga en memoria.
+
+En el caso de un JSON,
+
+En el caso de los JSON, los que necesitan sus getter/setter especificados,
+los parser que simplemente carga en hash, los que usan la reflexion, los que
+no la usan (porque el usuario codifca cierta parte), los que "precompilan" codigo,
+los que...
+
+++++
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+++++
+
+Referencias...
+
+https://github.com/fabienrenaud/java-json-benchmark

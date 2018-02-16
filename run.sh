@@ -1,4 +1,4 @@
 # http://melix.github.io/blog/2014/02/hosting-jbake-github.html
-gradle -i jbake
+gradle -i bake
 groovy serve.groovy
 # gradle publish
