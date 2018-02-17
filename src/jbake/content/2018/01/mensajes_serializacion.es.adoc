@@ -36,7 +36,7 @@ cualquier parte del mensaje, pero costoso.
 No me extiendo mas aquí, simplemente recordar DTD, XSD, XSLT, y una serie mas de
 siglas relacionadas con el mundo XML.
 
-Pero la gente se canso pronto del XML, en el 2000 llego el REST[https://en.wikipedia.org/wiki/Representational_state_transfer#History].
+Pero la gente se canso pronto del XML, en el 2000 llego el https://en.wikipedia.org/wiki/Representational_state_transfer#History[REST].
 La gente estaba cansada de esquemas, de la rigidez, el nuevo milenio quería flexibilidad,
 los navegadores querían poder buscar lo que quisieran, sin tener que cargarlo todo.
 
@@ -81,10 +81,54 @@ los que...
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 ++++
 
-Veamos algunas referencias...
+Al final, en este mundo de la progracion, no se puede pensar nunca que se sabe todo,
+y en IMHO siempre se puede mejorar, haciendo las cosas de otra forma.
 
-https://github.com/fabienrenaud/java-json-benchmark
+Si buceamos un poco, podemos dar con algunos benchmark. Por ejemplo en esta
+https://github.com/fabienrenaud/java-json-benchmark[comparativas sobre librerias]
+podemos descubir la gran cantidad de librerias JSON que existen, y su diferente
+performance, prueba de que siempre se puede evolucinar, y cuando se llegan a los
+limites fisicos, siempre se puede hacer de otra forma. En esta otra
+https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii[comparativa
+inclyendo protobuf] hacen el analisis, enfocando a la cantidad de atributos, de
+la clase a serializar, y hacen algunas consideraciones interesantes de las transformaciones
+que pasan "por debajo", lejos de la vista de nuestros ojos, comentando cambios entre
+JDK 8 y 9.
 
-Y si hablamos de las bbdd NSQL u orientadas a documento, como por ejemplo CouchBase...
+.Podemos destacar las siguientes librerias:
+- https://github.com/ngs-doo/dsl-json[dsl-json] Usa un dsl para generar el parser.
+- http://jsoniter.com/java-features.html#static-code-generation[jsoniter] Precompilan un parser.
+- https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner[jackson-afterburner] Evolucion de la conocida librería.
+- https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c[usando graavl] Un enfoque mas teórico usando Graavl.
 
-https://github.com/josejuanmontiel/demo-couchbase
+¿Y si hablamos de las bbdd NSQL u orientadas a documento?, como por ejemplo CouchBase...
+
+Al final, aqui usando el API java, tambien existe una serializacion/deserializacion,
+al final lo que se guarda es un documento, que debe (segun API) serializarse mas o menos.
+
+En https://github.com/josejuanmontiel/demo-couchbase[este] repo, he trasteado un poco con algunas ideas.
+
+.¿Las conclusiones?
+. Esta claro que cuanto mas pequeño sea la entidad a persistir, antes se persistirá.
+. Pero no por insertarlo en trozos mas pequeños (relacionados unos con otros) se
+inserta antes.
+. Tanto para inserciones como consultas, si se inserta un string, sin pasar por
+JPA puede ganarse un 50% (descontado la serializacion a String, recordar que ya
+  llega en formato String desde sincro) y un 90% en lectura aprox.
+. Un .findOne en spring data jpa, siempre va a ser mas lento que uno nativo.
+¿La vista sobre el tipo de entidad añade un retardo?
+. La latencia de red desde el servidor a la bbdd tambien cuenta, menos datos, mas veloz.
+. Los servidores con SSD vs HDD para bbdd nosql muestran grandes diferencias de rendimiento.
+
+Depende del uso y el problema que se quiera abordar, no siempre puede tener sentido,
+serializar para tener los "objetos" accesibles, sino vamos a usarlos.
+
+=== Como ejercicio para casa
+Segun los https://github.com/fabienrenaud/java-json-benchmark[benchmark] si se
+cambiara la implementacion de JsonConverter de Jackson a Jsonite, podria ganarse
+un 30% en la parte que la libreria spring data jpa pasa del objeto a
+com.couchbase.client.java.document.json.JsonObject.
+
+Hacer una pull request para implementar http://www.baeldung.com/couchbase-sdk-spring[serializacion]
+de couchbase  con http://jsoniter.com/java-features.html#static-code-generation[jsoniter]
+y ver si es mas rapido que el estandar, y no mucho menos que con la https://github.com/couchbase/couchbase-java-client[sdk java]
