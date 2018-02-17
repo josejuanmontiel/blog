@@ -1,9 +1,9 @@
 = Mensajes, serializacion y otras cosas
 Jose Juan Montiel
-2018-01-12
+2018-02-17
 :jbake-type: post
 :jbake-tags: jvm,serilize
-:jbake-status: draft
+:jbake-status: published
 :jbake-lang: es
 :source-highlighter: prettify
 :id: messages-serialize
@@ -20,38 +20,39 @@ Y si os paráis a pensar, hoy día, ¿no se reduce al las comunicación? ¿al en
 "mensajes"? Y ahí es donde quiero llegar en este artículo, a la famosa serialización
 y deserialización.
 
-Yo no llegue a vivirlo, pero cuando empezaba en el mundo del Java, todavia se hablaba
+Yo no llegue a vivirlo, pero cuando empezaba en el mundo del Java, todavía se hablaba
 de https://es.wikipedia.org/wiki/CORBA[Corba] y https://es.wikipedia.org/wiki/Java_Remote_Method_Invocation[RMI].
 No me voy a detener mucho, para eso tenemos la wikipedia, pero el primero digamos
-servia para comunicar sistemas separados y distintos, y el segundo mas "cercanos".
+servía para comunicar sistemas separados y distintos, y el segundo mas "cercanos".
 
 A lo que si llegue, y de lleno fue al mundo https://es.wikipedia.org/wiki/Simple_Object_Access_Protocol[SOAP].
 Si echamos la vista atras, el "XML se invento" en https://es.wikipedia.org/wiki/Extensible_Markup_Language#Historia[1998],
 hasta recuerdo haber echo alguna entrevista en mis inicios para la "xml company".
-Y en XML se basa SOAP para la transmision de mensajes. Aqui empieza a dejarse de
+Y en XML se basa SOAP para la transmisión de mensajes. Aqui empieza a dejarse de
 lado los menajes "binarios" para pasar al XML, con sus supuestas ventajas, y desventajas.
-Porque parsear y carga en memoria XML era costoso, agil porque podias acceder a
+Porque parsear y carga en memoria XML era costoso, ágil porque podías acceder a
 cualquier parte del mensaje, pero costoso.
 
-No me exiendo mas aqui, simplemente recordar DTD, XSD, XSLT, y una serie mas de siglas relacionadas con el mundo XML.
+No me extiendo mas aquí, simplemente recordar DTD, XSD, XSLT, y una serie mas de
+siglas relacionadas con el mundo XML.
 
-Pero la gente se canson pronto del XML, en el 2000 llego el REST[https://en.wikipedia.org/wiki/Representational_state_transfer#History].
-La gente estaba cansada de esquemas, de la rigidez, el nuevo milenio queria flexibilidad,
-los navegadores querian poder buscar lo que quisieran.
+Pero la gente se canso pronto del XML, en el 2000 llego el https://en.wikipedia.org/wiki/Representational_state_transfer#History[REST].
+La gente estaba cansada de esquemas, de la rigidez, el nuevo milenio quería flexibilidad,
+los navegadores querían poder buscar lo que quisieran, sin tener que cargarlo todo.
 
-Digamos que el REST, trajo el JSON, un formato donde la "tabulacion" daba el formato,
-y no hacia falta tanta etiqueta, con lo que se reducia el tamaño de los mensajes,
-pero bueno, seguia haciendo falta parsearlos.
+Digamos que el REST, trajo el JSON, un formato donde la "tabulación" daba el formato,
+y no hacia falta tanta etiqueta, con lo que se reducía el tamaño de los mensajes,
+pero bueno, seguía haciendo falta parsearlos.
 
-Por aquella epoca Google empieza a usar internamente https://en.wikipedia.org/wiki/Protocol_Buffers[Protocol Buffer],
-un lenguaje de especificacion binario. Lo mismo pensaban que al final, tampoco
+Por aquella época Google empieza a usar internamente https://en.wikipedia.org/wiki/Protocol_Buffers[Protocol Buffer],
+un lenguaje de especificación binario. Lo mismo pensaban que al final, tampoco
 tenia mucho sentido que nos mensajes fueran "human-readable", y aunque pudiera
-existir compresion de un mensaje XML en una capa superior, al final es esfuerzo
-de serializar y desserializar de una manera "human-readable" tampoco era obice
-para no poner un campo detras de otro.
+existir compresión de un mensaje XML en una capa superior, al final es esfuerzo
+de serializar y deserializar de una manera "human-readable" tampoco era óbice
+para no poner un campo detrás de otro.
 
 Por otro lado, la https://martinfowler.com/articles/richardsonMaturityModel.html[piramide REST]
-empezo a evolucionar.
+empezó a evolucionar.
 
 image::2018/02/glory-of-rest.png[Glory of rest]
 
@@ -59,21 +60,19 @@ Y empezaron a aparecer cosas como: https://swagger.io/[Swagger] y https://raml.o
 que terminan fusionandose en https://www.openapis.org/[OPENAPI] y cosas como:
 https://es.wikipedia.org/wiki/Hateoas[Hateoas], http://json-schema.org/[Json Schema],
 incluso http://graphql.org/learn/[GraphQL], que para ser el lenguaje de consulta
-que conocemos, parte de un lenguaje de definicion de estructuras.
+que conocemos, parte de un lenguaje de definición de estructuras.
 
 Al final, en el mundo Java, y supongo que en el resto de lenguajes tambien, toda
-transmision requiere una serializacion y una deserializacion (que pueden ser mas
+transmisión requiere una serialización y una deserialización (que pueden ser mas
 o menos complejas).
 
-Por ejemplo, la transmision de un XML grande a un destino, donde solo le interese
+Por ejemplo, la transmisión de un XML grande a un destino, donde solo le interese
 ciertos datos del mismo, no tiene porque serializarlo en memoria para hacer un
 recorrido sobre el DOM, puede usarse un parser https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html[stax]
 para buscar lo que se necesita, y da igual el tamaño del XML, tardara mas o menos igual,
 pues el overhead se produce cuando se carga en memoria.
 
-En el caso de un JSON,
-
-En el caso de los JSON, los que necesitan sus getter/setter especificados,
+En el caso de un JSON, los que necesitan sus getter/setter especificados,
 los parser que simplemente carga en hash, los que usan la reflexion, los que
 no la usan (porque el usuario codifca cierta parte), los que "precompilan" codigo,
 los que...
@@ -82,6 +81,54 @@ los que...
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 ++++
 
-Referencias...
+Al final, en este mundo de la progracion, no se puede pensar nunca que se sabe todo,
+y en IMHO siempre se puede mejorar, haciendo las cosas de otra forma.
 
-https://github.com/fabienrenaud/java-json-benchmark
+Si buceamos un poco, podemos dar con algunos benchmark. Por ejemplo en esta
+https://github.com/fabienrenaud/java-json-benchmark[comparativas sobre librerias]
+podemos descubir la gran cantidad de librerias JSON que existen, y su diferente
+performance, prueba de que siempre se puede evolucinar, y cuando se llegan a los
+limites fisicos, siempre se puede hacer de otra forma. En esta otra
+https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii[comparativa
+inclyendo protobuf] hacen el analisis, enfocando a la cantidad de atributos, de
+la clase a serializar, y hacen algunas consideraciones interesantes de las transformaciones
+que pasan "por debajo", lejos de la vista de nuestros ojos, comentando cambios entre
+JDK 8 y 9.
+
+.Podemos destacar las siguientes librerias:
+- https://github.com/ngs-doo/dsl-json[dsl-json] Usa un dsl para generar el parser.
+- http://jsoniter.com/java-features.html#static-code-generation[jsoniter] Precompilan un parser.
+- https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner[jackson-afterburner] Evolucion de la conocida librería.
+- https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c[usando graavl] Un enfoque mas teórico usando Graavl.
+
+¿Y si hablamos de las bbdd NSQL u orientadas a documento?, como por ejemplo CouchBase...
+
+Al final, aqui usando el API java, tambien existe una serializacion/deserializacion,
+al final lo que se guarda es un documento, que debe (segun API) serializarse mas o menos.
+
+En https://github.com/josejuanmontiel/demo-couchbase[este] repo, he trasteado un poco con algunas ideas.
+
+.¿Las conclusiones?
+. Esta claro que cuanto mas pequeño sea la entidad a persistir, antes se persistirá.
+. Pero no por insertarlo en trozos mas pequeños (relacionados unos con otros) se
+inserta antes.
+. Tanto para inserciones como consultas, si se inserta un string, sin pasar por
+JPA puede ganarse un 50% (descontado la serializacion a String, recordar que ya
+  llega en formato String desde sincro) y un 90% en lectura aprox.
+. Un .findOne en spring data jpa, siempre va a ser mas lento que uno nativo.
+¿La vista sobre el tipo de entidad añade un retardo?
+. La latencia de red desde el servidor a la bbdd tambien cuenta, menos datos, mas veloz.
+. Los servidores con SSD vs HDD para bbdd nosql muestran grandes diferencias de rendimiento.
+
+Depende del uso y el problema que se quiera abordar, no siempre puede tener sentido,
+serializar para tener los "objetos" accesibles, sino vamos a usarlos.
+
+=== Como ejercicio para casa
+Segun los https://github.com/fabienrenaud/java-json-benchmark[benchmark] si se
+cambiara la implementacion de JsonConverter de Jackson a Jsonite, podria ganarse
+un 30% en la parte que la libreria spring data jpa pasa del objeto a
+com.couchbase.client.java.document.json.JsonObject.
+
+Hacer una pull request para implementar http://www.baeldung.com/couchbase-sdk-spring[serializacion]
+de couchbase  con http://jsoniter.com/java-features.html#static-code-generation[jsoniter]
+y ver si es mas rapido que el estandar, y no mucho menos que con la https://github.com/couchbase/couchbase-java-client[sdk java]
