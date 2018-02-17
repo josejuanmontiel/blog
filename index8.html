@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="2017/06/git.html"><p>Git &amp; Merge &amp; Rebase &amp; Flow</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,7 +168,7 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2017/06/git.es.html">Git &amp; Merge &amp; Rebase &amp; Flow</a></h2>
+                    <h2><a href="2017/06/git.html">Git &amp; Merge &amp; Rebase &amp; Flow</a></h2>
 
     </div>
     <div class="meta">
@@ -185,15 +188,15 @@
 <h2 id="_git_merge_rebase_flow">Git &amp; Merge &amp; Rebase &amp; Flow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En esta ocasion vamos a realizar una serie de operaciones en un repositorio git.
-Intentaremos simular situaciones tipicas de trabajo en grupo, con distintas
-manerasP de enfocar la union de los distintos trabajos.</p>
+<p>On this occasion we will perform a series of operations on a git repository.
+We will try to simulate typical situations of group work, with different
+Ways to focus the union of the different jobs.</p>
 </div>
 <div class="sect2">
-<h3 id="_trabajar_con_dos_ramas_sin_ancestros_comunes">Trabajar con dos ramas sin ancestros comunes.</h3>
+<h3 id="_work_with_two_branches_without_common_ancestors">Work with two branches without common ancestors.</h3>
 <div class="paragraph">
-<p>Lo primero, inicializar un repo local, con opcion de que sea compartido por
-varios usuarios.</p>
+<p>First, initialize a local repo, with the option of being shared by
+Multiple users.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -204,8 +207,8 @@ git clone test-repo.git repo-clone2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Despues nos vamos al directorio 1, y añadimos un primer fichero, en el commit
-indicamos un nombre de usuario: User1.</p>
+<p>Then we go to the directory 1, and we add a first file, in the commit
+We indicate a username: User1.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -217,7 +220,7 @@ git push -u origin master</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para ver desde consola podemos añadir lo siguiente a ~/.gitconfig bajo [alias]</p>
+<p>To view from console we can add the following to ~ / .gitconfig under [alias]</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -232,7 +235,7 @@ tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%
 </table>
 </div>
 <div class="paragraph">
-<p>El repo queda entonces asi.</p>
+<p>The repo is thus.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -240,8 +243,8 @@ tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%
 </div>
 </div>
 <div class="paragraph">
-<p>Despues nos vamos a la segunda carpeta y solo hacemos "fetch", y creamos el mismo
-fichero que creo el otro usuario. Lo comiteamos, luego intentamos push.</p>
+<p>Then we go to the second folder and we only do "fetch", and we create the same folder
+File that the other user created. We did it, then we tried to push.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -254,7 +257,7 @@ git push</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Pero obtenemos el siguiente error.</p>
+<p>But we get the following error.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -273,7 +276,7 @@ git push</code></pre>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-No se puede hacer push sino se hace un pull&#8230;&#8203; en este momento el arbol esta asi&#8230;&#8203;
+You can not push but you pull &#8230;&#8203; at this time the tree is like this &#8230;&#8203;
 </td>
 </tr>
 </table>
@@ -304,9 +307,9 @@ The default behavior has changed since git 2.9
 <p>"git merge" used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.</p>
 </div>
 <div class="paragraph">
-<p>En este caso, hemos partido de 2 ramas independientes, y el pull de una rama
-(donde ya tenemos un commit) provoca una especie de "merge". En este caso (por
-	no tener ancestros comunes) debemos hacerlo con:</p>
+<p>In this case, we have started from 2 independent branches, and the pull of a branch
+(Where we already have a commit) causes a kind of "merge". In this case (for
+Not having common ancestors) we must do it with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -314,7 +317,7 @@ The default behavior has changed since git 2.9
 </div>
 </div>
 <div class="paragraph">
-<p>Y queda esto</p>
+<p>And this is left</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -322,7 +325,7 @@ The default behavior has changed since git 2.9
 </div>
 </div>
 <div class="paragraph">
-<p>Ahora ya podemos hacer:</p>
+<p>Now we can do:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -330,7 +333,7 @@ The default behavior has changed since git 2.9
 </div>
 </div>
 <div class="paragraph">
-<p>Y asi queda el repo:</p>
+<p>And so is the repo:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -339,14 +342,14 @@ The default behavior has changed since git 2.9
 </div>
 </div>
 <div class="sect2">
-<h3 id="_trabajar_en_una_rama_sin_haberla_actualizado">Trabajar en una rama, sin haberla actualizado</h3>
+<h3 id="_work_in_a_branch_without_having_updated_it">Work in a branch, without having updated it</h3>
 <div class="paragraph">
-<p>Vamos ahora a probar en el directorio 1, a crear con git-flow una feature, crear un
-nuevo fichero y luego&#8230;&#8203; crear otra feature en el directorio 2, creando otro
-fichero.</p>
+<p>Let&#8217;s now test in directory 1, create a git-flow feature, create a
+New file and then &#8230;&#8203; create another feature in directory 2, creating another
+file.</p>
 </div>
 <div class="paragraph">
-<p>Luego en el directorio 1, cerramos la feature, luego en el directorio 2,</p>
+<p>Then in directory 1, we close the feature, then in directory 2.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -355,7 +358,7 @@ fichero.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Mergeamos develop en nuestra rama, y luego mergeamos nuestra rama en develop (cerrando la feature).
+We merge develop into our branch, and then merge our branch into develop (closing the feature).
 </td>
 </tr>
 </table>
@@ -383,7 +386,7 @@ git commit --author="User1 &lt;user1@git.com&gt;" -m "Commit in feature-user1"</
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Pero se nos "olvido" hacer fetch/pull antes de empezar&#8230;&#8203; y aqui empieza el lio&#8230;&#8203;
+But we "forgot" to do fetch / pull before we start &#8230;&#8203; and here begins the lesson &#8230;&#8203;
 </td>
 </tr>
 </table>
@@ -395,7 +398,7 @@ git pull origin master</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ahora (a punto de terminar la historia) tenemos el arbol asi.</p>
+<p>Now (about to finish the story) we have the tree as well.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -403,7 +406,7 @@ git pull origin master</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Cerramos la feature</p>
+<p>We close feature</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -433,7 +436,7 @@ git pull origin master</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hecho.
+Let&#8217;s upload develop (by default git-flow does not push), which we have not done yet.
 </td>
 </tr>
 </table>
@@ -444,7 +447,7 @@ Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hech
 </div>
 </div>
 <div class="paragraph">
-<p>quedando el arbol, asi:</p>
+<p>Leaving the tree, like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -453,12 +456,12 @@ Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hech
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mantener_rama_actualizada_con_los_cambios_de_develop">Mantener rama actualizada con los cambios de develop</h3>
+<h3 id="_keep_branch_updated_with_changes_from_develop">Keep branch updated with changes from develop</h3>
 <div class="paragraph">
-<p>Ahora nos vamos al directorio 2, nos actualizamos, creamos una feature,
-hacemos algo en el fichero README comiteamos, pero antes de cerrar la feature,
-cambiamos de carpeta 1 y modificamos el README, volvemos al directorio original y
-antes de cerrar feature, mergeamos develop en nuestra rama.</p>
+<p>Now we go to the directory 2, we update, create a feature,
+We do something in the file README comiteamos, but before closing the feature,
+Change folder 1 and modify the README, we return to the original directory and
+Before closing feature, mergeamos develop in our branch.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -483,7 +486,7 @@ git push origin develop</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Aqui (carpeta 1) todavia no sabemos nada de la feature2, quedando el arbol asi</p>
+<p>Here (folder 1) we still do not know anything about the feature2, leaving the tree as well</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -491,11 +494,11 @@ git push origin develop</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>El "problema" con rebase es que altera las lineas de historia, para bien o para mal.</p>
+<p>The "problem" with overshoot is that it alters the story lines, for better or for worse.</p>
 </div>
 <div class="paragraph">
-<p>Si seguimos el enfoque clasico, para mantener al dia nuestra feature2, debemos
-mergear a menudo con develop, o por lo menos, antes de cerrar la feature.</p>
+<p>If we follow the classic approach, to keep our feature2 current, we must
+Often merge with develop, or at least, before closing the feature.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -505,8 +508,8 @@ git pull origin develop</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Esto, asi escrito realiza un merge directo, pues estamos haciendo pull de otra
-rama (develop) en la de la feature.</p>
+<p>This, as written, performs a direct merge, since we are pulling another
+Branch (develop) in the of the feature.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -515,7 +518,7 @@ rama (develop) en la de la feature.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Un pull de una rama en otra que no es la suya, equivale a un merge.
+A pull of a branch in another that is not yours, is equivalent to a merge.
 </td>
 </tr>
 </table>
@@ -527,19 +530,19 @@ Un pull de una rama en otra que no es la suya, equivale a un merge.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_merge_tras_un_pull_actualizacion_de_una_rama_sobre_otra">Merge, tras un pull (actualizacion), de una rama sobre otra</h3>
+<h3 id="_merge_after_a_pull_update_from_one_branch_to_another">Merge, after a pull (update), from one branch to another</h3>
 <div class="paragraph">
-<p>Una manera, desde mi punto de vista, mas controlada de enfocar los merge (o
-	bien por tener actualizada una rama, o por mezclarla luego en otra),
-	podria haber sido: un fetch para actualiar, cambiando a develop,
-hacer pull y luego volviendo a la feature y haciendo merge.</p>
+<p>A way, from my point of view, more controlled to focus the merge (or
+Either by having a branch updated, or by mixing it later in another),
+Could have been: a fetch to update, changing to develop,
+Do pull and then return to the feature and doing merge.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mantener_rama_actualizada_con_un_rebase">Mantener rama actualizada con un rebase.</h3>
+<h3 id="_keep_branch_updated_with_an_override">Keep branch updated with an override.</h3>
 <div class="paragraph">
-<p>Pero, probemos otra vez (vamos a carpeta 1, hacemos cambio en develop y lo subimos),
-pero esta vez hacemos un rebase (usando git flow)</p>
+<p>But, try again (we go to folder 1, we make change in develop and we raise it),
+But this time we make a rebase (using git flow)</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -574,8 +577,7 @@ Applying: Update develop file feature1</p>
 Fatal: And branch 'develop' may be fast-forwarded.</p>
 </div>
 <div class="paragraph">
-<p>Esto solo quiere decir que la rama donde estamos tabajando no esta actulzada (similar
-	al primer ejemplo).</p>
+<p>This only means that the branch where we are working is not present (similar to the first example).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -610,7 +612,7 @@ You can then complete the finish by running it again:
 </div>
 </div>
 <div class="paragraph">
-<p>El rebase nos ha generado conflictos, que a la hora de hacer el merge, nos da problemas.</p>
+<p>The rebase has generated conflicts, which at the time of making the merge, gives us problems.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -623,7 +625,7 @@ You can then complete the finish by running it again:
 </div>
 </div>
 <div class="paragraph">
-<p>Pues altera la linea de tiempo de la rama donde lo hace. Resolvemos el conflicto y subimos cambios.</p>
+<p>It alters the timeline of the branch where it does it. We resolve the conflict and make changes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -633,7 +635,7 @@ git push origin develop</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Nos queda este arbol</p>
+<p>We have this tree</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -642,15 +644,15 @@ git push origin develop</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_policia_del_arbol_de_git">Policia del arbol de git.</h3>
+<h3 id="_git_tree_police">Git tree police.</h3>
 <div class="paragraph">
-<p>Si consideramos que una rama se crea para una funcionalidad, y todo el conjunto
-de commits que se relizan en ella, incluyendo los merge desde develop, no deben
-quedar reflejado en el arbolo final tras el merge, --no-ff es nuestro amigo.</p>
+<p>If we consider that a branch is created for a functionality, and the whole set
+Of commits that are related to it, including merge from develop, should not
+Be reflected in the final tree after the merge, --no-ff is our friend.</p>
 </div>
 <div class="paragraph">
-<p>Creemos una feature3, hagamos algun cambio, hagamos algun cambio en develop,
-llevemoslo a la rama de la feature3, y cuando terminemos, merge con no-ff.</p>
+<p>We create a feature3, make some changes, make some changes in develop,
+Let&#8217;s take it to the branch of feature3, and when it&#8217;s done, merge with no-ff.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -682,8 +684,8 @@ git merge develop</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>El arbol lo tenemos asi&#8230;&#8203; ahora tras el merge, hagamos otro cambio y reintegremos
-en develop como un solo commit.</p>
+<p>The tree we have so &#8230;&#8203; now after the merge, make another change and reintegrate
+In develop as a single commit.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -707,7 +709,7 @@ git branch -d feature/feature3</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Observemos como queda limpio la rama develop</p>
+<p>Let&#8217;s observe how clean the branch develop</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -715,7 +717,7 @@ git branch -d feature/feature3</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Referencias:</p>
+<p>References:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -731,6 +733,12 @@ git branch -d feature/feature3</code></pre>
 <li>
 <p><a href="https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase" class="bare">https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase</a></p>
 </li>
+<li>
+<p><a href="http://blog.jonathanoliver.com/my-new-best-friend-git-merge-no-ff/" class="bare">http://blog.jonathanoliver.com/my-new-best-friend-git-merge-no-ff/</a></p>
+</li>
+<li>
+<p><a href="http://paul.stadig.name/2010/12/thou-shalt-not-lie-git-rebase-ammend.html" class="bare">http://paul.stadig.name/2010/12/thou-shalt-not-lie-git-rebase-ammend.html</a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -743,43 +751,43 @@ git branch -d feature/feature3</code></pre>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&text=Git &amp; Merge &amp; Rebase &amp; Flow&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&text=Git &amp; Merge &amp; Rebase &amp; Flow&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/06/git.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/06/git.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -797,7 +805,7 @@ git branch -d feature/feature3</code></pre>
  	        <li><a href='tags/rebase.html'>rebase</a></li>
  	        <li><a href='tags/git-flow.html'>git-flow</a></li>
 
-				<li><a class="icon fa-comment" href="2017/06/git.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2017/06/git.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -866,6 +874,16 @@ git branch -d feature/feature3</code></pre>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="2017/06/git.html">Git &amp; Merge &amp; Rebase &amp; Flow</a></h3>
+                                   <time class="published"
+  							            datetime='jun 30, 2017'>
+  							            jun 30, 2017</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>
@@ -998,6 +1016,15 @@ git branch -d feature/feature3</code></pre>
                         <article>
                             <header>
                                 <a href="tags/cookies.html">cookies</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/serilize.html">serilize</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>

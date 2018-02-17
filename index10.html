@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="2016/10/retrolambda.html"><p>Retrolambda and default methods</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,7 +168,7 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2016/10/retrolambda.es.html">Retrolambda and default methods</a></h2>
+                    <h2><a href="2016/10/retrolambda.html">Retrolambda and default methods</a></h2>
 
     </div>
     <div class="meta">
@@ -182,42 +185,42 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_retrolambda_e_hippo_cms">Retrolambda e Hippo Cms</h2>
+<h2 id="_retrolambda_and_hippo_cms">Retrolambda and Hippo Cms</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://code.onehippo.org/cms-community/hippo-cms">Este proyecto</a>, solo se puede compilar con la JDK 8, ya que hace uso intensivo de sus caracteristicas: lambdas, default methods y otras mas.</p>
+<p><a href="https://code.onehippo.org/cms-community/hippo-cms">This project</a> can only be compiled with the JDK 8 as it makes heavy use of its features: lambdas, default methods and more.</p>
 </div>
 <div class="paragraph">
-<p>Gracias a <a href="https://github.com/orfjackal/retrolambda">Retrolambda</a>, muchos proyectos que hacen uso de las nuevas caracteristicas de JDK 8 pueden migrarse a JDK7 (y anteriores) y por tanto tambien a Android, lugar donde se hace principal uso de esta herramienta.</p>
+<p>Thanks to <a href="https://github.com/orfjackal/retrolambda">Retrolambda</a>, many projects that make use of the new features of JDK 8 can be migrated to JDK7 (and earlier) and therefore also to Android, where primary use is made this tool.</p>
 </div>
 <div class="paragraph">
-<p>Y con <a href="https://github.com/orfjackal/retrolambda#maven-plugin">este pluging maven</a> puedes integrarlo en tu buildsystem. <a href="https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml">Aqui</a> un ejemplo de como usarlo. Y ademas, hay otro <a href="https://github.com/evant/gradle-retrolambda">para gradle</a>.</p>
+<p>And with <a href="https://github.com/orfjackal/retrolambda#maven-plugin">this maven plugin</a> you can integrate it into your buildsystem. <a href="https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml">Here is</a> an example of how to use it. And besides, there is another <a href="https://github.com/evant/gradle-retrolambda">for Gradle</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_limitaciones">Limitaciones</h2>
+<h2 id="_limitations">Limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pero hay unas <a href="https://github.com/orfjackal/retrolambda#known-limitations">limitaciones bien conocidas</a>, que hacen que la migracion de los default method de JDK 8 no sean tan faciles, "must to be backported together, with one execution of Retrolambda".</p>
+<p>But there are some well known <a href="https://github.com/orfjackal/retrolambda#known-limitations">limitations</a>, which makes the migration of the default method of JDK 8 are not so easy, "must to be backported together, with one execution of Retrolambda".</p>
 </div>
 <div class="paragraph">
-<p>Por eso, <a href="http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html">por defecto</a>, viene deshabilitada su migracion.</p>
+<p>So <a href="http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html">by default</a> is disabled in the migration.</p>
 </div>
 <div class="paragraph">
-<p>Cuando Retrolmambda migra las <a href="https://github.com/orfjackal/retrolambda#backported-language-features">Default Methods</a>:
-Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the necessary method implementations to all classes which implement that interface.</p>
+<p>When Retrolmambda migrates <a href="https://github.com/orfjackal/retrolambda#backported-language-features">Default Methods</a>:
+Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the Necessary method Implementations to all classes which implement that interface.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_retrolambda_e_hippocms">Retrolambda (e HippoCms)</h2>
+<h2 id="_retrolambda_and_hippocms">Retrolambda (and HippoCms)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Tomemos como ejemplo, <a href="https://code.onehippo.org/cms-community/hippo-cms">el siguiente</a> proyecto.</p>
+<p>Take, for example, <a href="https://code.onehippo.org/cms-community/hippo-cms">the following</a> project.</p>
 </div>
 <div class="paragraph">
-<p>Supongamos que en un primer modulo tenemos esta interfaz con el default method.</p>
+<p>Suppose that initially have this interface module with the default method.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -229,7 +232,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 </div>
 <div class="paragraph">
-<p>Retrolambda lo que hace con esta clase es transformarla en esta otra.</p>
+<p>Retrolambda what makes this class is transformed into this one.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -239,10 +242,10 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 </div>
 <div class="paragraph">
-<p>E implementa ese metodo (a traves de la "companion class") en las clases que implementen la interfaz, de las clases del mismo modulo.</p>
+<p>And implements that method (through the "companion class") in classes that implement the interface, classes in the same module.</p>
 </div>
 <div class="paragraph">
-<p>Por tanto, si no procesa todas las clases hijas de esa interfaz en la pasada del modulo, ya no lo hara, por lo que&#8230;&#8203;</p>
+<p>Therefore, if not process all child classes that interface module in the past, and will not, so&#8230;&#8203;</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -250,7 +253,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 </div>
 <div class="paragraph">
-<p>que esta en otro modulo, al intentar ser compilada da este error</p>
+<p>this in another module, trying to be compiled gives this error</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -261,34 +264,34 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 </div>
 <div class="sect1">
-<h2 id="_primeras_conclusiones">Primeras conclusiones</h2>
+<h2 id="_first_conclusions">First conclusions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En un primer momento, sin leer bien el mensaje de error, y sin comprender la jerarquia de clases del proyecto, pense que <a href="https://github.com/orfjackal/retrolambda/pull/101">este pull request podria ayudar</a></p>
+<p>At first, unread well the error message, and without understanding the class hierarchy of the project, I thought it might help <a href="https://github.com/orfjackal/retrolambda/pull/101">this PR</a></p>
 </div>
 <div class="paragraph">
-<p>Por si quieres entender mas en detalle, <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle">aqui</a> unos apuntes sobre el Lifecycle de de maven. Y <a href="http://maven.apache.org/guides/mini/guide-maven-classloading.html">aqui</a> sobre el classloading.</p>
+<p>If you want to understand more in detail, <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle">here</a> some notes on the Lifecycle of maven. And <a href="http://maven.apache.org/guides/mini/guide-maven-classloading.html">here</a> on classloading.</p>
 </div>
 <div class="paragraph">
-<p>Luego, leyendo mas en detalle, pense que el problema era que al tranformar la interfaz a abstracta&#8230;&#8203; bueno, que me habia despistado del problema real, y a ese despiste constituyo ver, en <a href="https://twitter.com/nicolas_frankel/status/786202575150407680">este tweet</a> porque <a href="https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659">las interfaces interfaces son abstractas (por defecto)</a>.</p>
+<p>Then read more in detail, I thought the problem was that the transformation the interface to abstract &#8230;&#8203; well, i admit <a href="https://twitter.com/nicolas_frankel/status/786202575150407680">this tweet</a> had distracted me from the real problem, because <a href="https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659">	the interfaces are abstract (by default)</a>.</p>
 </div>
 <div class="paragraph">
-<p>Y el propio <a href="https://twitter.com/orfjackal">Esko Luontola</a> nos explica el motivo: "pre-Java 8 JVMs support only abstract methods in interfaces (the &lt;clinit&gt; method being an exception). Retrolambda inserts the default method code to all implementing classes, thus emulating what JVM 8 does."</p>
+<p>And the own <a href="https://twitter.com/orfjackal">Esko Luontola</a> explains why. "8 pre-Java JVMs support only abstract methods in interfaces (the &lt;clinit&gt; method being an exception). Retrolambda code inserts the default method implementing to all classes, JVM 8 thus emulating what does."</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">Aqui</a> una explicacion mas detallada de como funcionan los Default Methods en JDK 8. Y <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">aqui</a> la explicación de oracle sobre "abstract".</p>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">Here</a> a more detailed explanation of how to operate the Default Methods in JDK 8. And <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">here</a> oracle&#8217;s explanation on "abstract".</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_explicacion_del_problema_real">Explicacion del problema real</h2>
+<h2 id="_explanation_of_the_real_problem">Explanation of the real problem</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pero el problema, en este caso, era simplemente la limitacion de la libreria en projectos multi modulo <a href="https://github.com/orfjackal/retrolambda/issues/56">aqui</a> y
-<a href="https://github.com/orfjackal/retrolambda/issues/58">aqui</a> lo comentan tambien en detalle.</p>
+<p>But the problem, in this case, was simply the limitation of the library in multi module projects <a href="https://github.com/orfjackal/retrolambda/issues/56">here</a> and
+<a href="https://github.com/orfjackal/retrolambda/issues/58">here</a> as also discussed in detail.</p>
 </div>
 <div class="paragraph">
-<p>Una manera de resolverlo, haciendo pequeñas modificaciones en el codigo, seria implementando el metodo getIcon(String,IconSize) con el comportamiento por default en las clases del segundo modulo.</p>
+<p>A way out by making small manual changes in the code, it would be implementing the method getIcon(String, IconSize) with the default behavior in class the second module.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -344,18 +347,18 @@ index 450712b..9d09210 100644
 </div>
 </div>
 <div class="sect1">
-<h2 id="__proximos_pasos">¿Proximos pasos?</h2>
+<h2 id="_next_steps">Next steps?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://github.com/teras">Teras</a> y <a href="https://github.com/orfjackal">Orfjackal</a>, ¿porque el PR 101 no modifica estas clases para hacer ese cambio? ¿Quizas no lo hace porque ya existe un metodo con ese nombre, aunque no con el mismo numero de paramtros?</p>
+<p><a href="https://github.com/teras">Teras</a> and <a href="https://github.com/orfjackal">Orfjackal</a>, why the PR 101 does not modify these classes to make that change? Maybe it does because there is already a method with that name, although not with the same number of parameters?</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="__y_que_pasa_con_la_compilacion_retrolambda_de_hippocms">¿Y que pasa con la compilacion retrolambda de hippocms?</h2>
+<h2 id="_and_what_happend_with_the_retrolambda_compilation_of_hippocms">And what happend with the retrolambda compilation of HippoCms?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aun nos quedaba algun error por resolver&#8230;&#8203; metodo estaticos&#8230;&#8203;</p>
+<p>Even some mistake &#8230;&#8203; we have to solve static method &#8230;&#8203;</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -371,7 +374,7 @@ index 450712b..9d09210 100644
 <p>Static methods on interfaces are backported by moving the static methods to a companion class (interface name + "$"), and by changing all methods calls to call the new method location.[1]</p>
 </div>
 <div class="paragraph">
-<p>En este caso la solucion temporal es cambiar los import en las clases del segundo modulo, a la clase companion.</p>
+<p>In this case, the temporary solution is to change the import in the classes of the second module, the companion class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -401,21 +404,21 @@ index 5a97066..ab938b7 100644
 </div>
 </div>
 <div class="sect1">
-<h2 id="_notas_finales">Notas finales</h2>
+<h2 id="_final_notes">Final notes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Si lo que has usado en tu proyecto con JDK 8 son las APIs de streaming, puedes usar <a href="https://sourceforge.net/projects/streamsupport/">esto</a>.</p>
+<p>If you&#8217;ve used in your project with JDK 8 are streaming APIs, you can use <a href="https://sourceforge.net/projects/streamsupport/">this</a>.</p>
 </div>
 <div class="paragraph">
-<p>Aqui un <a href="https://en.wikipedia.org/wiki/Java_backporting_tools">poco de historia</a>.</p>
+<p>Here is a <a href="https://en.wikipedia.org/wiki/Java_backporting_tools">brief history</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bola_extra">Bola extra</h2>
+<h2 id="_extra_ball">Extra ball</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation">Groovy Android y APT</a></p>
+<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation">Groovy Android and APT</a></p>
 </div>
 </div>
 </div>
@@ -426,43 +429,43 @@ index 5a97066..ab938b7 100644
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&text=Retrolambda and default methods&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html&text=Retrolambda and default methods&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html&title=Retrolambda and default methods" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html&title=Retrolambda and default methods" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html&title=Retrolambda and default methods" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -481,7 +484,7 @@ index 5a97066..ab938b7 100644
  	        <li><a href='tags/android.html'>android</a></li>
  	        <li><a href='tags/apt.html'>apt</a></li>
 
-				<li><a class="icon fa-comment" href="2016/10/retrolambda.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2016/10/retrolambda.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -550,6 +553,16 @@ index 5a97066..ab938b7 100644
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="2016/10/retrolambda.html">Retrolambda and default methods</a></h3>
+                                   <time class="published"
+  							            datetime='oct 19, 2016'>
+  							            oct 19, 2016</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>
@@ -682,6 +695,15 @@ index 5a97066..ab938b7 100644
                         <article>
                             <header>
                                 <a href="tags/cookies.html">cookies</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/serilize.html">serilize</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
