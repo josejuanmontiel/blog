@@ -1,0 +1,48 @@
+= Graalvm
+Jose Juan Montiel
+2017-11-18
+:jbake-type: post
+:jbake-tags: jvm
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: graalvm
+:icons: font
+
+== Graalvm
+
+¿Que es Graalvm? Se me había cruzado ya unas cuantas veces por el camino, y con
+las excusa de un "concurso" de: "código ofuscado / artístico / degenerativo" OFARDE
+voy a abordar una prueba de concepto.
+
+¿Nunca habéis jugado al veo-veo en un viaje en coche?
+
+Voy a usar Truffle, para implementar un lenguajes que usando Graal como un compilador
+dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar a:
+
+* Jugamos al veo-veo.
+* Venga yo primero. Veo veo.
+* En ese momento aparecerá una secuencia de cosas que se ven por la carretera.
+* ¿Que ves?
+* Una cosita.
+* En ese momento se parara la secuencia de cosas, indicando lo que se ve en ese momento.
+* ¿Que cosita es?
+* Empieza por la letrita, ita, ita, ita...
+
+Los pasos son:
+
+. Primero definir la gramática del lenguaje usando http://www.ssw.uni-linz.ac.at/Coco/[Coco].
+.. La gramatica tendra el conjunto de palabras clave que desencadenan las acciones del juego.
+. Compilar esa gramatica con https://github.com/oracle/graal/blob/master/truffle/README.md[Truffle].
+. Implementar los comandos "visuales"
+.. Usar interfaz grafica en modo texto como esta[https://github.com/klamonte/jexer]
+
+. Ver como mezclar el uso de dos lenguajes a la vez.
+
+Documentacion adicional:
+
+* https://github.com/oracle/graal/blob/master/truffle/docs/Languages.md[Ejemplos de lenguaje implementados con truffle]
+** https://github.com/oracle/graal/blob/master/truffle/docs/LanguageTutorial.md[Tutorial]
+** https://www.youtube.com/watch?v=FJY96_6Y3a4&feature=youtu.be[Video explicativo]
+** https://wiki.openjdk.java.net/display/Graal/Publications+and+Presentations[Referencias]
+* https://github.com/graalvm/simplelanguage[Ejemplo de lenguaje]
