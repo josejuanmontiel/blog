@@ -1,4 +1,4 @@
-= Mensajes, serializacion y otras cosas
+= Message, serialization and other things
 Jose Juan Montiel
 2018-02-17
 :jbake-type: post
