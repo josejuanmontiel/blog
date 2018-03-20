@@ -1,0 +1,25 @@
+= Otras maneras de serializar
+Jose Juan Montiel
+2018-05-09
+:jbake-type: post
+:jbake-tags: jvm,dozer,mapstruct
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: dozer-vs-mapstruct
+:icons: font
+
+== JBake
+
+- Sobre como puede ser mas rapido yaml para meter en couchbase entidades grandes, 
+con muchos atributos, e incluso sino quieres leerlas, como podrias meter grpc.
+
+- Articulo sobre lombok, y esas cosas, que relacionadas con la serializacion, 
+no hacen mas que interrumpir...
+
+- Enlazar ahi con objeto, auto-serializable
+	
+- Que es mas rapido para serializar via http, yml? 
+	- Y para serialiar  en bddd coucbbase, puede ser grpc?
+
+

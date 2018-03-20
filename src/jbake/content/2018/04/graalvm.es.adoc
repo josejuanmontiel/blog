@@ -36,6 +36,9 @@ Los pasos son:
 . Compilar esa gramatica con https://github.com/oracle/graal/blob/master/truffle/README.md[Truffle].
 . Implementar los comandos "visuales"
 .. Usar interfaz grafica en modo texto como esta[https://github.com/klamonte/jexer]
+... https://github.com/kba/jcurses
+... https://github.com/sunhong/jcurses
+... https://github.com/mabe02/lanterna
 
 . Ver como mezclar el uso de dos lenguajes a la vez.
 

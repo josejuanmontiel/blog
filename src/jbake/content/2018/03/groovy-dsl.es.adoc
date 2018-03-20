@@ -1,0 +1,35 @@
+= Groovy DSL
+Jose Juan Montiel
+2018-03-22
+:jbake-type: post
+:jbake-tags: groovy, dsl
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: groovy-dsl
+:icons: font
+
+== Groovy DSL
+
+https://github.com/puneetbehl/helloDSL/tree/master/example6
+
+¿Nunca habéis jugado al veo-veo en un viaje en coche?
+
+* Jugamos al veo-veo.
+* Venga yo primero. Veo veo.
+* En ese momento aparecerá una secuencia de cosas que se ven por la carretera.
+* ¿Que ves?
+* Una cosita.
+* En ese momento se parara la secuencia de cosas, indicando lo que se ve en ese momento.
+* ¿Que cosita es?
+* Empieza por la letrita, ita, ita, ita...
+
+Los pasos son:
+
+https://github.com/puneetbehl/helloDSL
+
+http://tidyjava.com/creating-groovy-dsl-structurizr/
+https://dzone.com/articles/groovy-dsl-scratch-2-hours
+https://dzone.com/articles/groovy-dsl-simple-example
+
+- Ofuscado marciano, límite 6 de abril

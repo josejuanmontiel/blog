@@ -1,0 +1,76 @@
+= Low resource laptop
+Jose Juan Montiel
+2018-03-18
+:jbake-type: post
+:jbake-tags: laptop
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: low-resource-laptop
+:icons: font
+
+== Low resource laptop
+
+- Cifrado LVM
+    - Ver como añadir mas claves
+    
+- Instalacion linux
+    - Revisar notas sobre migracion de la instalacion
+    - Clonado del portatil blanco
+
+- Resolucion de la pantalla de 1024x600 a 1366x768
+    - https://bbs.archlinux.org/viewtopic.php?id=114933
+    - https://accreativos.blogspot.com.es/2018/01/linux-incrementar-la-resolucion-de.html
+	
+- Cifrado de dropbox. Pasar de encfs a cryfs
+    - Sirikali
+    - Cryfs
+	- https://www.cryfs.org/tutorial
+
+- Emacs
+    - java
+    - debug
+    - maven
+    
+- Visual Source Code
+
+- Docker
+    - Couchbase (i386)
+
+- Vargrant
+    - VirtualBox 64 (couchbase)
+
+- Navegadores
+    - https://mycomputerhelp.net/2014/11/27/fastest-web-browsers-for-windows-and-linux-computers-with-1gb-of-ram-and-slower-cpu-processor/
+
+- Chrome App
+    - Keep
+    
+- Cliente evernote
+    - NixNote
+    
+- Cliente drive (y otros)
+    - https://rclone.org/
+    - https://mmozeiko.github.io/RcloneBrowser/
+    
+- Alternativas dropbox
+    - https://github.com/Kickball/awesome-selfhosted#file-transfersynchronization    
+	- http://git-annex.branchable.com/
+	- https://www.syncany.org/
+    
+- SdkMan
+    - sdk install groovy
+    - sdk install maven
+    - sdk install gradle
+    - sdk install jbake
+    - sdk install springboot 1.5.9
+    
+- IDE
+    - Visual Code
+    - Eclipse java
+    - Intellij
+    - otros
+        - https://www.bluej.org/raspberrypi/index.html
+        - http://www.drjava.org/
+        - https://ericplayground.com/2015/06/07/how-to-configure-geany-to-run-java/ 
+

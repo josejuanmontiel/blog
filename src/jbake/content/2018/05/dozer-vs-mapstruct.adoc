@@ -1,0 +1,14 @@
+= Dozer vs MapStruct
+Jose Juan Montiel
+2018-05-09
+:jbake-type: post
+:jbake-tags: jvm,dozer,mapstruct
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: dozer-vs-mapstruct
+:icons: font
+
+== JBake
+
+	- Dozer vs MapStruct
