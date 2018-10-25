@@ -1,0 +1,13 @@
+= Joining the model - view - controller
+Jose Juan Montiel
+2018-10-21
+:jbake-type: post
+:jbake-tags: jvm,mvc,serilize,dozer
+:jbake-status: published
+:jbake-lang: en
+:source-highlighter: prettify
+:id: moewller
+:icons: font
+
+= Joining the model - view - controller
+

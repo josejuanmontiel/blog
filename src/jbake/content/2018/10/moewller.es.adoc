@@ -1,0 +1,40 @@
+= Uniendo el Model - View - Controller
+Jose Juan Montiel
+2018-10-21
+:jbake-type: post
+:jbake-tags: jvm,mvc,serilize,dozer
+:jbake-status: published
+:jbake-lang: es
+:source-highlighter: prettify
+:id: moewller
+:icons: font
+
+== Uniendo el Model - View - Controller (Parte 1/2)
+
+Hace tiempo que no escribo, pero sigo dandole vueltas a las cosas. En el ultimo articulo del blog, hablaba sobre serializacion, y en concreto sobre la serializacion de objetos a JSON (tanto para ser expuestos en un servicio REST como para serilizarlas en una base de datos NOSQL).
+
+En este articulo, me he panteado una prueba de concepto, que aviso, de momento esta incompleta. La prueba intenta montar una libreria que:
+
+* Permita mantener la separacion entre entre capas (de un MVC) usando un solo https://martinfowler.com/eaaCatalog/dataTransferObject.html[DTO] en vez de varios y una libreria de mapper, pero que a su vez permita las mismas o casi, ventajas de separacion.
+* Sea capaz de ir realizando la serializacion, en este caso construccion del JSON de manera incremental conforme se setean los valores.
+
+En http://github.com/josejuanmontiel/moewller[este] repositorio ire colocando los avances.
+
+Como nota, mucha gente tambien habla de https://martinfowler.com/bliki/ValueObject.html[VO] y aqui esta la http://www.adam-bien.com/roller/abien/entry/value_object_vs_data_transfer[difirenica entre ambos]
+
+A continuacion, algunos links para hablar de "Serializacion as a Service"
+
+* https://github.com/ralfstx/minimal-json[Minimal Json]
+* https://github.com/FasterXML/aalto-xml[Ultra-high performance non-blocking XML processor (Stax API + extensions)]
+* https://github.com/beckchr/staxon[Staxon]
+
+* https://www.baeldung.com/kryo[Kryo en Baeldung]
+* https://github.com/EsotericSoftware/kryo[Kryo]
+
+* https://github.com/FasterXML/jackson-dataformats-binary[jackson-binary]
+** https://github.com/FasterXML/smile-format-specification/blob/master/smile-specification.md[Smile]
+** https://github.com/FasterXML/jackson-dataformats-binary/tree/master/protobuf[Protobuf]
+** https://amzn.github.io/ion-docs/index.html[Ion]
+** https://www.rfc-editor.org/rfc/rfc7049.txt[Cbor]
+** https://avro.apache.org/docs/1.8.2/gettingstartedjava.html[Avro Apache]
+*** https://github.com/FasterXML/jackson-dataformats-binary/tree/master/avro[Avro FasterXML]
