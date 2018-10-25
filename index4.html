@@ -165,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2017/11/cookies_2_of_2.es.html">Cookies (2 de 2)</a></h2>
+                    <h2><a href="2018/02/mensajes_serializacion.es.html">Mensajes, serializacion y otras cosas</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='nov 12, 2017'>
-            nov 12, 2017</time>
+            datetime='Feb 17, 2018'>
+            Feb 17, 2018</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,326 +182,177 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_y_ahora_que">Y ahora que&#8230;&#8203;</h2>
+<h2 id="_mensajes_serialización_y_otras_cosas">Mensajes, serialización y otras cosas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Tras los ejemplos comentados en la primera parte, donde el protagonista solo era
-el navegador y el html, y donde hemos visto como una pagina puede invocar (y de
-hecho es lo normal) imágenes de otros dominios, si en la urls de invocación se
-pasan párametros, estos llegan al servidor destino, y si este genera una sesión,
-el navegador se encarga de crear las cookies necesarias para mantenerla.</p>
+<p>Recuerdo una vez que un compañero me dijo, algo así: "Mi jefe decía, que el que
+maneje los string, lo maneja todo". Sacada fuera de contexto, puede que parezca
+pretencioso, pero ¿no os da la sensación que la mayor parte de la programación se
+reduce a la "manipulación"?</p>
 </div>
 <div class="paragraph">
-<p>Pero la cosa cambia, cuando es el javascript el encargado de hacer la petición,
-y además es otro dominio. Cors y gestion de cookies serán los principales problemas.
-Veamos.</p>
+<p>Y si os paráis a pensar, hoy día, ¿no se reduce al las comunicación? ¿al envío de
+"mensajes"? Y ahí es donde quiero llegar en este artículo, a la famosa serialización
+y deserialización.</p>
+</div>
+<div class="paragraph">
+<p>Yo no llegue a vivirlo, pero cuando empezaba en el mundo del Java, todavía se hablaba
+de <a href="https://es.wikipedia.org/wiki/CORBA">Corba</a> y <a href="https://es.wikipedia.org/wiki/Java_Remote_Method_Invocation">RMI</a>.
+No me voy a detener mucho, para eso tenemos la wikipedia, pero el primero digamos
+servía para comunicar sistemas separados y distintos, y el segundo mas "cercanos".</p>
+</div>
+<div class="paragraph">
+<p>A lo que si llegue, y de lleno fue al mundo <a href="https://es.wikipedia.org/wiki/Simple_Object_Access_Protocol">SOAP</a>.
+Si echamos la vista atras, el "XML se invento" en <a href="https://es.wikipedia.org/wiki/Extensible_Markup_Language#Historia">1998</a>,
+hasta recuerdo haber echo alguna entrevista en mis inicios para la "xml company".
+Y en XML se basa SOAP para la transmisión de mensajes. Aqui empieza a dejarse de
+lado los menajes "binarios" para pasar al XML, con sus supuestas ventajas, y desventajas.
+Porque parsear y carga en memoria XML era costoso, ágil porque podías acceder a
+cualquier parte del mensaje, pero costoso.</p>
+</div>
+<div class="paragraph">
+<p>No me extiendo mas aquí, simplemente recordar DTD, XSD, XSLT, y una serie mas de
+siglas relacionadas con el mundo XML.</p>
+</div>
+<div class="paragraph">
+<p>Pero la gente se canso pronto del XML, en el 2000 llego el <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
+La gente estaba cansada de esquemas, de la rigidez, el nuevo milenio quería flexibilidad,
+los navegadores querían poder buscar lo que quisieran, sin tener que cargarlo todo.</p>
+</div>
+<div class="paragraph">
+<p>Digamos que el REST, trajo el JSON, un formato donde la "tabulación" daba el formato,
+y no hacia falta tanta etiqueta, con lo que se reducía el tamaño de los mensajes,
+pero bueno, seguía haciendo falta parsearlos.</p>
+</div>
+<div class="paragraph">
+<p>Por aquella época Google empieza a usar internamente <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a>,
+un lenguaje de especificación binario. Lo mismo pensaban que al final, tampoco
+tenia mucho sentido que nos mensajes fueran "human-readable", y aunque pudiera
+existir compresión de un mensaje XML en una capa superior, al final es esfuerzo
+de serializar y deserializar de una manera "human-readable" tampoco era óbice
+para no poner un campo detrás de otro.</p>
+</div>
+<div class="paragraph">
+<p>Por otro lado, la <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
+empezó a evolucionar.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2018/02/glory-of-rest.png" alt="Glory of rest">
+</div>
+</div>
+<div class="paragraph">
+<p>Y empezaron a aparecer cosas como: <a href="https://swagger.io/">Swagger</a> y <a href="https://raml.org/">RAML</a>,
+que terminan fusionandose en <a href="https://www.openapis.org/">OPENAPI</a> y cosas como:
+<a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
+incluso <a href="http://graphql.org/learn/">GraphQL</a>, que para ser el lenguaje de consulta
+que conocemos, parte de un lenguaje de definición de estructuras.</p>
+</div>
+<div class="paragraph">
+<p>Al final, en el mundo Java, y supongo que en el resto de lenguajes tambien, toda
+transmisión requiere una serialización y una deserialización (que pueden ser mas
+o menos complejas).</p>
+</div>
+<div class="paragraph">
+<p>Por ejemplo, la transmisión de un XML grande a un destino, donde solo le interese
+ciertos datos del mismo, no tiene porque serializarlo en memoria para hacer un
+recorrido sobre el DOM, puede usarse un parser <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
+para buscar lo que se necesita, y da igual el tamaño del XML, tardara mas o menos igual,
+pues el overhead se produce cuando se carga en memoria.</p>
+</div>
+<div class="paragraph">
+<p>En el caso de un JSON, los que necesitan sus getter/setter especificados,
+los parser que simplemente carga en hash, los que usan la reflexion, los que
+no la usan (porque el usuario codifca cierta parte), los que "precompilan" codigo,
+los que&#8230;&#8203;</p>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="paragraph">
+<p>Al final, en este mundo de la progracion, no se puede pensar nunca que se sabe todo,
+y en IMHO siempre se puede mejorar, haciendo las cosas de otra forma.</p>
+</div>
+<div class="paragraph">
+<p>Si buceamos un poco, podemos dar con algunos benchmark. Por ejemplo en esta
+<a href="https://github.com/fabienrenaud/java-json-benchmark">comparativas sobre librerias</a>
+podemos descubir la gran cantidad de librerias JSON que existen, y su diferente
+performance, prueba de que siempre se puede evolucinar, y cuando se llegan a los
+limites fisicos, siempre se puede hacer de otra forma. En esta otra
+<a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
+inclyendo protobuf</a> hacen el analisis, enfocando a la cantidad de atributos, de
+la clase a serializar, y hacen algunas consideraciones interesantes de las transformaciones
+que pasan "por debajo", lejos de la vista de nuestros ojos, comentando cambios entre
+JDK 8 y 9.</p>
+</div>
+<div class="ulist">
+<div class="title">Podemos destacar las siguientes librerias:</div>
+<ul>
+<li>
+<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Usa un dsl para generar el parser.</p>
+</li>
+<li>
+<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompilan un parser.</p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolucion de la conocida librería.</p>
+</li>
+<li>
+<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> Un enfoque mas teórico usando Graavl.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>¿Y si hablamos de las bbdd NSQL u orientadas a documento?, como por ejemplo CouchBase&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Al final, aqui usando el API java, tambien existe una serializacion/deserializacion,
+al final lo que se guarda es un documento, que debe (segun API) serializarse mas o menos.</p>
+</div>
+<div class="paragraph">
+<p>En <a href="https://github.com/josejuanmontiel/demo-couchbase">este</a> repo, he trasteado un poco con algunas ideas.</p>
+</div>
+<div class="olist arabic">
+<div class="title">¿Las conclusiones?</div>
+<ol class="arabic">
+<li>
+<p>Esta claro que cuanto mas pequeño sea la entidad a persistir, antes se persistirá.</p>
+</li>
+<li>
+<p>Pero no por insertarlo en trozos mas pequeños (relacionados unos con otros) se
+inserta antes.</p>
+</li>
+<li>
+<p>Tanto para inserciones como consultas, si se inserta un string, sin pasar por
+JPA puede ganarse un 50% (descontado la serializacion a String, recordar que ya
+  llega en formato String desde sincro) y un 90% en lectura aprox.</p>
+</li>
+<li>
+<p>Un .findOne en spring data jpa, siempre va a ser mas lento que uno nativo.
+¿La vista sobre el tipo de entidad añade un retardo?</p>
+</li>
+<li>
+<p>La latencia de red desde el servidor a la bbdd tambien cuenta, menos datos, mas veloz.</p>
+</li>
+<li>
+<p>Los servidores con SSD vs HDD para bbdd nosql muestran grandes diferencias de rendimiento.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Depende del uso y el problema que se quiera abordar, no siempre puede tener sentido,
+serializar para tener los "objetos" accesibles, sino vamos a usarlos.</p>
 </div>
 <div class="sect2">
-<h3 id="_autenticacion">Autenticacion</h3>
+<h3 id="_como_ejercicio_para_casa">Como ejercicio para casa</h3>
 <div class="paragraph">
-<p>Para llevar un poco mas allá el uso de la sesión, vamos a crear una pagina de
-login. Recordar que aquí, A representa a la 3rd party, y B a la pagina por la que
-navegamos.</p>
-</div>
-<div class="paragraph">
-<p>Con esta pagina de login</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html" data-lang="html">&lt;form name='f' action="login" method='POST'&gt;
-   &lt;table&gt;
-      &lt;tr&gt;
-         &lt;td&gt;User:&lt;/td&gt;
-         &lt;td&gt;&lt;input type="text" id="username" name="username" value="" /&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-         &lt;td&gt;Password:&lt;/td&gt;
-         &lt;td&gt;&lt;input type="password" id="password" name="password" /&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-         &lt;td&gt;&lt;input name="submit" type="submit" value="submit" /&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-   &lt;/table&gt;
-&lt;/form&gt;</code></pre>
-</div>
+<p>Segun los <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> si se
+cambiara la implementacion de JsonConverter de Jackson a Jsonite, podria ganarse
+un 30% en la parte que la libreria spring data jpa pasa del objeto a
+com.couchbase.client.java.document.json.JsonObject.</p>
 </div>
 <div class="paragraph">
-<p>Podemos llamar a este controlador, donde si el usuario/password coinciden con
-admin/password guardamos en session, con la clave user, el valor del username.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @PostMapping("/login")
-    public String login(
-        @RequestParam(value="username", required=false) String username,
-        @RequestParam(value="password", required=false) String password,
-        HttpSession session) {
-
-      if (session.getAttribute("user")!=null) {
-        return "redirect:/isLogged";
-      } else if ("admin".equals(username) &amp;&amp; "password".equals(password)) {
-        session.setAttribute("user", username);
-        return "redirect:/isLogged";
-      } else {
-        return "redirect:/login";
-      }
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Y tras eso, redirigimos a la pagina de isLogged, donde se muestra si estamos logados.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html" data-lang="html">&lt;p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" /&gt;
-&lt;p th:text="'isLogged? ' + ${isLogged}" /&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>donde el valor true/false viene de que sea admin, ese valor en sesion para user.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Para testear el funcionamiento, montamos un end-point de logout, que invalida la sesión.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @GetMapping("/logout")
-    public String login(HttpSession session) {
-      session.invalidate();
-      return "redirect:/login";
-    }</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Ahora, empieza la parte interesante del experimento, vamos a simular lo que el
-navegador haría por nosotros si montáramos un formulario de login en nuestra
-pagina B a otro dominio A, pero de tal manera que se haga por javascript y
-sin refrescar la pagina.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript" data-lang="javascript">    function loginRemoto() {
-      var username = document.getElementById("username").value; <i class="conum" data-value="1"></i><b>(1)</b>
-      var password = document.getElementById("password").value; <i class="conum" data-value="2"></i><b>(2)</b>
-
-      var http = new XMLHttpRequest();
-      var url = "http://a.127.0.0.1.xip.io:9000/login";
-      var params = "username="+username+"&amp;password="+password;
-      http.open("POST", url, true); <i class="conum" data-value="3"></i><b>(3)</b>
-
-      //Send the proper header information along with the request
-      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); <i class="conum" data-value="4"></i><b>(4)</b>
-
-      http.onreadystatechange = function() { //Call a function when the state changes.
-          if(http.readyState == 4 &amp;&amp; http.status == 200) {
-            var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
-            document.cookie = "jsessionfroma="+jsessionid;
-          }
-      }
-      http.send(params);
-    }</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Obtenemos el usuario</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Obtenemos el password</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Construimos una petición POST al login de A</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Este es el content-type que el navegador envía en los formularios</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Esto lo veremos mas adelante</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_access_control_allow_origin">Access-Control-Allow-Origin</h3>
-<div class="paragraph">
-<p>El problema, es que, el navegador puede dejarnos pedir en A, imágenes de B, pero
-el envío de peticiones XMLHttpRequest (o lo que venimos conociendo por ajax) ya
-son otro tema. Y el tema es que en este caso, A que seria el receptor de esta
-petición, por defecto no permite la recepción de peticiones desde otro dominio
-distinto al suyo. <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Aqui</a>
-detallan como funciona esto. Y <a href="https://spring.io/guides/gs/rest-service-cors/#_enabling_cors">aqui</a>
-cuentan como gestiona Spring el tema.</p>
-</div>
-<div class="sect3">
-<h4 id="_apis_js_de_servicios_de_terceros_en_tu_web">APIs JS de servicios de terceros en tu Web</h4>
-<div class="paragraph">
-<p>Llegado este punto, podrías llegar a preguntarte, porque cierto tipo de webs,
-que permiten hacer uso de sus servicios en tu web, o siendo un poco mas precisos,
-permiten que tus usuarios hagan uso de sus servicios en tu web, necesitan que
-registres la url de tu web.</p>
-</div>
-<div class="paragraph">
-<p>Pues nunca lo tuve claro, pero después de estas pruebas de concepto, diría que
-porque necesitan configurar sus servidores, para que cuando el "remote address"
-de la petición sea igual, al de alguno de los que tienen registrados de "clientes",
-devuelvan un "Access-Control-Allow-Origin" con ese host.</p>
-</div>
-<div class="paragraph">
-<p>Este seria el filtro, que controla esto.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @Component
-    public class CorsFilter extends OncePerRequestFilter {
-
-        @Override
-        protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
-                                        final FilterChain filterChain) throws ServletException, IOException {
-            response.addHeader("Access-Control-Allow-Origin", "b.127.0.0.1.xip.io");
-            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD, OPTIONS");
-            response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-            response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials");
-            response.addHeader("Access-Control-Allow-Credentials", "true");
-            response.addIntHeader("Access-Control-Max-Age", 10);
-            filterChain.doFilter(request, response);
-        }
-    }</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="__y_las_cookies">¿Y las cookies?</h3>
-<div class="paragraph">
-<p>Recordemos, que el objetivo es que desde una pagina de B, exista un Javascript
-que conecte con A para validar un user/password y que posteriormente, B pueda
-leer una cookie generada por ese Javascript, realmente en B, para hacer una
-llamada desde el servidor B al servidor A, haciéndose pasar por el usuario de B,
-que realizo la petición a A, para guardar en la sesión de B, la confianza en ese
-login realizado en A. El flujo que describimos al final del primer articulo.</p>
-</div>
-<div class="paragraph">
-<p>Lo primero, recordar el paso (5) que dejamos sin explicar</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript" data-lang="javascript">    var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
-    document.cookie = "jsessionfroma="+jsessionid;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>es el que se encarga de setear la cookie en B. Hay mas maneras, que no he explorado,
-pero en este caso, en la url devuelta por el proceso de login, como el servidor
-A ve que B, no puede recibir una cookie, genera una url de redirección que lleva
-como parámetro el JSESSIONID, valor para poder correlacionar la sesión que nos
-ha generado A a nosotros que navegamos desde B, y hemos lanzado el XMLHttpRequest
-de login.</p>
-</div>
-<div class="paragraph">
-<p>Asi que parseamos esa URL (getJSessionId) y nos quedamos con el JSESSIONID y lo
-guardamos en una cookie (document.cookie) de B, que es donde estamos navegando.</p>
-</div>
-<div class="paragraph">
-<p>Ahora, evolucionamos el código del controlador de isLogged de B (y A, es el mismo
-código, aunque ahora estamos navegando desde B) para:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @GetMapping("/isLogged")
-    	public String isLogged(@CookieValue(value="jsessionfroma", required=false) String jsessionfroma, <i class="conum" data-value="1"></i><b>(1)</b>
-      HttpSession session, Model model) {
-    		model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));
-
-    		if (jsessionfroma!=null) {  <i class="conum" data-value="2"></i><b>(2)</b>
-    			ParameterizedTypeReference&lt;String&gt; typeRef = new ParameterizedTypeReference&lt;String&gt;() {};
-    			HttpHeaders requestHeaders = new HttpHeaders();
-    			requestHeaders.add("Cookie", "JSESSIONID=" + jsessionfroma + "; domain=a.127.0.0.1.xip.io;");  <i class="conum" data-value="3"></i><b>(3)</b>
-    			HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
-
-    			ResponseEntity&lt;String&gt; response = restTemplate.exchange("http://a.127.0.0.1.xip.io:9000/isLogged", HttpMethod.GET, requestEntity, typeRef);
-
-    			boolean isRemoteLogged = response.getBody().contains("isLogged? true");  <i class="conum" data-value="4"></i><b>(4)</b>
-
-    			Pattern pattern = Pattern.compile("---(.*?)---");
-    			Matcher matcher = pattern.matcher(response.getBody());
-    			String username = "";
-    			while (matcher.find()) {
-    				username = matcher.group(1);  <i class="conum" data-value="5"></i><b>(5)</b>
-    			}
-    			if (isRemoteLogged) {
-    				session.setAttribute("user",username);  <i class="conum" data-value="6"></i><b>(6)</b>
-    			}
-
-    			System.out.println(response.getBody());
-    		}
-
-    		return "isLogged";
-    	}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Leer la cookie jsessionfroma que es la que hemos generado desde el Javascript
-que llamo a A desde B para hacer el login. El "paso 5"</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Si tenemos esa cookie, entonces procedemos a realizar la llamada a A desde el
-back de B.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>En la petición que vamos a hacer a A, vamos a añadir el header cookie, con el
-valor del JSESSIONID obtenido, es decir, le vamos a enviar a A la cookie para
-que vea que estábamos logado.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Parseamos la respuesta, para ver si en A pintamos que estamos logados.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Nos quedamos con el nombre de usuario logado.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Y si estamos logados en el remoto, entonces guardamos en la sesión de B,
-el usuario logado.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Por tanto de esta forma hemos conseguido, logarnos desde Javascript en un servicio
-de terceros, y desde una comunicación back, con ese servicio y con la cookie que
-ese javascript nos ha generado, comprobar que estamos logados correctamente,
-para logarnos automaticamente en nuestra web.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_el_codigo">El codigo</h3>
-<div class="paragraph">
-<p>En <a href="https://github.com/josejuanmontiel/cookies">este repositorio</a> de github.</p>
-</div>
-<div class="paragraph">
-<p>Pero me da, que se me quedan bastantes preguntas en el tintero, y otros enfoques
-posibles. ¿JSON-P? ¿Publicidad de google? ¿Problemas de seguridad? ¿SSO? ¿Proxy
-de servicios en Apache o Nginx? ¿JWT?</p>
-</div>
-<div class="paragraph">
-<p>¿Un capitulo 3?</p>
+<p>Hacer una pull request para implementar <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
+de couchbase  con <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
+y ver si es mas rapido que el estandar, y no mucho menos que con la <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
 </div>
 </div>
 </div>
@@ -513,43 +364,43 @@ de servicios en Apache o Nginx? ¿JWT?</p>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&text=Cookies (2 de 2)&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&text=Mensajes, serializacion y otras cosas&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -563,9 +414,9 @@ de servicios en Apache o Nginx? ¿JWT?</p>
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
  	        <li><a href='tags/jvm.html'>jvm</a></li>
- 	        <li><a href='tags/cookies.html'>cookies</a></li>
+ 	        <li><a href='tags/serilize.html'>serilize</a></li>
 
-				<li><a class="icon fa-comment" href="2017/11/cookies_2_of_2.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2018/02/mensajes_serializacion.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -729,6 +580,15 @@ de servicios en Apache o Nginx? ¿JWT?</p>
                     <li>
                         <article>
                             <header>
+                                <a href="tags/dozer.html">dozer</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="tags/personal.html">personal</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -820,6 +680,15 @@ de servicios en Apache o Nginx? ¿JWT?</p>
                         <article>
                             <header>
                                 <a href="tags/merge.html">merge</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/mvc.html">mvc</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>

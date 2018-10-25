@@ -165,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2017/06/git.es.html">Git &amp; Merge &amp; Rebase &amp; Flow</a></h2>
+                    <h2><a href="2017/07/groovy-metaprograming.es.html">Groovy Metaprograming</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='jun 30, 2017'>
-            jun 30, 2017</time>
+            datetime='Jul 08, 2017'>
+            Jul 08, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,557 +182,241 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_git_merge_rebase_flow">Git &amp; Merge &amp; Rebase &amp; Flow</h2>
+<h2 id="_generacion_de_codigo_del_modelo_a_la_vista">Generacion de codigo. Del modelo a la vista.</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En esta ocasion vamos a realizar una serie de operaciones en un repositorio git.
-Intentaremos simular situaciones tipicas de trabajo en grupo, con distintas
-manerasP de enfocar la union de los distintos trabajos.</p>
-</div>
-<div class="sect2">
-<h3 id="_trabajar_con_dos_ramas_sin_ancestros_comunes">Trabajar con dos ramas sin ancestros comunes.</h3>
-<div class="paragraph">
-<p>Lo primero, inicializar un repo local, con opcion de que sea compartido por
-varios usuarios.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd ~/sandbox-git
-git init --bare --shared ~/sandbox-git/test-repo.git
-git clone test-repo.git repo-clone1
-git clone test-repo.git repo-clone2</code></pre>
-</div>
+<p>Bueno, por fin, mas de 9 meses despues de su inicio, me he animado a terminar
+esta entrada del blog, y fue tras el tweet de <a href="https://twitter.com/jagedn/status/882984377596116992">@jagedn</a>
+que despues de la charla de @ilopmar en <a href="http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html">madridgug</a>,
+hizo que me animara con <a href="https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f">asteroid</a>.</p>
 </div>
 <div class="paragraph">
-<p>Despues nos vamos al directorio 1, y añadimos un primer fichero, en el commit
-indicamos un nombre de usuario: User1.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd repo-clone1
-touch README
-git add .
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Initial commit"
-git push -u origin master</code></pre>
-</div>
+<p>Pero bueno, por orden.</p>
 </div>
 <div class="paragraph">
-<p>Para ver desde consola podemos añadir lo siguiente a ~/.gitconfig bajo [alias]</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
-</td>
-</tr>
-</table>
+<p>En <a href="https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html">uno</a>
+de mis anteriores artículos, hablaba de como, usando Groovy y Thymeleaf, se podía
+separar aun un poco mas, la maqueta de las indicaciones de donde colocar los
+elementos de binding, para mostrar los datos del modelo; y deje planteado unos
+próximos pasos, de como se podía generar parte de ese código.</p>
 </div>
 <div class="paragraph">
-<p>El repo queda entonces asi.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_01.png" alt="git 01">
-</div>
+<p>Y no voy a hablar de como generar ese codigo en este post, tendra que ser mas
+adelante pero por lo menos, dejare listadas una serie de herramientas "utiles"
+para generar codigo.</p>
 </div>
 <div class="paragraph">
-<p>Despues nos vamos a la segunda carpeta y solo hacemos "fetch", y creamos el mismo
-fichero que creo el otro usuario. Lo comiteamos, luego intentamos push.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd ../repo-clone2
-git fetch
-vi README
-git add README
-git commit --author="User2 &lt;user2@git.com&gt;" -m "Other user change"
-git push</code></pre>
-</div>
+<p>A día de hoy, existen muchas maneras de "generar codigo". Por ejemplo, en
+<a href="http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy">este articulo</a>
+Ivan nos cuenta las opciones que hay en groovy (en tiempo de compilacion, y en
+uno anterior, las de tiempo de ejecucion).</p>
 </div>
 <div class="paragraph">
-<p>Pero obtenemos el siguiente error.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">	 ! [rejected]        master -&gt; master (non-fast-forward)
-	error: failed to push some refs to '/home/jose/sandbox-git/test-repo.git'
-	hint: Updates were rejected because the tip of your current branch is behind
-	hint: its remote counterpart. Integrate the remote changes (e.g.
-	hint: 'git pull ...') before pushing again.
-	hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-No se puede hacer push sino se hace un pull&#8230;&#8203; en este momento el arbol esta asi&#8230;&#8203;
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_02.png" alt="git 02">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git pull</code></pre>
-</div>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The default behavior has changed since git 2.9
-</td>
-</tr>
-</table>
+<p>Y en <a href="http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html">esta charla</a>,
+Mario, se centra en las ayudas que existen para la Metaprogramacion en groovy, los macros.
+Y también nos habla de una librería para ayudarnos en ese proceso de creacion de
+macros: <a href="https://github.com/grooviter/asteroid">asteroid</a></p>
 </div>
 <div class="paragraph">
-<p>"git merge" used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.</p>
+<p>Si tuvieramos que hacer una clasificacion, diferente, de las distintas maneras
+de crear codigo podriamos hacerlo asi:</p>
 </div>
-<div class="paragraph">
-<p>En este caso, hemos partido de 2 ramas independientes, y el pull de una rama
-(donde ya tenemos un commit) provoca una especie de "merge". En este caso (por
-	no tener ancestros comunes) debemos hacerlo con:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git pull origin master --allow-unrelated-histories</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Y queda esto</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_03.png" alt="git 03">
-</div>
-</div>
-<div class="paragraph">
-<p>Ahora ya podemos hacer:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git push</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Y asi queda el repo:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_04.png" alt="git 04">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_trabajar_en_una_rama_sin_haberla_actualizado">Trabajar en una rama, sin haberla actualizado</h3>
-<div class="paragraph">
-<p>Vamos ahora a probar en el directorio 1, a crear con git-flow una feature, crear un
-nuevo fichero y luego&#8230;&#8203; crear otra feature en el directorio 2, creando otro
-fichero.</p>
-</div>
-<div class="paragraph">
-<p>Luego en el directorio 1, cerramos la feature, luego en el directorio 2,</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Mergeamos develop en nuestra rama, y luego mergeamos nuestra rama en develop (cerrando la feature).
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd ../repo-clone1
-git flow init
-git flow feature start user1
-
-vi feature-user1.txt
-git add feature-user1.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Commit in feature-user1"</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_05.png" alt="git 05">
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Pero se nos "olvido" hacer fetch/pull antes de empezar&#8230;&#8203; y aqui empieza el lio&#8230;&#8203;
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git fetch
-git pull origin master</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Ahora (a punto de terminar la historia) tenemos el arbol asi.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_06.png" alt="git 06">
-</div>
-</div>
-<div class="paragraph">
-<p>Cerramos la feature</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git flow feature finish</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Summary of actions:</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Las de "java"</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Las que se ven</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Las que generan codigo fuente</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The feature branch 'feature/user1' was merged into 'develop'</p>
+<p>Cosas como <a href="http://docs.spring.io/spring-roo/reference/html/intro.html">Spring Roo</a>
+o <a href="http://yeoman.io">Yeoman</a> o la mas actual <a href="https://jhipster.github.io/">JHipster</a>
+son herramientas que generan codigo "scaffolding".</p>
 </li>
 <li>
-<p>Feature branch 'feature/user1' has been locally deleted</p>
-</li>
-<li>
-<p>You are now on branch 'develop'</p>
+<p>Pero cosas como esta libreria <a href="https://github.com/square/javapoet">Javapoet</a>
+genera codigo fuente, a partir de un DSL, y asi partimos de unos fuentes comunes.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hecho.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git push origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>quedando el arbol, asi:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_07.png" alt="git 07">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_mantener_rama_actualizada_con_los_cambios_de_develop">Mantener rama actualizada con los cambios de develop</h3>
-<div class="paragraph">
-<p>Ahora nos vamos al directorio 2, nos actualizamos, creamos una feature,
-hacemos algo en el fichero README comiteamos, pero antes de cerrar la feature,
-cambiamos de carpeta 1 y modificamos el README, volvemos al directorio original y
-antes de cerrar feature, mergeamos develop en nuestra rama.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd ../repo-clone2
-git fetch
-git checkout develop
-git pull
-
-git flow init
-
-git flow feature start user2
-
-vi feature-user2.txt
-git add  feature-user2.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "Commit in feature-user2"
-
-cd ../repo-clone1
-vi feature-user1.txt
-git add  feature-user1.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
-git push origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Aqui (carpeta 1) todavia no sabemos nada de la feature2, quedando el arbol asi</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_08.png" alt="git 08">
-</div>
-</div>
-<div class="paragraph">
-<p>El "problema" con rebase es que altera las lineas de historia, para bien o para mal.</p>
-</div>
-<div class="paragraph">
-<p>Si seguimos el enfoque clasico, para mantener al dia nuestra feature2, debemos
-mergear a menudo con develop, o por lo menos, antes de cerrar la feature.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd ../repo-clone2
-git fetch
-git pull origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Esto, asi escrito realiza un merge directo, pues estamos haciendo pull de otra
-rama (develop) en la de la feature.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Un pull de una rama en otra que no es la suya, equivale a un merge.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_09.png" alt="git 09">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_merge_tras_un_pull_actualizacion_de_una_rama_sobre_otra">Merge, tras un pull (actualizacion), de una rama sobre otra</h3>
-<div class="paragraph">
-<p>Una manera, desde mi punto de vista, mas controlada de enfocar los merge (o
-	bien por tener actualizada una rama, o por mezclarla luego en otra),
-	podria haber sido: un fetch para actualiar, cambiando a develop,
-hacer pull y luego volviendo a la feature y haciendo merge.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_mantener_rama_actualizada_con_un_rebase">Mantener rama actualizada con un rebase.</h3>
-<div class="paragraph">
-<p>Pero, probemos otra vez (vamos a carpeta 1, hacemos cambio en develop y lo subimos),
-pero esta vez hacemos un rebase (usando git flow)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd ../repo-clone1
-vi feature-user1.txt
-git add  feature-user1.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
-git push origin develop
-cd ../repo-clone2
-git fetch
-git flow feature rebase user2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Will try to rebase 'user2' which is based on 'develop'&#8230;&#8203;
-First, rewinding head to replay your work on top of it&#8230;&#8203;
-Applying: Commit in feature-user2
-Applying: Update develop file feature1</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_10.png" alt="git 10">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git flow feature finish</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Branches 'develop' and 'origin/develop' have diverged.
-Fatal: And branch 'develop' may be fast-forwarded.</p>
-</div>
-<div class="paragraph">
-<p>Esto solo quiere decir que la rama donde estamos tabajando no esta actulzada (similar
-	al primer ejemplo).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git checkout develop
-
-Switched to branch 'develop'
-Your branch is behind 'origin/develop' by 2 commits, and can be fast-forwarded.
-  (use "git pull" to update your local branch)
-
-git pull
-Updating 408fcbf..f76cade
-Fast-forward
- feature-user1.txt | 3 +++
- 1 file changed, 3 insertions(+)
-
-git checkout feature/user2
-Switched to branch 'feature/user2'
-
-git flow feature finish
-Switched to branch 'develop'
-Your branch is up-to-date with 'origin/develop'.
-Auto-merging feature-user1.txt
-CONFLICT (content): Merge conflict in feature-user1.txt
-Automatic merge failed; fix conflicts and then commit the result.
-
-There were merge conflicts. To resolve the merge conflict manually, use:
-    git mergetool
-    git commit
-
-You can then complete the finish by running it again:
-    git flow feature finish user2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>El rebase nos ha generado conflictos, que a la hora de hacer el merge, nos da problemas.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git mergetool</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_11.png" alt="git 11">
-</div>
-</div>
-<div class="paragraph">
-<p>Pues altera la linea de tiempo de la rama donde lo hace. Resolvemos el conflicto y subimos cambios.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">git add feature-user1.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "Resolve rebase y merge"
-git push origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Nos queda este arbol</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_12.png" alt="git 12">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_policia_del_arbol_de_git">Policia del arbol de git.</h3>
-<div class="paragraph">
-<p>Si consideramos que una rama se crea para una funcionalidad, y todo el conjunto
-de commits que se relizan en ella, incluyendo los merge desde develop, no deben
-quedar reflejado en el arbolo final tras el merge, --no-ff es nuestro amigo.</p>
-</div>
-<div class="paragraph">
-<p>Creemos una feature3, hagamos algun cambio, hagamos algun cambio en develop,
-llevemoslo a la rama de la feature3, y cuando terminemos, merge con no-ff.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">cd ~/sandbox-git/repo-clone1
-git fetch
-git pull origin develop
-
-cd ~/sandbox-git/repo-clone2
-git fetch
-git pull origin develop
-
-git flow feature start feature3
-vi feature3-user2.txt
-git add feature3-user2.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
-
-cd ~/sandbox-git/repo-clone1
-vi change-in-develop.txt
-git add change-in-develop.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "change-in-develop"
-git push origin develop
-
-cd ~/sandbox-git/repo-clone2
-git checkout develop
-git fetch
-git pull
-git checkout feature/feature3
-git merge develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>El arbol lo tenemos asi&#8230;&#8203; ahora tras el merge, hagamos otro cambio y reintegremos
-en develop como un solo commit.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_13.png" alt="git 13">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh" data-lang="sh">vi feature3-another-user2-file.txt
-git add feature3-another-user2-file.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
-git checkout develop
-git merge feature/feature3 --no-ff
-git push origin --delete feature/feature3
-git branch -d feature/feature3</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_14.png" alt="git 14">
-</div>
-</div>
-<div class="paragraph">
-<p>Observemos como queda limpio la rama develop</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git-merge-no-ff.png" alt="git merge no ff">
-</div>
-</div>
-<div class="paragraph">
-<p>Referencias:</p>
-</div>
+</li>
+<li>
+<p>Las que generan codigo "compilado". <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/apt/">APT</a>,
+es la herramienta en la que se basan el "resto" que modifcian el <a href="http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/">AST</a>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa" class="bare">https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa</a></p>
-</li>
-<li>
-<p><a href="https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull" class="bare">https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull</a></p>
-</li>
-<li>
-<p><a href="https://mislav.net/2013/02/merge-vs-rebase/" class="bare">https://mislav.net/2013/02/merge-vs-rebase/</a></p>
-</li>
-<li>
-<p><a href="https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase" class="bare">https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase</a></p>
+<p>Por ejemplo, esta libreria, <a href="https://github.com/AlbertoSH/MagicBuilder">MagicBuilder</a> genera codigo en tiempo de compilacion, siguiendo el patron builder.</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Las que modifican el bytecode</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://asm.ow2.org/">ASM4</a></p>
+</li>
+<li>
+<p><a href="http://bytebuddy.net/#/">ByteBuddy</a></p>
+</li>
+<li>
+<p><a href="https://github.com/raphw/byte-buddy/tree/master/byte-buddy-android">ByteBuddy para Android</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Las que "no" se ven</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Las que usan injeccion de dependencias.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Al final declarar una variable, y que en tiempo de ejecucion se le haya
+asignado un valor, tambien es una manera de modificar el codigo. Aqui tambien
+tendrian cabida, ese tipo de cosas que, entre otros, hace Spring para generar
+los beans que nos injecta a traves de proxies por ejemplo.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://eclipse.org/aspectj/">AspectJ</a> / <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html">AOP</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Esto, de alguna manera modifica el codigo/ast/bytecode, pero la peculiaridad
+es la manera de definir donde van a actuar estas transformaciones. Podrian
+considerarse una especie de AST Globales.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://jnb.ociweb.com/jnb/jnbJan2010.html">Lombock</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Es para aquellos que no pueden usar Groovy, que por lo menos, no tengan
+que hacer ciertas cosas que siempre son igual, como los getter/setter. Esto si
+entra claramente dentro de las AST.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Las que modifican el codigo "cargado" en un "entorno" por otro</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://zeroturnaround.com/software/jrebel/">JRebel</a></p>
+</li>
+<li>
+<p><a href="https://github.com/spring-projects/spring-loaded">spring-loaded</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html">spring-dev-tools</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Vemos <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188">aqui</a>
+como para los test de esta ultima han usado ByteBuddy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que cambian el codigo en produccion mediante dinamic attach. <a href="https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/">Dynamic attach</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>En esta charla, nos cuentan  como usar <a href="http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html">YouDebug</a> como un depurador interactivo en produccion.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Las que compilan codigo desde unos fuentes en produccion. <a href="https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0">Compile sources en runtime</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>El mundo android</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Asistidas por gradle (con el plugin APT)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://google.github.io/dagger/users-guide">Dagger</a></p>
+</li>
+<li>
+<p><a href="http://jakewharton.github.io/butterknife/">Butterknife</a></p>
+</li>
+<li>
+<p><a href="http://androidannotations.org/">Android Annotation</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Arasthel/SwissKnife">SwissKnife</a> para groovy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Osgi vs Jigsaw
+Jeje, bueno, esto para otro dia :)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Y bueno, para que no se haga "bola" esta entrada del blog, simplemente reflejar
+"las distintas maneras de "generar codigo" que existen en el mundo de la JVM (java, groovy) ¿alguna mas?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bola_extra">Bola extra</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Algunas conversaciones en stackoverflow sobre android, groovy y generacion de codigo por APT</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt" class="bare">http://stackoverflow.com/questions/31536234/android-annotations-multiple-paths-to-apt</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken" class="bare">http://stackoverflow.com/questions/30991656/what-its-the-first-the-annotated-class-egg-or-used-class-chicken</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation" class="bare">http://stackoverflow.com/questions/31160831/android-groovy-android-annotation</a></p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -743,43 +427,43 @@ git branch -d feature/feature3</code></pre>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&text=Git &amp; Merge &amp; Rebase &amp; Flow&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&text=Groovy Metaprograming&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -792,12 +476,13 @@ git branch -d feature/feature3</code></pre>
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='tags/git.html'>git</a></li>
- 	        <li><a href='tags/merge.html'>merge</a></li>
- 	        <li><a href='tags/rebase.html'>rebase</a></li>
- 	        <li><a href='tags/git-flow.html'>git-flow</a></li>
+ 	        <li><a href='tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='tags/code.html'>code</a></li>
+ 	        <li><a href='tags/generation.html'>generation</a></li>
+ 	        <li><a href='tags/groovy.html'>groovy</a></li>
+ 	        <li><a href='tags/thymeleaf.html'>thymeleaf</a></li>
 
-				<li><a class="icon fa-comment" href="2017/06/git.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2017/07/groovy-metaprograming.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -961,6 +646,15 @@ git branch -d feature/feature3</code></pre>
                     <li>
                         <article>
                             <header>
+                                <a href="tags/dozer.html">dozer</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="tags/personal.html">personal</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -1052,6 +746,15 @@ git branch -d feature/feature3</code></pre>
                         <article>
                             <header>
                                 <a href="tags/merge.html">merge</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/mvc.html">mvc</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>

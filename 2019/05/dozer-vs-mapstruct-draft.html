@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Blog - Graalvm</title>
+    <title>Blog - Dozer vs MapStruct</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Jose Juan Montiel">
@@ -148,7 +148,7 @@
                     <h3>Recent Posts</h3>
                 </header>
                       <li>
-                          <a href="../../../../2018/02/mensajes_serializacion.html"><p>Message, serialization and other things</p></a>
+                          <a href="../../../../2018/10/moewller.html"><p>Joining the model - view - controller</p></a>
                       </li>
             </ul>
         </section>
@@ -168,13 +168,13 @@
    <header>
     <div class="title">
 
-                      <h1><a href="../../2018/03/graalvm.html">Graalvm (English version)</a></h1>
+                      <h1><a href="../../2019/05/dozer-vs-mapstruct.es.html">Dozer vs MapStruct (Spanish version)</a></h1>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='nov 18, 2017'>
-            nov 18, 2017</time>
+            datetime='May 09, 2018'>
+            May 09, 2018</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,117 +185,12 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_graalvm">Graalvm</h2>
+<h2 id="_jbake">JBake</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>¿Que es Graalvm? Se me había cruzado ya unas cuantas veces por el camino, y con
-las excusa de un "concurso" de: "código ofuscado / artístico / degenerativo" OFARDE
-voy a abordar una prueba de concepto.</p>
-</div>
-<div class="paragraph">
-<p>¿Nunca habéis jugado al veo-veo en un viaje en coche?</p>
-</div>
-<div class="paragraph">
-<p>Voy a usar Truffle, para implementar un lenguajes que usando Graal como un compilador
-dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar a:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Jugamos al veo-veo.</p>
-</li>
-<li>
-<p>Venga yo primero. Veo veo.</p>
-</li>
-<li>
-<p>En ese momento aparecerá una secuencia de cosas que se ven por la carretera.</p>
-</li>
-<li>
-<p>¿Que ves?</p>
-</li>
-<li>
-<p>Una cosita.</p>
-</li>
-<li>
-<p>En ese momento se parara la secuencia de cosas, indicando lo que se ve en ese momento.</p>
-</li>
-<li>
-<p>¿Que cosita es?</p>
-</li>
-<li>
-<p>Empieza por la letrita, ita, ita, ita&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Los pasos son:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Primero definir la gramática del lenguaje usando <a href="http://www.ssw.uni-linz.ac.at/Coco/">Coco</a>.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>La gramatica tendra el conjunto de palabras clave que desencadenan las acciones del juego.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Compilar esa gramatica con <a href="https://github.com/oracle/graal/blob/master/truffle/README.md">Truffle</a>.</p>
-</li>
-<li>
-<p>Implementar los comandos "visuales"</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Usar interfaz grafica en modo texto como esta[<a href="https://github.com/klamonte/jexer" class="bare">https://github.com/klamonte/jexer</a>]</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p><a href="https://github.com/kba/jcurses" class="bare">https://github.com/kba/jcurses</a></p>
-</li>
-<li>
-<p><a href="https://github.com/sunhong/jcurses" class="bare">https://github.com/sunhong/jcurses</a></p>
-</li>
-<li>
-<p><a href="https://github.com/mabe02/lanterna" class="bare">https://github.com/mabe02/lanterna</a></p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Ver como mezclar el uso de dos lenguajes a la vez.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Documentacion adicional:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/oracle/graal/blob/master/truffle/docs/Languages.md">Ejemplos de lenguaje implementados con truffle</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/oracle/graal/blob/master/truffle/docs/LanguageTutorial.md">Tutorial</a></p>
-</li>
-<li>
-<p><a href="https://www.youtube.com/watch?v=FJY96_6Y3a4&amp;feature=youtu.be">Video explicativo</a></p>
-</li>
-<li>
-<p><a href="https://wiki.openjdk.java.net/display/Graal/Publications+and+Presentations">Referencias</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="https://github.com/graalvm/simplelanguage">Ejemplo de lenguaje</a></p>
+<p>Dozer vs MapStruct</p>
 </li>
 </ul>
 </div>
@@ -308,43 +203,43 @@ dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar 
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/03/graalvm.es.html&text=Graalvm&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2019/05/dozer-vs-mapstruct.html&text=Dozer vs MapStruct&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/03/graalvm.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2019/05/dozer-vs-mapstruct.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/03/graalvm.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2019/05/dozer-vs-mapstruct.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/03/graalvm.es.html&title=Graalvm" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2019/05/dozer-vs-mapstruct.html&title=Dozer vs MapStruct" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/03/graalvm.es.html&title=Graalvm" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2019/05/dozer-vs-mapstruct.html&title=Dozer vs MapStruct" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/03/graalvm.es.html&title=Graalvm" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2019/05/dozer-vs-mapstruct.html&title=Dozer vs MapStruct" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/03/graalvm.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2019/05/dozer-vs-mapstruct.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -358,8 +253,10 @@ dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar 
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
  	        <li><a href='../../tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='../../tags/dozer.html'>dozer</a></li>
+ 	        <li><a href='../../tags/mapstruct.html'>mapstruct</a></li>
 
-				<li><a class="icon fa-comment" href="../../2018/03/graalvm.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../../2019/05/dozer-vs-mapstruct.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -446,10 +343,10 @@ dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar 
                       <li>
                           <article>
                               <header>
-                                  <h3><a href="../../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h3>
+                                  <h3><a href="../../2018/10/moewller.html">Joining the model - view - controller</a></h3>
                                    <time class="published"
-  							            datetime='feb 17, 2018'>
-  							            feb 17, 2018</time>
+  							            datetime='Oct 21, 2018'>
+  							            Oct 21, 2018</time>
                               </header>
                           </article>
                       </li>
@@ -546,6 +443,15 @@ dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar 
                         <article>
                             <header>
                                 <a href="../../tags/android.html">android</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/dozer.html">dozer</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -653,6 +559,15 @@ dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar 
                     <li>
                         <article>
                             <header>
+                                <a href="../../tags/mvc.html">mvc</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="../../tags/thymeleaf3.html">thymeleaf3</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -714,8 +629,8 @@ dinámico, nos permita jugar al veo-veo, pudiendo generar una secuencia similar 
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-82879918-1', 'auto');
   ga('send', 'pageview', {
-    'page': '2018/03/graalvm.es.html',
-    'title': 'Graalvm'
+    'page': '2019/05/dozer-vs-mapstruct.html',
+    'title': 'Dozer vs MapStruct'
       });
 </script>
 		<!-- This is called by default since this theme uses highlight.js -->
