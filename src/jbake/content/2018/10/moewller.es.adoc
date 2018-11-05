@@ -13,6 +13,43 @@ Jose Juan Montiel
 
 Hace tiempo que no escribo, pero sigo dandole vueltas a las cosas. En el ultimo articulo del blog, hablaba sobre serializacion, y en concreto sobre la serializacion de objetos a JSON (tanto para ser expuestos en un servicio REST como para serilizarlas en una base de datos NOSQL).
 
+.Graphviz
+[graphviz, dot-example, svg]
+--
+digraph moewller {
+    model -> view
+    view -> controller
+}
+--
+
+.UML Diagram Example
+[uml,file="uml-example.png"]
+--
+class CustomerMo {
+    -Long id
+    -String firstName
+    -String lastName
+}
+
+class CustomerView {
+    -String nombre
+    -String apellido
+}
+
+class Customer {
+    -Long id
+    -MVC layer = MVC.MO
+    -String firstName
+    -String lastName
+    -String getNombre()
+    -String getApellido()
+}
+--
+
+note "This is the "base/model" class. TODO - Maybe need some anotatios related JPA, could be from the begining..." as N1
+
+note "Use case: for rest (jackson) if private, don't show in rest TODO: make private (via reflection) when LLER" as N2
+
 En este articulo, me he panteado una prueba de concepto, que aviso, de momento esta incompleta. La prueba intenta montar una libreria que:
 
 * Permita mantener la separacion entre entre capas (de un MVC) usando un solo https://martinfowler.com/eaaCatalog/dataTransferObject.html[DTO] en vez de varios y una libreria de mapper, pero que a su vez permita las mismas o casi, ventajas de separacion.
