@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../../../2018/10/moewller.html"><p>Joining the model - view - controller</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -173,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='Nov 12, 2017'>
-            Nov 12, 2017</time>
+            datetime='nov 12, 2017'>
+            nov 12, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -211,7 +208,7 @@ we sail</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html" data-lang="html">&lt;form name='f' action="login" method='POST'&gt;
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;form name='f' action="login" method='POST'&gt;
    &lt;table&gt;
       &lt;tr&gt;
          &lt;td&gt;User:&lt;/td&gt;
@@ -234,7 +231,7 @@ admin / password we save in session, with the user key, the value of the usernam
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @PostMapping("/login")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @PostMapping("/login")
     public String login(
         @RequestParam(value="username", required=false) String username,
         @RequestParam(value="password", required=false) String password,
@@ -256,7 +253,7 @@ admin / password we save in session, with the user key, the value of the usernam
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html" data-lang="html">&lt;p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" /&gt;
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" /&gt;
 &lt;p th:text="'isLogged? ' + ${isLogged}" /&gt;</code></pre>
 </div>
 </div>
@@ -265,7 +262,7 @@ admin / password we save in session, with the user key, the value of the usernam
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -273,7 +270,7 @@ admin / password we save in session, with the user key, the value of the usernam
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @GetMapping("/logout")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/logout")
     public String login(HttpSession session) {
       session.invalidate();
       return "redirect:/login";
@@ -288,7 +285,7 @@ without refreshing the page.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript" data-lang="javascript">    function loginRemoto() {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    function loginRemoto() {
       var username = document.getElementById("username").value; <i class="conum" data-value="1"></i><b>(1)</b>
       var password = document.getElementById("password").value; <i class="conum" data-value="2"></i><b>(2)</b>
 
@@ -365,7 +362,7 @@ return an "Access-Control-Allow-Origin" with that host.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @Component
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Component
     public class CorsFilter extends OncePerRequestFilter {
 
         @Override
@@ -399,7 +396,7 @@ login made in A. The flow that we describe at the end of the first article.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript" data-lang="javascript">    var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
     document.cookie = "jsessionfroma="+jsessionid;</code></pre>
 </div>
 </div>
@@ -421,7 +418,7 @@ code, although we are now navigating from B) to:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">    @GetMapping("/isLogged")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/isLogged")
     	public String isLogged(@CookieValue(value="jsessionfroma", required=false) String jsessionfroma, <i class="conum" data-value="1"></i><b>(1)</b>
       HttpSession session, Model model) {
     		model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));
@@ -652,16 +649,6 @@ of services in Apache or Nginx? JWT?</p>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../../2018/10/moewller.html">Joining the model - view - controller</a></h3>
-                                   <time class="published"
-  							            datetime='Oct 21, 2018'>
-  							            Oct 21, 2018</time>
-                              </header>
-                          </article>
-                      </li>
 
                     <li>
                         <ul class="actions">
@@ -682,25 +669,7 @@ of services in Apache or Nginx? JWT?</p>
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/jvm.html">jvm</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
                                 <a href="../../tags/jbake.html">jbake</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/generation.html">generation</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -718,15 +687,6 @@ of services in Apache or Nginx? JWT?</p>
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/github.html">github</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
                                 <a href="../../tags/code.html">code</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -736,16 +696,7 @@ of services in Apache or Nginx? JWT?</p>
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/apt.html">apt</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/retrolambda.html">retrolambda</a>
+                                <a href="../../tags/golang.html">golang</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -764,33 +715,6 @@ of services in Apache or Nginx? JWT?</p>
                         <article>
                             <header>
                                 <a href="../../tags/dozer.html">dozer</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/personal.html">personal</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/git-flow.html">git-flow</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/thymeleaf.html">thymeleaf</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -827,24 +751,6 @@ of services in Apache or Nginx? JWT?</p>
                         <article>
                             <header>
                                 <a href="../../tags/springboot.html">springboot</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/gradle.html">gradle</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/groovy.html">groovy</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -895,6 +801,105 @@ of services in Apache or Nginx? JWT?</p>
                             </header>
                         </article>
                     </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/jvm.html">jvm</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/generation.html">generation</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/github.html">github</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/apt.html">apt</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/testing.html">testing</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/personal.html">personal</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/git-flow.html">git-flow</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/thymeleaf.html">thymeleaf</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/gradle.html">gradle</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/groovy.html">groovy</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
             </ul>
         </section>
 
@@ -911,7 +916,7 @@ of services in Apache or Nginx? JWT?</p>
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.5.1</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 

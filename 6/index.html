@@ -14,15 +14,15 @@
     <meta name="keywords" content="">
     <meta name="generator" content="JBake">
 
-    <link rel="stylesheet" href="css/google-font.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/add-on.css" />
-    <link rel="stylesheet" href="css/monokai-sublime.css">
+    <link rel="stylesheet" href="../css/google-font.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/add-on.css" />
+    <link rel="stylesheet" href="../css/monokai-sublime.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="img/favicon/favicon.png">
+    <link rel="shortcut icon" href="../img/favicon/favicon.png">
   </head>
   <body>
      <!-- Wrapper -->
@@ -52,7 +52,7 @@
 
 
         			<li>
-	                    <a href=" archive.html">
+	                    <a href=" ../archive.html">
 
 	                            <i class="fa fa-archive">&nbsp;</i>Archive
 
@@ -61,7 +61,7 @@
 
 
         			<li>
-	                    <a href=" about.html">
+	                    <a href=" ../about.html">
 
 	                            <i class="fa fa-user">&nbsp;</i>About
 
@@ -70,7 +70,7 @@
 
 
         			<li>
-	                    <a href=" feed.json">
+	                    <a href=" ../feed.json">
 
 	                            <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -118,21 +118,21 @@
                     </a>
                 </li>
         		 <li>
-                    <a href=" archive.html">
+                    <a href=" ../archive.html">
 
                             <i class="fa fa-archive">&nbsp;</i>Archive
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" about.html">
+                    <a href=" ../about.html">
 
                             <i class="fa fa-user">&nbsp;</i>About
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" feed.json">
+                    <a href=" ../feed.json">
 
                             <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -148,7 +148,7 @@
                     <h3>Recent Posts</h3>
                 </header>
                       <li>
-                          <a href="2016/10/groovy-thymelaf.html"><p>Thymeleaf 3 and Groovy</p></a>
+                          <a href="../../2017/11/cookies_2_of_2.html"><p>Cookies (2 of 2)</p></a>
                       </li>
             </ul>
         </section>
@@ -168,15 +168,15 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2016/10/groovy-thymelaf.html">Thymeleaf 3 and Groovy</a></h2>
+                    <h2><a href="../2017/11/cookies_2_of_2.html">Cookies (2 of 2)</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='Oct 12, 2016'>
-            Oct 12, 2016</time>
+            datetime='nov 12, 2017'>
+            nov 12, 2017</time>
             <div class="published eta"></div>
-        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
+        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
 </header>
 
@@ -185,178 +185,327 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_groovy">Groovy</h2>
+<h2 id="_and_now_what">And now what&#8230;&#8203;</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The first time i heard about Groovy, was in late 2010, early 2011. I used Freemind mind mapping, and then version 0.9 was about to release, with support for groovy, what was that?, It took some time using Freemind, and I said, if people use it, maybe could be interesting.</p>
+<p>After the examples discussed in the first part, where the protagonist was only
+the browser and the html, and where we have seen how a page can invoke (and
+is normal) images from other domains, if in the invocation urls it is
+pass parameters, they arrive at the destination server, and if this generates a session,
+the browser is responsible for creating the necessary cookies to maintain it.</p>
 </div>
 <div class="paragraph">
-<p>A dynamic language like Javascript, which could interact with the mental maps, making them dynamic too? To create nodes, relations between them, in a dynamic way?. I tried it, I did some things: a script that compiled the ticket Fogbugz and show me drawn as nodes in the mental map.</p>
+<p>But the thing changes, when javascript is in charge of making the request,
+and it is also another domain. Cors and cookies management will be the main problems.
+Let&#8217;s see.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_thymeleaf">Thymeleaf</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_authentication">Authentication</h3>
 <div class="paragraph">
-<p>Thymeleaf templating system is a server, both as standalone web. Its main objective is to provide a template system (not strictly HTML), natural and elegant that also function as static prototypes, enabling closer collaboration in development teams.</p>
-</div>
-<div class="paragraph">
-<p>In addition, modules Spring Framework, a series of integrations with their favorite tools, and the ability to connect their own functionality, thymeleaf is ideal for HTML5 web development in the JVM and more.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_why_no_mix_it">Why no mix it?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>One of the new features of thymeleaf 3 is still more design decouple HTML from data binding.</p>
+<p>To take the use of the session a bit further, we are going to create a page of
+login. Remember that here, A represents the 3rd party, and B the page whereby
+we sail</p>
 </div>
 <div class="paragraph">
-<p>In <a href="https://github.com/thymeleaf/thymeleaf/issues/465">this link</a> count as work.</p>
-</div>
-<div class="paragraph">
-<p>The question is, if I can lay  something like</p>
+<p>With this login page</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;table id="usersTable"&gt;
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;form name='f' action="login" method='POST'&gt;
+   &lt;table&gt;
       &lt;tr&gt;
-        &lt;td class="username"&gt;Jeremy Grapefruit&lt;/td&gt;
-        &lt;td class="usertype"&gt;Normal User&lt;/td&gt;
+         &lt;td&gt;User:&lt;/td&gt;
+         &lt;td&gt;&lt;input type="text" id="username" name="username" value="" /&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-        &lt;td class="username"&gt;Alice Watermelon&lt;/td&gt;
-        &lt;td class="usertype"&gt;Administrator&lt;/td&gt;
+         &lt;td&gt;Password:&lt;/td&gt;
+         &lt;td&gt;&lt;input type="password" id="password" name="password" /&gt;&lt;/td&gt;
       &lt;/tr&gt;
-    &lt;/table&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+      &lt;tr&gt;
+         &lt;td&gt;&lt;input name="submit" type="submit" value="submit" /&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+   &lt;/table&gt;
+&lt;/form&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>I can define so, as it will generate the binding of the fields&#8230;&#8203;</p>
+<p>We can call this driver, where if the user / password matches
+admin / password we save in session, with the user key, the value of the username.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml" data-lang="xml">&lt;?xml version="1.0"?&gt;
-&lt;thlogic&gt;
-  &lt;attr sel="#usersTable" th:remove="all-but-first"&gt;
-    &lt;attr sel="/tr[0]" th:each="user : ${users}"&gt;
-      &lt;attr sel="td.username" th:text="${user.name}" /&gt;
-      &lt;attr sel="td.usertype" th:text="#{|user.type.${user.type}|}" /&gt;
-    &lt;/attr&gt;
-  &lt;/attr&gt;
-&lt;/thlogic&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @PostMapping("/login")
+    public String login(
+        @RequestParam(value="username", required=false) String username,
+        @RequestParam(value="password", required=false) String password,
+        HttpSession session) {
+
+      if (session.getAttribute("user")!=null) {
+        return "redirect:/isLogged";
+      } else if ("admin".equals(username) &amp;&amp; "password".equals(password)) {
+        session.setAttribute("user", username);
+        return "redirect:/isLogged";
+      } else {
+        return "redirect:/login";
+      }
+    }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>then, why not write in groovy</p>
+<p>And after that, we redirected to the isLogged page, where it shows if we are logged.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">thlogic {
-    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
-        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
-            attr(sel:'td.username', 'th:text':'${user.name}')
-            attr(sel:'td.usertype', 'th:text':'${user.type}')
-        }
-    }
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" /&gt;
+&lt;p th:text="'isLogged? ' + ${isLogged}" /&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><a href="http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html">Here is</a> the explanation in thymeleaf&#8217;s forum.</p>
-</div>
-<div class="paragraph">
-<p>And if we can made this, we could made <a href="http://groovy-lang.org/processing-xml.html#_markupbuilder">this one</a></p>
+<p>where the value true / false comes from that it is admin, that value in session for user.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">thlogic {
-    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
-        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
-			(1..3).each { n -&gt;			<i class="conum" data-value="1"></i><b>(1)</b>
-				attr(sel:'td.username', 'th:text':'${user.name}')
-				attr(sel:'td.usertype', 'th:text':'${user.type}')
-			}
-        }
-    }
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To test the operation, we set up a logout endpoint, which invalidates the session.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/logout")
+    public String login(HttpSession session) {
+      session.invalidate();
+      return "redirect:/login";
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, start the interesting part of the experiment, let&#8217;s simulate what the
+browser would do for us if we mount a login form in our
+page B to another domain A, but in such a way that it is done by javascript and
+without refreshing the page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    function loginRemoto() {
+      var username = document.getElementById("username").value; <i class="conum" data-value="1"></i><b>(1)</b>
+      var password = document.getElementById("password").value; <i class="conum" data-value="2"></i><b>(2)</b>
+
+      var http = new XMLHttpRequest();
+      var url = "http://a.127.0.0.1.xip.io:9000/login";
+      var params = "username="+username+"&amp;password="+password;
+      http.open("POST", url, true); <i class="conum" data-value="3"></i><b>(3)</b>
+
+      //Send the proper header information along with the request
+      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); <i class="conum" data-value="4"></i><b>(4)</b>
+
+      http.onreadystatechange = function() { //Call a function when the state changes.
+          if(http.readyState == 4 &amp;&amp; http.status == 200) {
+            var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
+            document.cookie = "jsessionfroma="+jsessionid;
+          }
+      }
+      http.send(params);
+    }</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Include the logic in xml generation&#8230;&#8203;</td>
+<td>We obtain the user</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We get the password</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We build a POST request to the login of A</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This is the content-type that the browser sends in the forms</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>This we will see later</td>
 </tr>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_one_example_with_all_mixed">One example with all mixed</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_access_control_allow_origin">Access-Control-Allow-Origin</h3>
 <div class="paragraph">
-<p>In <a href="https://github.com/josejuanmontiel/adorable-avatar">this project</a> i mount an example of use of thymeleaf 3 in a springboot project with groovy as the main language, and <a href="https://github.com/josejuanmontiel/dynamic-rest-template">here</a> took out the rest of access to services, and wanted to try something else was jitpack to generate libraries git projects, on-demand.</p>
+<p>The problem is that, the browser can let us ask in A, images of B, but
+sending requests XMLHttpRequest (or what we have known by ajax) and
+They are another subject. And the issue is that in this case, what would the receiver of this
+request, by default does not allow the reception of requests from another domain
+different from yours. <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Aqui</a>
+They detail how this works. And <a href="https://spring.io/guides/gs/rest-service-cors/#_enabling_cors">aqui</a>
+they tell how Spring manages the theme.</p>
+</div>
+<div class="sect3">
+<h4 id="_js_apis_for_third_party_services_on_your_web">JS APIs for third-party services on your Web</h4>
+<div class="paragraph">
+<p>At this point, you might get to ask yourself, because certain types of websites,
+that allow you to use their services on your website, or being a little more precise,
+allow your users to use their services on your website, they need
+register the url of your web.</p>
+</div>
+<div class="paragraph">
+<p>Well, I never knew, but after these proofs of concept, I would say that
+because they need to configure their servers, so that when the "remote address"
+of the request is the same as that of any of those who have registered "clients",
+return an "Access-Control-Allow-Origin" with that host.</p>
+</div>
+<div class="paragraph">
+<p>This would be the filter, which controls this.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle" data-lang="gradle">	maven { url "https://jitpack.io" }
-	compile 'com.github.josejuanmontiel:dynamic-rest-template:-SNAPSHOT'</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_next_steps">Next steps</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Many applications are the type, called a rest services and exposure in the view. Why not make an application front, in the back? I thought it would be quite interesting, that in the definition of binding in groovy could add information about the rest services to be consulted, to fill the data binding in the rendering phase.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">rest{
-	url{
-		http://...
-	}
-	binding {
-		user.name=response.body.user
-		user.type=response.body.type
-		...
-	}
-}
-thlogic {
-    attr(sel:'#usersTable', 'th:remove':'all-but-first') {
-        attr(sel:'/tr[0]', 'th:each':'user : ${users}') {
-            attr(sel:'td.username', 'th:text':'${user.name}')
-            attr(sel:'td.usertype', 'th:text':'${user.type}')
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Component
+    public class CorsFilter extends OncePerRequestFilter {
+
+        @Override
+        protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
+                                        final FilterChain filterChain) throws ServletException, IOException {
+            response.addHeader("Access-Control-Allow-Origin", "b.127.0.0.1.xip.io");
+            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD, OPTIONS");
+            response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+            response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials");
+            response.addHeader("Access-Control-Allow-Credentials", "true");
+            response.addIntHeader("Access-Control-Max-Age", 10);
+            filterChain.doFilter(request, response);
         }
-    }
-}</code></pre>
+    }</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_and_the_cookies">And the cookies?</h3>
+<div class="paragraph">
+<p>Recall, that the goal is that from a page of B, there is a Javascript
+that connects with A to validate a user / password and that later, B can
+read a cookie generated by that Javascript, really in B, to make a
+call from server B to server A, posing as the user of B,
+that I make the request to A, to save in session B, the confidence in that
+login made in A. The flow that we describe at the end of the first article.</p>
 </div>
 <div class="paragraph">
-<p>And seeing the <a href="https://twitter.com/nicolas_frankel/status/760441910272135168">tweet</a> Nicolas Frankel, test values (maximum and minimum) of each of the fields are indicated binding and that during development, are that the fake data used to lay out the project, while services are mounted.</p>
+<p>First, remember the step (5) that we leave without explaining</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy" data-lang="groovy">rest{
-	url{ ... }
-	binding { ... }
-	test {
-		user.name=[user1, user2, user3]
-		user.type=[admin, normal, editor]
-	}
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
+    document.cookie = "jsessionfroma="+jsessionid;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For all this, metaprogramming &#8230;&#8203; in groovy. To see what ends the idea.</p>
+<p>is the one that is responsible for setting the cookie in B. There are more ways, that I have not explored,
+but in this case, in the url returned by the login process, as the server
+A sees that B can not receive a cookie, generates a redirect url that carries
+as parameter the JSESSIONID, value to be able to correlate the session that we
+has generated A to us that we navigate from B, and we have launched the XMLHttpRequest
+of login.</p>
+</div>
+<div class="paragraph">
+<p>So we parse that URL (getJSessionId) and we keep the JSESSIONID and what
+We keep in a cookie (document.cookie) of B, which is where we are browsing.</p>
+</div>
+<div class="paragraph">
+<p>Now, we evolved the isLogged driver code of B (and A, it&#8217;s the same
+code, although we are now navigating from B) to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/isLogged")
+    	public String isLogged(@CookieValue(value="jsessionfroma", required=false) String jsessionfroma, <i class="conum" data-value="1"></i><b>(1)</b>
+      HttpSession session, Model model) {
+    		model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));
+
+    		if (jsessionfroma!=null) {  <i class="conum" data-value="2"></i><b>(2)</b>
+    			ParameterizedTypeReference&lt;String&gt; typeRef = new ParameterizedTypeReference&lt;String&gt;() {};
+    			HttpHeaders requestHeaders = new HttpHeaders();
+    			requestHeaders.add("Cookie", "JSESSIONID=" + jsessionfroma + "; domain=a.127.0.0.1.xip.io;");  <i class="conum" data-value="3"></i><b>(3)</b>
+    			HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+
+    			ResponseEntity&lt;String&gt; response = restTemplate.exchange("http://a.127.0.0.1.xip.io:9000/isLogged", HttpMethod.GET, requestEntity, typeRef);
+
+    			boolean isRemoteLogged = response.getBody().contains("isLogged? true");  <i class="conum" data-value="4"></i><b>(4)</b>
+
+    			Pattern pattern = Pattern.compile("---(.*?)---");
+    			Matcher matcher = pattern.matcher(response.getBody());
+    			String username = "";
+    			while (matcher.find()) {
+    				username = matcher.group(1);  <i class="conum" data-value="5"></i><b>(5)</b>
+    			}
+    			if (isRemoteLogged) {
+    				session.setAttribute("user",username);  <i class="conum" data-value="6"></i><b>(6)</b>
+    			}
+
+    			System.out.println(response.getBody());
+    		}
+
+    		return "isLogged";
+    	}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Read the cookie jsessionfroma, which is what we generated from Javascript
+that I call A from B to do the login. The "step 5"</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>If we have that cookie, then we proceed to make the call to A from the
+back of B.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>In the request that we are going to make to A, we are going to add the header cookie, with the
+value of the JSESSIONID obtained, that is, we will send it to A the cookie for
+that sees that we were logado.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We pause the answer, to see if in A we paint that we are logados.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>We are left with the username logado.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>And if we are logged in the remote, then we save in the session of B,
+the logged user</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Therefore, in this way we have managed to achieve from Javascript in a service
+of third parties, and from a back communication, with that service and with the cookie that
+that javascript has generated us, check that we are correctly logged,
+to log us automatically on our website.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_code">The code</h3>
+<div class="paragraph">
+<p>In <a href="https://github.com/josejuanmontiel/cookies">this repository</a> from github.</p>
+</div>
+<div class="paragraph">
+<p>But it gives me, that I have many questions left in the pipeline, and other approaches
+possible. JSON-P? Google advertising? Security issues? SSO? Proxy
+of services in Apache or Nginx? JWT?</p>
+</div>
+<div class="paragraph">
+<p>A chapter 3?</p>
+</div>
 </div>
 </div>
 </div>
@@ -367,43 +516,43 @@ thlogic {
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&text=Thymeleaf 3 and Groovy&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&text=Cookies (2 of 2)&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&title=Cookies (2 of 2)" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&title=Cookies (2 of 2)" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&title=Cookies (2 of 2)" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -416,12 +565,10 @@ thlogic {
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='tags/jvm.html'>jvm</a></li>
- 	        <li><a href='tags/groovy.html'>groovy</a></li>
- 	        <li><a href='tags/thymeleaf3.html'>thymeleaf3</a></li>
- 	        <li><a href='tags/springboot.html'>springboot</a></li>
+ 	        <li><a href='../tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='../tags/cookies.html'>cookies</a></li>
 
-				<li><a class="icon fa-comment" href="2016/10/groovy-thymelaf.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2017/11/cookies_2_of_2.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -435,7 +582,7 @@ thlogic {
 
     <!-- Intro -->
         <section id="intro">
-                                    <a href="" class="logo"><img src="img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
+                                    <a href="../" class="logo"><img src="../img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
 
 
                 <header>
@@ -493,10 +640,10 @@ thlogic {
                       <li>
                           <article>
                               <header>
-                                  <h3><a href="2016/10/groovy-thymelaf.html">Thymeleaf 3 and Groovy</a></h3>
+                                  <h3><a href="../2017/11/cookies_2_of_2.html">Cookies (2 of 2)</a></h3>
                                    <time class="published"
-  							            datetime='Oct 12, 2016'>
-  							            Oct 12, 2016</time>
+  							            datetime='nov 12, 2017'>
+  							            nov 12, 2017</time>
                               </header>
                           </article>
                       </li>
@@ -514,7 +661,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jvm.html">jvm</a>
+                                <a href="../tags/jbake.html">jbake</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -523,7 +670,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jbake.html">jbake</a>
+                                <a href="../tags/rebase.html">rebase</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -532,7 +679,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/generation.html">generation</a>
+                                <a href="../tags/code.html">code</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -541,7 +688,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/rebase.html">rebase</a>
+                                <a href="../tags/golang.html">golang</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -550,7 +697,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/github.html">github</a>
+                                <a href="../tags/android.html">android</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -559,7 +706,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/code.html">code</a>
+                                <a href="../tags/dozer.html">dozer</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -568,7 +715,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/apt.html">apt</a>
+                                <a href="../tags/blog.html">blog</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -577,7 +724,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/retrolambda.html">retrolambda</a>
+                                <a href="../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -586,7 +733,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/android.html">android</a>
+                                <a href="../tags/serilize.html">serilize</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -595,7 +742,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/dozer.html">dozer</a>
+                                <a href="../tags/springboot.html">springboot</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -604,7 +751,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/personal.html">personal</a>
+                                <a href="../tags/git.html">git</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -613,7 +760,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git-flow.html">git-flow</a>
+                                <a href="../tags/merge.html">merge</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -622,7 +769,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf.html">thymeleaf</a>
+                                <a href="../tags/mvc.html">mvc</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -631,7 +778,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/blog.html">blog</a>
+                                <a href="../tags/thymeleaf3.html">thymeleaf3</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -640,7 +787,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/cookies.html">cookies</a>
+                                <a href="../tags/hippocms.html">hippocms</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -649,7 +796,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/serilize.html">serilize</a>
+                                <a href="../tags/jvm.html">jvm</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -658,7 +805,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/springboot.html">springboot</a>
+                                <a href="../tags/generation.html">generation</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -667,7 +814,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/gradle.html">gradle</a>
+                                <a href="../tags/github.html">github</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -676,7 +823,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/groovy.html">groovy</a>
+                                <a href="../tags/apt.html">apt</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -685,7 +832,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git.html">git</a>
+                                <a href="../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -694,7 +841,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/merge.html">merge</a>
+                                <a href="../tags/retrolambda.html">retrolambda</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -703,7 +850,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/mvc.html">mvc</a>
+                                <a href="../tags/personal.html">personal</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -712,7 +859,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf3.html">thymeleaf3</a>
+                                <a href="../tags/git-flow.html">git-flow</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -721,7 +868,25 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/hippocms.html">hippocms</a>
+                                <a href="../tags/thymeleaf.html">thymeleaf</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/gradle.html">gradle</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/groovy.html">groovy</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -737,13 +902,13 @@ thlogic {
             <p>Personal blog</p>
 
             <ul class="actions">
-                <li><a href="about.html" class="button">Learn More</a></li>
+                <li><a href="../about.html" class="button">Learn More</a></li>
             </ul>
         </section>
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.5.1</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 
@@ -757,13 +922,13 @@ thlogic {
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/backToTop.js"></script>
-		<script src="js/highlight.pack.js"></script>
-		<script src="js/readingTime.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/skel.min.js"></script>
+		<script src="../js/util.js"></script>
+		<script src="../js/main.js"></script>
+		<script src="../js/backToTop.js"></script>
+		<script src="../js/highlight.pack.js"></script>
+		<script src="../js/readingTime.js"></script>
 
 			<script id="dsq-count-scr" src="//josejuanmontiel.disqus.com/count.js" async></script>
 <script>

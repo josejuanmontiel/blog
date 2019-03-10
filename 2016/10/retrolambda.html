@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../../../2018/10/moewller.html"><p>Joining the model - view - controller</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -173,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='Oct 19, 2016'>
-            Oct 19, 2016</time>
+            datetime='oct 19, 2016'>
+            oct 19, 2016</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -224,7 +221,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">public interface IconProvider extends IClusterable {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface IconProvider extends IClusterable {
 	default Component getIcon(final String id, IconSize size) {
 		return null;
 	}
@@ -236,7 +233,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">public abstract interface IconProvider2 extends IClusterable {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public abstract interface IconProvider2 extends IClusterable {
   public abstract Component getIcon(String paramString, IconSize paramIconSize);
 }</code></pre>
 </div>
@@ -249,7 +246,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -257,7 +254,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
 	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider</code></pre>
 </div>
 </div>
@@ -295,7 +292,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
 index 99bdb0e..9b34ce1 100644
 --- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
 +++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
@@ -362,7 +359,7 @@ index 450712b..9d09210 100644
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
 [ERROR] symbol:   method of(Calendar)
 [ERROR] location: interface DateTimePrinter
 [ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
@@ -378,7 +375,7 @@ index 450712b..9d09210 100644
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
 index 5a97066..ab938b7 100644
 --- a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
 +++ b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
@@ -568,16 +565,6 @@ index 5a97066..ab938b7 100644
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../../2018/10/moewller.html">Joining the model - view - controller</a></h3>
-                                   <time class="published"
-  							            datetime='Oct 21, 2018'>
-  							            Oct 21, 2018</time>
-                              </header>
-                          </article>
-                      </li>
 
                     <li>
                         <ul class="actions">
@@ -598,25 +585,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/jvm.html">jvm</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
                                 <a href="../../tags/jbake.html">jbake</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/generation.html">generation</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -634,15 +603,6 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/github.html">github</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
                                 <a href="../../tags/code.html">code</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -652,16 +612,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/apt.html">apt</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/retrolambda.html">retrolambda</a>
+                                <a href="../../tags/golang.html">golang</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -680,33 +631,6 @@ index 5a97066..ab938b7 100644
                         <article>
                             <header>
                                 <a href="../../tags/dozer.html">dozer</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/personal.html">personal</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/git-flow.html">git-flow</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/thymeleaf.html">thymeleaf</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -743,24 +667,6 @@ index 5a97066..ab938b7 100644
                         <article>
                             <header>
                                 <a href="../../tags/springboot.html">springboot</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/gradle.html">gradle</a>
-                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
-                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
-                            </header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>
-                                <a href="../../tags/groovy.html">groovy</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -811,6 +717,105 @@ index 5a97066..ab938b7 100644
                             </header>
                         </article>
                     </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/jvm.html">jvm</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/generation.html">generation</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/github.html">github</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/apt.html">apt</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/testing.html">testing</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/personal.html">personal</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/git-flow.html">git-flow</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/thymeleaf.html">thymeleaf</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/gradle.html">gradle</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/groovy.html">groovy</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
             </ul>
         </section>
 
@@ -827,7 +832,7 @@ index 5a97066..ab938b7 100644
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.5.1</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 

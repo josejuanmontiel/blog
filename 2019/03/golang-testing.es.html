@@ -7,22 +7,22 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Blog</title>
+    <title>Blog - Groovy DSL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="JoseJuanMontiel">
+    <meta name="author" content="Jose Juan Montiel">
     <meta name="keywords" content="">
     <meta name="generator" content="JBake">
 
-    <link rel="stylesheet" href="css/google-font.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/add-on.css" />
-    <link rel="stylesheet" href="css/monokai-sublime.css">
+    <link rel="stylesheet" href="../../css/google-font.css" />
+    <link rel="stylesheet" href="../../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../css/add-on.css" />
+    <link rel="stylesheet" href="../../css/monokai-sublime.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="img/favicon/favicon.png">
+    <link rel="shortcut icon" href="../../img/favicon/favicon.png">
   </head>
   <body>
      <!-- Wrapper -->
@@ -52,7 +52,7 @@
 
 
         			<li>
-	                    <a href=" archive.html">
+	                    <a href=" ../../archive.html">
 
 	                            <i class="fa fa-archive">&nbsp;</i>Archive
 
@@ -61,7 +61,7 @@
 
 
         			<li>
-	                    <a href=" about.html">
+	                    <a href=" ../../about.html">
 
 	                            <i class="fa fa-user">&nbsp;</i>About
 
@@ -70,7 +70,7 @@
 
 
         			<li>
-	                    <a href=" feed.json">
+	                    <a href=" ../../feed.json">
 
 	                            <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -118,21 +118,21 @@
                     </a>
                 </li>
         		 <li>
-                    <a href=" archive.html">
+                    <a href=" ../../archive.html">
 
                             <i class="fa fa-archive">&nbsp;</i>Archive
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" about.html">
+                    <a href=" ../../about.html">
 
                             <i class="fa fa-user">&nbsp;</i>About
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" feed.json">
+                    <a href=" ../../feed.json">
 
                             <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="2018/02/mensajes_serializacion.html"><p>Message, serialization and other things</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -162,21 +159,21 @@
         </section>
         -->
 </section>
-
 	<div id="main">
+
 <article class="post">
    <header>
     <div class="title">
 
-                    <h2><a href="2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h2>
+                      <h1><a href="../../2019/03/golang-testing.html">Groovy DSL (English version)</a></h1>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='Feb 17, 2018'>
-            Feb 17, 2018</time>
+            datetime='mar 09, 2019'>
+            mar 09, 2019</time>
             <div class="published eta"></div>
-        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
+        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
 </header>
 
@@ -185,178 +182,206 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_messages_serialization_and_other_things">Messages, serialization and other things</h2>
+<h2 id="_testing_en_golang">Testing en GoLang</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I remember one time a colleague told me, something like this: "My boss said, that the one
-manage the string, it handles everything". Taken out of context, it may seem
-pretentious, but do not you get the feeling that most of the programming is
-reduces to "manipulation"?</p>
-</div>
-<div class="paragraph">
-<p>And if you stop to think, today, is not it reduced to communication? To the shipment of
-"messages"? And that&#8217;s where I want to get in this article, to the famous serialization
-and deserialization.</p>
-</div>
-<div class="paragraph">
-<p>I did not get to experience it, but when I started in the Java world, there was still talk
-of <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">Corba</a> and
-<a href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">RMI</a>.
-I&#8217;m not going to stop much, for that we have the wikipedia, but the first let&#8217;s say
-it served to communicate separate and distinct systems, and the second more "close".</p>
-</div>
-<div class="paragraph">
-<p>To what if it arrives, and went to the world to <a href="https://en.wikipedia.org/wiki/SOAP">SOAP</a>.
-If we look back, the "XML was invented" at <a href="https://en.wikipedia.org/wiki/XML#History">1998</a>,
-I even remember doing an interview in my beginnings for the "xml company".
-And in XML, SOAP is based on the transmission of messages. Here begins to stop
-side the "binary" messages to move to XML, with its supposed advantages, and disadvantages.
-Because parsing and loading into XML memory was expensive, agile because you could access
-any part of the message, but expensive.</p>
-</div>
-<div class="paragraph">
-<p>I do not extend more here, just remember DTD, XSD, XSLT, and a series more than
-acronyms related to the XML world.</p>
-</div>
-<div class="paragraph">
-<p>But people got tired of the XML soon, in 2000 came the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
-People were tired of schemes, of rigidity, the new millennium wanted flexibility,
-browsers wanted to be able to find what they wanted, without having to load everything.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s say that the REST, brought the JSON, a format where the "tabulation" gave the format,
-and there was no need for so much label, which reduced the size of the messages,
-but hey, it was still necessary to parse them.</p>
-</div>
-<div class="paragraph">
-<p>At that time, Google started using <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a> internally,
-a binary specification language. The same thought that in the end, either
-It made a lot of sense that the messages were "human-readable", and even if I could
-there is compression of an XML message in a superior layer, in the end it is effort
-to serialize and deserialize in a "human-readable" way was not an obstacle either
-to not put one field after another.</p>
-</div>
-<div class="paragraph">
-<p>On the other hand, the <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
-it began to evolve.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2018/02/glory-of-rest.png" alt="Glory of rest">
-</div>
-</div>
-<div class="paragraph">
-<p>And things started to appear like: <a href="https://swagger.io/">Swagger</a> and <a href="https://raml.org/">RAML</a>,
-that end up merging at <a href="https://www.openapis.org/">OPENAPI</a> and things like:
-<a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
-even <a href="http://graphql.org/learn/">GraphQL</a>, which to be the query language
-that we know, part of a language of definition of structures.</p>
-</div>
-<div class="paragraph">
-<p>In the end, in the Java world, and I suppose that in the rest of languages also, all
-Transmission requires serialization and deserialization (which may be more
-or less complex).</p>
-</div>
-<div class="paragraph">
-<p>For example, the transmission of a large XML to a destination, where it only interests you
-certain data of the same, does not have to serialize it in memory to make a
-On the DOM, a parser can be used <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
-to look for what is needed, and it does not matter the size of the XML, it will take more or less the same,
-because the overhead is produced when it is loaded into memory.</p>
-</div>
-<div class="paragraph">
-<p>In the case of a JSON, those who need their specified getter / setter,
-the parsers that simply load in hash, those that use the reflection, those that
-they do not use it (because the user codes a certain part), those that "precompile" code,
-those who &#8230;&#8203;</p>
-</div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<div class="paragraph">
-<p>In the end, in this world of programming, you can never think that you know everything,
-and in IMHO you can always improve, doing things differently.</p>
-</div>
-<div class="paragraph">
-<p>If we dive a little, we can find some benchmarks. For example in this
-<a href="https://github.com/fabienrenaud/java-json-benchmark">comparatories on libraries</a>
-we can discover the large number of JSON libraries that exist, and their different
-performance, proof that you can always evolve, and when you reach the
-physical limits, you can always do it in another way. In this other
-<a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
-inclyendo protobuf</a> do the analysis, focusing on the number of attributes, of
-the class to be serialized, and they make some interesting considerations of the transformations
-that pass "below", away from the sight of our eyes, commenting on changes between
-JDK 8 and 9.</p>
-</div>
-<div class="ulist">
-<div class="title">We can highlight the following libraries:</div>
-<ul>
-<li>
-<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Use a dsl to generate the parser.</p>
-</li>
-<li>
-<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompiling a parser.</p>
-</li>
-<li>
-<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolution of the well-known library.</p>
-</li>
-<li>
-<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> A more theoretical approach using Graavl.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>What if we talk about bbdd NSQL or document-oriented ?, as for example CouchBase &#8230;&#8203;?</p>
-</div>
-<div class="paragraph">
-<p>In the end, here using the java API, there is also a serialization / deserialization,
-in the end what is saved is a document, which must (according to API) serialize more or less.</p>
-</div>
-<div class="paragraph">
-<p>In <a href="https://github.com/josejuanmontiel/demo-couchbase">this</a> repo, I have messed around a little with some ideas.</p>
-</div>
-<div class="olist arabic">
-<div class="title">The conclusions?</div>
-<ol class="arabic">
-<li>
-<p>It is clear that the smaller the entity to persist, the sooner it will persist.</p>
-</li>
-<li>
-<p>But not by inserting it into smaller pieces (related to each other)
-Insert before.</p>
-</li>
-<li>
-<p>Both for insertions and queries, if a string is inserted, without going through
-JPA can earn 50% (discounting the serialization to String, remember that
-   arrives in String format from synchro) and 90% in reading approx.</p>
-</li>
-<li>
-<p>A .findOne in spring data jpa, will always be slower than a native one.
-Does the view on the entity type add a delay?</p>
-</li>
-<li>
-<p>Network latency from the server to the bbdd also counts, less data, faster.</p>
-</li>
-<li>
-<p>The servers with SSD vs HDD for bbdd nosql show large differences in performance.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>It depends on the use and the problem that you want to address, it can not always make sense,
-serialize to have the "objects" accessible, but let&#8217;s use them.</p>
+<p>En esta ocasion, voy a comentar mis avances en el mundo del testing con GoLang. Para ello, con la ayuda de <a href="https://github.com/josejuanmontiel/golang/tree/master/testing">el siguiente codigo</a> voy a comentar algunos conceptos que he aprendido.</p>
 </div>
 <div class="sect2">
-<h3 id="_as_an_exercise_for_home">As an exercise for home</h3>
+<h3 id="_interfaces">Interfaces</h3>
 <div class="paragraph">
-<p>According to the <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> if
-will change the implementation of JsonConverter from Jackson to Jsonite, could win
-30% in the part that the spring data library jpa passes from the object to
-com.couchbase.client.java.document.json.JsonObject.</p>
+<p>Esta es la manera de definir una interface en Go.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Doer interface {
+    DoSomething(int, string) error
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Make a pull request to implement <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
-of couchbase with <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
-and see if it&#8217;s faster than the standard, and not much less than with the <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
+<p>Para que una clase implemente una interfaz, solo es necesario implemntar todos los metodos de la interfaz.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type doerImpl struct {              <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+func NewDoerService() Doer {        <i class="conum" data-value="2"></i><b>(2)</b>
+	return &amp;doerImpl{}              <i class="conum" data-value="3"></i><b>(3)</b>
+}
+
+func (d *doerImpl) DoSomething(numero int, cadena string) error {   <i class="conum" data-value="4"></i><b>(4)</b>
+	fmt.Println("Calling DoSomething method")
+	fmt.Println(cadena)                                 <i class="conum" data-value="5"></i><b>(5)</b>
+	return errors.New("error")                          <i class="conum" data-value="6"></i><b>(6)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Toda clase necesita de una estructura.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Esta funcion es el constructor de la implementacion, devuelve la interfaz.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Asi devolvemos la referencia a la estructura de esta implementacion.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Esta seria el metodo que vamos a implementar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>La implementacion imprime el parametro de entrada.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Devuelve una clase error.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ahora supongamos que tenemos otra clase donde hacemos uso de esa implementacion de la interfaz.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type User struct {
+	Doer doer.Doer                  <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+func NewUser(d doer.Doer) *User {   <i class="conum" data-value="2"></i><b>(2)</b>
+	return &amp;User{d}                 <i class="conum" data-value="3"></i><b>(3)</b>
+}
+
+func (u *User) Use() error {
+	fmt.Println("Calling Use method")
+	return u.Doer.DoSomething(123, "Hello GoMock")  <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>En este caso, al declarar la estructura de la clase, definimos un atributo del tipo de la interfaz</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>En el constructor de esta clase, pasamos una instancia de la implementacion de la interfaz</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Aqui es donde la pasamos.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Esta funcion, hace uso de la funcion que hemos implementado de la interfaz.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Consideremos ahora el siguiente main que va a instanciar la implementacion y luego pasarla a la funcion que hace uso de la interfaz.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func main() {
+	newDoerImpl := doer.NewDoerService()        <i class="conum" data-value="1"></i><b>(1)</b>
+	_ = newDoerImpl.DoSomething(1, "hola")      <i class="conum" data-value="2"></i><b>(2)</b>
+
+	newUser := user.NewUser(newDoerImpl)        <i class="conum" data-value="3"></i><b>(3)</b>
+	newUser.Use()                               <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Usando el constructor, instanciamos la implementacion</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Ahora llamamos a la funcion de la implemtacion</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Si cogemos esa instancia y la pasamos al constructor de la nueva clase</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Podemos hacer uso de la funcion, que hara uso de la clase de la implementacion</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ahora supongamos que queremos testear la funcion Use() pero no queremos que se llame a DoSomething.</p>
+</div>
+<div class="paragraph">
+<p>Para ello vamos a usar la <a href="https://github.com/golang/mock">libreria de mock en go</a>. Esta libreria al igual que otras similares en otros lenguajes nos permiten mockear los objetos que no queremos testear, en este caso nuestro objetivo es mockerar la implementacion de la interfaz para poder testear el metodo Use.</p>
+</div>
+<div class="paragraph">
+<p>Notar que para generar esta clase mock, debemos indicarle una interfaz sobre la que se ha construido la implementacion que queremos mockear, en este caso Doer, y gomock nos genera una clase que nos permite instrumentalizar la clase a mockear.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func TestUseReturnsErrorFromDo(t *testing.T) {
+	fmt.Println("TestUseReturnsErrorFromDo")
+
+	mockCtrl := gomock.NewController(t)             <i class="conum" data-value="1"></i><b>(1)</b>
+	defer mockCtrl.Finish()
+
+	dummyError := errors.New("dummy error")
+	mockDoer := mocks.NewMockDoer(mockCtrl)         <i class="conum" data-value="3"></i><b>(3)</b>
+	testUser := &amp;user.User{Doer: mockDoer}          <i class="conum" data-value="2"></i><b>(2)</b>
+
+	mockDoer.EXPECT().DoSomething(123, "Hello GoMock").Return(dummyError).Times(1)  <i class="conum" data-value="4"></i><b>(4)</b>
+
+	err := testUser.Use()                           <i class="conum" data-value="5"></i><b>(5)</b>
+
+	if err != dummyError {
+		t.Fail()
+	}
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Inicializamos la libreria de mock.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Instanciamos la clase a testear, pasandole en vez de la interfaz un mock</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Instanciamos la clase mock, que hemos pasado como parametro en el constuctor de la clase a testear.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Instrumentalizamos el mock, en este caso esperamos que cuando el test llame a la clase mockeada con esos parametros, la respuesta sea la esperada.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Lanzamos la clase a testear.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Notar que si lanzamos el test en modo verboso no veremos los print de la implementacion de la interfaz, porque no se habra llamado, sera la instrumentalizacion la encargada de devolver el resultado.</p>
+</div>
+<div class="paragraph">
+<p>Para un proximo articulo, notar que si la interfaz que queremos mockear esta dentro de un proyecto que usa go dep, podemos tener problemas con la paqueteria del import y que indique vendor.</p>
+</div>
+<div class="paragraph">
+<p>Pero eso sera para otro dia.</p>
 </div>
 </div>
 </div>
@@ -368,43 +393,43 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&text=Message, serialization and other things&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&text=Groovy DSL&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&title=Groovy DSL" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&title=Groovy DSL" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&title=Groovy DSL" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -417,24 +442,39 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='tags/jvm.html'>jvm</a></li>
- 	        <li><a href='tags/serilize.html'>serilize</a></li>
+ 	        <li><a href='../../tags/golang.html'>golang</a></li>
+ 	        <li><a href='../../tags/testing.html'>testing</a></li>
 
-				<li><a class="icon fa-comment" href="2018/02/mensajes_serializacion.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../../2019/03/golang-testing.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
 </article>
 
-		<!-- #include "post/prev-next.ftl" -->
-	 </div>
+		<!-- #include "post/prev-next-post.ftl" -->
+
+<div class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'josejuanmontiel';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <!--<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
+</div>
+    </div>
 
 <!-- Sidebar -->
 <section id="sidebar">
 
     <!-- Intro -->
         <section id="intro">
-                                    <a href="" class="logo"><img src="img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
+                                    <a href="../../" class="logo"><img src="../../img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
 
 
                 <header>
@@ -489,17 +529,13 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h3>
-                                   <time class="published"
-  							            datetime='Feb 17, 2018'>
-  							            Feb 17, 2018</time>
-                              </header>
-                          </article>
-                      </li>
 
+                    <li>
+                        <ul class="actions">
+                            <li><a href="../../archive.html"
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
             </ul>
         </section>
 
@@ -513,7 +549,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jvm.html">jvm</a>
+                                <a href="../../tags/jbake.html">jbake</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -522,7 +558,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jbake.html">jbake</a>
+                                <a href="../../tags/rebase.html">rebase</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -531,7 +567,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/generation.html">generation</a>
+                                <a href="../../tags/code.html">code</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -540,7 +576,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/rebase.html">rebase</a>
+                                <a href="../../tags/golang.html">golang</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -549,7 +585,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/github.html">github</a>
+                                <a href="../../tags/android.html">android</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -558,7 +594,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/code.html">code</a>
+                                <a href="../../tags/dozer.html">dozer</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -567,7 +603,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/apt.html">apt</a>
+                                <a href="../../tags/blog.html">blog</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -576,7 +612,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/retrolambda.html">retrolambda</a>
+                                <a href="../../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -585,7 +621,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/android.html">android</a>
+                                <a href="../../tags/serilize.html">serilize</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -594,7 +630,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/dozer.html">dozer</a>
+                                <a href="../../tags/springboot.html">springboot</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -603,7 +639,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/personal.html">personal</a>
+                                <a href="../../tags/git.html">git</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -612,7 +648,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git-flow.html">git-flow</a>
+                                <a href="../../tags/merge.html">merge</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -621,7 +657,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf.html">thymeleaf</a>
+                                <a href="../../tags/mvc.html">mvc</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -630,7 +666,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/blog.html">blog</a>
+                                <a href="../../tags/thymeleaf3.html">thymeleaf3</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -639,7 +675,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/cookies.html">cookies</a>
+                                <a href="../../tags/hippocms.html">hippocms</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -648,7 +684,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/serilize.html">serilize</a>
+                                <a href="../../tags/jvm.html">jvm</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -657,7 +693,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/springboot.html">springboot</a>
+                                <a href="../../tags/generation.html">generation</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -666,7 +702,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/gradle.html">gradle</a>
+                                <a href="../../tags/github.html">github</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -675,7 +711,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/groovy.html">groovy</a>
+                                <a href="../../tags/apt.html">apt</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -684,7 +720,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git.html">git</a>
+                                <a href="../../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -693,7 +729,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/merge.html">merge</a>
+                                <a href="../../tags/retrolambda.html">retrolambda</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -702,7 +738,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/mvc.html">mvc</a>
+                                <a href="../../tags/personal.html">personal</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -711,7 +747,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf3.html">thymeleaf3</a>
+                                <a href="../../tags/git-flow.html">git-flow</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -720,7 +756,25 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="tags/hippocms.html">hippocms</a>
+                                <a href="../../tags/thymeleaf.html">thymeleaf</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/gradle.html">gradle</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/groovy.html">groovy</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -736,13 +790,13 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
             <p>Personal blog</p>
 
             <ul class="actions">
-                <li><a href="about.html" class="button">Learn More</a></li>
+                <li><a href="../../about.html" class="button">Learn More</a></li>
             </ul>
         </section>
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.5.1</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 
@@ -756,13 +810,13 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/backToTop.js"></script>
-		<script src="js/highlight.pack.js"></script>
-		<script src="js/readingTime.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/skel.min.js"></script>
+		<script src="../../js/util.js"></script>
+		<script src="../../js/main.js"></script>
+		<script src="../../js/backToTop.js"></script>
+		<script src="../../js/highlight.pack.js"></script>
+		<script src="../../js/readingTime.js"></script>
 
 			<script id="dsq-count-scr" src="//josejuanmontiel.disqus.com/count.js" async></script>
 <script>
@@ -772,8 +826,8 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-82879918-1', 'auto');
   ga('send', 'pageview', {
-    'page': 'https://josejuanmontiel.github.io/blog',
-    'title': 'Blog'
+    'page': '2019/03/golang-testing.es.html',
+    'title': 'Groovy DSL'
       });
 </script>
 		<!-- This is called by default since this theme uses highlight.js -->

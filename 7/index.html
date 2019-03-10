@@ -14,15 +14,15 @@
     <meta name="keywords" content="">
     <meta name="generator" content="JBake">
 
-    <link rel="stylesheet" href="css/google-font.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/add-on.css" />
-    <link rel="stylesheet" href="css/monokai-sublime.css">
+    <link rel="stylesheet" href="../css/google-font.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/add-on.css" />
+    <link rel="stylesheet" href="../css/monokai-sublime.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="img/favicon/favicon.png">
+    <link rel="shortcut icon" href="../img/favicon/favicon.png">
   </head>
   <body>
      <!-- Wrapper -->
@@ -52,7 +52,7 @@
 
 
         			<li>
-	                    <a href=" archive.html">
+	                    <a href=" ../archive.html">
 
 	                            <i class="fa fa-archive">&nbsp;</i>Archive
 
@@ -61,7 +61,7 @@
 
 
         			<li>
-	                    <a href=" about.html">
+	                    <a href=" ../about.html">
 
 	                            <i class="fa fa-user">&nbsp;</i>About
 
@@ -70,7 +70,7 @@
 
 
         			<li>
-	                    <a href=" feed.json">
+	                    <a href=" ../feed.json">
 
 	                            <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -118,21 +118,21 @@
                     </a>
                 </li>
         		 <li>
-                    <a href=" archive.html">
+                    <a href=" ../archive.html">
 
                             <i class="fa fa-archive">&nbsp;</i>Archive
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" about.html">
+                    <a href=" ../about.html">
 
                             <i class="fa fa-user">&nbsp;</i>About
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" feed.json">
+                    <a href=" ../feed.json">
 
                             <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -165,15 +165,15 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2016/08/blog-jbake-gradle.es.html">Blog en GitHub Pages con Jbake y Gradle</a></h2>
+                    <h2><a href="../2017/11/cookies_2_of_2.es.html">Cookies (2 de 2)</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='Aug 25, 2016'>
-            Aug 25, 2016</time>
+            datetime='nov 12, 2017'>
+            nov 12, 2017</time>
             <div class="published eta"></div>
-        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
+        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
 </header>
 
@@ -182,147 +182,327 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_es_hora_de_empezar_un_blog_sobre_programacion">Es hora de empezar un blog sobre programacion</h2>
+<h2 id="_y_ahora_que">Y ahora que&#8230;&#8203;</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La verdad es que conforme pasa el tiempo, te das cuenta que compartir es ganar. Algunos se dan cuanta antes, pero aunque
-yo ya lo intuia, han tenido que pasar mas de 10 años en esto de la programacion para darme cuenta. Compartir es ganar,
-es conocer otras opiniones, maneras de hacer las cosas y como no, conocer a otras personas&#8230;&#8203; networking le llaman.</p>
+<p>Tras los ejemplos comentados en la primera parte, donde el protagonista solo era
+el navegador y el html, y donde hemos visto como una pagina puede invocar (y de
+hecho es lo normal) imágenes de otros dominios, si en la urls de invocación se
+pasan párametros, estos llegan al servidor destino, y si este genera una sesión,
+el navegador se encarga de crear las cookies necesarias para mantenerla.</p>
 </div>
 <div class="paragraph">
-<p>Yo ya tenia un <a href="http://accreativos.blogspot.com.es/">blog</a>, es mas una lista de cosas que te vas encontrando y apuntas
-para tener en algugn sitio, que realmente una manera de compartir informacion y opinar sobre ella. Luego llego el
-<a href="http://twitter.com/accreativos">twitter</a> pero al final, es una mezcla de retweets, y poca informacion original.</p>
-</div>
-<div class="paragraph">
-<p>Asi que, por que no, un blog serio, como esos que estas acostumbrado a leer, de esos donde la gente termina dejando
-una gran cantidad de comentarios, de esos que añades a tu lector RSS para estar al tanto de lo que se comenta en ellos,
-y si ademas aprendes algo al montandolo, pues que mas se puede pedir.</p>
-</div>
-<div class="paragraph">
-<p>Por tanto, los elementos que voy a usar para este blog son:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Ingles (Español)</p>
-</li>
-<li>
-<p>GitHub Pages</p>
-</li>
-<li>
-<p>AsciiDoctor</p>
-</li>
-<li>
-<p>Groovy</p>
-</li>
-<li>
-<p>Jbake</p>
-</li>
-<li>
-<p>Gradle</p>
-</li>
-<li>
-<p>Freemarker (Thymeleaf)</p>
-</li>
-<li>
-<p>Discus (Discourse)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Vemos en un poco en detalle cada punto.</p>
+<p>Pero la cosa cambia, cuando es el javascript el encargado de hacer la petición,
+y además es otro dominio. Cors y gestion de cookies serán los principales problemas.
+Veamos.</p>
 </div>
 <div class="sect2">
-<h3 id="_ingles">Ingles</h3>
+<h3 id="_autenticacion">Autenticacion</h3>
 <div class="paragraph">
-<p>Lo primero que voy aprovechar es para mejorar mi ingles. Asi que, aunque lo redacte en español, mi lengua nativa, lo
-publicare en ingles (y supongo que ya que los redacto en español, estos tambien los publicare, ya vere como lo implemento).</p>
+<p>Para llevar un poco mas allá el uso de la sesión, vamos a crear una pagina de
+login. Recordar que aquí, A representa a la 3rd party, y B a la pagina por la que
+navegamos.</p>
+</div>
+<div class="paragraph">
+<p>Con esta pagina de login</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;form name='f' action="login" method='POST'&gt;
+   &lt;table&gt;
+      &lt;tr&gt;
+         &lt;td&gt;User:&lt;/td&gt;
+         &lt;td&gt;&lt;input type="text" id="username" name="username" value="" /&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+         &lt;td&gt;Password:&lt;/td&gt;
+         &lt;td&gt;&lt;input type="password" id="password" name="password" /&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+         &lt;td&gt;&lt;input name="submit" type="submit" value="submit" /&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+   &lt;/table&gt;
+&lt;/form&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Podemos llamar a este controlador, donde si el usuario/password coinciden con
+admin/password guardamos en session, con la clave user, el valor del username.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @PostMapping("/login")
+    public String login(
+        @RequestParam(value="username", required=false) String username,
+        @RequestParam(value="password", required=false) String password,
+        HttpSession session) {
+
+      if (session.getAttribute("user")!=null) {
+        return "redirect:/isLogged";
+      } else if ("admin".equals(username) &amp;&amp; "password".equals(password)) {
+        session.setAttribute("user", username);
+        return "redirect:/isLogged";
+      } else {
+        return "redirect:/login";
+      }
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Y tras eso, redirigimos a la pagina de isLogged, donde se muestra si estamos logados.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" /&gt;
+&lt;p th:text="'isLogged? ' + ${isLogged}" /&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>donde el valor true/false viene de que sea admin, ese valor en sesion para user.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para testear el funcionamiento, montamos un end-point de logout, que invalida la sesión.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/logout")
+    public String login(HttpSession session) {
+      session.invalidate();
+      return "redirect:/login";
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ahora, empieza la parte interesante del experimento, vamos a simular lo que el
+navegador haría por nosotros si montáramos un formulario de login en nuestra
+pagina B a otro dominio A, pero de tal manera que se haga por javascript y
+sin refrescar la pagina.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    function loginRemoto() {
+      var username = document.getElementById("username").value; <i class="conum" data-value="1"></i><b>(1)</b>
+      var password = document.getElementById("password").value; <i class="conum" data-value="2"></i><b>(2)</b>
+
+      var http = new XMLHttpRequest();
+      var url = "http://a.127.0.0.1.xip.io:9000/login";
+      var params = "username="+username+"&amp;password="+password;
+      http.open("POST", url, true); <i class="conum" data-value="3"></i><b>(3)</b>
+
+      //Send the proper header information along with the request
+      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); <i class="conum" data-value="4"></i><b>(4)</b>
+
+      http.onreadystatechange = function() { //Call a function when the state changes.
+          if(http.readyState == 4 &amp;&amp; http.status == 200) {
+            var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
+            document.cookie = "jsessionfroma="+jsessionid;
+          }
+      }
+      http.send(params);
+    }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Obtenemos el usuario</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Obtenemos el password</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Construimos una petición POST al login de A</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Este es el content-type que el navegador envía en los formularios</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Esto lo veremos mas adelante</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_github_pages">Github Pages</h3>
+<h3 id="_access_control_allow_origin">Access-Control-Allow-Origin</h3>
 <div class="paragraph">
-<p>Ya hace algun tiempo que GitHub empezo a permitir publicar paginas estaticas para todos sus proyectos. Si buscas por
-<a href="https://pages.github.com">Github Pages</a> podras ver amplia informacion al respecto, ademas, mucha gente que usa ya github
-a aprovechado la funcionalidad para montar pequeños sites estaticos.</p>
+<p>El problema, es que, el navegador puede dejarnos pedir en A, imágenes de B, pero
+el envío de peticiones XMLHttpRequest (o lo que venimos conociendo por ajax) ya
+son otro tema. Y el tema es que en este caso, A que seria el receptor de esta
+petición, por defecto no permite la recepción de peticiones desde otro dominio
+distinto al suyo. <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Aqui</a>
+detallan como funciona esto. Y <a href="https://spring.io/guides/gs/rest-service-cors/#_enabling_cors">aqui</a>
+cuentan como gestiona Spring el tema.</p>
+</div>
+<div class="sect3">
+<h4 id="_apis_js_de_servicios_de_terceros_en_tu_web">APIs JS de servicios de terceros en tu Web</h4>
+<div class="paragraph">
+<p>Llegado este punto, podrías llegar a preguntarte, porque cierto tipo de webs,
+que permiten hacer uso de sus servicios en tu web, o siendo un poco mas precisos,
+permiten que tus usuarios hagan uso de sus servicios en tu web, necesitan que
+registres la url de tu web.</p>
 </div>
 <div class="paragraph">
-<p>Basicamente es que, todo lo que subas a la rama gh-pages de tu repositorio github, sera visible en el dominio
-<a href="http://username.github.io/repo/file" class="bare">http://username.github.io/repo/file</a> donde username, es tu usuario de github, repo es el nombre del repo donde estas
-subiendo los ficheros a la rama gh-pages y file, es el fichero, que si es un index.html el navegador lo visualiza,
-y lo mismo para los css y js, con lo que ya tienes listo la web.</p>
+<p>Pues nunca lo tuve claro, pero después de estas pruebas de concepto, diría que
+porque necesitan configurar sus servidores, para que cuando el "remote address"
+de la petición sea igual, al de alguno de los que tienen registrados de "clientes",
+devuelvan un "Access-Control-Allow-Origin" con ese host.</p>
 </div>
 <div class="paragraph">
-<p>Ademas, proveen de un generador por defecto, <a href="https://help.github.com/articles/about-github-pages-and-jekyll/">Jekyll</a>,
-para generar esas paginas estaticas, a partir de un texto en formato markdown, pero nosotros no vamos a usarlo,
-veremos la alternativa.</p>
+<p>Este seria el filtro, que controla esto.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Component
+    public class CorsFilter extends OncePerRequestFilter {
+
+        @Override
+        protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
+                                        final FilterChain filterChain) throws ServletException, IOException {
+            response.addHeader("Access-Control-Allow-Origin", "b.127.0.0.1.xip.io");
+            response.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH, HEAD, OPTIONS");
+            response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+            response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials");
+            response.addHeader("Access-Control-Allow-Credentials", "true");
+            response.addIntHeader("Access-Control-Max-Age", 10);
+            filterChain.doFilter(request, response);
+        }
+    }</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_asciidoctor">AsciiDoctor</h3>
+<h3 id="_y_las_cookies">¿Y las cookies?</h3>
 <div class="paragraph">
-<p>Preferimos usar algo que esta entre, markdown y latex, y eso se llama <a href="http://asciidoctor.org/">AsciiDoctor</a> que por
-cierto tambien esta <a href="http://asciidoctor.org/news/2014/02/04/github-asciidoctor-0.1.4-upgrade-5-things-to-know/">soportado</a>
-por GitHub.</p>
+<p>Recordemos, que el objetivo es que desde una pagina de B, exista un Javascript
+que conecte con A para validar un user/password y que posteriormente, B pueda
+leer una cookie generada por ese Javascript, realmente en B, para hacer una
+llamada desde el servidor B al servidor A, haciéndose pasar por el usuario de B,
+que realizo la petición a A, para guardar en la sesión de B, la confianza en ese
+login realizado en A. El flujo que describimos al final del primer articulo.</p>
+</div>
+<div class="paragraph">
+<p>Lo primero, recordar el paso (5) que dejamos sin explicar</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
+    document.cookie = "jsessionfroma="+jsessionid;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>es el que se encarga de setear la cookie en B. Hay mas maneras, que no he explorado,
+pero en este caso, en la url devuelta por el proceso de login, como el servidor
+A ve que B, no puede recibir una cookie, genera una url de redirección que lleva
+como parámetro el JSESSIONID, valor para poder correlacionar la sesión que nos
+ha generado A a nosotros que navegamos desde B, y hemos lanzado el XMLHttpRequest
+de login.</p>
+</div>
+<div class="paragraph">
+<p>Asi que parseamos esa URL (getJSessionId) y nos quedamos con el JSESSIONID y lo
+guardamos en una cookie (document.cookie) de B, que es donde estamos navegando.</p>
+</div>
+<div class="paragraph">
+<p>Ahora, evolucionamos el código del controlador de isLogged de B (y A, es el mismo
+código, aunque ahora estamos navegando desde B) para:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/isLogged")
+    	public String isLogged(@CookieValue(value="jsessionfroma", required=false) String jsessionfroma, <i class="conum" data-value="1"></i><b>(1)</b>
+      HttpSession session, Model model) {
+    		model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));
+
+    		if (jsessionfroma!=null) {  <i class="conum" data-value="2"></i><b>(2)</b>
+    			ParameterizedTypeReference&lt;String&gt; typeRef = new ParameterizedTypeReference&lt;String&gt;() {};
+    			HttpHeaders requestHeaders = new HttpHeaders();
+    			requestHeaders.add("Cookie", "JSESSIONID=" + jsessionfroma + "; domain=a.127.0.0.1.xip.io;");  <i class="conum" data-value="3"></i><b>(3)</b>
+    			HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
+
+    			ResponseEntity&lt;String&gt; response = restTemplate.exchange("http://a.127.0.0.1.xip.io:9000/isLogged", HttpMethod.GET, requestEntity, typeRef);
+
+    			boolean isRemoteLogged = response.getBody().contains("isLogged? true");  <i class="conum" data-value="4"></i><b>(4)</b>
+
+    			Pattern pattern = Pattern.compile("---(.*?)---");
+    			Matcher matcher = pattern.matcher(response.getBody());
+    			String username = "";
+    			while (matcher.find()) {
+    				username = matcher.group(1);  <i class="conum" data-value="5"></i><b>(5)</b>
+    			}
+    			if (isRemoteLogged) {
+    				session.setAttribute("user",username);  <i class="conum" data-value="6"></i><b>(6)</b>
+    			}
+
+    			System.out.println(response.getBody());
+    		}
+
+    		return "isLogged";
+    	}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Leer la cookie jsessionfroma que es la que hemos generado desde el Javascript
+que llamo a A desde B para hacer el login. El "paso 5"</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Si tenemos esa cookie, entonces procedemos a realizar la llamada a A desde el
+back de B.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>En la petición que vamos a hacer a A, vamos a añadir el header cookie, con el
+valor del JSESSIONID obtenido, es decir, le vamos a enviar a A la cookie para
+que vea que estábamos logado.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Parseamos la respuesta, para ver si en A pintamos que estamos logados.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Nos quedamos con el nombre de usuario logado.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Y si estamos logados en el remoto, entonces guardamos en la sesión de B,
+el usuario logado.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Por tanto de esta forma hemos conseguido, logarnos desde Javascript en un servicio
+de terceros, y desde una comunicación back, con ese servicio y con la cookie que
+ese javascript nos ha generado, comprobar que estamos logados correctamente,
+para logarnos automaticamente en nuestra web.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_groovy">Groovy</h3>
+<h3 id="_el_codigo">El codigo</h3>
 <div class="paragraph">
-<p>Igual que mi lenguaje nativo es el español, mi lenguaje nativo en esto de la programacion es Java, y como se trata de
-aprender, ya llevo unos años jugando con groovy, y no voy a desaprovechar la oportunidad para montar el blog usandolo.
-Ya contare en otra ocasion, como me inicie en esto de groovy, y cuales son los lugares donde yo, aprendo.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_jbake">Jbake</h3>
-<div class="paragraph">
-<p>Y ya hemos dicho que no ibamos a usar <a href="https://jekyllrb.com/">Jekyll</a> que esta hecho en Ruby, porque lo que nos mola es
-Groovy ;) Pero necesitamos que nuestros txt escritos en AsciiDoctor se transformen en HTML (o XML ya veremos como),
-y sobre todo que lo que escribimos se inserte en esos HTML, para ello usaremos <a href="http://jbake.org/">Jbake</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_gradle">Gradle</h3>
-<div class="paragraph">
-<p>Pero bueno, esto necesita automatizarse, al final son una serie de pasos que porque no usar gradle, y como bien
-<a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">cuenta</a> el creador del
-<a href="https://github.com/jbake-org/jbake-gradle-plugin">plugin</a>, es la combinacion perfecta.</p>
+<p>En <a href="https://github.com/josejuanmontiel/cookies">este repositorio</a> de github.</p>
 </div>
 <div class="paragraph">
-<p>Un par de apuntes, pues ha quedado algo desactualizado&#8230;&#8203; <a href="http://www.orany.cz/blog/2014/10/17/migrated-to-jbake.html">que
-hace Ornay</a> y el plugin que se encara de subir las paginas a la rama, tambien ha sido actualido,
-<a href="https://plugins.gradle.org/plugin/org.ajoberstar.github-pages">aqui esta</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_freemarker_thymeleaf">Freemarker (Thymeleaf)</h3>
-<div class="paragraph">
-<p>Y esta herramienta es capaz de usar distintos sistemas de templating (en concreto empezaremos con Freemarker, y mas
-adelante lo migraremos a Thymeleaf) para inyectarles los valores obtenidos del txt en asciidoctor, junto con algunas
-variables mas que ayudaran a construir un sistema de blogging que no tiene que enviadiar nada a Jeklly, Wordpress o
-lo que se ponga por delante.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_disqus_discourse">Disqus (Discourse)</h3>
-<div class="paragraph">
-<p>Pero por ultimo, que es un sistema de blog sin la posibilidad de comentarios, pues nada. Para ello todos estos sistmas
-usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con una linea (casi). Como opcion, intentare migrar a
-<a href="https://www.discourse.org/">Discourse</a> pero eso sera mas adelante.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bola_extra_analitica">Bola extra. Analitica.</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Como bola extra, recordar añadir la analitica.</p>
+<p>Pero me da, que se me quedan bastantes preguntas en el tintero, y otros enfoques
+posibles. ¿JSON-P? ¿Publicidad de google? ¿Problemas de seguridad? ¿SSO? ¿Proxy
+de servicios en Apache o Nginx? ¿JWT?</p>
 </div>
 <div class="paragraph">
-<p>Keep on Groovying!</p>
+<p>¿Un capitulo 3?</p>
+</div>
 </div>
 </div>
 </div>
@@ -333,43 +513,43 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&text=Blog en GitHub Pages con Jbake y Gradle&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&text=Cookies (2 de 2)&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&title=Blog en GitHub Pages con Jbake y Gradle" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&title=Blog en GitHub Pages con Jbake y Gradle" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&title=Blog en GitHub Pages con Jbake y Gradle" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -382,14 +562,10 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='tags/jvm.html'>jvm</a></li>
- 	        <li><a href='tags/groovy.html'>groovy</a></li>
- 	        <li><a href='tags/blog.html'>blog</a></li>
- 	        <li><a href='tags/github.html'>github</a></li>
- 	        <li><a href='tags/jbake.html'>jbake</a></li>
- 	        <li><a href='tags/gradle.html'>gradle</a></li>
+ 	        <li><a href='../tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='../tags/cookies.html'>cookies</a></li>
 
-				<li><a class="icon fa-comment" href="2016/08/blog-jbake-gradle.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2017/11/cookies_2_of_2.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -403,7 +579,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
 
     <!-- Intro -->
         <section id="intro">
-                                    <a href="" class="logo"><img src="img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
+                                    <a href="../" class="logo"><img src="../img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
 
 
                 <header>
@@ -472,7 +648,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jvm.html">jvm</a>
+                                <a href="../tags/jbake.html">jbake</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -481,7 +657,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jbake.html">jbake</a>
+                                <a href="../tags/rebase.html">rebase</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -490,7 +666,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/generation.html">generation</a>
+                                <a href="../tags/code.html">code</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -499,7 +675,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/rebase.html">rebase</a>
+                                <a href="../tags/golang.html">golang</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -508,7 +684,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/github.html">github</a>
+                                <a href="../tags/android.html">android</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -517,7 +693,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/code.html">code</a>
+                                <a href="../tags/dozer.html">dozer</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -526,7 +702,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/apt.html">apt</a>
+                                <a href="../tags/blog.html">blog</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -535,7 +711,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/retrolambda.html">retrolambda</a>
+                                <a href="../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -544,7 +720,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/android.html">android</a>
+                                <a href="../tags/serilize.html">serilize</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -553,7 +729,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/dozer.html">dozer</a>
+                                <a href="../tags/springboot.html">springboot</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -562,7 +738,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/personal.html">personal</a>
+                                <a href="../tags/git.html">git</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -571,7 +747,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git-flow.html">git-flow</a>
+                                <a href="../tags/merge.html">merge</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -580,7 +756,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf.html">thymeleaf</a>
+                                <a href="../tags/mvc.html">mvc</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -589,7 +765,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/blog.html">blog</a>
+                                <a href="../tags/thymeleaf3.html">thymeleaf3</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -598,7 +774,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/cookies.html">cookies</a>
+                                <a href="../tags/hippocms.html">hippocms</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -607,7 +783,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/serilize.html">serilize</a>
+                                <a href="../tags/jvm.html">jvm</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -616,7 +792,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/springboot.html">springboot</a>
+                                <a href="../tags/generation.html">generation</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -625,7 +801,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/gradle.html">gradle</a>
+                                <a href="../tags/github.html">github</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -634,7 +810,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/groovy.html">groovy</a>
+                                <a href="../tags/apt.html">apt</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -643,7 +819,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git.html">git</a>
+                                <a href="../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -652,7 +828,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/merge.html">merge</a>
+                                <a href="../tags/retrolambda.html">retrolambda</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -661,7 +837,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/mvc.html">mvc</a>
+                                <a href="../tags/personal.html">personal</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -670,7 +846,7 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf3.html">thymeleaf3</a>
+                                <a href="../tags/git-flow.html">git-flow</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -679,7 +855,25 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
                     <li>
                         <article>
                             <header>
-                                <a href="tags/hippocms.html">hippocms</a>
+                                <a href="../tags/thymeleaf.html">thymeleaf</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/gradle.html">gradle</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/groovy.html">groovy</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -695,13 +889,13 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
             <p>Personal blog</p>
 
             <ul class="actions">
-                <li><a href="about.html" class="button">Learn More</a></li>
+                <li><a href="../about.html" class="button">Learn More</a></li>
             </ul>
         </section>
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.5.1</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 
@@ -715,13 +909,13 @@ usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con un
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/backToTop.js"></script>
-		<script src="js/highlight.pack.js"></script>
-		<script src="js/readingTime.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/skel.min.js"></script>
+		<script src="../js/util.js"></script>
+		<script src="../js/main.js"></script>
+		<script src="../js/backToTop.js"></script>
+		<script src="../js/highlight.pack.js"></script>
+		<script src="../js/readingTime.js"></script>
 
 			<script id="dsq-count-scr" src="//josejuanmontiel.disqus.com/count.js" async></script>
 <script>

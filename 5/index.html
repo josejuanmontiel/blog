@@ -14,15 +14,15 @@
     <meta name="keywords" content="">
     <meta name="generator" content="JBake">
 
-    <link rel="stylesheet" href="css/google-font.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/add-on.css" />
-    <link rel="stylesheet" href="css/monokai-sublime.css">
+    <link rel="stylesheet" href="../css/google-font.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/add-on.css" />
+    <link rel="stylesheet" href="../css/monokai-sublime.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
-    <link rel="shortcut icon" href="img/favicon/favicon.png">
+    <link rel="shortcut icon" href="../img/favicon/favicon.png">
   </head>
   <body>
      <!-- Wrapper -->
@@ -52,7 +52,7 @@
 
 
         			<li>
-	                    <a href=" archive.html">
+	                    <a href=" ../archive.html">
 
 	                            <i class="fa fa-archive">&nbsp;</i>Archive
 
@@ -61,7 +61,7 @@
 
 
         			<li>
-	                    <a href=" about.html">
+	                    <a href=" ../about.html">
 
 	                            <i class="fa fa-user">&nbsp;</i>About
 
@@ -70,7 +70,7 @@
 
 
         			<li>
-	                    <a href=" feed.json">
+	                    <a href=" ../feed.json">
 
 	                            <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -118,21 +118,21 @@
                     </a>
                 </li>
         		 <li>
-                    <a href=" archive.html">
+                    <a href=" ../archive.html">
 
                             <i class="fa fa-archive">&nbsp;</i>Archive
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" about.html">
+                    <a href=" ../about.html">
 
                             <i class="fa fa-user">&nbsp;</i>About
 
                     </a>
                 </li>
         		 <li>
-                    <a href=" feed.json">
+                    <a href=" ../feed.json">
 
                             <i class="fa fa-rss">&nbsp;</i>Subscribe
 
@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="../../2018/02/mensajes_serializacion.html"><p>Message, serialization and other things</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,15 +168,15 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2016/10/retrolambda.es.html">Retrolambda and default methods</a></h2>
+                    <h2><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='Oct 19, 2016'>
-            Oct 19, 2016</time>
+            datetime='feb 17, 2018'>
+            feb 17, 2018</time>
             <div class="published eta"></div>
-        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
+        <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
 </header>
 
@@ -182,240 +185,179 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_retrolambda_e_hippo_cms">Retrolambda e Hippo Cms</h2>
+<h2 id="_messages_serialization_and_other_things">Messages, serialization and other things</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://code.onehippo.org/cms-community/hippo-cms">Este proyecto</a>, solo se puede compilar con la JDK 8, ya que hace uso intensivo de sus caracteristicas: lambdas, default methods y otras mas.</p>
+<p>I remember one time a colleague told me, something like this: "My boss said, that the one
+manage the string, it handles everything". Taken out of context, it may seem
+pretentious, but do not you get the feeling that most of the programming is
+reduces to "manipulation"?</p>
 </div>
 <div class="paragraph">
-<p>Gracias a <a href="https://github.com/orfjackal/retrolambda">Retrolambda</a>, muchos proyectos que hacen uso de las nuevas caracteristicas de JDK 8 pueden migrarse a JDK7 (y anteriores) y por tanto tambien a Android, lugar donde se hace principal uso de esta herramienta.</p>
+<p>And if you stop to think, today, is not it reduced to communication? To the shipment of
+"messages"? And that&#8217;s where I want to get in this article, to the famous serialization
+and deserialization.</p>
 </div>
 <div class="paragraph">
-<p>Y con <a href="https://github.com/orfjackal/retrolambda#maven-plugin">este pluging maven</a> puedes integrarlo en tu buildsystem. <a href="https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml">Aqui</a> un ejemplo de como usarlo. Y ademas, hay otro <a href="https://github.com/evant/gradle-retrolambda">para gradle</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_limitaciones">Limitaciones</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Pero hay unas <a href="https://github.com/orfjackal/retrolambda#known-limitations">limitaciones bien conocidas</a>, que hacen que la migracion de los default method de JDK 8 no sean tan faciles, "must to be backported together, with one execution of Retrolambda".</p>
+<p>I did not get to experience it, but when I started in the Java world, there was still talk
+of <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">Corba</a> and
+<a href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">RMI</a>.
+I&#8217;m not going to stop much, for that we have the wikipedia, but the first let&#8217;s say
+it served to communicate separate and distinct systems, and the second more "close".</p>
 </div>
 <div class="paragraph">
-<p>Por eso, <a href="http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html">por defecto</a>, viene deshabilitada su migracion.</p>
+<p>To what if it arrives, and went to the world to <a href="https://en.wikipedia.org/wiki/SOAP">SOAP</a>.
+If we look back, the "XML was invented" at <a href="https://en.wikipedia.org/wiki/XML#History">1998</a>,
+I even remember doing an interview in my beginnings for the "xml company".
+And in XML, SOAP is based on the transmission of messages. Here begins to stop
+side the "binary" messages to move to XML, with its supposed advantages, and disadvantages.
+Because parsing and loading into XML memory was expensive, agile because you could access
+any part of the message, but expensive.</p>
 </div>
 <div class="paragraph">
-<p>Cuando Retrolmambda migra las <a href="https://github.com/orfjackal/retrolambda#backported-language-features">Default Methods</a>:
-Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the necessary method implementations to all classes which implement that interface.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_retrolambda_e_hippocms">Retrolambda (e HippoCms)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tomemos como ejemplo, <a href="https://code.onehippo.org/cms-community/hippo-cms">el siguiente</a> proyecto.</p>
+<p>I do not extend more here, just remember DTD, XSD, XSLT, and a series more than
+acronyms related to the XML world.</p>
 </div>
 <div class="paragraph">
-<p>Supongamos que en un primer modulo tenemos esta interfaz con el default method.</p>
+<p>But people got tired of the XML soon, in 2000 came the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
+People were tired of schemes, of rigidity, the new millennium wanted flexibility,
+browsers wanted to be able to find what they wanted, without having to load everything.</p>
 </div>
-<div class="listingblock">
+<div class="paragraph">
+<p>Let&#8217;s say that the REST, brought the JSON, a format where the "tabulation" gave the format,
+and there was no need for so much label, which reduced the size of the messages,
+but hey, it was still necessary to parse them.</p>
+</div>
+<div class="paragraph">
+<p>At that time, Google started using <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a> internally,
+a binary specification language. The same thought that in the end, either
+It made a lot of sense that the messages were "human-readable", and even if I could
+there is compression of an XML message in a superior layer, in the end it is effort
+to serialize and deserialize in a "human-readable" way was not an obstacle either
+to not put one field after another.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, the <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
+it began to evolve.</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">public interface IconProvider extends IClusterable {
-	default Component getIcon(final String id, IconSize size) {
-		return null;
-	}
-}</code></pre>
+<img src="/blog/img/2018/02/glory-of-rest.png" alt="Glory of rest">
 </div>
 </div>
 <div class="paragraph">
-<p>Retrolambda lo que hace con esta clase es transformarla en esta otra.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">public abstract interface IconProvider2 extends IClusterable {
-  public abstract Component getIcon(String paramString, IconSize paramIconSize);
-}</code></pre>
-</div>
+<p>And things started to appear like: <a href="https://swagger.io/">Swagger</a> and <a href="https://raml.org/">RAML</a>,
+that end up merging at <a href="https://www.openapis.org/">OPENAPI</a> and things like:
+<a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
+even <a href="http://graphql.org/learn/">GraphQL</a>, which to be the query language
+that we know, part of a language of definition of structures.</p>
 </div>
 <div class="paragraph">
-<p>E implementa ese metodo (a traves de la "companion class") en las clases que implementen la interfaz, de las clases del mismo modulo.</p>
+<p>In the end, in the Java world, and I suppose that in the rest of languages also, all
+Transmission requires serialization and deserialization (which may be more
+or less complex).</p>
 </div>
 <div class="paragraph">
-<p>Por tanto, si no procesa todas las clases hijas de esa interfaz en la pasada del modulo, ya no lo hara, por lo que&#8230;&#8203;</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>que esta en otro modulo, al intentar ser compilada da este error</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java" data-lang="java">[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
-	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_primeras_conclusiones">Primeras conclusiones</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>En un primer momento, sin leer bien el mensaje de error, y sin comprender la jerarquia de clases del proyecto, pense que <a href="https://github.com/orfjackal/retrolambda/pull/101">este pull request podria ayudar</a></p>
+<p>For example, the transmission of a large XML to a destination, where it only interests you
+certain data of the same, does not have to serialize it in memory to make a
+On the DOM, a parser can be used <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
+to look for what is needed, and it does not matter the size of the XML, it will take more or less the same,
+because the overhead is produced when it is loaded into memory.</p>
 </div>
 <div class="paragraph">
-<p>Por si quieres entender mas en detalle, <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle">aqui</a> unos apuntes sobre el Lifecycle de de maven. Y <a href="http://maven.apache.org/guides/mini/guide-maven-classloading.html">aqui</a> sobre el classloading.</p>
+<p>In the case of a JSON, those who need their specified getter / setter,
+the parsers that simply load in hash, those that use the reflection, those that
+they do not use it (because the user codes a certain part), those that "precompile" code,
+those who &#8230;&#8203;</p>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="paragraph">
+<p>In the end, in this world of programming, you can never think that you know everything,
+and in IMHO you can always improve, doing things differently.</p>
 </div>
 <div class="paragraph">
-<p>Luego, leyendo mas en detalle, pense que el problema era que al tranformar la interfaz a abstracta&#8230;&#8203; bueno, que me habia despistado del problema real, y a ese despiste constituyo ver, en <a href="https://twitter.com/nicolas_frankel/status/786202575150407680">este tweet</a> porque <a href="https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659">las interfaces interfaces son abstractas (por defecto)</a>.</p>
+<p>If we dive a little, we can find some benchmarks. For example in this
+<a href="https://github.com/fabienrenaud/java-json-benchmark">comparatories on libraries</a>
+we can discover the large number of JSON libraries that exist, and their different
+performance, proof that you can always evolve, and when you reach the
+physical limits, you can always do it in another way. In this other
+<a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
+inclyendo protobuf</a> do the analysis, focusing on the number of attributes, of
+the class to be serialized, and they make some interesting considerations of the transformations
+that pass "below", away from the sight of our eyes, commenting on changes between
+JDK 8 and 9.</p>
+</div>
+<div class="ulist">
+<div class="title">We can highlight the following libraries:</div>
+<ul>
+<li>
+<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Use a dsl to generate the parser.</p>
+</li>
+<li>
+<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompiling a parser.</p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolution of the well-known library.</p>
+</li>
+<li>
+<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> A more theoretical approach using Graavl.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Y el propio <a href="https://twitter.com/orfjackal">Esko Luontola</a> nos explica el motivo: "pre-Java 8 JVMs support only abstract methods in interfaces (the &lt;clinit&gt; method being an exception). Retrolambda inserts the default method code to all implementing classes, thus emulating what JVM 8 does."</p>
+<p>What if we talk about bbdd NSQL or document-oriented ?, as for example CouchBase &#8230;&#8203;?</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">Aqui</a> una explicacion mas detallada de como funcionan los Default Methods en JDK 8. Y <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">aqui</a> la explicación de oracle sobre "abstract".</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_explicacion_del_problema_real">Explicacion del problema real</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Pero el problema, en este caso, era simplemente la limitacion de la libreria en projectos multi modulo <a href="https://github.com/orfjackal/retrolambda/issues/56">aqui</a> y
-<a href="https://github.com/orfjackal/retrolambda/issues/58">aqui</a> lo comentan tambien en detalle.</p>
+<p>In the end, here using the java API, there is also a serialization / deserialization,
+in the end what is saved is a document, which must (according to API) serialize more or less.</p>
 </div>
 <div class="paragraph">
-<p>Una manera de resolverlo, haciendo pequeñas modificaciones en el codigo, seria implementando el metodo getIcon(String,IconSize) con el comportamiento por default en las clases del segundo modulo.</p>
+<p>In <a href="https://github.com/josejuanmontiel/demo-couchbase">this</a> repo, I have messed around a little with some ideas.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-index 99bdb0e..9b34ce1 100644
---- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-+++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-@@ -18,6 +18,7 @@
- import javax.jcr.Node;
- import javax.jcr.RepositoryException;
-
-+import org.apache.wicket.Component;
- import org.apache.wicket.model.IModel;
- import org.apache.wicket.request.resource.ResourceReference;
- import org.hippoecm.frontend.l10n.ResourceBundleModel;
-@@ -144,4 +145,10 @@
-         return null;
-     }
-
-+    @Override
-+    public Component getIcon(String id, IconSize size) {
-+    	return null;
-+    }
-+
-+
- }
-diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-index 450712b..9d09210 100644
---- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-+++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-@@ -56,6 +56,7 @@
- import org.hippoecm.frontend.service.IconSize;
- import org.hippoecm.frontend.service.render.RenderPlugin;
- import org.hippoecm.frontend.skin.Icon;
-+import org.hippoecm.frontend.skin.IconProvider;
- import org.hippoecm.repository.api.HippoNodeType;
- import org.slf4j.Logger;
- import org.slf4j.LoggerFactory;
-@@ -337,6 +338,11 @@
-     public ResourceReference getIcon(IconSize type) {
-         return null;
-     }
-+
-+    @Override
-+    public Component getIcon(String id, IconSize size) {
-+    	return null;
-+    }
-
-     private boolean hasSearchResult() {
-         return collection.getType() == DocumentCollectionType.SEARCHRESULT;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="__proximos_pasos">¿Proximos pasos?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://github.com/teras">Teras</a> y <a href="https://github.com/orfjackal">Orfjackal</a>, ¿porque el PR 101 no modifica estas clases para hacer ese cambio? ¿Quizas no lo hace porque ya existe un metodo con ese nombre, aunque no con el mismo numero de paramtros?</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="__y_que_pasa_con_la_compilacion_retrolambda_de_hippocms">¿Y que pasa con la compilacion retrolambda de hippocms?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Aun nos quedaba algun error por resolver&#8230;&#8203; metodo estaticos&#8230;&#8203;</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
-[ERROR] symbol:   method of(Calendar)
-[ERROR] location: interface DateTimePrinter
-[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
-[ERROR] symbol:   method of(Calendar)
-[ERROR] location: interface DateTimePrinter</code></pre>
-</div>
+<div class="olist arabic">
+<div class="title">The conclusions?</div>
+<ol class="arabic">
+<li>
+<p>It is clear that the smaller the entity to persist, the sooner it will persist.</p>
+</li>
+<li>
+<p>But not by inserting it into smaller pieces (related to each other)
+Insert before.</p>
+</li>
+<li>
+<p>Both for insertions and queries, if a string is inserted, without going through
+JPA can earn 50% (discounting the serialization to String, remember that
+   arrives in String format from synchro) and 90% in reading approx.</p>
+</li>
+<li>
+<p>A .findOne in spring data jpa, will always be slower than a native one.
+Does the view on the entity type add a delay?</p>
+</li>
+<li>
+<p>Network latency from the server to the bbdd also counts, less data, faster.</p>
+</li>
+<li>
+<p>The servers with SSD vs HDD for bbdd nosql show large differences in performance.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Static methods on interfaces are backported by moving the static methods to a companion class (interface name + "$"), and by changing all methods calls to call the new method location.[1]</p>
+<p>It depends on the use and the problem that you want to address, it can not always make sense,
+serialize to have the "objects" accessible, but let&#8217;s use them.</p>
+</div>
+<div class="sect2">
+<h3 id="_as_an_exercise_for_home">As an exercise for home</h3>
+<div class="paragraph">
+<p>According to the <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> if
+will change the implementation of JsonConverter from Jackson to Jsonite, could win
+30% in the part that the spring data library jpa passes from the object to
+com.couchbase.client.java.document.json.JsonObject.</p>
 </div>
 <div class="paragraph">
-<p>En este caso la solucion temporal es cambiar los import en las clases del segundo modulo, a la clase companion.</p>
+<p>Make a pull request to implement <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
+of couchbase with <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
+and see if it&#8217;s faster than the standard, and not much less than with the <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash" data-lang="bash">diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-index 5a97066..ab938b7 100644
---- a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-+++ b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-@@ -41,7 +41,7 @@
- import org.hippoecm.frontend.plugin.IPluginContext;
- import org.hippoecm.frontend.plugins.reviewedactions.model.Request;
- import org.hippoecm.frontend.plugins.reviewedactions.model.RequestModel;
--import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter;
-+import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter$;
- import org.hippoecm.frontend.plugins.standards.icon.HippoIcon;
- import org.hippoecm.frontend.session.UserSession;
- import org.hippoecm.frontend.skin.Icon;
-@@ -110,7 +110,7 @@
-                 String state = request.getState();
-
-                 final String parameter = schedule != null ?
--                        DateTimePrinter.of(schedule).appendDST().print(FormatStyle.FULL) : "??";
-+                        DateTimePrinter$.of(schedule).appendDST().print(FormatStyle.FULL) : "??";
-                 return new StringResourceModel("state-" + state, this, null, "unknown", parameter);
-             }</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_notas_finales">Notas finales</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Si lo que has usado en tu proyecto con JDK 8 son las APIs de streaming, puedes usar <a href="https://sourceforge.net/projects/streamsupport/">esto</a>.</p>
-</div>
-<div class="paragraph">
-<p>Aqui un <a href="https://en.wikipedia.org/wiki/Java_backporting_tools">poco de historia</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bola_extra">Bola extra</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation">Groovy Android y APT</a></p>
 </div>
 </div>
 </div>
@@ -426,43 +368,43 @@ index 5a97066..ab938b7 100644
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&text=Retrolambda and default methods&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&text=Message, serialization and other things&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -475,13 +417,10 @@ index 5a97066..ab938b7 100644
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='tags/jvm.html'>jvm</a></li>
- 	        <li><a href='tags/retrolambda.html'>retrolambda</a></li>
- 	        <li><a href='tags/hippocms.html'>hippocms</a></li>
- 	        <li><a href='tags/android.html'>android</a></li>
- 	        <li><a href='tags/apt.html'>apt</a></li>
+ 	        <li><a href='../tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='../tags/serilize.html'>serilize</a></li>
 
-				<li><a class="icon fa-comment" href="2016/10/retrolambda.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2018/02/mensajes_serializacion.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -495,7 +434,7 @@ index 5a97066..ab938b7 100644
 
     <!-- Intro -->
         <section id="intro">
-                                    <a href="" class="logo"><img src="img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
+                                    <a href="../" class="logo"><img src="../img/main/icon.png" class="intro-circle" width="150px" alt="JoseJuanMontiel" /></a>
 
 
                 <header>
@@ -550,6 +489,16 @@ index 5a97066..ab938b7 100644
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h3>
+                                   <time class="published"
+  							            datetime='feb 17, 2018'>
+  							            feb 17, 2018</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>
@@ -564,7 +513,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jvm.html">jvm</a>
+                                <a href="../tags/jbake.html">jbake</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -573,7 +522,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/jbake.html">jbake</a>
+                                <a href="../tags/rebase.html">rebase</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -582,7 +531,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/generation.html">generation</a>
+                                <a href="../tags/code.html">code</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -591,7 +540,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/rebase.html">rebase</a>
+                                <a href="../tags/golang.html">golang</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -600,7 +549,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/github.html">github</a>
+                                <a href="../tags/android.html">android</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -609,7 +558,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/code.html">code</a>
+                                <a href="../tags/dozer.html">dozer</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -618,7 +567,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/apt.html">apt</a>
+                                <a href="../tags/blog.html">blog</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -627,7 +576,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/retrolambda.html">retrolambda</a>
+                                <a href="../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -636,7 +585,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/android.html">android</a>
+                                <a href="../tags/serilize.html">serilize</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -645,7 +594,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/dozer.html">dozer</a>
+                                <a href="../tags/springboot.html">springboot</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -654,7 +603,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/personal.html">personal</a>
+                                <a href="../tags/git.html">git</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -663,7 +612,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git-flow.html">git-flow</a>
+                                <a href="../tags/merge.html">merge</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -672,7 +621,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf.html">thymeleaf</a>
+                                <a href="../tags/mvc.html">mvc</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -681,7 +630,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/blog.html">blog</a>
+                                <a href="../tags/thymeleaf3.html">thymeleaf3</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -690,7 +639,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/cookies.html">cookies</a>
+                                <a href="../tags/hippocms.html">hippocms</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -699,7 +648,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/serilize.html">serilize</a>
+                                <a href="../tags/jvm.html">jvm</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -708,7 +657,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/springboot.html">springboot</a>
+                                <a href="../tags/generation.html">generation</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -717,7 +666,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/gradle.html">gradle</a>
+                                <a href="../tags/github.html">github</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -726,7 +675,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/groovy.html">groovy</a>
+                                <a href="../tags/apt.html">apt</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -735,7 +684,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/git.html">git</a>
+                                <a href="../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -744,7 +693,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/merge.html">merge</a>
+                                <a href="../tags/retrolambda.html">retrolambda</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -753,7 +702,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/mvc.html">mvc</a>
+                                <a href="../tags/personal.html">personal</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -762,7 +711,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/thymeleaf3.html">thymeleaf3</a>
+                                <a href="../tags/git-flow.html">git-flow</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -771,7 +720,25 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="tags/hippocms.html">hippocms</a>
+                                <a href="../tags/thymeleaf.html">thymeleaf</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/gradle.html">gradle</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/groovy.html">groovy</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -787,13 +754,13 @@ index 5a97066..ab938b7 100644
             <p>Personal blog</p>
 
             <ul class="actions">
-                <li><a href="about.html" class="button">Learn More</a></li>
+                <li><a href="../about.html" class="button">Learn More</a></li>
             </ul>
         </section>
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.5.1</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 
@@ -807,13 +774,13 @@ index 5a97066..ab938b7 100644
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/backToTop.js"></script>
-		<script src="js/highlight.pack.js"></script>
-		<script src="js/readingTime.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/skel.min.js"></script>
+		<script src="../js/util.js"></script>
+		<script src="../js/main.js"></script>
+		<script src="../js/backToTop.js"></script>
+		<script src="../js/highlight.pack.js"></script>
+		<script src="../js/readingTime.js"></script>
 
 			<script id="dsq-count-scr" src="//josejuanmontiel.disqus.com/count.js" async></script>
 <script>
