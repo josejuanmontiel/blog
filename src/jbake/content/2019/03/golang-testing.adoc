@@ -3,7 +3,7 @@ Jose Juan Montiel
 2019-03-09
 :jbake-type: post
 :jbake-tags: golang, testing
-:jbake-status: published
+:jbake-status: draft
 :jbake-lang: es
 :source-highlighter: prettify
 :id: golang-testing
