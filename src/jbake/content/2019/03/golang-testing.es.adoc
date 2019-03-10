@@ -11,7 +11,7 @@ Jose Juan Montiel
 
 == Testing en GoLang
 
-En esta ocasion, voy a comentar mis avances en el mundo del testing con Go. Para ello, con la ayuda de https://github.com/josejuanmontiel/golang/tree/master/testing[el siguiente codigo] voy a comentar algunos conceptos que he aprendido.
+En esta ocasion, voy a comentar mis avances en el mundo del testing con GoLang. Para ello, con la ayuda de https://github.com/josejuanmontiel/golang/tree/master/testing[el siguiente codigo] voy a comentar algunos conceptos que he aprendido.
 
 === Interfaces
 
@@ -89,9 +89,9 @@ func main() {
 
 Ahora supongamos que queremos testear la funcion Use() pero no queremos que se llame a DoSomething.
 
-Para ello vamos a usar la https://github.com/golang/mock[libreria de mock en go] esta libreria al igual que otras similares en otros lenguajes nos permiten mockear los objetos que no queremos testear, en este caso nuestro objetivo es mockerar la implementacion de la interfaz para poder tester Use.
+Para ello vamos a usar la https://github.com/golang/mock[libreria de mock en go]. Esta libreria al igual que otras similares en otros lenguajes nos permiten mockear los objetos que no queremos testear, en este caso nuestro objetivo es mockerar la implementacion de la interfaz para poder testear el metodo Use.
 
-Notar que para generar esta clase mock, debemos indicarle la interfaz que queremos mockear, en este caso Doer, y gomock nos genera una clase que podamos instrumentalizar.
+Notar que para generar esta clase mock, debemos indicarle una interfaz sobre la que se ha construido la implementacion que queremos mockear, en este caso Doer, y gomock nos genera una clase que nos permite instrumentalizar la clase a mockear.
 
 [source,go]
 ----
@@ -114,10 +114,14 @@ func TestUseReturnsErrorFromDo(t *testing.T) {
 	}
 }
 ----
-<1> Inicializamos la clase de mock.
+<1> Inicializamos la libreria de mock.
 <2> Instanciamos la clase a testear, pasandole en vez de la interfaz un mock
 <3> Instanciamos la clase mock, que hemos pasado como parametro en el constuctor de la clase a testear.
 <4> Instrumentalizamos el mock, en este caso esperamos que cuando el test llame a la clase mockeada con esos parametros, la respuesta sea la esperada.
 <5> Lanzamos la clase a testear.
 
-Notar que si lanzamos el test en modo verboso no veremos los de la implementacion de la interfaz.
+Notar que si lanzamos el test en modo verboso no veremos los print de la implementacion de la interfaz, porque no se habra llamado, sera la instrumentalizacion la encargada de devolver el resultado.
+
+Para un proximo articulo, notar que si la interfaz que queremos mockear esta dentro de un proyecto que usa go dep, podemos tener problemas con la paqueteria del import y que indique vendor.
+
+Pero eso sera para otro dia.
