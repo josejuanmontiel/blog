@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../2018/10/moewller.html"><p>Joining the model - view - controller</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,7 +165,7 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2018/10/moewller.html">Joining the model - view - controller</a></h2>
+                    <h2><a href="../2018/10/moewller.es.html">Uniendo el Model - View - Controller</a></h2>
 
     </div>
     <div class="meta">
@@ -184,8 +181,84 @@
   
          
     <div id="content">
-       <h1 id="_joining_the_model_view_controller" class="sect0">Joining the model - view - controller</h1>
-
+       <div class="sect1">
+<h2 id="_uniendo_el_model_view_controller_parte_12">Uniendo el Model - View - Controller (Parte 1/2)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hace tiempo que no escribo, pero sigo dandole vueltas a las cosas. En el ultimo articulo del blog, hablaba sobre serializacion, y en concreto sobre la serializacion de objetos a JSON (tanto para ser expuestos en un servicio REST como para serilizarlas en una base de datos NOSQL).</p>
+</div>
+<div class="paragraph">
+<p>En este articulo, me he panteado una prueba de concepto, que aviso, de momento esta incompleta. La prueba intenta montar una libreria que:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Permita mantener la separacion entre entre capas (de un MVC) usando un solo <a href="https://martinfowler.com/eaaCatalog/dataTransferObject.html">DTO</a> en vez de varios y una libreria de mapper, pero que a su vez permita las mismas o casi, ventajas de separacion.</p>
+</li>
+<li>
+<p>Sea capaz de ir realizando la serializacion, en este caso construccion del JSON de manera incremental conforme se setean los valores.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En <a href="http://github.com/josejuanmontiel/moewller">este</a> repositorio ire colocando los avances.</p>
+</div>
+<div class="paragraph">
+<p>Como nota, mucha gente tambien habla de <a href="https://martinfowler.com/bliki/ValueObject.html">VO</a> y aqui esta la <a href="http://www.adam-bien.com/roller/abien/entry/value_object_vs_data_transfer">difirenica entre ambos</a></p>
+</div>
+<div class="paragraph">
+<p>A continuacion, algunos links para hablar de "Serializacion as a Service"</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/ralfstx/minimal-json">Minimal Json</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/aalto-xml">Ultra-high performance non-blocking XML processor (Stax API + extensions)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/beckchr/staxon">Staxon</a></p>
+</li>
+<li>
+<p><a href="https://www.baeldung.com/kryo">Kryo en Baeldung</a></p>
+</li>
+<li>
+<p><a href="https://github.com/EsotericSoftware/kryo">Kryo</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary">jackson-binary</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/FasterXML/smile-format-specification/blob/master/smile-specification.md">Smile</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/protobuf">Protobuf</a></p>
+</li>
+<li>
+<p><a href="https://amzn.github.io/ion-docs/index.html">Ion</a></p>
+</li>
+<li>
+<p><a href="https://www.rfc-editor.org/rfc/rfc7049.txt">Cbor</a></p>
+</li>
+<li>
+<p><a href="https://avro.apache.org/docs/1.8.2/gettingstartedjava.html">Avro Apache</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/avro">Avro FasterXML</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
     </div>
 	
 	<section id="social-share">
@@ -193,43 +266,43 @@
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&text=Joining the model - view - controller&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&text=Uniendo el Model - View - Controller&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/10/moewller.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the model - view - controller" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the model - view - controller" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the model - view - controller" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/10/moewller.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -247,7 +320,7 @@
  	        <li><a href='../tags/serilize.html'>serilize</a></li>
  	        <li><a href='../tags/dozer.html'>dozer</a></li>
 
-				<li><a class="icon fa-comment" href="../2018/10/moewller.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2018/10/moewller.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -316,16 +389,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../2018/10/moewller.html">Joining the model - view - controller</a></h3>
-                                   <time class="published"
-  							            datetime='oct 21, 2018'>
-  							            oct 21, 2018</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>

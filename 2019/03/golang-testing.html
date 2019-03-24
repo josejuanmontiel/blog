@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Blog - Mensajes, serializacion y otras cosas</title>
+    <title>Blog - Testing in GoLang</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Jose Juan Montiel">
@@ -168,13 +168,13 @@
    <header>
     <div class="title">
 
-                      <h1><a href="../../2018/02/mensajes_serializacion.html">Mensajes, serializacion y otras cosas (English version)</a></h1>
+                      <h1><a href="../../2019/03/golang-testing.es.html">Testing in GoLang (Spanish version)</a></h1>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='feb 17, 2018'>
-            feb 17, 2018</time>
+            datetime='mar 09, 2019'>
+            mar 09, 2019</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,177 +185,206 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_mensajes_serialización_y_otras_cosas">Mensajes, serialización y otras cosas</h2>
+<h2 id="_motivation">Motivation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Recuerdo una vez que un compañero me dijo, algo así: "Mi jefe decía, que el que
-maneje los string, lo maneja todo". Sacada fuera de contexto, puede que parezca
-pretencioso, pero ¿no os da la sensación que la mayor parte de la programación se
-reduce a la "manipulación"?</p>
-</div>
-<div class="paragraph">
-<p>Y si os paráis a pensar, hoy día, ¿no se reduce al las comunicación? ¿al envío de
-"mensajes"? Y ahí es donde quiero llegar en este artículo, a la famosa serialización
-y deserialización.</p>
-</div>
-<div class="paragraph">
-<p>Yo no llegue a vivirlo, pero cuando empezaba en el mundo del Java, todavía se hablaba
-de <a href="https://es.wikipedia.org/wiki/CORBA">Corba</a> y <a href="https://es.wikipedia.org/wiki/Java_Remote_Method_Invocation">RMI</a>.
-No me voy a detener mucho, para eso tenemos la wikipedia, pero el primero digamos
-servía para comunicar sistemas separados y distintos, y el segundo mas "cercanos".</p>
-</div>
-<div class="paragraph">
-<p>A lo que si llegue, y de lleno fue al mundo <a href="https://es.wikipedia.org/wiki/Simple_Object_Access_Protocol">SOAP</a>.
-Si echamos la vista atras, el "XML se invento" en <a href="https://es.wikipedia.org/wiki/Extensible_Markup_Language#Historia">1998</a>,
-hasta recuerdo haber echo alguna entrevista en mis inicios para la "xml company".
-Y en XML se basa SOAP para la transmisión de mensajes. Aqui empieza a dejarse de
-lado los menajes "binarios" para pasar al XML, con sus supuestas ventajas, y desventajas.
-Porque parsear y carga en memoria XML era costoso, ágil porque podías acceder a
-cualquier parte del mensaje, pero costoso.</p>
-</div>
-<div class="paragraph">
-<p>No me extiendo mas aquí, simplemente recordar DTD, XSD, XSLT, y una serie mas de
-siglas relacionadas con el mundo XML.</p>
-</div>
-<div class="paragraph">
-<p>Pero la gente se canso pronto del XML, en el 2000 llego el <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
-La gente estaba cansada de esquemas, de la rigidez, el nuevo milenio quería flexibilidad,
-los navegadores querían poder buscar lo que quisieran, sin tener que cargarlo todo.</p>
-</div>
-<div class="paragraph">
-<p>Digamos que el REST, trajo el JSON, un formato donde la "tabulación" daba el formato,
-y no hacia falta tanta etiqueta, con lo que se reducía el tamaño de los mensajes,
-pero bueno, seguía haciendo falta parsearlos.</p>
-</div>
-<div class="paragraph">
-<p>Por aquella época Google empieza a usar internamente <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a>,
-un lenguaje de especificación binario. Lo mismo pensaban que al final, tampoco
-tenia mucho sentido que nos mensajes fueran "human-readable", y aunque pudiera
-existir compresión de un mensaje XML en una capa superior, al final es esfuerzo
-de serializar y deserializar de una manera "human-readable" tampoco era óbice
-para no poner un campo detrás de otro.</p>
-</div>
-<div class="paragraph">
-<p>Por otro lado, la <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
-empezó a evolucionar.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2018/02/glory-of-rest.png" alt="Glory of rest">
-</div>
-</div>
-<div class="paragraph">
-<p>Y empezaron a aparecer cosas como: <a href="https://swagger.io/">Swagger</a> y <a href="https://raml.org/">RAML</a>,
-que terminan fusionandose en <a href="https://www.openapis.org/">OPENAPI</a> y cosas como:
-<a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
-incluso <a href="http://graphql.org/learn/">GraphQL</a>, que para ser el lenguaje de consulta
-que conocemos, parte de un lenguaje de definición de estructuras.</p>
-</div>
-<div class="paragraph">
-<p>Al final, en el mundo Java, y supongo que en el resto de lenguajes tambien, toda
-transmisión requiere una serialización y una deserialización (que pueden ser mas
-o menos complejas).</p>
-</div>
-<div class="paragraph">
-<p>Por ejemplo, la transmisión de un XML grande a un destino, donde solo le interese
-ciertos datos del mismo, no tiene porque serializarlo en memoria para hacer un
-recorrido sobre el DOM, puede usarse un parser <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
-para buscar lo que se necesita, y da igual el tamaño del XML, tardara mas o menos igual,
-pues el overhead se produce cuando se carga en memoria.</p>
-</div>
-<div class="paragraph">
-<p>En el caso de un JSON, los que necesitan sus getter/setter especificados,
-los parser que simplemente carga en hash, los que usan la reflexion, los que
-no la usan (porque el usuario codifca cierta parte), los que "precompilan" codigo,
-los que&#8230;&#8203;</p>
-</div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<div class="paragraph">
-<p>Al final, en este mundo de la progracion, no se puede pensar nunca que se sabe todo,
-y en IMHO siempre se puede mejorar, haciendo las cosas de otra forma.</p>
-</div>
-<div class="paragraph">
-<p>Si buceamos un poco, podemos dar con algunos benchmark. Por ejemplo en esta
-<a href="https://github.com/fabienrenaud/java-json-benchmark">comparativas sobre librerias</a>
-podemos descubir la gran cantidad de librerias JSON que existen, y su diferente
-performance, prueba de que siempre se puede evolucinar, y cuando se llegan a los
-limites fisicos, siempre se puede hacer de otra forma. En esta otra
-<a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
-inclyendo protobuf</a> hacen el analisis, enfocando a la cantidad de atributos, de
-la clase a serializar, y hacen algunas consideraciones interesantes de las transformaciones
-que pasan "por debajo", lejos de la vista de nuestros ojos, comentando cambios entre
-JDK 8 y 9.</p>
-</div>
-<div class="ulist">
-<div class="title">Podemos destacar las siguientes librerias:</div>
-<ul>
-<li>
-<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Usa un dsl para generar el parser.</p>
-</li>
-<li>
-<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompilan un parser.</p>
-</li>
-<li>
-<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolucion de la conocida librería.</p>
-</li>
-<li>
-<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> Un enfoque mas teórico usando Graavl.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>¿Y si hablamos de las bbdd NSQL u orientadas a documento?, como por ejemplo CouchBase&#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Al final, aqui usando el API java, tambien existe una serializacion/deserializacion,
-al final lo que se guarda es un documento, que debe (segun API) serializarse mas o menos.</p>
-</div>
-<div class="paragraph">
-<p>En <a href="https://github.com/josejuanmontiel/demo-couchbase">este</a> repo, he trasteado un poco con algunas ideas.</p>
-</div>
-<div class="olist arabic">
-<div class="title">¿Las conclusiones?</div>
-<ol class="arabic">
-<li>
-<p>Esta claro que cuanto mas pequeño sea la entidad a persistir, antes se persistirá.</p>
-</li>
-<li>
-<p>Pero no por insertarlo en trozos mas pequeños (relacionados unos con otros) se
-inserta antes.</p>
-</li>
-<li>
-<p>Tanto para inserciones como consultas, si se inserta un string, sin pasar por
-JPA puede ganarse un 50% (descontado la serializacion a String, recordar que ya
-  llega en formato String desde sincro) y un 90% en lectura aprox.</p>
-</li>
-<li>
-<p>Un .findOne en spring data jpa, siempre va a ser mas lento que uno nativo.
-¿La vista sobre el tipo de entidad añade un retardo?</p>
-</li>
-<li>
-<p>La latencia de red desde el servidor a la bbdd tambien cuenta, menos datos, mas veloz.</p>
-</li>
-<li>
-<p>Los servidores con SSD vs HDD para bbdd nosql muestran grandes diferencias de rendimiento.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Depende del uso y el problema que se quiera abordar, no siempre puede tener sentido,
-serializar para tener los "objetos" accesibles, sino vamos a usarlos.</p>
+<p>On this occasion, I will comment on my advances in the world of testing with GoLang. To do this, with the help of <a href="https://github.com/josejuanmontiel/golang/tree/master/testing">the following code</a> I will comment on some concepts that I have learned.</p>
 </div>
 <div class="sect2">
-<h3 id="_como_ejercicio_para_casa">Como ejercicio para casa</h3>
+<h3 id="_interfaces">Interfaces</h3>
 <div class="paragraph">
-<p>Segun los <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> si se
-cambiara la implementacion de JsonConverter de Jackson a Jsonite, podria ganarse
-un 30% en la parte que la libreria spring data jpa pasa del objeto a
-com.couchbase.client.java.document.json.JsonObject.</p>
+<p>This is the way to define an interface in Go.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Doer interface {
+    DoSomething(int, string) error
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Hacer una pull request para implementar <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
-de couchbase  con <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
-y ver si es mas rapido que el estandar, y no mucho menos que con la <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
+<p>For a class to implement an interface, it is only necessary to implement all the methods of the interface.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type doerImpl struct {              <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+func NewDoerService() Doer {        <i class="conum" data-value="2"></i><b>(2)</b>
+	return &amp;doerImpl{}              <i class="conum" data-value="3"></i><b>(3)</b>
+}
+
+func (d *doerImpl) DoSomething(numero int, cadena string) error {   <i class="conum" data-value="4"></i><b>(4)</b>
+	fmt.Println("Calling DoSomething method")
+	fmt.Println(cadena)                                 <i class="conum" data-value="5"></i><b>(5)</b>
+	return errors.New("error")                          <i class="conum" data-value="6"></i><b>(6)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Every class needs a structure.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This function is the constructor of the implementation, it returns the interface.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Thus we return the reference to the structure of this implementation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This would be the method we are going to implement.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The implementation prints the input parameter.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Returns an error class.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now suppose we have another class where we make use of that interface implementation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type User struct {
+	Doer doer.Doer                  <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+func NewUser(d doer.Doer) *User {   <i class="conum" data-value="2"></i><b>(2)</b>
+	return &amp;User{d}                 <i class="conum" data-value="3"></i><b>(3)</b>
+}
+
+func (u *User) Use() error {
+	fmt.Println("Calling Use method")
+	return u.Doer.DoSomething(123, "Hello GoMock")  <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In this case, when declaring the structure of the class, we define an attribute of the type of the interface</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>In the constructor of this class, we passed an instance of the implementation of the interface</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>This is where we spent it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This function makes use of the function that we have implemented in the interface.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now consider the following main that will instantiate the implementation and then pass it to the function that makes use of the interface.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func main() {
+	newDoerImpl := doer.NewDoerService()        <i class="conum" data-value="1"></i><b>(1)</b>
+	_ = newDoerImpl.DoSomething(1, "hola")      <i class="conum" data-value="2"></i><b>(2)</b>
+
+	newUser := user.NewUser(newDoerImpl)        <i class="conum" data-value="3"></i><b>(3)</b>
+	newUser.Use()                               <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Using the constructor, we instantiate the implementation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Now we call the function of the implementation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>If we take that instance and pass it to the constructor of the new class</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We can make use of the function, which will make use of the implementation class</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now suppose we want to test the Use() function but we do not want DoSomething to be called.</p>
+</div>
+<div class="paragraph">
+<p>For this we are going to use the <a href="https://github.com/golang/mock">libreria de mock en go</a>. This library like other similar ones in other languages allow us to mock the objects that we do not want to test, in this case our objective is to mock the implementation of the interface to be able to test the Use method.</p>
+</div>
+<div class="paragraph">
+<p>Note that to generate this mock class, we must indicate an interface on which the implementation that we want to mock has been built, in this case Doer, and gomock generates a class that allows us to instrumentalize the class to be mocked.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func TestUseReturnsErrorFromDo(t *testing.T) {
+	fmt.Println("TestUseReturnsErrorFromDo")
+
+	mockCtrl := gomock.NewController(t)             <i class="conum" data-value="1"></i><b>(1)</b>
+	defer mockCtrl.Finish()
+
+	dummyError := errors.New("dummy error")
+	mockDoer := mocks.NewMockDoer(mockCtrl)         <i class="conum" data-value="3"></i><b>(3)</b>
+	testUser := &amp;user.User{Doer: mockDoer}          <i class="conum" data-value="2"></i><b>(2)</b>
+
+	mockDoer.EXPECT().DoSomething(123, "Hello GoMock").Return(dummyError).Times(1)  <i class="conum" data-value="4"></i><b>(4)</b>
+
+	err := testUser.Use()                           <i class="conum" data-value="5"></i><b>(5)</b>
+
+	if err != dummyError {
+		t.Fail()
+	}
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Initialize the mock library.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We instantiate the class to be tested, passing a mock instead of the interface</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We instantiate the mock class, which we have passed as a parameter in the constuctor of the class to be tested.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Instrumentalize the mock, in this case we hope that when the test calls the class mocked with those parameters, the answer will be as expected.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>We launch the class to test.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note that if we launch the test in verbose mode we will not see the print of the implementation of the interface, because it will not have been called, it will be the instrumentation that will be responsible for returning the result.</p>
+</div>
+<div class="paragraph">
+<p>For a next article, note that if the interface that we want to mock is within a project that uses go dep, we can have problems with the package of the import and that indicate vendor.</p>
+</div>
+<div class="paragraph">
+<p>But that will be for another day.</p>
 </div>
 </div>
 </div>
@@ -367,43 +396,43 @@ y ver si es mas rapido que el estandar, y no mucho menos que con la <a href="htt
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&text=Mensajes, serializacion y otras cosas&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&text=Testing in GoLang&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -416,10 +445,10 @@ y ver si es mas rapido que el estandar, y no mucho menos que con la <a href="htt
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='../../tags/jvm.html'>jvm</a></li>
- 	        <li><a href='../../tags/serilize.html'>serilize</a></li>
+ 	        <li><a href='../../tags/golang.html'>golang</a></li>
+ 	        <li><a href='../../tags/testing.html'>testing</a></li>
 
-				<li><a class="icon fa-comment" href="../../2018/02/mensajes_serializacion.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../../2019/03/golang-testing.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -810,8 +839,8 @@ y ver si es mas rapido que el estandar, y no mucho menos que con la <a href="htt
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-82879918-1', 'auto');
   ga('send', 'pageview', {
-    'page': '2018/02/mensajes_serializacion.es.html',
-    'title': 'Mensajes, serializacion y otras cosas'
+    'page': '2019/03/golang-testing.html',
+    'title': 'Testing in GoLang'
       });
 </script>
 		<!-- This is called by default since this theme uses highlight.js -->

@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Blog - Joining the model - view - controller</title>
+    <title>Blog - Joining the Model - View - Controller</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Jose Juan Montiel">
@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="../../../../2019/03/golang-testing.html"><p>Testing in GoLang</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,7 +168,7 @@
    <header>
     <div class="title">
 
-                      <h1><a href="../../2018/10/moewller.es.html">Joining the model - view - controller (Spanish version)</a></h1>
+                      <h1><a href="../../2018/10/moewller.es.html">Joining the Model - View - Controller (Spanish version)</a></h1>
 
     </div>
     <div class="meta">
@@ -181,8 +184,84 @@
   
          
     <div id="content">
-       <h1 id="_joining_the_model_view_controller" class="sect0">Joining the model - view - controller</h1>
-
+       <div class="sect1">
+<h2 id="_joining_the_model_view_controller_part_12">Joining the Model - View - Controller (Part 1/2)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s been a while since I wrote, but I&#8217;m still thinking about things. In the last article of the blog, he talked about serialization, and in particular about the serialization of objects to JSON (both to be exposed in a REST service and to serilize them in a NOSQL database).</p>
+</div>
+<div class="paragraph">
+<p>In this article, I have tasted a proof of concept, which notice, is incomplete at the moment. The test tries to set up a library that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Allow to maintain the separation between layers (of an MVC) using a single <a href="https://martinfowler.com/eaaCatalog/dataTransferObject.html">DTO</a> instead of several and a mapper library, but that in turn allows the same ones or almost, advantages of separation.</p>
+</li>
+<li>
+<p>Be able to perform the serialization, in this case construction of the JSON incrementally as the values are set.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>At <a href="http://github.com/josejuanmontiel/moewller">this</a> repository I will place the advances.</p>
+</div>
+<div class="paragraph">
+<p>As a note, many people also talk about <a href="https://martinfowler.com/bliki/ValueObject.html">VO</a> and here is the <a href="http://www.adam-bien.com/roller/abien/entry/value_object_vs_data_transfer">difirenica entre both of them</a></p>
+</div>
+<div class="paragraph">
+<p>Below, some links to talk about "Serialization as a Service"</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/ralfstx/minimal-json">Minimal Json</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/aalto-xml">Ultra-high performance non-blocking XML processor (Stax API + extensions)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/beckchr/staxon">Staxon</a></p>
+</li>
+<li>
+<p><a href="https://www.baeldung.com/kryo">Kryo en Baeldung</a></p>
+</li>
+<li>
+<p><a href="https://github.com/EsotericSoftware/kryo">Kryo</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary">jackson-binary</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/FasterXML/smile-format-specification/blob/master/smile-specification.md">Smile</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/protobuf">Protobuf</a></p>
+</li>
+<li>
+<p><a href="https://amzn.github.io/ion-docs/index.html">Ion</a></p>
+</li>
+<li>
+<p><a href="https://www.rfc-editor.org/rfc/rfc7049.txt">Cbor</a></p>
+</li>
+<li>
+<p><a href="https://avro.apache.org/docs/1.8.2/gettingstartedjava.html">Avro Apache</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/avro">Avro FasterXML</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
     </div>
 	
 	<section id="social-share">
@@ -190,7 +269,7 @@
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&text=Joining the model - view - controller&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&text=Joining the Model - View - Controller&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
@@ -208,19 +287,19 @@
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the model - view - controller" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the Model - View - Controller" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the model - view - controller" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the Model - View - Controller" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the model - view - controller" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.html&title=Joining the Model - View - Controller" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
@@ -328,6 +407,16 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="../../2019/03/golang-testing.html">Testing in GoLang</a></h3>
+                                   <time class="published"
+  							            datetime='mar 09, 2019'>
+  							            mar 09, 2019</time>
+                              </header>
+                          </article>
+                      </li>
 
                     <li>
                         <ul class="actions">
@@ -626,7 +715,7 @@
   ga('create', 'UA-82879918-1', 'auto');
   ga('send', 'pageview', {
     'page': '2018/10/moewller.html',
-    'title': 'Joining the model - view - controller'
+    'title': 'Joining the Model - View - Controller'
       });
 </script>
 		<!-- This is called by default since this theme uses highlight.js -->

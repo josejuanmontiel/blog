@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="../../2017/11/cookies_2_of_2.html"><p>Cookies (2 of 2)</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,7 +168,7 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2017/11/cookies_2_of_2.es.html">Cookies (2 de 2)</a></h2>
+                    <h2><a href="../2017/11/cookies_2_of_2.html">Cookies (2 of 2)</a></h2>
 
     </div>
     <div class="meta">
@@ -182,29 +185,29 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_y_ahora_que">Y ahora que&#8230;&#8203;</h2>
+<h2 id="_and_now_what">And now what&#8230;&#8203;</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Tras los ejemplos comentados en la primera parte, donde el protagonista solo era
-el navegador y el html, y donde hemos visto como una pagina puede invocar (y de
-hecho es lo normal) imágenes de otros dominios, si en la urls de invocación se
-pasan párametros, estos llegan al servidor destino, y si este genera una sesión,
-el navegador se encarga de crear las cookies necesarias para mantenerla.</p>
+<p>After the examples discussed in the first part, where the protagonist was only
+the browser and the html, and where we have seen how a page can invoke (and
+is normal) images from other domains, if in the invocation urls it is
+pass parameters, they arrive at the destination server, and if this generates a session,
+the browser is responsible for creating the necessary cookies to maintain it.</p>
 </div>
 <div class="paragraph">
-<p>Pero la cosa cambia, cuando es el javascript el encargado de hacer la petición,
-y además es otro dominio. Cors y gestion de cookies serán los principales problemas.
-Veamos.</p>
+<p>But the thing changes, when javascript is in charge of making the request,
+and it is also another domain. Cors and cookies management will be the main problems.
+Let&#8217;s see.</p>
 </div>
 <div class="sect2">
-<h3 id="_autenticacion">Autenticacion</h3>
+<h3 id="_authentication">Authentication</h3>
 <div class="paragraph">
-<p>Para llevar un poco mas allá el uso de la sesión, vamos a crear una pagina de
-login. Recordar que aquí, A representa a la 3rd party, y B a la pagina por la que
-navegamos.</p>
+<p>To take the use of the session a bit further, we are going to create a page of
+login. Remember that here, A represents the 3rd party, and B the page whereby
+we sail</p>
 </div>
 <div class="paragraph">
-<p>Con esta pagina de login</p>
+<p>With this login page</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -226,8 +229,8 @@ navegamos.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Podemos llamar a este controlador, donde si el usuario/password coinciden con
-admin/password guardamos en session, con la clave user, el valor del username.</p>
+<p>We can call this driver, where if the user / password matches
+admin / password we save in session, with the user key, the value of the username.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -249,7 +252,7 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 </div>
 <div class="paragraph">
-<p>Y tras eso, redirigimos a la pagina de isLogged, donde se muestra si estamos logados.</p>
+<p>And after that, we redirected to the isLogged page, where it shows if we are logged.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -258,7 +261,7 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 </div>
 <div class="paragraph">
-<p>donde el valor true/false viene de que sea admin, ese valor en sesion para user.</p>
+<p>where the value true / false comes from that it is admin, that value in session for user.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -266,7 +269,7 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 </div>
 <div class="paragraph">
-<p>Para testear el funcionamiento, montamos un end-point de logout, que invalida la sesión.</p>
+<p>To test the operation, we set up a logout endpoint, which invalidates the session.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -278,10 +281,10 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 </div>
 <div class="paragraph">
-<p>Ahora, empieza la parte interesante del experimento, vamos a simular lo que el
-navegador haría por nosotros si montáramos un formulario de login en nuestra
-pagina B a otro dominio A, pero de tal manera que se haga por javascript y
-sin refrescar la pagina.</p>
+<p>Now, start the interesting part of the experiment, let&#8217;s simulate what the
+browser would do for us if we mount a login form in our
+page B to another domain A, but in such a way that it is done by javascript and
+without refreshing the page.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -311,23 +314,23 @@ sin refrescar la pagina.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Obtenemos el usuario</td>
+<td>We obtain the user</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Obtenemos el password</td>
+<td>We get the password</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Construimos una petición POST al login de A</td>
+<td>We build a POST request to the login of A</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Este es el content-type que el navegador envía en los formularios</td>
+<td>This is the content-type that the browser sends in the forms</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Esto lo veremos mas adelante</td>
+<td>This we will see later</td>
 </tr>
 </table>
 </div>
@@ -335,30 +338,30 @@ sin refrescar la pagina.</p>
 <div class="sect2">
 <h3 id="_access_control_allow_origin">Access-Control-Allow-Origin</h3>
 <div class="paragraph">
-<p>El problema, es que, el navegador puede dejarnos pedir en A, imágenes de B, pero
-el envío de peticiones XMLHttpRequest (o lo que venimos conociendo por ajax) ya
-son otro tema. Y el tema es que en este caso, A que seria el receptor de esta
-petición, por defecto no permite la recepción de peticiones desde otro dominio
-distinto al suyo. <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Aqui</a>
-detallan como funciona esto. Y <a href="https://spring.io/guides/gs/rest-service-cors/#_enabling_cors">aqui</a>
-cuentan como gestiona Spring el tema.</p>
+<p>The problem is that, the browser can let us ask in A, images of B, but
+sending requests XMLHttpRequest (or what we have known by ajax) and
+They are another subject. And the issue is that in this case, what would the receiver of this
+request, by default does not allow the reception of requests from another domain
+different from yours. <a href="https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">Aqui</a>
+They detail how this works. And <a href="https://spring.io/guides/gs/rest-service-cors/#_enabling_cors">aqui</a>
+they tell how Spring manages the theme.</p>
 </div>
 <div class="sect3">
-<h4 id="_apis_js_de_servicios_de_terceros_en_tu_web">APIs JS de servicios de terceros en tu Web</h4>
+<h4 id="_js_apis_for_third_party_services_on_your_web">JS APIs for third-party services on your Web</h4>
 <div class="paragraph">
-<p>Llegado este punto, podrías llegar a preguntarte, porque cierto tipo de webs,
-que permiten hacer uso de sus servicios en tu web, o siendo un poco mas precisos,
-permiten que tus usuarios hagan uso de sus servicios en tu web, necesitan que
-registres la url de tu web.</p>
+<p>At this point, you might get to ask yourself, because certain types of websites,
+that allow you to use their services on your website, or being a little more precise,
+allow your users to use their services on your website, they need
+register the url of your web.</p>
 </div>
 <div class="paragraph">
-<p>Pues nunca lo tuve claro, pero después de estas pruebas de concepto, diría que
-porque necesitan configurar sus servidores, para que cuando el "remote address"
-de la petición sea igual, al de alguno de los que tienen registrados de "clientes",
-devuelvan un "Access-Control-Allow-Origin" con ese host.</p>
+<p>Well, I never knew, but after these proofs of concept, I would say that
+because they need to configure their servers, so that when the "remote address"
+of the request is the same as that of any of those who have registered "clients",
+return an "Access-Control-Allow-Origin" with that host.</p>
 </div>
 <div class="paragraph">
-<p>Este seria el filtro, que controla esto.</p>
+<p>This would be the filter, which controls this.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -382,17 +385,17 @@ devuelvan un "Access-Control-Allow-Origin" con ese host.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_y_las_cookies">¿Y las cookies?</h3>
+<h3 id="_and_the_cookies">And the cookies?</h3>
 <div class="paragraph">
-<p>Recordemos, que el objetivo es que desde una pagina de B, exista un Javascript
-que conecte con A para validar un user/password y que posteriormente, B pueda
-leer una cookie generada por ese Javascript, realmente en B, para hacer una
-llamada desde el servidor B al servidor A, haciéndose pasar por el usuario de B,
-que realizo la petición a A, para guardar en la sesión de B, la confianza en ese
-login realizado en A. El flujo que describimos al final del primer articulo.</p>
+<p>Recall, that the goal is that from a page of B, there is a Javascript
+that connects with A to validate a user / password and that later, B can
+read a cookie generated by that Javascript, really in B, to make a
+call from server B to server A, posing as the user of B,
+that I make the request to A, to save in session B, the confidence in that
+login made in A. The flow that we describe at the end of the first article.</p>
 </div>
 <div class="paragraph">
-<p>Lo primero, recordar el paso (5) que dejamos sin explicar</p>
+<p>First, remember the step (5) that we leave without explaining</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -401,20 +404,20 @@ login realizado en A. El flujo que describimos al final del primer articulo.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>es el que se encarga de setear la cookie en B. Hay mas maneras, que no he explorado,
-pero en este caso, en la url devuelta por el proceso de login, como el servidor
-A ve que B, no puede recibir una cookie, genera una url de redirección que lleva
-como parámetro el JSESSIONID, valor para poder correlacionar la sesión que nos
-ha generado A a nosotros que navegamos desde B, y hemos lanzado el XMLHttpRequest
-de login.</p>
+<p>is the one that is responsible for setting the cookie in B. There are more ways, that I have not explored,
+but in this case, in the url returned by the login process, as the server
+A sees that B can not receive a cookie, generates a redirect url that carries
+as parameter the JSESSIONID, value to be able to correlate the session that we
+has generated A to us that we navigate from B, and we have launched the XMLHttpRequest
+of login.</p>
 </div>
 <div class="paragraph">
-<p>Asi que parseamos esa URL (getJSessionId) y nos quedamos con el JSESSIONID y lo
-guardamos en una cookie (document.cookie) de B, que es donde estamos navegando.</p>
+<p>So we parse that URL (getJSessionId) and we keep the JSESSIONID and what
+We keep in a cookie (document.cookie) of B, which is where we are browsing.</p>
 </div>
 <div class="paragraph">
-<p>Ahora, evolucionamos el código del controlador de isLogged de B (y A, es el mismo
-código, aunque ahora estamos navegando desde B) para:</p>
+<p>Now, we evolved the isLogged driver code of B (and A, it&#8217;s the same
+code, although we are now navigating from B) to:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -454,54 +457,54 @@ código, aunque ahora estamos navegando desde B) para:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Leer la cookie jsessionfroma que es la que hemos generado desde el Javascript
-que llamo a A desde B para hacer el login. El "paso 5"</td>
+<td>Read the cookie jsessionfroma, which is what we generated from Javascript
+that I call A from B to do the login. The "step 5"</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Si tenemos esa cookie, entonces procedemos a realizar la llamada a A desde el
-back de B.</td>
+<td>If we have that cookie, then we proceed to make the call to A from the
+back of B.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>En la petición que vamos a hacer a A, vamos a añadir el header cookie, con el
-valor del JSESSIONID obtenido, es decir, le vamos a enviar a A la cookie para
-que vea que estábamos logado.</td>
+<td>In the request that we are going to make to A, we are going to add the header cookie, with the
+value of the JSESSIONID obtained, that is, we will send it to A the cookie for
+that sees that we were logado.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Parseamos la respuesta, para ver si en A pintamos que estamos logados.</td>
+<td>We pause the answer, to see if in A we paint that we are logados.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Nos quedamos con el nombre de usuario logado.</td>
+<td>We are left with the username logado.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Y si estamos logados en el remoto, entonces guardamos en la sesión de B,
-el usuario logado.</td>
+<td>And if we are logged in the remote, then we save in the session of B,
+the logged user</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Por tanto de esta forma hemos conseguido, logarnos desde Javascript en un servicio
-de terceros, y desde una comunicación back, con ese servicio y con la cookie que
-ese javascript nos ha generado, comprobar que estamos logados correctamente,
-para logarnos automaticamente en nuestra web.</p>
+<p>Therefore, in this way we have managed to achieve from Javascript in a service
+of third parties, and from a back communication, with that service and with the cookie that
+that javascript has generated us, check that we are correctly logged,
+to log us automatically on our website.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_el_codigo">El codigo</h3>
+<h3 id="_the_code">The code</h3>
 <div class="paragraph">
-<p>En <a href="https://github.com/josejuanmontiel/cookies">este repositorio</a> de github.</p>
+<p>In <a href="https://github.com/josejuanmontiel/cookies">this repository</a> from github.</p>
 </div>
 <div class="paragraph">
-<p>Pero me da, que se me quedan bastantes preguntas en el tintero, y otros enfoques
-posibles. ¿JSON-P? ¿Publicidad de google? ¿Problemas de seguridad? ¿SSO? ¿Proxy
-de servicios en Apache o Nginx? ¿JWT?</p>
+<p>But it gives me, that I have many questions left in the pipeline, and other approaches
+possible. JSON-P? Google advertising? Security issues? SSO? Proxy
+of services in Apache or Nginx? JWT?</p>
 </div>
 <div class="paragraph">
-<p>¿Un capitulo 3?</p>
+<p>A chapter 3?</p>
 </div>
 </div>
 </div>
@@ -513,43 +516,43 @@ de servicios en Apache o Nginx? ¿JWT?</p>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&text=Cookies (2 de 2)&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&text=Cookies (2 of 2)&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&title=Cookies (2 of 2)" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&title=Cookies (2 of 2)" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html&title=Cookies (2 de 2)" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html&title=Cookies (2 of 2)" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_2_of_2.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -565,7 +568,7 @@ de servicios en Apache o Nginx? ¿JWT?</p>
  	        <li><a href='../tags/jvm.html'>jvm</a></li>
  	        <li><a href='../tags/cookies.html'>cookies</a></li>
 
-				<li><a class="icon fa-comment" href="../2017/11/cookies_2_of_2.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2017/11/cookies_2_of_2.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -634,6 +637,16 @@ de servicios en Apache o Nginx? ¿JWT?</p>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="../2017/11/cookies_2_of_2.html">Cookies (2 of 2)</a></h3>
+                                   <time class="published"
+  							            datetime='nov 12, 2017'>
+  							            nov 12, 2017</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>

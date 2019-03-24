@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="2019/03/golang-testing.html"><p>Testing in GoLang</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,7 +168,7 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2019/03/golang-testing.es.html">Testing en GoLang</a></h2>
+                    <h2><a href="2019/03/golang-testing.html">Testing in GoLang</a></h2>
 
     </div>
     <div class="meta">
@@ -182,15 +185,15 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_motivacion">Motivacion</h2>
+<h2 id="_motivation">Motivation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En esta ocasion, voy a comentar mis avances en el mundo del testing con GoLang. Para ello, con la ayuda de <a href="https://github.com/josejuanmontiel/golang/tree/master/testing">el siguiente codigo</a> voy a comentar algunos conceptos que he aprendido.</p>
+<p>On this occasion, I will comment on my advances in the world of testing with GoLang. To do this, with the help of <a href="https://github.com/josejuanmontiel/golang/tree/master/testing">the following code</a> I will comment on some concepts that I have learned.</p>
 </div>
 <div class="sect2">
 <h3 id="_interfaces">Interfaces</h3>
 <div class="paragraph">
-<p>Esta es la manera de definir una interface en Go.</p>
+<p>This is the way to define an interface in Go.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -200,7 +203,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Para que una clase implemente una interfaz, solo es necesario implemntar todos los metodos de la interfaz.</p>
+<p>For a class to implement an interface, it is only necessary to implement all the methods of the interface.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -222,32 +225,32 @@ func (d *doerImpl) DoSomething(numero int, cadena string) error {   <i class="co
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Toda clase necesita de una estructura.</td>
+<td>Every class needs a structure.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Esta funcion es el constructor de la implementacion, devuelve la interfaz.</td>
+<td>This function is the constructor of the implementation, it returns the interface.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Asi devolvemos la referencia a la estructura de esta implementacion.</td>
+<td>Thus we return the reference to the structure of this implementation.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Esta seria el metodo que vamos a implementar.</td>
+<td>This would be the method we are going to implement.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>La implementacion imprime el parametro de entrada.</td>
+<td>The implementation prints the input parameter.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Devuelve una clase error.</td>
+<td>Returns an error class.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Ahora supongamos que tenemos otra clase donde hacemos uso de esa implementacion de la interfaz.</p>
+<p>Now suppose we have another class where we make use of that interface implementation.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -269,24 +272,24 @@ func (u *User) Use() error {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>En este caso, al declarar la estructura de la clase, definimos un atributo del tipo de la interfaz</td>
+<td>In this case, when declaring the structure of the class, we define an attribute of the type of the interface</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>En el constructor de esta clase, pasamos una instancia de la implementacion de la interfaz</td>
+<td>In the constructor of this class, we passed an instance of the implementation of the interface</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Aqui es donde la pasamos.</td>
+<td>This is where we spent it.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Esta funcion, hace uso de la funcion que hemos implementado de la interfaz.</td>
+<td>This function makes use of the function that we have implemented in the interface.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Consideremos ahora el siguiente main que va a instanciar la implementacion y luego pasarla a la funcion que hace uso de la interfaz.</p>
+<p>Now consider the following main that will instantiate the implementation and then pass it to the function that makes use of the interface.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -303,30 +306,30 @@ func (u *User) Use() error {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Usando el constructor, instanciamos la implementacion</td>
+<td>Using the constructor, we instantiate the implementation</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Ahora llamamos a la funcion de la implemtacion</td>
+<td>Now we call the function of the implementation</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Si cogemos esa instancia y la pasamos al constructor de la nueva clase</td>
+<td>If we take that instance and pass it to the constructor of the new class</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Podemos hacer uso de la funcion, que hara uso de la clase de la implementacion</td>
+<td>We can make use of the function, which will make use of the implementation class</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Ahora supongamos que queremos testear la funcion Use() pero no queremos que se llame a DoSomething.</p>
+<p>Now suppose we want to test the Use() function but we do not want DoSomething to be called.</p>
 </div>
 <div class="paragraph">
-<p>Para ello vamos a usar la <a href="https://github.com/golang/mock">libreria de mock en go</a>. Esta libreria al igual que otras similares en otros lenguajes nos permiten mockear los objetos que no queremos testear, en este caso nuestro objetivo es mockerar la implementacion de la interfaz para poder testear el metodo Use.</p>
+<p>For this we are going to use the <a href="https://github.com/golang/mock">libreria de mock en go</a>. This library like other similar ones in other languages allow us to mock the objects that we do not want to test, in this case our objective is to mock the implementation of the interface to be able to test the Use method.</p>
 </div>
 <div class="paragraph">
-<p>Notar que para generar esta clase mock, debemos indicarle una interfaz sobre la que se ha construido la implementacion que queremos mockear, en este caso Doer, y gomock nos genera una clase que nos permite instrumentalizar la clase a mockear.</p>
+<p>Note that to generate this mock class, we must indicate an interface on which the implementation that we want to mock has been built, in this case Doer, and gomock generates a class that allows us to instrumentalize the class to be mocked.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -354,34 +357,34 @@ func (u *User) Use() error {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Inicializamos la libreria de mock.</td>
+<td>Initialize the mock library.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Instanciamos la clase a testear, pasandole en vez de la interfaz un mock</td>
+<td>We instantiate the class to be tested, passing a mock instead of the interface</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Instanciamos la clase mock, que hemos pasado como parametro en el constuctor de la clase a testear.</td>
+<td>We instantiate the mock class, which we have passed as a parameter in the constuctor of the class to be tested.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Instrumentalizamos el mock, en este caso esperamos que cuando el test llame a la clase mockeada con esos parametros, la respuesta sea la esperada.</td>
+<td>Instrumentalize the mock, in this case we hope that when the test calls the class mocked with those parameters, the answer will be as expected.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Lanzamos la clase a testear.</td>
+<td>We launch the class to test.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Notar que si lanzamos el test en modo verboso no veremos los print de la implementacion de la interfaz, porque no se habra llamado, sera la instrumentalizacion la encargada de devolver el resultado.</p>
+<p>Note that if we launch the test in verbose mode we will not see the print of the implementation of the interface, because it will not have been called, it will be the instrumentation that will be responsible for returning the result.</p>
 </div>
 <div class="paragraph">
-<p>Para un proximo articulo, notar que si la interfaz que queremos mockear esta dentro de un proyecto que usa go dep, podemos tener problemas con la paqueteria del import y que indique vendor.</p>
+<p>For a next article, note that if the interface that we want to mock is within a project that uses go dep, we can have problems with the package of the import and that indicate vendor.</p>
 </div>
 <div class="paragraph">
-<p>Pero eso sera para otro dia.</p>
+<p>But that will be for another day.</p>
 </div>
 </div>
 </div>
@@ -393,43 +396,43 @@ func (u *User) Use() error {
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&text=Testing en GoLang&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&text=Testing in GoLang&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&title=Testing en GoLang" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&title=Testing en GoLang" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html&title=Testing en GoLang" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -445,7 +448,7 @@ func (u *User) Use() error {
  	        <li><a href='tags/golang.html'>golang</a></li>
  	        <li><a href='tags/testing.html'>testing</a></li>
 
-				<li><a class="icon fa-comment" href="2019/03/golang-testing.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2019/03/golang-testing.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -514,6 +517,16 @@ func (u *User) Use() error {
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="2019/03/golang-testing.html">Testing in GoLang</a></h3>
+                                   <time class="published"
+  							            datetime='mar 09, 2019'>
+  							            mar 09, 2019</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>
