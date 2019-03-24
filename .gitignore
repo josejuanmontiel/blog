@@ -4,3 +4,7 @@
 /src/jbake/assets/2017/11/.metadata
 /src/jbake/assets/2017/11/RemoteSystemsTempFiles
 /src/jbake/assets/2017/11/.recommenders
+/.project
+/.vscode/launch.json
+/.vscode/settings.json
+/bin/

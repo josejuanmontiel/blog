@@ -1,4 +1,4 @@
-= Joining the model - view - controller
+= Joining the Model - View - Controller
 Jose Juan Montiel
 2018-10-21
 :jbake-type: post
@@ -9,5 +9,32 @@ Jose Juan Montiel
 :id: moewller
 :icons: font
 
-= Joining the model - view - controller
+== Joining the Model - View - Controller (Part 1/2)
 
+It's been a while since I wrote, but I'm still thinking about things. In the last article of the blog, he talked about serialization, and in particular about the serialization of objects to JSON (both to be exposed in a REST service and to serilize them in a NOSQL database).
+
+In this article, I have tasted a proof of concept, which notice, is incomplete at the moment. The test tries to set up a library that:
+
+* Allow to maintain the separation between layers (of an MVC) using a single https://martinfowler.com/eaaCatalog/dataTransferObject.html[DTO] instead of several and a mapper library, but that in turn allows the same ones or almost, advantages of separation.
+* Be able to perform the serialization, in this case construction of the JSON incrementally as the values are set.
+
+At http://github.com/josejuanmontiel/moewller[this] repository I will place the advances.
+
+As a note, many people also talk about https://martinfowler.com/bliki/ValueObject.html[VO] and here is the http://www.adam-bien.com/roller/abien/entry/value_object_vs_data_transfer[difirenica entre both of them]
+
+Below, some links to talk about "Serialization as a Service"
+
+* https://github.com/ralfstx/minimal-json[Minimal Json]
+* https://github.com/FasterXML/aalto-xml[Ultra-high performance non-blocking XML processor (Stax API + extensions)]
+* https://github.com/beckchr/staxon[Staxon]
+
+* https://www.baeldung.com/kryo[Kryo en Baeldung]
+* https://github.com/EsotericSoftware/kryo[Kryo]
+
+* https://github.com/FasterXML/jackson-dataformats-binary[jackson-binary]
+** https://github.com/FasterXML/smile-format-specification/blob/master/smile-specification.md[Smile]
+** https://github.com/FasterXML/jackson-dataformats-binary/tree/master/protobuf[Protobuf]
+** https://amzn.github.io/ion-docs/index.html[Ion]
+** https://www.rfc-editor.org/rfc/rfc7049.txt[Cbor]
+** https://avro.apache.org/docs/1.8.2/gettingstartedjava.html[Avro Apache]
+*** https://github.com/FasterXML/jackson-dataformats-binary/tree/master/avro[Avro FasterXML]
