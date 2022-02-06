@@ -1,0 +1,12 @@
+= Reflexionemos sobre lo pasado 
+Jose Juan Montiel
+2022-02-18
+:jbake-type: post
+:jbake-tags: life, work, ikigai
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: donde-te-ves-1
+:icons: font
+
+== Tras unos 20 años trabajando en este mundo...

@@ -1,0 +1,12 @@
+= xxx
+Jose Juan Montiel
+2022-02-25
+:jbake-type: post
+:jbake-tags: life, work, ikigai
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: donde-te-ves-1
+:icons: font
+
+== xxx...
