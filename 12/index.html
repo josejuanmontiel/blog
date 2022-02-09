@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../2017/07/groovy-metaprograming.html"><p>Groovy Metaprograming</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2017/07/groovy-metaprograming.html">Groovy Metaprograming</a></h2>
+                    <h2><a href="../2017/07/groovy-metaprograming.es.html">Groovy Metaprograming</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='jul 08, 2017'>
-            jul 08, 2017</time>
+            datetime='jul. 08, 2017'>
+            jul. 08, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,83 +182,84 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_generation_of_code_from_the_model_to_the_view">Generation of code. From the model to the view.</h2>
+<h2 id="_generacion_de_codigo_del_modelo_a_la_vista">Generacion de codigo. Del modelo a la vista.</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Well, at last, more than 9 months after its beginning, I have encouraged to finish
-this blog post, and it was after the tweet of <a href="https://twitter.com/jagedn/status/882984377596116992">@jagedn</a>
-that after the @ilopmar talk in <a href="http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html">madridgug</a>,
-he encouraged me with <a href="https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f">asteroid</a>.</p>
+<p>Bueno, por fin, mas de 9 meses despues de su inicio, me he animado a terminar
+esta entrada del blog, y fue tras el tweet de <a href="https://twitter.com/jagedn/status/882984377596116992">@jagedn</a>
+que despues de la charla de @ilopmar en <a href="http://www.madridgug.com/2017/06/madrid-gug-julio-2017-sacando-partido.html">madridgug</a>,
+hizo que me animara con <a href="https://github.com/josejuanmontiel/asteroid/commit/9df7f079d25f183f7cade71900cce86264c9ed2f">asteroid</a>.</p>
 </div>
 <div class="paragraph">
-<p>But hey, by order.</p>
+<p>Pero bueno, por orden.</p>
 </div>
 <div class="paragraph">
-<p>In <a href="https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html">one</a>
-of my other articles, talked about how, using Groovy and Thymeleaf, one could
-to separate even a little more, the model of the view of where to place the
-binding elements, to display model data; and leave some next steps,
-how you could generate part of that code.</p>
+<p>En <a href="https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html">uno</a>
+de mis anteriores artículos, hablaba de como, usando Groovy y Thymeleaf, se podía
+separar aun un poco mas, la maqueta de las indicaciones de donde colocar los
+elementos de binding, para mostrar los datos del modelo; y deje planteado unos
+próximos pasos, de como se podía generar parte de ese código.</p>
 </div>
 <div class="paragraph">
-<p>And I will not talk about how to generate this code in this post, it should be more
-forward but at least, I will list a number of "useful" links to generate code.</p>
+<p>Y no voy a hablar de como generar ese codigo en este post, tendra que ser mas
+adelante pero por lo menos, dejare listadas una serie de herramientas "utiles"
+para generar codigo.</p>
 </div>
 <div class="paragraph">
-<p>To date, there are many ways to "generate code". For example in
-<a href="http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy">this article</a>
-Ivan tells us the options that are in groovy (at compile time, and in
-A previous one, those of execution time).</p>
+<p>A día de hoy, existen muchas maneras de "generar codigo". Por ejemplo, en
+<a href="http://www.genbetadev.com/paradigmas-de-programacion/metaprogramacion-en-compile-time-con-groovy">este articulo</a>
+Ivan nos cuenta las opciones que hay en groovy (en tiempo de compilacion, y en
+uno anterior, las de tiempo de ejecucion).</p>
 </div>
 <div class="paragraph">
-<p>And in <a href="http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html">this talk</a>,
-Mario, focuses on the aids that exist for Metaprogramming in groovy, macros.
-And it also tells us about a library to help us in this process of creating
-Macros: <a href="https://github.com/grooviter/asteroid">asteroid</a></p>
+<p>Y en <a href="http://www.madridgug.com/2016/11/madrid-gug-diciembre-2016-macro-macro.html">esta charla</a>,
+Mario, se centra en las ayudas que existen para la Metaprogramacion en groovy, los macros.
+Y también nos habla de una librería para ayudarnos en ese proceso de creacion de
+macros: <a href="https://github.com/grooviter/asteroid">asteroid</a></p>
 </div>
 <div class="paragraph">
-<p>If we had to make a classification, different, in different ways to create code
-we could do it like this:</p>
+<p>Si tuvieramos que hacer una clasificacion, diferente, de las distintas maneras
+de crear codigo podriamos hacerlo asi:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Those of "java"</p>
+<p>Las de "java"</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>The ones that you can see</p>
+<p>Las que se ven</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Those that generate source code</p>
+<p>Las que generan codigo fuente</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Things like <a href="http://docs.spring.io/spring-roo/reference/html/intro.html">Spring Roo</a>
-or <a href="http://yeoman.io">Yeoman</a> or the most current <a href="https://jhipster.github.io/">JHipster</a>
-are tools that generate code "scaffolding".</p>
+<p>Cosas como <a href="http://docs.spring.io/spring-roo/reference/html/intro.html">Spring Roo</a>
+o <a href="http://yeoman.io">Yeoman</a> o la mas actual <a href="https://jhipster.github.io/">JHipster</a>
+son herramientas que generan codigo "scaffolding".</p>
 </li>
 <li>
-<p>But things like this library <a href="https://github.com/square/javapoet">Javapoet</a>
-generates source code, from a DSL, and so we start from a common sources.</p>
+<p>Pero cosas como esta libreria <a href="https://github.com/square/javapoet">Javapoet</a>
+genera codigo fuente, a partir de un DSL, y asi partimos de unos fuentes comunes.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Those that generate code "compiled". <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/apt/">APT</a>,
-Is the tool on which the "rest" that modifies the <a href="http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/">AST</a>.</p>
+<p>Las que generan codigo "compilado". <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/apt/">APT</a>,
+es la herramienta en la que se basan el "resto" que modifcian el <a href="http://www.eclipse.org/articles/Article-JavaCodeManipulation_AST/">AST</a>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>By example, this library, <a href="https://github.com/AlbertoSH/MagicBuilder">MagicBuilder</a> generate code at compile time, following the patron builder.</p>
+<p>Por ejemplo, esta libreria, <a href="https://github.com/AlbertoSH/MagicBuilder">MagicBuilder</a> genera codigo en tiempo de compilacion, siguiendo el patron builder.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Those that modify the bytecode</p>
+<p>Las que modifican el bytecode</p>
 <div class="ulist">
 <ul>
 <li>
@@ -280,18 +278,18 @@ Is the tool on which the "rest" that modifies the <a href="http://www.eclipse.or
 </div>
 </li>
 <li>
-<p>Those that "do not" look</p>
+<p>Las que "no" se ven</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Those that use dependency injection.</p>
+<p>Las que usan injeccion de dependencias.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>At the end declare a variable, and that in execution time it has been
-assigned a value, is also a way to modify the code. Here too Would have a place,
-that kind of thing that, among others, makes Spring to generate the beans that
-injects us through proxies for example.</p>
+<p>Al final declarar una variable, y que en tiempo de ejecucion se le haya
+asignado un valor, tambien es una manera de modificar el codigo. Aqui tambien
+tendrian cabida, ese tipo de cosas que, entre otros, hace Spring para generar
+los beans que nos injecta a traves de proxies por ejemplo.</p>
 </li>
 </ul>
 </div>
@@ -301,9 +299,9 @@ injects us through proxies for example.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>This, somehow modifies the code / ast / bytecode, but the peculiarity
-is the way to define where these transformations are going to take place. Could
-considered a kind of global AST.</p>
+<p>Esto, de alguna manera modifica el codigo/ast/bytecode, pero la peculiaridad
+es la manera de definir donde van a actuar estas transformaciones. Podrian
+considerarse una especie de AST Globales.</p>
 </li>
 </ul>
 </div>
@@ -313,9 +311,9 @@ considered a kind of global AST.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>It is for those who can not use Groovy, at least, do not have they do
-certain things that are always the same, like the getter / setter. This clearly
-enters in the AST field.</p>
+<p>Es para aquellos que no pueden usar Groovy, que por lo menos, no tengan
+que hacer ciertas cosas que siempre son igual, como los getter/setter. Esto si
+entra claramente dentro de las AST.</p>
 </li>
 </ul>
 </div>
@@ -324,7 +322,7 @@ enters in the AST field.</p>
 </div>
 </li>
 <li>
-<p>Those that modify the code "loaded" in one "environment" by another</p>
+<p>Las que modifican el codigo "cargado" en un "entorno" por otro</p>
 <div class="ulist">
 <ul>
 <li>
@@ -338,8 +336,8 @@ enters in the AST field.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>We see <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188">here</a>
-as for the tests of the latter have used ByteBuddy.</p>
+<p>Vemos <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot-integration-tests/spring-boot-devtools-tests/src/test/java/org/springframework/boot/devtools/tests/DevToolsIntegrationTests.java#L179-L188">aqui</a>
+como para los test de esta ultima han usado ByteBuddy.</p>
 </li>
 </ul>
 </div>
@@ -348,27 +346,27 @@ as for the tests of the latter have used ByteBuddy.</p>
 </div>
 </li>
 <li>
-<p>Those that change the code in production through dinamic attach. <a href="https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/">Dynamic attach</a>.</p>
+<p>Las que cambian el codigo en produccion mediante dinamic attach. <a href="https://www.sitepoint.com/fixing-bugs-in-running-java-code-with-dynamic-attach/">Dynamic attach</a>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>In this talk, we are told how to use <a href="http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html">YouDebug</a> as an interactive debugger in production.</p>
+<p>En esta charla, nos cuentan  como usar <a href="http://www.madridgug.com/2015/11/codemotion-2015-jose-miguel-rodriguez.html">YouDebug</a> como un depurador interactivo en produccion.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Those that compile code from sources in production. <a href="https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0">Compile sources en runtime</a>.</p>
+<p>Las que compilan codigo desde unos fuentes en produccion. <a href="https://blog.frankel.ch/compilation-java-code-on-the-fly/#gsc.tab=0">Compile sources en runtime</a>.</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>The android world</p>
+<p>El mundo android</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Assisted by gradle (with the APT plugin)</p>
+<p>Asistidas por gradle (con el plugin APT)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -381,7 +379,7 @@ as for the tests of the latter have used ByteBuddy.</p>
 <p><a href="http://androidannotations.org/">Android Annotation</a></p>
 </li>
 <li>
-<p><a href="https://github.com/Arasthel/SwissKnife">SwissKnife</a> for Groovy.</p>
+<p><a href="https://github.com/Arasthel/SwissKnife">SwissKnife</a> para groovy.</p>
 </li>
 </ul>
 </div>
@@ -391,21 +389,21 @@ as for the tests of the latter have used ByteBuddy.</p>
 </li>
 <li>
 <p>Osgi vs Jigsaw
-Hehe, well, this for another day :)</p>
+Jeje, bueno, esto para otro dia :)</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>And well, so you do not make "ball" this blog entry, simply reflect
-"The different ways to" generate code "that exist in the world of the JVM (java, groovy) any more?</p>
+<p>Y bueno, para que no se haga "bola" esta entrada del blog, simplemente reflejar
+"las distintas maneras de "generar codigo" que existen en el mundo de la JVM (java, groovy) ¿alguna mas?</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_extra_ball">Extra ball</h2>
+<h2 id="_bola_extra">Bola extra</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Some conversations in stackoverflow about android, groovy and code generation by APT</p>
+<p>Algunas conversaciones en stackoverflow sobre android, groovy y generacion de codigo por APT</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -429,43 +427,43 @@ Hehe, well, this for another day :)</p>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&text=Groovy Metaprograming&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&text=Groovy Metaprograming&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&title=Groovy Metaprograming" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&title=Groovy Metaprograming" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html&title=Groovy Metaprograming" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html&title=Groovy Metaprograming" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/07/groovy-metaprograming.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -484,7 +482,7 @@ Hehe, well, this for another day :)</p>
  	        <li><a href='../tags/groovy.html'>groovy</a></li>
  	        <li><a href='../tags/thymeleaf.html'>thymeleaf</a></li>
 
-				<li><a class="icon fa-comment" href="../2017/07/groovy-metaprograming.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2017/07/groovy-metaprograming.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -553,16 +551,6 @@ Hehe, well, this for another day :)</p>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../2017/07/groovy-metaprograming.html">Groovy Metaprograming</a></h3>
-                                   <time class="published"
-  							            datetime='jul 08, 2017'>
-  							            jul 08, 2017</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>
@@ -640,7 +628,7 @@ Hehe, well, this for another day :)</p>
                     <li>
                         <article>
                             <header>
-                                <a href="../tags/cookies.html">cookies</a>
+                                <a href="../tags/life.html">life</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -650,6 +638,15 @@ Hehe, well, this for another day :)</p>
                         <article>
                             <header>
                                 <a href="../tags/serilize.html">serilize</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -748,6 +745,15 @@ Hehe, well, this for another day :)</p>
                     <li>
                         <article>
                             <header>
+                                <a href="../tags/work.html">work</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -758,6 +764,15 @@ Hehe, well, this for another day :)</p>
                         <article>
                             <header>
                                 <a href="../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/ikigai.html">ikigai</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -824,7 +839,7 @@ Hehe, well, this for another day :)</p>
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.6</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 

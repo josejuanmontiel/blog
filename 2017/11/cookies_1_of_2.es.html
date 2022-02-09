@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../../../2019/03/golang-testing.html"><p>Testing in GoLang</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -173,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='nov 09, 2017'>
-            nov 09, 2017</time>
+            datetime='nov. 09, 2017'>
+            nov. 09, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -330,15 +327,11 @@ y podemos observar los resultados viendo: <a href="http://b.127.0.0.1.xip.io:900
 <div class="paragraph">
 <p>La navegacion seria algo de este estilo.</p>
 </div>
-<div id="main-classes" class="listingblock">
-<div class="title">Flujo de navegacion de las cookies</div>
+<div id="main-classes" class="imageblock">
 <div class="content">
-<pre>Failed to generate image: can't modify frozen
-Browser -&gt; DomainA: Se envian parametros
-Browser -&gt; DomainB: Se envian parmetros
-DomainA -&gt; Browser: Genera cookie
-DomainB -&gt; Browser: Genera cookie</pre>
+<img src="/blog/img/cookie-plantuml-diagram-1.png" alt="Class diagram" width="640" height="480">
 </div>
+<div class="title">Figure 1. Flujo de navegacion de las cookies</div>
 </div>
 <div class="paragraph">
 <p>Y aqui vemos los resultados, que pasamos a comentar:</p>
@@ -408,19 +401,11 @@ hacerle una peticion al ellos (dominio A) y recupere lo que el servicio de terce
 (dominio A) almacena en su session para nosotros usuarios que navegamos, por
 ejemplo que estamos logados en su servicio.</p>
 </div>
-<div id="main-classes" class="listingblock">
-<div class="title">Flujo de navegacion de con servicio de terceros</div>
+<div id="main-classes" class="imageblock">
 <div class="content">
-<pre>Failed to generate image: can't modify frozen
-Browser -&gt; DomainB: Step1
-Browser -&gt; DomainA: Step2
-Browser -&gt; DomainA: Step3
-DomainA -&gt; Browser: Step4
-Browser -&gt; Browser: Step5
-Browser -&gt; DomainB: Step6
-DomainB -&gt; DomainA: Step7
-DomainB -&gt; Browser: Step8</pre>
+<img src="/blog/img/cookie-plantuml-diagram-2.png" alt="Class diagram 3rd API" width="640" height="480">
 </div>
+<div class="title">Figure 2. Flujo de navegacion de con servicio de terceros</div>
 </div>
 <div class="ulist">
 <ul>
@@ -596,16 +581,6 @@ DomainB -&gt; Browser: Step8</pre>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../../2019/03/golang-testing.html">Testing in GoLang</a></h3>
-                                   <time class="published"
-  							            datetime='mar 09, 2019'>
-  							            mar 09, 2019</time>
-                              </header>
-                          </article>
-                      </li>
 
                     <li>
                         <ul class="actions">
@@ -689,7 +664,7 @@ DomainB -&gt; Browser: Step8</pre>
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/cookies.html">cookies</a>
+                                <a href="../../tags/life.html">life</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -699,6 +674,15 @@ DomainB -&gt; Browser: Step8</pre>
                         <article>
                             <header>
                                 <a href="../../tags/serilize.html">serilize</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -797,6 +781,15 @@ DomainB -&gt; Browser: Step8</pre>
                     <li>
                         <article>
                             <header>
+                                <a href="../../tags/work.html">work</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="../../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -807,6 +800,15 @@ DomainB -&gt; Browser: Step8</pre>
                         <article>
                             <header>
                                 <a href="../../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/ikigai.html">ikigai</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -873,7 +875,7 @@ DomainB -&gt; Browser: Step8</pre>
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.6</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 

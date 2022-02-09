@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../2018/02/mensajes_serializacion.html"><p>Message, serialization and other things</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h2>
+                    <h2><a href="../2018/02/mensajes_serializacion.es.html">Mensajes, serializacion y otras cosas</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='feb 17, 2018'>
-            feb 17, 2018</time>
+            datetime='feb. 17, 2018'>
+            feb. 17, 2018</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,60 +182,59 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_messages_serialization_and_other_things">Messages, serialization and other things</h2>
+<h2 id="_mensajes_serialización_y_otras_cosas">Mensajes, serialización y otras cosas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I remember one time a colleague told me, something like this: "My boss said, that the one
-manage the string, it handles everything". Taken out of context, it may seem
-pretentious, but do not you get the feeling that most of the programming is
-reduces to "manipulation"?</p>
+<p>Recuerdo una vez que un compañero me dijo, algo así: "Mi jefe decía, que el que
+maneje los string, lo maneja todo". Sacada fuera de contexto, puede que parezca
+pretencioso, pero ¿no os da la sensación que la mayor parte de la programación se
+reduce a la "manipulación"?</p>
 </div>
 <div class="paragraph">
-<p>And if you stop to think, today, is not it reduced to communication? To the shipment of
-"messages"? And that&#8217;s where I want to get in this article, to the famous serialization
-and deserialization.</p>
+<p>Y si os paráis a pensar, hoy día, ¿no se reduce al las comunicación? ¿al envío de
+"mensajes"? Y ahí es donde quiero llegar en este artículo, a la famosa serialización
+y deserialización.</p>
 </div>
 <div class="paragraph">
-<p>I did not get to experience it, but when I started in the Java world, there was still talk
-of <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">Corba</a> and
-<a href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">RMI</a>.
-I&#8217;m not going to stop much, for that we have the wikipedia, but the first let&#8217;s say
-it served to communicate separate and distinct systems, and the second more "close".</p>
+<p>Yo no llegue a vivirlo, pero cuando empezaba en el mundo del Java, todavía se hablaba
+de <a href="https://es.wikipedia.org/wiki/CORBA">Corba</a> y <a href="https://es.wikipedia.org/wiki/Java_Remote_Method_Invocation">RMI</a>.
+No me voy a detener mucho, para eso tenemos la wikipedia, pero el primero digamos
+servía para comunicar sistemas separados y distintos, y el segundo mas "cercanos".</p>
 </div>
 <div class="paragraph">
-<p>To what if it arrives, and went to the world to <a href="https://en.wikipedia.org/wiki/SOAP">SOAP</a>.
-If we look back, the "XML was invented" at <a href="https://en.wikipedia.org/wiki/XML#History">1998</a>,
-I even remember doing an interview in my beginnings for the "xml company".
-And in XML, SOAP is based on the transmission of messages. Here begins to stop
-side the "binary" messages to move to XML, with its supposed advantages, and disadvantages.
-Because parsing and loading into XML memory was expensive, agile because you could access
-any part of the message, but expensive.</p>
+<p>A lo que si llegue, y de lleno fue al mundo <a href="https://es.wikipedia.org/wiki/Simple_Object_Access_Protocol">SOAP</a>.
+Si echamos la vista atras, el "XML se invento" en <a href="https://es.wikipedia.org/wiki/Extensible_Markup_Language#Historia">1998</a>,
+hasta recuerdo haber echo alguna entrevista en mis inicios para la "xml company".
+Y en XML se basa SOAP para la transmisión de mensajes. Aqui empieza a dejarse de
+lado los menajes "binarios" para pasar al XML, con sus supuestas ventajas, y desventajas.
+Porque parsear y carga en memoria XML era costoso, ágil porque podías acceder a
+cualquier parte del mensaje, pero costoso.</p>
 </div>
 <div class="paragraph">
-<p>I do not extend more here, just remember DTD, XSD, XSLT, and a series more than
-acronyms related to the XML world.</p>
+<p>No me extiendo mas aquí, simplemente recordar DTD, XSD, XSLT, y una serie mas de
+siglas relacionadas con el mundo XML.</p>
 </div>
 <div class="paragraph">
-<p>But people got tired of the XML soon, in 2000 came the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
-People were tired of schemes, of rigidity, the new millennium wanted flexibility,
-browsers wanted to be able to find what they wanted, without having to load everything.</p>
+<p>Pero la gente se canso pronto del XML, en el 2000 llego el <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
+La gente estaba cansada de esquemas, de la rigidez, el nuevo milenio quería flexibilidad,
+los navegadores querían poder buscar lo que quisieran, sin tener que cargarlo todo.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s say that the REST, brought the JSON, a format where the "tabulation" gave the format,
-and there was no need for so much label, which reduced the size of the messages,
-but hey, it was still necessary to parse them.</p>
+<p>Digamos que el REST, trajo el JSON, un formato donde la "tabulación" daba el formato,
+y no hacia falta tanta etiqueta, con lo que se reducía el tamaño de los mensajes,
+pero bueno, seguía haciendo falta parsearlos.</p>
 </div>
 <div class="paragraph">
-<p>At that time, Google started using <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a> internally,
-a binary specification language. The same thought that in the end, either
-It made a lot of sense that the messages were "human-readable", and even if I could
-there is compression of an XML message in a superior layer, in the end it is effort
-to serialize and deserialize in a "human-readable" way was not an obstacle either
-to not put one field after another.</p>
+<p>Por aquella época Google empieza a usar internamente <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a>,
+un lenguaje de especificación binario. Lo mismo pensaban que al final, tampoco
+tenia mucho sentido que nos mensajes fueran "human-readable", y aunque pudiera
+existir compresión de un mensaje XML en una capa superior, al final es esfuerzo
+de serializar y deserializar de una manera "human-readable" tampoco era óbice
+para no poner un campo detrás de otro.</p>
 </div>
 <div class="paragraph">
-<p>On the other hand, the <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
-it began to evolve.</p>
+<p>Por otro lado, la <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
+empezó a evolucionar.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -246,117 +242,117 @@ it began to evolve.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>And things started to appear like: <a href="https://swagger.io/">Swagger</a> and <a href="https://raml.org/">RAML</a>,
-that end up merging at <a href="https://www.openapis.org/">OPENAPI</a> and things like:
+<p>Y empezaron a aparecer cosas como: <a href="https://swagger.io/">Swagger</a> y <a href="https://raml.org/">RAML</a>,
+que terminan fusionandose en <a href="https://www.openapis.org/">OPENAPI</a> y cosas como:
 <a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
-even <a href="http://graphql.org/learn/">GraphQL</a>, which to be the query language
-that we know, part of a language of definition of structures.</p>
+incluso <a href="http://graphql.org/learn/">GraphQL</a>, que para ser el lenguaje de consulta
+que conocemos, parte de un lenguaje de definición de estructuras.</p>
 </div>
 <div class="paragraph">
-<p>In the end, in the Java world, and I suppose that in the rest of languages also, all
-Transmission requires serialization and deserialization (which may be more
-or less complex).</p>
+<p>Al final, en el mundo Java, y supongo que en el resto de lenguajes tambien, toda
+transmisión requiere una serialización y una deserialización (que pueden ser mas
+o menos complejas).</p>
 </div>
 <div class="paragraph">
-<p>For example, the transmission of a large XML to a destination, where it only interests you
-certain data of the same, does not have to serialize it in memory to make a
-On the DOM, a parser can be used <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
-to look for what is needed, and it does not matter the size of the XML, it will take more or less the same,
-because the overhead is produced when it is loaded into memory.</p>
+<p>Por ejemplo, la transmisión de un XML grande a un destino, donde solo le interese
+ciertos datos del mismo, no tiene porque serializarlo en memoria para hacer un
+recorrido sobre el DOM, puede usarse un parser <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
+para buscar lo que se necesita, y da igual el tamaño del XML, tardara mas o menos igual,
+pues el overhead se produce cuando se carga en memoria.</p>
 </div>
 <div class="paragraph">
-<p>In the case of a JSON, those who need their specified getter / setter,
-the parsers that simply load in hash, those that use the reflection, those that
-they do not use it (because the user codes a certain part), those that "precompile" code,
-those who &#8230;&#8203;</p>
+<p>En el caso de un JSON, los que necesitan sus getter/setter especificados,
+los parser que simplemente carga en hash, los que usan la reflexion, los que
+no la usan (porque el usuario codifca cierta parte), los que "precompilan" codigo,
+los que&#8230;&#8203;</p>
 </div>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <div class="paragraph">
-<p>In the end, in this world of programming, you can never think that you know everything,
-and in IMHO you can always improve, doing things differently.</p>
+<p>Al final, en este mundo de la progracion, no se puede pensar nunca que se sabe todo,
+y en IMHO siempre se puede mejorar, haciendo las cosas de otra forma.</p>
 </div>
 <div class="paragraph">
-<p>If we dive a little, we can find some benchmarks. For example in this
-<a href="https://github.com/fabienrenaud/java-json-benchmark">comparatories on libraries</a>
-we can discover the large number of JSON libraries that exist, and their different
-performance, proof that you can always evolve, and when you reach the
-physical limits, you can always do it in another way. In this other
+<p>Si buceamos un poco, podemos dar con algunos benchmark. Por ejemplo en esta
+<a href="https://github.com/fabienrenaud/java-json-benchmark">comparativas sobre librerias</a>
+podemos descubir la gran cantidad de librerias JSON que existen, y su diferente
+performance, prueba de que siempre se puede evolucinar, y cuando se llegan a los
+limites fisicos, siempre se puede hacer de otra forma. En esta otra
 <a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
-inclyendo protobuf</a> do the analysis, focusing on the number of attributes, of
-the class to be serialized, and they make some interesting considerations of the transformations
-that pass "below", away from the sight of our eyes, commenting on changes between
-JDK 8 and 9.</p>
+inclyendo protobuf</a> hacen el analisis, enfocando a la cantidad de atributos, de
+la clase a serializar, y hacen algunas consideraciones interesantes de las transformaciones
+que pasan "por debajo", lejos de la vista de nuestros ojos, comentando cambios entre
+JDK 8 y 9.</p>
 </div>
 <div class="ulist">
-<div class="title">We can highlight the following libraries:</div>
+<div class="title">Podemos destacar las siguientes librerias:</div>
 <ul>
 <li>
-<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Use a dsl to generate the parser.</p>
+<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Usa un dsl para generar el parser.</p>
 </li>
 <li>
-<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompiling a parser.</p>
+<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompilan un parser.</p>
 </li>
 <li>
-<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolution of the well-known library.</p>
+<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolucion de la conocida librería.</p>
 </li>
 <li>
-<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> A more theoretical approach using Graavl.</p>
+<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> Un enfoque mas teórico usando Graavl.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>What if we talk about bbdd NSQL or document-oriented ?, as for example CouchBase &#8230;&#8203;?</p>
+<p>¿Y si hablamos de las bbdd NSQL u orientadas a documento?, como por ejemplo CouchBase&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>In the end, here using the java API, there is also a serialization / deserialization,
-in the end what is saved is a document, which must (according to API) serialize more or less.</p>
+<p>Al final, aqui usando el API java, tambien existe una serializacion/deserializacion,
+al final lo que se guarda es un documento, que debe (segun API) serializarse mas o menos.</p>
 </div>
 <div class="paragraph">
-<p>In <a href="https://github.com/josejuanmontiel/demo-couchbase">this</a> repo, I have messed around a little with some ideas.</p>
+<p>En <a href="https://github.com/josejuanmontiel/demo-couchbase">este</a> repo, he trasteado un poco con algunas ideas.</p>
 </div>
 <div class="olist arabic">
-<div class="title">The conclusions?</div>
+<div class="title">¿Las conclusiones?</div>
 <ol class="arabic">
 <li>
-<p>It is clear that the smaller the entity to persist, the sooner it will persist.</p>
+<p>Esta claro que cuanto mas pequeño sea la entidad a persistir, antes se persistirá.</p>
 </li>
 <li>
-<p>But not by inserting it into smaller pieces (related to each other)
-Insert before.</p>
+<p>Pero no por insertarlo en trozos mas pequeños (relacionados unos con otros) se
+inserta antes.</p>
 </li>
 <li>
-<p>Both for insertions and queries, if a string is inserted, without going through
-JPA can earn 50% (discounting the serialization to String, remember that
-   arrives in String format from synchro) and 90% in reading approx.</p>
+<p>Tanto para inserciones como consultas, si se inserta un string, sin pasar por
+JPA puede ganarse un 50% (descontado la serializacion a String, recordar que ya
+  llega en formato String desde sincro) y un 90% en lectura aprox.</p>
 </li>
 <li>
-<p>A .findOne in spring data jpa, will always be slower than a native one.
-Does the view on the entity type add a delay?</p>
+<p>Un .findOne en spring data jpa, siempre va a ser mas lento que uno nativo.
+¿La vista sobre el tipo de entidad añade un retardo?</p>
 </li>
 <li>
-<p>Network latency from the server to the bbdd also counts, less data, faster.</p>
+<p>La latencia de red desde el servidor a la bbdd tambien cuenta, menos datos, mas veloz.</p>
 </li>
 <li>
-<p>The servers with SSD vs HDD for bbdd nosql show large differences in performance.</p>
+<p>Los servidores con SSD vs HDD para bbdd nosql muestran grandes diferencias de rendimiento.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>It depends on the use and the problem that you want to address, it can not always make sense,
-serialize to have the "objects" accessible, but let&#8217;s use them.</p>
+<p>Depende del uso y el problema que se quiera abordar, no siempre puede tener sentido,
+serializar para tener los "objetos" accesibles, sino vamos a usarlos.</p>
 </div>
 <div class="sect2">
-<h3 id="_as_an_exercise_for_home">As an exercise for home</h3>
+<h3 id="_como_ejercicio_para_casa">Como ejercicio para casa</h3>
 <div class="paragraph">
-<p>According to the <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> if
-will change the implementation of JsonConverter from Jackson to Jsonite, could win
-30% in the part that the spring data library jpa passes from the object to
+<p>Segun los <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> si se
+cambiara la implementacion de JsonConverter de Jackson a Jsonite, podria ganarse
+un 30% en la parte que la libreria spring data jpa pasa del objeto a
 com.couchbase.client.java.document.json.JsonObject.</p>
 </div>
 <div class="paragraph">
-<p>Make a pull request to implement <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
-of couchbase with <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
-and see if it&#8217;s faster than the standard, and not much less than with the <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
+<p>Hacer una pull request para implementar <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
+de couchbase  con <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
+y ver si es mas rapido que el estandar, y no mucho menos que con la <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
 </div>
 </div>
 </div>
@@ -368,43 +364,43 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&text=Message, serialization and other things&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&text=Mensajes, serializacion y otras cosas&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html&title=Mensajes, serializacion y otras cosas" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -420,7 +416,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
  	        <li><a href='../tags/jvm.html'>jvm</a></li>
  	        <li><a href='../tags/serilize.html'>serilize</a></li>
 
-				<li><a class="icon fa-comment" href="../2018/02/mensajes_serializacion.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2018/02/mensajes_serializacion.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -489,16 +485,6 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h3>
-                                   <time class="published"
-  							            datetime='feb 17, 2018'>
-  							            feb 17, 2018</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>
@@ -576,7 +562,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
-                                <a href="../tags/cookies.html">cookies</a>
+                                <a href="../tags/life.html">life</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -586,6 +572,15 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                         <article>
                             <header>
                                 <a href="../tags/serilize.html">serilize</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -684,6 +679,15 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                     <li>
                         <article>
                             <header>
+                                <a href="../tags/work.html">work</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -694,6 +698,15 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                         <article>
                             <header>
                                 <a href="../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/ikigai.html">ikigai</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -760,7 +773,7 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.6</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 

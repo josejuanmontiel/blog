@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Blog - Testing en GoLang</title>
+    <title>Blog - Reflexionemos sobre lo pasado</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Jose Juan Montiel">
@@ -165,13 +165,13 @@
    <header>
     <div class="title">
 
-                      <h1><a href="../../2019/03/golang-testing.es.html">Testing en GoLang (Spanish version)</a></h1>
+                      <h1><a href="../../2022/02/donde-te-ves-part2.html">Reflexionemos sobre lo pasado (English version)</a></h1>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='mar 09, 2019'>
-            mar 09, 2019</time>
+            datetime='feb. 18, 2022'>
+            feb. 18, 2022</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,208 +182,9 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_motivacion">Motivacion</h2>
+<h2 id="_tras_unos_20_años_trabajando_en_este_mundo">Tras unos 20 años trabajando en este mundo&#8230;&#8203;</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>En esta ocasion, voy a comentar mis avances en el mundo del testing con GoLang. Para ello, con la ayuda de <a href="https://github.com/josejuanmontiel/golang/tree/master/testing">el siguiente codigo</a> voy a comentar algunos conceptos que he aprendido.</p>
-</div>
-<div class="sect2">
-<h3 id="_interfaces">Interfaces</h3>
-<div class="paragraph">
-<p>Esta es la manera de definir una interface en Go.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Doer interface {
-    DoSomething(int, string) error
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Para que una clase implemente una interfaz, solo es necesario implemntar todos los metodos de la interfaz.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type doerImpl struct {              <i class="conum" data-value="1"></i><b>(1)</b>
-}
 
-func NewDoerService() Doer {        <i class="conum" data-value="2"></i><b>(2)</b>
-	return &amp;doerImpl{}              <i class="conum" data-value="3"></i><b>(3)</b>
-}
-
-func (d *doerImpl) DoSomething(numero int, cadena string) error {   <i class="conum" data-value="4"></i><b>(4)</b>
-	fmt.Println("Calling DoSomething method")
-	fmt.Println(cadena)                                 <i class="conum" data-value="5"></i><b>(5)</b>
-	return errors.New("error")                          <i class="conum" data-value="6"></i><b>(6)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Toda clase necesita de una estructura.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Esta funcion es el constructor de la implementacion, devuelve la interfaz.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Asi devolvemos la referencia a la estructura de esta implementacion.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Esta seria el metodo que vamos a implementar.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>La implementacion imprime el parametro de entrada.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Devuelve una clase error.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Ahora supongamos que tenemos otra clase donde hacemos uso de esa implementacion de la interfaz.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type User struct {
-	Doer doer.Doer                  <i class="conum" data-value="1"></i><b>(1)</b>
-}
-
-func NewUser(d doer.Doer) *User {   <i class="conum" data-value="2"></i><b>(2)</b>
-	return &amp;User{d}                 <i class="conum" data-value="3"></i><b>(3)</b>
-}
-
-func (u *User) Use() error {
-	fmt.Println("Calling Use method")
-	return u.Doer.DoSomething(123, "Hello GoMock")  <i class="conum" data-value="4"></i><b>(4)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>En este caso, al declarar la estructura de la clase, definimos un atributo del tipo de la interfaz</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>En el constructor de esta clase, pasamos una instancia de la implementacion de la interfaz</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Aqui es donde la pasamos.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Esta funcion, hace uso de la funcion que hemos implementado de la interfaz.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Consideremos ahora el siguiente main que va a instanciar la implementacion y luego pasarla a la funcion que hace uso de la interfaz.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func main() {
-	newDoerImpl := doer.NewDoerService()        <i class="conum" data-value="1"></i><b>(1)</b>
-	_ = newDoerImpl.DoSomething(1, "hola")      <i class="conum" data-value="2"></i><b>(2)</b>
-
-	newUser := user.NewUser(newDoerImpl)        <i class="conum" data-value="3"></i><b>(3)</b>
-	newUser.Use()                               <i class="conum" data-value="4"></i><b>(4)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Usando el constructor, instanciamos la implementacion</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Ahora llamamos a la funcion de la implemtacion</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Si cogemos esa instancia y la pasamos al constructor de la nueva clase</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Podemos hacer uso de la funcion, que hara uso de la clase de la implementacion</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Ahora supongamos que queremos testear la funcion Use() pero no queremos que se llame a DoSomething.</p>
-</div>
-<div class="paragraph">
-<p>Para ello vamos a usar la <a href="https://github.com/golang/mock">libreria de mock en go</a>. Esta libreria al igual que otras similares en otros lenguajes nos permiten mockear los objetos que no queremos testear, en este caso nuestro objetivo es mockerar la implementacion de la interfaz para poder testear el metodo Use.</p>
-</div>
-<div class="paragraph">
-<p>Notar que para generar esta clase mock, debemos indicarle una interfaz sobre la que se ha construido la implementacion que queremos mockear, en este caso Doer, y gomock nos genera una clase que nos permite instrumentalizar la clase a mockear.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func TestUseReturnsErrorFromDo(t *testing.T) {
-	fmt.Println("TestUseReturnsErrorFromDo")
-
-	mockCtrl := gomock.NewController(t)             <i class="conum" data-value="1"></i><b>(1)</b>
-	defer mockCtrl.Finish()
-
-	dummyError := errors.New("dummy error")
-	mockDoer := mocks.NewMockDoer(mockCtrl)         <i class="conum" data-value="3"></i><b>(3)</b>
-	testUser := &amp;user.User{Doer: mockDoer}          <i class="conum" data-value="2"></i><b>(2)</b>
-
-	mockDoer.EXPECT().DoSomething(123, "Hello GoMock").Return(dummyError).Times(1)  <i class="conum" data-value="4"></i><b>(4)</b>
-
-	err := testUser.Use()                           <i class="conum" data-value="5"></i><b>(5)</b>
-
-	if err != dummyError {
-		t.Fail()
-	}
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Inicializamos la libreria de mock.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Instanciamos la clase a testear, pasandole en vez de la interfaz un mock</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Instanciamos la clase mock, que hemos pasado como parametro en el constuctor de la clase a testear.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Instrumentalizamos el mock, en este caso esperamos que cuando el test llame a la clase mockeada con esos parametros, la respuesta sea la esperada.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Lanzamos la clase a testear.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Notar que si lanzamos el test en modo verboso no veremos los print de la implementacion de la interfaz, porque no se habra llamado, sera la instrumentalizacion la encargada de devolver el resultado.</p>
-</div>
-<div class="paragraph">
-<p>Para un proximo articulo, notar que si la interfaz que queremos mockear esta dentro de un proyecto que usa go dep, podemos tener problemas con la paqueteria del import y que indique vendor.</p>
-</div>
-<div class="paragraph">
-<p>Pero eso sera para otro dia.</p>
-</div>
-</div>
 </div>
 </div>
     </div>
@@ -393,43 +194,43 @@ func (u *User) Use() error {
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&text=Testing en GoLang&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&text=Reflexionemos sobre lo pasado&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing en GoLang" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&title=Reflexionemos sobre lo pasado" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing en GoLang" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&title=Reflexionemos sobre lo pasado" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing en GoLang" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&title=Reflexionemos sobre lo pasado" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -442,10 +243,11 @@ func (u *User) Use() error {
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='../../tags/golang.html'>golang</a></li>
- 	        <li><a href='../../tags/testing.html'>testing</a></li>
+ 	        <li><a href='../../tags/life.html'>life</a></li>
+ 	        <li><a href='../../tags/work.html'>work</a></li>
+ 	        <li><a href='../../tags/ikigai.html'>ikigai</a></li>
 
-				<li><a class="icon fa-comment" href="../../2019/03/golang-testing.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../../2022/02/donde-te-ves-part2.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -612,7 +414,7 @@ func (u *User) Use() error {
                     <li>
                         <article>
                             <header>
-                                <a href="../../tags/cookies.html">cookies</a>
+                                <a href="../../tags/life.html">life</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -622,6 +424,15 @@ func (u *User) Use() error {
                         <article>
                             <header>
                                 <a href="../../tags/serilize.html">serilize</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -720,6 +531,15 @@ func (u *User) Use() error {
                     <li>
                         <article>
                             <header>
+                                <a href="../../tags/work.html">work</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="../../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -730,6 +550,15 @@ func (u *User) Use() error {
                         <article>
                             <header>
                                 <a href="../../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../../tags/ikigai.html">ikigai</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -796,7 +625,7 @@ func (u *User) Use() error {
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.6</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 
@@ -826,8 +655,8 @@ func (u *User) Use() error {
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-82879918-1', 'auto');
   ga('send', 'pageview', {
-    'page': '2019/03/golang-testing.html',
-    'title': 'Testing en GoLang'
+    'page': '2022/02/donde-te-ves-part2.es.html',
+    'title': 'Reflexionemos sobre lo pasado'
       });
 </script>
 		<!-- This is called by default since this theme uses highlight.js -->

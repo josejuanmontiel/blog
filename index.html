@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="2019/03/golang-testing.html"><p>Testing in GoLang</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2019/03/golang-testing.html">Testing in GoLang</a></h2>
+                    <h2><a href="2022/02/donde-te-ves-part1.es.html">¿Donde te ves a los 50 años, laboralmente?</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='mar 09, 2019'>
-            mar 09, 2019</time>
+            datetime='feb. 11, 2022'>
+            feb. 11, 2022</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,206 +182,81 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_motivation">Motivation</h2>
+<h2 id="_el_tiempo_pasa">El tiempo pasa&#8230;&#8203;</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On this occasion, I will comment on my advances in the world of testing with GoLang. To do this, with the help of <a href="https://github.com/josejuanmontiel/golang/tree/master/testing">the following code</a> I will comment on some concepts that I have learned.</p>
+<p>&#8230;&#8203;y me voy a tomar el mio, el que sea necesario, para reflexionar un poco.</p>
+</div>
+<div class="paragraph">
+<p>Hace mucho, que la vida, eso que sucede mientras nosotros intentamos hacer otras cosas, no me ha permitido pararme a escribir un poco aqui.</p>
+</div>
+<div class="paragraph">
+<p>Si, es un blog, con perfil tecnico, y no hablare (mucho) de cosas que no sean tecnicas, pero, si que tengo que reconocer que estos ultimos tres años, entre blockchain y golang, no me ha quedado mucho tiempo libre&#8230;&#8203; y bueno, entre mis hijas que se hacen mayores, la familia, el ocio, con la caravana, el bricolage en casa y como no, la pandemia :) pues, al final se mezcla un poco todo.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_como_vas_a_organizarlo">¿Como vas a organizarlo?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voy a empezar una serie de entradas en este blog, en las que voy a contar como voy a hacer un repaso de mi carrera profesional y como lo voy a reflejar en la raiz de este sitio (fuera del blog).</p>
 </div>
 <div class="sect2">
-<h3 id="_interfaces">Interfaces</h3>
+<h3 id="_lo_importante_es_escribrilo">Lo importante es escribrilo</h3>
 <div class="paragraph">
-<p>This is the way to define an interface in Go.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Doer interface {
-    DoSomething(int, string) error
-}</code></pre>
+<p>Porque uno, siempre esta pensando, bueno, cuando no esta actuando, y tomarse el tiempo para escribirlo, permite reflexionar mejor sobre lo que quieres plasmar, y esa retro alimentacion perfila las ideas, las pule, y asi consigues una vision organizada de las mismas, o esa es la teoria.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_aprovechar_para_usar_cosas_que_queria_probar">Aprovechar para usar cosas que queria probar</h3>
 <div class="paragraph">
-<p>For a class to implement an interface, it is only necessary to implement all the methods of the interface.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type doerImpl struct {              <i class="conum" data-value="1"></i><b>(1)</b>
-}
-
-func NewDoerService() Doer {        <i class="conum" data-value="2"></i><b>(2)</b>
-	return &amp;doerImpl{}              <i class="conum" data-value="3"></i><b>(3)</b>
-}
-
-func (d *doerImpl) DoSomething(numero int, cadena string) error {   <i class="conum" data-value="4"></i><b>(4)</b>
-	fmt.Println("Calling DoSomething method")
-	fmt.Println(cadena)                                 <i class="conum" data-value="5"></i><b>(5)</b>
-	return errors.New("error")                          <i class="conum" data-value="6"></i><b>(6)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Every class needs a structure.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This function is the constructor of the implementation, it returns the interface.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Thus we return the reference to the structure of this implementation.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This would be the method we are going to implement.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The implementation prints the input parameter.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Returns an error class.</td>
-</tr>
-</table>
+<p>Y bueno, podria limitarme a escribirlo en un papel, pero el hecho de compartirlo, le añade un punto, que hace que tengas que reflexionar mas seriamente&#8230;&#8203; y ya que te pones, porque no aprovechar para acompañar esas reflexiones con algun conocimiento nuevo.</p>
 </div>
 <div class="paragraph">
-<p>Now suppose we have another class where we make use of that interface implementation.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type User struct {
-	Doer doer.Doer                  <i class="conum" data-value="1"></i><b>(1)</b>
-}
-
-func NewUser(d doer.Doer) *User {   <i class="conum" data-value="2"></i><b>(2)</b>
-	return &amp;User{d}                 <i class="conum" data-value="3"></i><b>(3)</b>
-}
-
-func (u *User) Use() error {
-	fmt.Println("Calling Use method")
-	return u.Doer.DoSomething(123, "Hello GoMock")  <i class="conum" data-value="4"></i><b>(4)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>In this case, when declaring the structure of the class, we define an attribute of the type of the interface</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>In the constructor of this class, we passed an instance of the implementation of the interface</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>This is where we spent it.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This function makes use of the function that we have implemented in the interface.</td>
-</tr>
-</table>
+<p>Es como suelen decir los que preparan conferencias, el tener que preparar algo para contarlo a los demas, hace que uno mismo lo aprenda mejor. Aqui pasa algo parecido, el añadirle nuevos conocimientos, hace que aun mas, tengas que organizar las ideas mejor.</p>
 </div>
 <div class="paragraph">
-<p>Now consider the following main that will instantiate the implementation and then pass it to the function that makes use of the interface.</p>
+<p>Eso si, os contare que hare, y vosotros (si os apatece) lo ireis descubriendo conmigo.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func main() {
-	newDoerImpl := doer.NewDoerService()        <i class="conum" data-value="1"></i><b>(1)</b>
-	_ = newDoerImpl.DoSomething(1, "hola")      <i class="conum" data-value="2"></i><b>(2)</b>
-
-	newUser := user.NewUser(newDoerImpl)        <i class="conum" data-value="3"></i><b>(3)</b>
-	newUser.Use()                               <i class="conum" data-value="4"></i><b>(4)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Using the constructor, we instantiate the implementation</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Now we call the function of the implementation</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>If we take that instance and pass it to the constructor of the new class</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>We can make use of the function, which will make use of the implementation class</td>
-</tr>
-</table>
+<div class="sect3">
+<h4 id="_manos_a_la_obra">Manos a la obra</h4>
+<div class="paragraph">
+<p>Desde hace un tiempo, queria darle una prueba a <a href="https://ebiten.org">Ebiten</a> un framework de juegos 2D en Golang (ya sabeis, ultimamente mi mundo ha estado entre blockchain y golang).</p>
 </div>
 <div class="paragraph">
-<p>Now suppose we want to test the Use() function but we do not want DoSomething to be called.</p>
+<p>De hecho, justo antes de esta epoca (hace 3 años) iba con mi hija mayor a clases de percusion, y como me costaba mucho coordinar los golpes al tempo adecuado, pense hacer un juego (usando en este caso <a href="https://litiengine.com">Litiengine</a> que como veis este es Java) para con un buen micro, detectar los "beats" y hacer que un Mario saltara para golpear con la cabeza unas cajas sordas, que se movian por la pantala al tempo de 4/4 (la idea quedo en el baul, con tantas otras).</p>
 </div>
 <div class="paragraph">
-<p>For this we are going to use the <a href="https://github.com/golang/mock">libreria de mock en go</a>. This library like other similar ones in other languages allow us to mock the objects that we do not want to test, in this case our objective is to mock the implementation of the interface to be able to test the Use method.</p>
+<p>Y bueno, como en GoLang (como en otros lenguajes) se puede compilar en WebAssembly, ¿porque no aprovechar y colocar el juego (aun no he dicho cual, tendras que descubrilo) en la web, y hacer que con su ayuda, vaya contando mi historia?</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proximas_secciones">Proximas secciones</h3>
 <div class="paragraph">
-<p>Note that to generate this mock class, we must indicate an interface on which the implementation that we want to mock has been built, in this case Doer, and gomock generates a class that allows us to instrumentalize the class to be mocked.</p>
+<p>Pues la idea es simple, para conseguir encontrar el Ikigai del programador&#8230;&#8203;</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func TestUseReturnsErrorFromDo(t *testing.T) {
-	fmt.Println("TestUseReturnsErrorFromDo")
-
-	mockCtrl := gomock.NewController(t)             <i class="conum" data-value="1"></i><b>(1)</b>
-	defer mockCtrl.Finish()
-
-	dummyError := errors.New("dummy error")
-	mockDoer := mocks.NewMockDoer(mockCtrl)         <i class="conum" data-value="3"></i><b>(3)</b>
-	testUser := &amp;user.User{Doer: mockDoer}          <i class="conum" data-value="2"></i><b>(2)</b>
-
-	mockDoer.EXPECT().DoSomething(123, "Hello GoMock").Return(dummyError).Times(1)  <i class="conum" data-value="4"></i><b>(4)</b>
-
-	err := testUser.Use()                           <i class="conum" data-value="5"></i><b>(5)</b>
-
-	if err != dummyError {
-		t.Fail()
-	}
-}</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p>Reflexion sobre el pasado&#8230;&#8203;
+&#8230;&#8203;haciendo un repaso desde mis origenes: mis primeros pinitos (tardios) con la informatica&#8230;&#8203; hasta llegar a hace unos años.</p>
+</li>
+<li>
+<p>Reflexion sobre el momento actual&#8230;&#8203;
+&#8230;&#8203;momento actual, que incluye hoy por hoy&#8230;&#8203; y los ultimos 3 años aproximadamente.</p>
+</li>
+<li>
+<p>Reflexion sobre el futuro&#8230;&#8203;
+&#8230;&#8203;por ultimo, y retomando con el titulo de esta entrada&#8230;&#8203; ¿donde me veo con 50 años? Es una pregunta que hice a varios compañeros, cuando cumpli los 40, para intentar decidir que tendria que hacer estos años, para poder conseguir el objetivo&#8230;&#8203; luego llego la pandemia, y bueno, seguimos tirando. Asi que&#8230;&#8203;</p>
+</li>
+</ul>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Initialize the mock library.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We instantiate the class to be tested, passing a mock instead of the interface</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We instantiate the mock class, which we have passed as a parameter in the constuctor of the class to be tested.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Instrumentalize the mock, in this case we hope that when the test calls the class mocked with those parameters, the answer will be as expected.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>We launch the class to test.</td>
-</tr>
-</table>
-</div>
+<div class="sect2">
+<h3 id="_listo_para_ver_el_resultado">¿Listo para ver el resultado?</h3>
 <div class="paragraph">
-<p>Note that if we launch the test in verbose mode we will not see the print of the implementation of the interface, because it will not have been called, it will be the instrumentation that will be responsible for returning the result.</p>
-</div>
-<div class="paragraph">
-<p>For a next article, note that if the interface that we want to mock is within a project that uses go dep, we can have problems with the package of the import and that indicate vendor.</p>
-</div>
-<div class="paragraph">
-<p>But that will be for another day.</p>
+<p>¿Quieres ver primero <a href="https://josejuanmontiel.github.io">el resultado final</a>&#8230;&#8203; o continuas leyendo <a href="https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-2.html">las siguiente entrada del blog</a> para descubrir mas detalles?</p>
 </div>
 </div>
 </div>
@@ -396,43 +268,43 @@ func (u *User) Use() error {
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&text=Testing in GoLang&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&text=¿Donde te ves a los 50 años, laboralmente?&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&title=¿Donde te ves a los 50 años, laboralmente?" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&title=¿Donde te ves a los 50 años, laboralmente?" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html&title=Testing in GoLang" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&title=¿Donde te ves a los 50 años, laboralmente?" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2019/03/golang-testing.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -445,10 +317,11 @@ func (u *User) Use() error {
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='tags/golang.html'>golang</a></li>
- 	        <li><a href='tags/testing.html'>testing</a></li>
+ 	        <li><a href='tags/life.html'>life</a></li>
+ 	        <li><a href='tags/work.html'>work</a></li>
+ 	        <li><a href='tags/ikigai.html'>ikigai</a></li>
 
-				<li><a class="icon fa-comment" href="2019/03/golang-testing.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2022/02/donde-te-ves-part1.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -517,16 +390,6 @@ func (u *User) Use() error {
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="2019/03/golang-testing.html">Testing in GoLang</a></h3>
-                                   <time class="published"
-  							            datetime='mar 09, 2019'>
-  							            mar 09, 2019</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>
@@ -604,7 +467,7 @@ func (u *User) Use() error {
                     <li>
                         <article>
                             <header>
-                                <a href="tags/cookies.html">cookies</a>
+                                <a href="tags/life.html">life</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -614,6 +477,15 @@ func (u *User) Use() error {
                         <article>
                             <header>
                                 <a href="tags/serilize.html">serilize</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -712,6 +584,15 @@ func (u *User) Use() error {
                     <li>
                         <article>
                             <header>
+                                <a href="tags/work.html">work</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -722,6 +603,15 @@ func (u *User) Use() error {
                         <article>
                             <header>
                                 <a href="tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="tags/ikigai.html">ikigai</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -788,7 +678,7 @@ func (u *User) Use() error {
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.6</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 

@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="../../2017/06/git.html"><p>Git &amp; Merge &amp; Rebase &amp; Flow</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,13 +168,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2016/10/retrolambda.es.html">Retrolambda and default methods</a></h2>
+                    <h2><a href="../2017/06/git.html">Git &amp; Merge &amp; Rebase &amp; Flow</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='oct 19, 2016'>
-            oct 19, 2016</time>
+            datetime='jun. 30, 2017'>
+            jun. 30, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,240 +185,562 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_retrolambda_e_hippo_cms">Retrolambda e Hippo Cms</h2>
+<h2 id="_git_merge_rebase_flow">Git &amp; Merge &amp; Rebase &amp; Flow</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://code.onehippo.org/cms-community/hippo-cms">Este proyecto</a>, solo se puede compilar con la JDK 8, ya que hace uso intensivo de sus caracteristicas: lambdas, default methods y otras mas.</p>
+<p>On this occasion we will perform a series of operations on a git repository.
+We will try to simulate typical situations of group work, with different
+Ways to focus the union of the different jobs.</p>
 </div>
+<div class="sect2">
+<h3 id="_work_with_two_branches_without_common_ancestors">Work with two branches without common ancestors.</h3>
 <div class="paragraph">
-<p>Gracias a <a href="https://github.com/orfjackal/retrolambda">Retrolambda</a>, muchos proyectos que hacen uso de las nuevas caracteristicas de JDK 8 pueden migrarse a JDK7 (y anteriores) y por tanto tambien a Android, lugar donde se hace principal uso de esta herramienta.</p>
-</div>
-<div class="paragraph">
-<p>Y con <a href="https://github.com/orfjackal/retrolambda#maven-plugin">este pluging maven</a> puedes integrarlo en tu buildsystem. <a href="https://github.com/orfjackal/retrolambda/blob/master/end-to-end-tests/pom.xml">Aqui</a> un ejemplo de como usarlo. Y ademas, hay otro <a href="https://github.com/evant/gradle-retrolambda">para gradle</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_limitaciones">Limitaciones</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Pero hay unas <a href="https://github.com/orfjackal/retrolambda#known-limitations">limitaciones bien conocidas</a>, que hacen que la migracion de los default method de JDK 8 no sean tan faciles, "must to be backported together, with one execution of Retrolambda".</p>
-</div>
-<div class="paragraph">
-<p>Por eso, <a href="http://orfjackal.github.io/retrolambda/retrolambda-maven-plugin/process-main-mojo.html">por defecto</a>, viene deshabilitada su migracion.</p>
-</div>
-<div class="paragraph">
-<p>Cuando Retrolmambda migra las <a href="https://github.com/orfjackal/retrolambda#backported-language-features">Default Methods</a>:
-Default methods are backported by copying the default methods to a companion class (interface name + "$") as static methods, replacing the default methods in the interface with abstract methods, and by adding the necessary method implementations to all classes which implement that interface.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_retrolambda_e_hippocms">Retrolambda (e HippoCms)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tomemos como ejemplo, <a href="https://code.onehippo.org/cms-community/hippo-cms">el siguiente</a> proyecto.</p>
-</div>
-<div class="paragraph">
-<p>Supongamos que en un primer modulo tenemos esta interfaz con el default method.</p>
+<p>First, initialize a local repo, with the option of being shared by
+Multiple users.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface IconProvider extends IClusterable {
-	default Component getIcon(final String id, IconSize size) {
-		return null;
-	}
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ~/sandbox-git
+git init --bare --shared ~/sandbox-git/test-repo.git
+git clone test-repo.git repo-clone1
+git clone test-repo.git repo-clone2</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Retrolambda lo que hace con esta clase es transformarla en esta otra.</p>
+<p>Then we go to the directory 1, and we add a first file, in the commit
+We indicate a username: User1.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public abstract interface IconProvider2 extends IClusterable {
-  public abstract Component getIcon(String paramString, IconSize paramIconSize);
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd repo-clone1
+touch README
+git add .
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Initial commit"
+git push -u origin master</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>E implementa ese metodo (a traves de la "companion class") en las clases que implementen la interfaz, de las clases del mismo modulo.</p>
+<p>To view from console we can add the following to ~ / .gitconfig under [alias]</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Por tanto, si no procesa todas las clases hijas de esa interfaz en la pasada del modulo, ya no lo hara, por lo que&#8230;&#8203;</p>
+<p>The repo is thus.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_01.png" alt="git 01">
+</div>
+</div>
+<div class="paragraph">
+<p>Then we go to the second folder and we only do "fetch", and we create the same folder
+File that the other user created. We did it, then we tried to push.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone2
+git fetch
+vi README
+git add README
+git commit --author="User2 &lt;user2@git.com&gt;" -m "Other user change"
+git push</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>que esta en otro modulo, al intentar ser compilada da este error</p>
+<p>But we get the following error.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
-	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">	 ! [rejected]        master -&gt; master (non-fast-forward)
+	error: failed to push some refs to '/home/jose/sandbox-git/test-repo.git'
+	hint: Updates were rejected because the tip of your current branch is behind
+	hint: its remote counterpart. Integrate the remote changes (e.g.
+	hint: 'git pull ...') before pushing again.
+	hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
 </div>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+You can not push but you pull &#8230;&#8203; at this time the tree is like this &#8230;&#8203;
+</td>
+</tr>
+</table>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_02.png" alt="git 02">
 </div>
-<div class="sect1">
-<h2 id="_primeras_conclusiones">Primeras conclusiones</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>En un primer momento, sin leer bien el mensaje de error, y sin comprender la jerarquia de clases del proyecto, pense que <a href="https://github.com/orfjackal/retrolambda/pull/101">este pull request podria ayudar</a></p>
-</div>
-<div class="paragraph">
-<p>Por si quieres entender mas en detalle, <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Setting_Up_Your_Project_to_Use_the_Build_Lifecycle">aqui</a> unos apuntes sobre el Lifecycle de de maven. Y <a href="http://maven.apache.org/guides/mini/guide-maven-classloading.html">aqui</a> sobre el classloading.</p>
-</div>
-<div class="paragraph">
-<p>Luego, leyendo mas en detalle, pense que el problema era que al tranformar la interfaz a abstracta&#8230;&#8203; bueno, que me habia despistado del problema real, y a ese despiste constituyo ver, en <a href="https://twitter.com/nicolas_frankel/status/786202575150407680">este tweet</a> porque <a href="https://stackoverflow.com/questions/7202616/java-abstract-interface/7202659#7202659">las interfaces interfaces son abstractas (por defecto)</a>.</p>
-</div>
-<div class="paragraph">
-<p>Y el propio <a href="https://twitter.com/orfjackal">Esko Luontola</a> nos explica el motivo: "pre-Java 8 JVMs support only abstract methods in interfaces (the &lt;clinit&gt; method being an exception). Retrolambda inserts the default method code to all implementing classes, thus emulating what JVM 8 does."</p>
-</div>
-<div class="paragraph">
-<p><a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">Aqui</a> una explicacion mas detallada de como funcionan los Default Methods en JDK 8. Y <a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">aqui</a> la explicación de oracle sobre "abstract".</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_explicacion_del_problema_real">Explicacion del problema real</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Pero el problema, en este caso, era simplemente la limitacion de la libreria en projectos multi modulo <a href="https://github.com/orfjackal/retrolambda/issues/56">aqui</a> y
-<a href="https://github.com/orfjackal/retrolambda/issues/58">aqui</a> lo comentan tambien en detalle.</p>
-</div>
-<div class="paragraph">
-<p>Una manera de resolverlo, haciendo pequeñas modificaciones en el codigo, seria implementando el metodo getIcon(String,IconSize) con el comportamiento por default en las clases del segundo modulo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-index 99bdb0e..9b34ce1 100644
---- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-+++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
-@@ -18,6 +18,7 @@
- import javax.jcr.Node;
- import javax.jcr.RepositoryException;
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git pull</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The default behavior has changed since git 2.9
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>"git merge" used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.</p>
+</div>
+<div class="paragraph">
+<p>In this case, we have started from 2 independent branches, and the pull of a branch
+(Where we already have a commit) causes a kind of "merge". In this case (for
+Not having common ancestors) we must do it with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git pull origin master --allow-unrelated-histories</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And this is left</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_03.png" alt="git 03">
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And so is the repo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_04.png" alt="git 04">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_in_a_branch_without_having_updated_it">Work in a branch, without having updated it</h3>
+<div class="paragraph">
+<p>Let&#8217;s now test in directory 1, create a git-flow feature, create a
+New file and then &#8230;&#8203; create another feature in directory 2, creating another
+file.</p>
+</div>
+<div class="paragraph">
+<p>Then in directory 1, we close the feature, then in directory 2.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+We merge develop into our branch, and then merge our branch into develop (closing the feature).
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone1
+git flow init
+git flow feature start user1
 
-+import org.apache.wicket.Component;
- import org.apache.wicket.model.IModel;
- import org.apache.wicket.request.resource.ResourceReference;
- import org.hippoecm.frontend.l10n.ResourceBundleModel;
-@@ -144,4 +145,10 @@
-         return null;
-     }
-
-+    @Override
-+    public Component getIcon(String id, IconSize size) {
-+    	return null;
-+    }
-+
-+
- }
-diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-index 450712b..9d09210 100644
---- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-+++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java
-@@ -56,6 +56,7 @@
- import org.hippoecm.frontend.service.IconSize;
- import org.hippoecm.frontend.service.render.RenderPlugin;
- import org.hippoecm.frontend.skin.Icon;
-+import org.hippoecm.frontend.skin.IconProvider;
- import org.hippoecm.repository.api.HippoNodeType;
- import org.slf4j.Logger;
- import org.slf4j.LoggerFactory;
-@@ -337,6 +338,11 @@
-     public ResourceReference getIcon(IconSize type) {
-         return null;
-     }
-+
-+    @Override
-+    public Component getIcon(String id, IconSize size) {
-+    	return null;
-+    }
-
-     private boolean hasSearchResult() {
-         return collection.getType() == DocumentCollectionType.SEARCHRESULT;</code></pre>
+vi feature-user1.txt
+git add feature-user1.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Commit in feature-user1"</code></pre>
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_05.png" alt="git 05">
 </div>
 </div>
-<div class="sect1">
-<h2 id="_proximos_pasos">¿Proximos pasos?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://github.com/teras">Teras</a> y <a href="https://github.com/orfjackal">Orfjackal</a>, ¿porque el PR 101 no modifica estas clases para hacer ese cambio? ¿Quizas no lo hace porque ya existe un metodo con ese nombre, aunque no con el mismo numero de paramtros?</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_y_que_pasa_con_la_compilacion_retrolambda_de_hippocms">¿Y que pasa con la compilacion retrolambda de hippocms?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Aun nos quedaba algun error por resolver&#8230;&#8203; metodo estaticos&#8230;&#8203;</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+But we "forgot" to do fetch / pull before we start &#8230;&#8203; and here begins the lesson &#8230;&#8203;
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
-[ERROR] symbol:   method of(Calendar)
-[ERROR] location: interface DateTimePrinter
-[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
-[ERROR] symbol:   method of(Calendar)
-[ERROR] location: interface DateTimePrinter</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git fetch
+git pull origin master</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Static methods on interfaces are backported by moving the static methods to a companion class (interface name + "$"), and by changing all methods calls to call the new method location.[1]</p>
+<p>Now (about to finish the story) we have the tree as well.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_06.png" alt="git 06">
+</div>
 </div>
 <div class="paragraph">
-<p>En este caso la solucion temporal es cambiar los import en las clases del segundo modulo, a la clase companion.</p>
+<p>We close feature</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-index 5a97066..ab938b7 100644
---- a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-+++ b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
-@@ -41,7 +41,7 @@
- import org.hippoecm.frontend.plugin.IPluginContext;
- import org.hippoecm.frontend.plugins.reviewedactions.model.Request;
- import org.hippoecm.frontend.plugins.reviewedactions.model.RequestModel;
--import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter;
-+import org.hippoecm.frontend.plugins.standards.datetime.DateTimePrinter$;
- import org.hippoecm.frontend.plugins.standards.icon.HippoIcon;
- import org.hippoecm.frontend.session.UserSession;
- import org.hippoecm.frontend.skin.Icon;
-@@ -110,7 +110,7 @@
-                 String state = request.getState();
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git flow feature finish</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Summary of actions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The feature branch 'feature/user1' was merged into 'develop'</p>
+</li>
+<li>
+<p>Feature branch 'feature/user1' has been locally deleted</p>
+</li>
+<li>
+<p>You are now on branch 'develop'</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Let&#8217;s upload develop (by default git-flow does not push), which we have not done yet.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push origin develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Leaving the tree, like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_07.png" alt="git 07">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_keep_branch_updated_with_changes_from_develop">Keep branch updated with changes from develop</h3>
+<div class="paragraph">
+<p>Now we go to the directory 2, we update, create a feature,
+We do something in the file README comiteamos, but before closing the feature,
+Change folder 1 and modify the README, we return to the original directory and
+Before closing feature, mergeamos develop in our branch.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone2
+git fetch
+git checkout develop
+git pull
 
-                 final String parameter = schedule != null ?
--                        DateTimePrinter.of(schedule).appendDST().print(FormatStyle.FULL) : "??";
-+                        DateTimePrinter$.of(schedule).appendDST().print(FormatStyle.FULL) : "??";
-                 return new StringResourceModel("state-" + state, this, null, "unknown", parameter);
-             }</code></pre>
+git flow init
+
+git flow feature start user2
+
+vi feature-user2.txt
+git add  feature-user2.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "Commit in feature-user2"
+
+cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
+git push origin develop</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_notas_finales">Notas finales</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Si lo que has usado en tu proyecto con JDK 8 son las APIs de streaming, puedes usar <a href="https://sourceforge.net/projects/streamsupport/">esto</a>.</p>
+<p>Here (folder 1) we still do not know anything about the feature2, leaving the tree as well</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_08.png" alt="git 08">
+</div>
 </div>
 <div class="paragraph">
-<p>Aqui un <a href="https://en.wikipedia.org/wiki/Java_backporting_tools">poco de historia</a>.</p>
+<p>The "problem" with overshoot is that it alters the story lines, for better or for worse.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bola_extra">Bola extra</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p><a href="http://stackoverflow.com/questions/31160831/android-groovy-android-annotation">Groovy Android y APT</a></p>
+<p>If we follow the classic approach, to keep our feature2 current, we must
+Often merge with develop, or at least, before closing the feature.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone2
+git fetch
+git pull origin develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This, as written, performs a direct merge, since we are pulling another
+Branch (develop) in the of the feature.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A pull of a branch in another that is not yours, is equivalent to a merge.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_09.png" alt="git 09">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_merge_after_a_pull_update_from_one_branch_to_another">Merge, after a pull (update), from one branch to another</h3>
+<div class="paragraph">
+<p>A way, from my point of view, more controlled to focus the merge (or
+Either by having a branch updated, or by mixing it later in another),
+Could have been: a fetch to update, changing to develop,
+Do pull and then return to the feature and doing merge.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_keep_branch_updated_with_an_override">Keep branch updated with an override.</h3>
+<div class="paragraph">
+<p>But, try again (we go to folder 1, we make change in develop and we raise it),
+But this time we make a rebase (using git flow)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone1
+vi feature-user1.txt
+git add  feature-user1.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
+git push origin develop
+cd ../repo-clone2
+git fetch
+git flow feature rebase user2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Will try to rebase 'user2' which is based on 'develop'&#8230;&#8203;
+First, rewinding head to replay your work on top of it&#8230;&#8203;
+Applying: Commit in feature-user2
+Applying: Update develop file feature1</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_10.png" alt="git 10">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git flow feature finish</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Branches 'develop' and 'origin/develop' have diverged.
+Fatal: And branch 'develop' may be fast-forwarded.</p>
+</div>
+<div class="paragraph">
+<p>This only means that the branch where we are working is not present (similar to the first example).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git checkout develop
+
+Switched to branch 'develop'
+Your branch is behind 'origin/develop' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+git pull
+Updating 408fcbf..f76cade
+Fast-forward
+ feature-user1.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+git checkout feature/user2
+Switched to branch 'feature/user2'
+
+git flow feature finish
+Switched to branch 'develop'
+Your branch is up-to-date with 'origin/develop'.
+Auto-merging feature-user1.txt
+CONFLICT (content): Merge conflict in feature-user1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+There were merge conflicts. To resolve the merge conflict manually, use:
+    git mergetool
+    git commit
+
+You can then complete the finish by running it again:
+    git flow feature finish user2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rebase has generated conflicts, which at the time of making the merge, gives us problems.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git mergetool</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_11.png" alt="git 11">
+</div>
+</div>
+<div class="paragraph">
+<p>It alters the timeline of the branch where it does it. We resolve the conflict and make changes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git add feature-user1.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "Resolve rebase y merge"
+git push origin develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have this tree</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_12.png" alt="git 12">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_tree_police">Git tree police.</h3>
+<div class="paragraph">
+<p>If we consider that a branch is created for a functionality, and the whole set
+Of commits that are related to it, including merge from develop, should not
+Be reflected in the final tree after the merge, --no-ff is our friend.</p>
+</div>
+<div class="paragraph">
+<p>We create a feature3, make some changes, make some changes in develop,
+Let&#8217;s take it to the branch of feature3, and when it&#8217;s done, merge with no-ff.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ~/sandbox-git/repo-clone1
+git fetch
+git pull origin develop
+
+cd ~/sandbox-git/repo-clone2
+git fetch
+git pull origin develop
+
+git flow feature start feature3
+vi feature3-user2.txt
+git add feature3-user2.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
+
+cd ~/sandbox-git/repo-clone1
+vi change-in-develop.txt
+git add change-in-develop.txt
+git commit --author="User1 &lt;user1@git.com&gt;" -m "change-in-develop"
+git push origin develop
+
+cd ~/sandbox-git/repo-clone2
+git checkout develop
+git fetch
+git pull
+git checkout feature/feature3
+git merge develop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The tree we have so &#8230;&#8203; now after the merge, make another change and reintegrate
+In develop as a single commit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_13.png" alt="git 13">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">vi feature3-another-user2-file.txt
+git add feature3-another-user2-file.txt
+git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
+git checkout develop
+git merge feature/feature3 --no-ff
+git push origin --delete feature/feature3
+git branch -d feature/feature3</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git_14.png" alt="git 14">
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s observe how clean the branch develop</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/06/git-merge-no-ff.png" alt="git merge no ff">
+</div>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa" class="bare">https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa</a></p>
+</li>
+<li>
+<p><a href="https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull" class="bare">https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull</a></p>
+</li>
+<li>
+<p><a href="https://mislav.net/2013/02/merge-vs-rebase/" class="bare">https://mislav.net/2013/02/merge-vs-rebase/</a></p>
+</li>
+<li>
+<p><a href="https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase" class="bare">https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase</a></p>
+</li>
+<li>
+<p><a href="http://blog.jonathanoliver.com/my-new-best-friend-git-merge-no-ff/" class="bare">http://blog.jonathanoliver.com/my-new-best-friend-git-merge-no-ff/</a></p>
+</li>
+<li>
+<p><a href="http://paul.stadig.name/2010/12/thou-shalt-not-lie-git-rebase-ammend.html" class="bare">http://paul.stadig.name/2010/12/thou-shalt-not-lie-git-rebase-ammend.html</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -426,43 +751,43 @@ index 5a97066..ab938b7 100644
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&text=Retrolambda and default methods&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&text=Git &amp; Merge &amp; Rebase &amp; Flow&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/06/git.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html&title=Retrolambda and default methods" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/10/retrolambda.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/06/git.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -475,13 +800,12 @@ index 5a97066..ab938b7 100644
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='../tags/jvm.html'>jvm</a></li>
- 	        <li><a href='../tags/retrolambda.html'>retrolambda</a></li>
- 	        <li><a href='../tags/hippocms.html'>hippocms</a></li>
- 	        <li><a href='../tags/android.html'>android</a></li>
- 	        <li><a href='../tags/apt.html'>apt</a></li>
+ 	        <li><a href='../tags/git.html'>git</a></li>
+ 	        <li><a href='../tags/merge.html'>merge</a></li>
+ 	        <li><a href='../tags/rebase.html'>rebase</a></li>
+ 	        <li><a href='../tags/git-flow.html'>git-flow</a></li>
 
-				<li><a class="icon fa-comment" href="../2016/10/retrolambda.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2017/06/git.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -550,6 +874,16 @@ index 5a97066..ab938b7 100644
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="../2017/06/git.html">Git &amp; Merge &amp; Rebase &amp; Flow</a></h3>
+                                   <time class="published"
+  							            datetime='jun. 30, 2017'>
+  							            jun. 30, 2017</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>
@@ -627,7 +961,7 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
-                                <a href="../tags/cookies.html">cookies</a>
+                                <a href="../tags/life.html">life</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -637,6 +971,15 @@ index 5a97066..ab938b7 100644
                         <article>
                             <header>
                                 <a href="../tags/serilize.html">serilize</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -735,6 +1078,15 @@ index 5a97066..ab938b7 100644
                     <li>
                         <article>
                             <header>
+                                <a href="../tags/work.html">work</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -745,6 +1097,15 @@ index 5a97066..ab938b7 100644
                         <article>
                             <header>
                                 <a href="../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/ikigai.html">ikigai</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -811,7 +1172,7 @@ index 5a97066..ab938b7 100644
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.6</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 

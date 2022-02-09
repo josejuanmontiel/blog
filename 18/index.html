@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../2016/10/groovy-thymelaf.html"><p>Thymeleaf 3 and Groovy</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2016/10/groovy-thymelaf.html">Thymeleaf 3 and Groovy</a></h2>
+                    <h2><a href="../2016/10/groovy-thymelaf.es.html">Thymeleaf 3 and Groovy</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='oct 12, 2016'>
-            oct 12, 2016</time>
+            datetime='oct. 12, 2016'>
+            oct. 12, 2016</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -188,10 +185,10 @@
 <h2 id="_groovy">Groovy</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The first time i heard about Groovy, was in late 2010, early 2011. I used Freemind mind mapping, and then version 0.9 was about to release, with support for groovy, what was that?, It took some time using Freemind, and I said, if people use it, maybe could be interesting.</p>
+<p>La primera vez que hoy hablar de Groovy fue a finales de 2010, principios de 2011. Yo usaba Freemind para hacer mapas mentales, y por aquel entonces la version 0.9 estaba a punto de salir, con soporte para groovy, ¿que era eso?, llevaba ya algun tiempo usando Freemind, y me dije: si esta gente lo usa, lo mismo es interesante.</p>
 </div>
 <div class="paragraph">
-<p>A dynamic language like Javascript, which could interact with the mental maps, making them dynamic too? To create nodes, relations between them, in a dynamic way?. I tried it, I did some things: a script that compiled the ticket Fogbugz and show me drawn as nodes in the mental map.</p>
+<p>¿Un lenguaje dinamico como Javascript, que podia interactuar con los mapas mentales, haciendolos dinamicos tambien? ¿Crear nodos, relaciones entre ellos, de una manera dinamica?. Lo probe, he hice algunas cositas: un script que recopilaba los ticket de fogbugz y me los mostaba dibujados como nodos del mapa mental.</p>
 </div>
 </div>
 </div>
@@ -199,24 +196,24 @@
 <h2 id="_thymeleaf">Thymeleaf</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Thymeleaf templating system is a server, both as standalone web. Its main objective is to provide a template system (not strictly HTML), natural and elegant that also function as static prototypes, enabling closer collaboration in development teams.</p>
+<p>Thymeleaf es un sistema de templating de servidor, tanto web como standalone. Su principal objetivo es brindar un sistema de plantillas (no estrictamente HTML), natural y elegante que ademas funcione como prototipos estáticos, lo que permite una colaboración más estrecha en los equipos de desarrollo.</p>
 </div>
 <div class="paragraph">
-<p>In addition, modules Spring Framework, a series of integrations with their favorite tools, and the ability to connect their own functionality, thymeleaf is ideal for HTML5 web development in the JVM and more.</p>
+<p>Ademas, con módulos de Spring Framework, una serie de integraciones con sus herramientas favoritas, y la capacidad de conectar su propia funcionalidad, Thymeleaf es ideal para el desarrollo web HTML5 en la JVM y mucho mas.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_why_no_mix_it">Why no mix it?</h2>
+<h2 id="_porque_no_mezclarlo">¿Porque no mezclarlo?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>One of the new features of thymeleaf 3 is still more design decouple HTML from data binding.</p>
+<p>Una de las caracteristicas nuevas de Thymeleaf 3, es que todavia desacoplan mas el diseño del HTML, del binding de datos.</p>
 </div>
 <div class="paragraph">
-<p>In <a href="https://github.com/thymeleaf/thymeleaf/issues/465">this link</a> count as work.</p>
+<p>En <a href="https://github.com/thymeleaf/thymeleaf/issues/465">este link</a> cuentan como funciona.</p>
 </div>
 <div class="paragraph">
-<p>The question is, if I can lay  something like</p>
+<p>La cuestion es, que si puedo maquetar algo asi</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -238,7 +235,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>I can define so, as it will generate the binding of the fields&#8230;&#8203;</p>
+<p>puedo definir asi, como se va a generar el binding de los campos&#8230;&#8203;</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -254,7 +251,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>then, why not write in groovy</p>
+<p>entonces, porque no escribirlo en groovy</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -269,10 +266,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p><a href="http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html">Here is</a> the explanation in thymeleaf&#8217;s forum.</p>
+<p><a href="http://forum.thymeleaf.org/Thymeleaf-and-groovy-td4029599.html">Aqui esta</a> la explicacion en el foro de thymeleaf.</p>
 </div>
 <div class="paragraph">
-<p>And if we can made this, we could made <a href="http://groovy-lang.org/processing-xml.html#_markupbuilder">this one</a></p>
+<p>Y si podemos hacer eso, podriamos hacer <a href="http://groovy-lang.org/processing-xml.html#_markupbuilder">esto</a></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -292,17 +289,17 @@
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Include the logic in xml generation&#8230;&#8203;</td>
+<td>Incluir logica en la generacion del Xml&#8230;&#8203;</td>
 </tr>
 </table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_one_example_with_all_mixed">One example with all mixed</h2>
+<h2 id="_un_ejemplo_con_todo_junto">Un ejemplo con todo junto</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In <a href="https://github.com/josejuanmontiel/adorable-avatar">this project</a> i mount an example of use of thymeleaf 3 in a springboot project with groovy as the main language, and <a href="https://github.com/josejuanmontiel/dynamic-rest-template">here</a> took out the rest of access to services, and wanted to try something else was jitpack to generate libraries git projects, on-demand.</p>
+<p>En <a href="https://github.com/josejuanmontiel/adorable-avatar">este</a> monte un ejemplo de uso de thymeleaf 3, en un proyecto springboot con groovy como lenguaje principal, y <a href="https://github.com/josejuanmontiel/dynamic-rest-template">aqui</a> extraje la parte de acceso a servicios rest, y otra cosa que queria probar era jitpack, para generar librerias de projectos git, on-demand.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -313,10 +310,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_next_steps">Next steps</h2>
+<h2 id="_proximos_pasos">Proximos pasos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Many applications are the type, called a rest services and exposure in the view. Why not make an application front, in the back? I thought it would be quite interesting, that in the definition of binding in groovy could add information about the rest services to be consulted, to fill the data binding in the rendering phase.</p>
+<p>Muchas aplicaciones son del tipo, llamada a servicios rest, y exposicion en la vista. ¿Porque no hacer una aplicacion front, en el back? Pense que seria bastante interesante, que en esa definicion de binding en groovy se pudiera añadir informacion sobre los servicios rest que se van a consultar, para rellenar los datos de ese binding en la fase de renderizado.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -341,7 +338,7 @@ thlogic {
 </div>
 </div>
 <div class="paragraph">
-<p>And seeing the <a href="https://twitter.com/nicolas_frankel/status/760441910272135168">tweet</a> Nicolas Frankel, test values (maximum and minimum) of each of the fields are indicated binding and that during development, are that the fake data used to lay out the project, while services are mounted.</p>
+<p>Y al ver el <a href="https://twitter.com/nicolas_frankel/status/760441910272135168">tweet</a> de Nicolas Frankel, que se indiquen los valores de prueba (maximos y minimos) de cada uno de los campos del binding y que durante desarrollo, sean eso los datos fake que se usen para maquetar el proyecto, mientras se montan los servicios.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -356,7 +353,7 @@ thlogic {
 </div>
 </div>
 <div class="paragraph">
-<p>For all this, metaprogramming &#8230;&#8203; in groovy. To see what ends the idea.</p>
+<p>Para todo esto, metaprogracion&#8230;&#8203; en groovy. A ver en que termina la idea.</p>
 </div>
 </div>
 </div>
@@ -367,43 +364,43 @@ thlogic {
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&text=Thymeleaf 3 and Groovy&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html&text=Thymeleaf 3 and Groovy&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html&title=Thymeleaf 3 and Groovy" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/10/groovy-thymelaf.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -421,7 +418,7 @@ thlogic {
  	        <li><a href='../tags/thymeleaf3.html'>thymeleaf3</a></li>
  	        <li><a href='../tags/springboot.html'>springboot</a></li>
 
-				<li><a class="icon fa-comment" href="../2016/10/groovy-thymelaf.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2016/10/groovy-thymelaf.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -490,16 +487,6 @@ thlogic {
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../2016/10/groovy-thymelaf.html">Thymeleaf 3 and Groovy</a></h3>
-                                   <time class="published"
-  							            datetime='oct 12, 2016'>
-  							            oct 12, 2016</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>
@@ -577,7 +564,7 @@ thlogic {
                     <li>
                         <article>
                             <header>
-                                <a href="../tags/cookies.html">cookies</a>
+                                <a href="../tags/life.html">life</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -587,6 +574,15 @@ thlogic {
                         <article>
                             <header>
                                 <a href="../tags/serilize.html">serilize</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/cookies.html">cookies</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -685,6 +681,15 @@ thlogic {
                     <li>
                         <article>
                             <header>
+                                <a href="../tags/work.html">work</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
                                 <a href="../tags/testing.html">testing</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
@@ -695,6 +700,15 @@ thlogic {
                         <article>
                             <header>
                                 <a href="../tags/retrolambda.html">retrolambda</a>
+                                <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
+                                <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
+                            </header>
+                        </article>
+                    </li>
+                    <li>
+                        <article>
+                            <header>
+                                <a href="../tags/ikigai.html">ikigai</a>
                                 <!-- JBake 2.5.1 Issue#357 prevents accessing db, This can be enabled once issue is fixed. -->
                                 <!-- <span style="float:right;"> (db.getPublishedPostsByTag(sideBarTag1).size()) </span>-->
                             </header>
@@ -761,7 +775,7 @@ thlogic {
 
 
         <section id="footer">
-            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.4</a>.
+            <p class="copyright">&copy; Blog. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported For SSG by <a href="https://github.com/jpescador/hugo-future-imperfect">Julio Pescador</a>. Adapted to JBake by <a href="//github.com/manikmagar" target="_blank">Manik Magar</a>. Baked with <a href="http://jbake.org">JBake v2.6.6</a>.
             <a href="/sitemap.xml" target="_blank">Sitemap</a>.</p>
         </section>
 
