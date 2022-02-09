@@ -1,0 +1,15 @@
+= Criptografia de andar por casa
+Jose Juan Montiel
+2022-03-18
+:jbake-type: post
+:jbake-tags: life, moldable
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: criptografia-de-andar-por-casa
+:icons: font
+
+== ...
+
+* Como tambien queria jugar con "criptografia" de andar por casa, vere como hacer para que las respuestas (cifradas) vayan desbloqueando otras respuestas
+** Para ello jugaremos con conexiones http a partes de la web que contendran... 

@@ -1,0 +1,13 @@
+= Moldable Life Data
+Jose Juan Montiel
+2022-03-11
+:jbake-type: post
+:jbake-tags: life, moldable
+:jbake-status: draft
+:jbake-lang: es
+:source-highlighter: prettify
+:id: moldable-life-data
+:icons: font
+
+=== ¿Plantear un "moldable" para "organizar" tus ideas?
+Enlazar con las ideas, modelos... para "red"...

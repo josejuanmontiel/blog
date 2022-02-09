@@ -1,4 +1,4 @@
-= xxx
+= Reflexion sobre el momento actual
 Jose Juan Montiel
 2022-02-25
 :jbake-type: post
@@ -6,7 +6,7 @@ Jose Juan Montiel
 :jbake-status: draft
 :jbake-lang: es
 :source-highlighter: prettify
-:id: donde-te-ves-1
+:id: donde-te-ves-3
 :icons: font
 
-== xxx...
+== ...
