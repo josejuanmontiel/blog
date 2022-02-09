@@ -3,7 +3,7 @@ Jose Juan Montiel
 2022-02-11
 :jbake-type: post
 :jbake-tags: life, work, ikigai
-:jbake-status: draft
+:jbake-status: published
 :jbake-lang: es
 :source-highlighter: prettify
 :id: donde-te-ves-1
@@ -12,15 +12,15 @@ Jose Juan Montiel
 == El tiempo pasa...
 ...y me voy a tomar el mio, el que sea necesario, para reflexionar un poco.
 
-Hace mucho, que la vida, eso que pasa mientras nosotros intentamos hacer otras cosas, no me ha permitido pararme a escribir un poco aqui.
+Hace mucho, que la vida, eso que sucede mientras nosotros intentamos hacer otras cosas, no me ha permitido pararme a escribir un poco aqui.
 
-Si, es un blog, con perfil tecnico, y no hablare (mucho) de cosas que no sean tecnicas, pero, si que tengo que reconocer que estos ultimos tres años, entre blockchain y golang, no me ha quedado mucho tiempo libre... y bueno, entre mis hijas que se hacen mayores, bricolage en casa, el ocio con la caravana, y como no, la pandemia :)
+Si, es un blog, con perfil tecnico, y no hablare (mucho) de cosas que no sean tecnicas, pero, si que tengo que reconocer que estos ultimos tres años, entre blockchain y golang, no me ha quedado mucho tiempo libre... y bueno, entre mis hijas que se hacen mayores, la familia, el ocio, con la caravana, el bricolage en casa y como no, la pandemia :) pues, al final se mezcla un poco todo.
 
 == ¿Como vas a organizarlo?
 Voy a empezar una serie de entradas en este blog, en las que voy a contar como voy a hacer un repaso de mi carrera profesional y como lo voy a reflejar en la raiz de este sitio (fuera del blog).
 
 === Lo importante es escribrilo
-Porque uno, siempre esta pensando, bueno, cuando no esta actuando, y tomarse el tiempo para escribirlo, permite reflexionar mejor sobre lo que quieres plasmar, y esa retroalimentacion perfila las ideas, las pule, y da una vision organizada de ellas, o esa es la teoria.
+Porque uno, siempre esta pensando, bueno, cuando no esta actuando, y tomarse el tiempo para escribirlo, permite reflexionar mejor sobre lo que quieres plasmar, y esa retro alimentacion perfila las ideas, las pule, y asi consigues una vision organizada de las mismas, o esa es la teoria.
 
 === Aprovechar para usar cosas que queria probar
 Y bueno, podria limitarme a escribirlo en un papel, pero el hecho de compartirlo, le añade un punto, que hace que tengas que reflexionar mas seriamente... y ya que te pones, porque no aprovechar para acompañar esas reflexiones con algun conocimiento nuevo.
@@ -29,14 +29,15 @@ Es como suelen decir los que preparan conferencias, el tener que preparar algo p
 
 Eso si, os contare que hare, y vosotros (si os apatece) lo ireis descubriendo conmigo.
 
-Desde hace un tiempo, queria darle una prueba a https://ebiten.org[Ebiten] un framework de juegos 2D en Golang (ya sabeis, ultimamente mi mundo a estado en blockchain y golang).
+==== Manos a la obra
+Desde hace un tiempo, queria darle una prueba a https://ebiten.org[Ebiten] un framework de juegos 2D en Golang (ya sabeis, ultimamente mi mundo ha estado entre blockchain y golang).
 
-De hecho, justo antes de esta epoca (hace 3 años) iba con mi hija mayor a clases de percusion, y como me costaba mucho coordinar los golpes al tempo adecuado, pense hacer un juego (usando https://litiengine.com[Litiengine]) para con un buen micro detectar los "beats" y hacer que un Mario saltara para golpear con la cabeza unas cajas sordas, a la que se movia por un escenario (la idea quedo en el baul, con tantas otras).
+De hecho, justo antes de esta epoca (hace 3 años) iba con mi hija mayor a clases de percusion, y como me costaba mucho coordinar los golpes al tempo adecuado, pense hacer un juego (usando en este caso https://litiengine.com[Litiengine] que como veis este es Java) para con un buen micro, detectar los "beats" y hacer que un Mario saltara para golpear con la cabeza unas cajas sordas, que se movian por la pantala al tempo de 4/4 (la idea quedo en el baul, con tantas otras).
 
 Y bueno, como en GoLang (como en otros lenguajes) se puede compilar en WebAssembly, ¿porque no aprovechar y colocar el juego (aun no he dicho cual, tendras que descubrilo) en la web, y hacer que con su ayuda, vaya contando mi historia?
 
 === Proximas secciones
-Pues la idea es simple, para conseguir encontrar el Ikiga del programador... 
+Pues la idea es simple, para conseguir encontrar el Ikigai del programador... 
 
 * Reflexion sobre el pasado...
 ...haciendo un repaso desde mis origenes: mis primeros pinitos (tardios) con la informatica... hasta llegar a hace unos años.
@@ -45,7 +46,7 @@ Pues la idea es simple, para conseguir encontrar el Ikiga del programador...
 ...momento actual, que incluye hoy por hoy... y los ultimos 3 años aproximadamente.
 
 * Reflexion sobre el futuro...
-...por ultimo, y retomando con el titulo de esta entrada... ¿donde me veo con 50 años? Es una pregunta que hice a varios compañeros, cuando cumpli los 40, para intentar decidir que tendria que hacer estos años, para poder conseguir el objetivo... luego llego la pandemia, y bueno, seguimos tirando.
+...por ultimo, y retomando con el titulo de esta entrada... ¿donde me veo con 50 años? Es una pregunta que hice a varios compañeros, cuando cumpli los 40, para intentar decidir que tendria que hacer estos años, para poder conseguir el objetivo... luego llego la pandemia, y bueno, seguimos tirando. Asi que...
 
 === ¿Listo para ver el resultado?
 ¿Quieres ver primero https://josejuanmontiel.github.io[el resultado final]... o continuas leyendo https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-2.html[las siguiente entrada del blog] para descubrir mas detalles?

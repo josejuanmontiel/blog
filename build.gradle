@@ -4,7 +4,7 @@ buildscript {
       mavenCentral()
       jcenter()
       maven {
-          url "http://dl.bintray.com/calmdev/gradle-plugins"
+          url "https://plugins.gradle.org/m2/"
       }
   }
 
@@ -12,7 +12,7 @@ buildscript {
       classpath "org.jbake:jbake-gradle-plugin:$jbake_plugin"
       classpath "org.akhikhl.gretty:gretty:$gretty_plugin"
       classpath "org.ajoberstar:gradle-git:$gradle_git"
-      classpath "org.asciidoctor:asciidoctorj-diagram:1.5.0"
+      classpath "org.asciidoctor:asciidoctorj-diagram:1.5.16"
   }
 }
 
@@ -21,7 +21,7 @@ apply plugin: 'org.jbake.site'
 apply from: 'gradle/gretty.gradle'
 apply from: 'gradle/publish.gradle'
 
-jbake{
+bake{
   configuration['asciidoctor.option.requires'] = "asciidoctor-diagram"
   configuration['asciidoctor.attributes'] = [
   "sourceDir=${projectDir}",
