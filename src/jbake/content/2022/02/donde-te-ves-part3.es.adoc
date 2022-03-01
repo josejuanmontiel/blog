@@ -9,4 +9,21 @@ Jose Juan Montiel
 :id: donde-te-ves-3
 :icons: font
 
-== ...
+== Ahora hagamos zoom en los ultimo años...
+
+Se podria decir (aunque no todos piensen igual) que he tenido la suerte de estar los ultimos 3 años
+en el mismo proyecto. Y eso, es mucho, mucho tiempo.
+
+Por un lado agradecer a los responsables los esfuerzos realizados, por mantener al cliente contento,
+y por tanto mantenerlo todo este tiempo, dentro de unos costes mas o menos ajustados... y gracias a
+estar esos casi 3 años en produccion, haber aprendiendo a mantener la rueda girando.
+
+Al final, esta guay montar las cosas desde cero, y echarlas a andar, pero lo que mola de verdad, es
+mantenerlas andando en PRODUCCION, dando el servicio para el que fueron creadas y ademas, evolucionandolo mientras todo sigue levantado.
+
+Y si ademas, tienes la suerte de tener un grupo con ganas de aprender, pues... ¿que mas se puede pedir?
+
+A esta altura te preguntaras donde puedes ver todas estas reflexiones... recuerda depende de ti ;)
+
+== ¿Pero quieres saber que es lo proximo... y lo ultimo?
+...pues ya sabes donde seguir leyendo https://josejuanmontiel.github.io/blog/2022/03/donde-te-ves-4.es.html[la siguiente entrada del blog] para ver...
