@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../2018/02/mensajes_serializacion.html"><p>Message, serialization and other things</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h2>
+                    <h2><a href="../2016/08/blog-jbake-gradle.es.html">Blog en GitHub Pages con Jbake y Gradle</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='feb. 17, 2018'>
-            feb. 17, 2018</time>
+            datetime='ago. 25, 2016'>
+            ago. 25, 2016</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,179 +182,147 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_messages_serialization_and_other_things">Messages, serialization and other things</h2>
+<h2 id="_es_hora_de_empezar_un_blog_sobre_programacion">Es hora de empezar un blog sobre programacion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I remember one time a colleague told me, something like this: "My boss said, that the one
-manage the string, it handles everything". Taken out of context, it may seem
-pretentious, but do not you get the feeling that most of the programming is
-reduces to "manipulation"?</p>
+<p>La verdad es que conforme pasa el tiempo, te das cuenta que compartir es ganar. Algunos se dan cuanta antes, pero aunque
+yo ya lo intuia, han tenido que pasar mas de 10 años en esto de la programacion para darme cuenta. Compartir es ganar,
+es conocer otras opiniones, maneras de hacer las cosas y como no, conocer a otras personas&#8230;&#8203; networking le llaman.</p>
 </div>
 <div class="paragraph">
-<p>And if you stop to think, today, is not it reduced to communication? To the shipment of
-"messages"? And that&#8217;s where I want to get in this article, to the famous serialization
-and deserialization.</p>
+<p>Yo ya tenia un <a href="http://accreativos.blogspot.com.es/">blog</a>, es mas una lista de cosas que te vas encontrando y apuntas
+para tener en algugn sitio, que realmente una manera de compartir informacion y opinar sobre ella. Luego llego el
+<a href="http://twitter.com/accreativos">twitter</a> pero al final, es una mezcla de retweets, y poca informacion original.</p>
 </div>
 <div class="paragraph">
-<p>I did not get to experience it, but when I started in the Java world, there was still talk
-of <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">Corba</a> and
-<a href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">RMI</a>.
-I&#8217;m not going to stop much, for that we have the wikipedia, but the first let&#8217;s say
-it served to communicate separate and distinct systems, and the second more "close".</p>
+<p>Asi que, por que no, un blog serio, como esos que estas acostumbrado a leer, de esos donde la gente termina dejando
+una gran cantidad de comentarios, de esos que añades a tu lector RSS para estar al tanto de lo que se comenta en ellos,
+y si ademas aprendes algo al montandolo, pues que mas se puede pedir.</p>
 </div>
 <div class="paragraph">
-<p>To what if it arrives, and went to the world to <a href="https://en.wikipedia.org/wiki/SOAP">SOAP</a>.
-If we look back, the "XML was invented" at <a href="https://en.wikipedia.org/wiki/XML#History">1998</a>,
-I even remember doing an interview in my beginnings for the "xml company".
-And in XML, SOAP is based on the transmission of messages. Here begins to stop
-side the "binary" messages to move to XML, with its supposed advantages, and disadvantages.
-Because parsing and loading into XML memory was expensive, agile because you could access
-any part of the message, but expensive.</p>
-</div>
-<div class="paragraph">
-<p>I do not extend more here, just remember DTD, XSD, XSLT, and a series more than
-acronyms related to the XML world.</p>
-</div>
-<div class="paragraph">
-<p>But people got tired of the XML soon, in 2000 came the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
-People were tired of schemes, of rigidity, the new millennium wanted flexibility,
-browsers wanted to be able to find what they wanted, without having to load everything.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s say that the REST, brought the JSON, a format where the "tabulation" gave the format,
-and there was no need for so much label, which reduced the size of the messages,
-but hey, it was still necessary to parse them.</p>
-</div>
-<div class="paragraph">
-<p>At that time, Google started using <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a> internally,
-a binary specification language. The same thought that in the end, either
-It made a lot of sense that the messages were "human-readable", and even if I could
-there is compression of an XML message in a superior layer, in the end it is effort
-to serialize and deserialize in a "human-readable" way was not an obstacle either
-to not put one field after another.</p>
-</div>
-<div class="paragraph">
-<p>On the other hand, the <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
-it began to evolve.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2018/02/glory-of-rest.png" alt="Glory of rest">
-</div>
-</div>
-<div class="paragraph">
-<p>And things started to appear like: <a href="https://swagger.io/">Swagger</a> and <a href="https://raml.org/">RAML</a>,
-that end up merging at <a href="https://www.openapis.org/">OPENAPI</a> and things like:
-<a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
-even <a href="http://graphql.org/learn/">GraphQL</a>, which to be the query language
-that we know, part of a language of definition of structures.</p>
-</div>
-<div class="paragraph">
-<p>In the end, in the Java world, and I suppose that in the rest of languages also, all
-Transmission requires serialization and deserialization (which may be more
-or less complex).</p>
-</div>
-<div class="paragraph">
-<p>For example, the transmission of a large XML to a destination, where it only interests you
-certain data of the same, does not have to serialize it in memory to make a
-On the DOM, a parser can be used <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
-to look for what is needed, and it does not matter the size of the XML, it will take more or less the same,
-because the overhead is produced when it is loaded into memory.</p>
-</div>
-<div class="paragraph">
-<p>In the case of a JSON, those who need their specified getter / setter,
-the parsers that simply load in hash, those that use the reflection, those that
-they do not use it (because the user codes a certain part), those that "precompile" code,
-those who &#8230;&#8203;</p>
-</div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<div class="paragraph">
-<p>In the end, in this world of programming, you can never think that you know everything,
-and in IMHO you can always improve, doing things differently.</p>
-</div>
-<div class="paragraph">
-<p>If we dive a little, we can find some benchmarks. For example in this
-<a href="https://github.com/fabienrenaud/java-json-benchmark">comparatories on libraries</a>
-we can discover the large number of JSON libraries that exist, and their different
-performance, proof that you can always evolve, and when you reach the
-physical limits, you can always do it in another way. In this other
-<a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
-inclyendo protobuf</a> do the analysis, focusing on the number of attributes, of
-the class to be serialized, and they make some interesting considerations of the transformations
-that pass "below", away from the sight of our eyes, commenting on changes between
-JDK 8 and 9.</p>
+<p>Por tanto, los elementos que voy a usar para este blog son:</p>
 </div>
 <div class="ulist">
-<div class="title">We can highlight the following libraries:</div>
 <ul>
 <li>
-<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Use a dsl to generate the parser.</p>
+<p>Ingles (Español)</p>
 </li>
 <li>
-<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompiling a parser.</p>
+<p>GitHub Pages</p>
 </li>
 <li>
-<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolution of the well-known library.</p>
+<p>AsciiDoctor</p>
 </li>
 <li>
-<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> A more theoretical approach using Graavl.</p>
+<p>Groovy</p>
+</li>
+<li>
+<p>Jbake</p>
+</li>
+<li>
+<p>Gradle</p>
+</li>
+<li>
+<p>Freemarker (Thymeleaf)</p>
+</li>
+<li>
+<p>Discus (Discourse)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>What if we talk about bbdd NSQL or document-oriented ?, as for example CouchBase &#8230;&#8203;?</p>
-</div>
-<div class="paragraph">
-<p>In the end, here using the java API, there is also a serialization / deserialization,
-in the end what is saved is a document, which must (according to API) serialize more or less.</p>
-</div>
-<div class="paragraph">
-<p>In <a href="https://github.com/josejuanmontiel/demo-couchbase">this</a> repo, I have messed around a little with some ideas.</p>
-</div>
-<div class="olist arabic">
-<div class="title">The conclusions?</div>
-<ol class="arabic">
-<li>
-<p>It is clear that the smaller the entity to persist, the sooner it will persist.</p>
-</li>
-<li>
-<p>But not by inserting it into smaller pieces (related to each other)
-Insert before.</p>
-</li>
-<li>
-<p>Both for insertions and queries, if a string is inserted, without going through
-JPA can earn 50% (discounting the serialization to String, remember that
-   arrives in String format from synchro) and 90% in reading approx.</p>
-</li>
-<li>
-<p>A .findOne in spring data jpa, will always be slower than a native one.
-Does the view on the entity type add a delay?</p>
-</li>
-<li>
-<p>Network latency from the server to the bbdd also counts, less data, faster.</p>
-</li>
-<li>
-<p>The servers with SSD vs HDD for bbdd nosql show large differences in performance.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>It depends on the use and the problem that you want to address, it can not always make sense,
-serialize to have the "objects" accessible, but let&#8217;s use them.</p>
+<p>Vemos en un poco en detalle cada punto.</p>
 </div>
 <div class="sect2">
-<h3 id="_as_an_exercise_for_home">As an exercise for home</h3>
+<h3 id="_ingles">Ingles</h3>
 <div class="paragraph">
-<p>According to the <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> if
-will change the implementation of JsonConverter from Jackson to Jsonite, could win
-30% in the part that the spring data library jpa passes from the object to
-com.couchbase.client.java.document.json.JsonObject.</p>
+<p>Lo primero que voy aprovechar es para mejorar mi ingles. Asi que, aunque lo redacte en español, mi lengua nativa, lo
+publicare en ingles (y supongo que ya que los redacto en español, estos tambien los publicare, ya vere como lo implemento).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_github_pages">Github Pages</h3>
+<div class="paragraph">
+<p>Ya hace algun tiempo que GitHub empezo a permitir publicar paginas estaticas para todos sus proyectos. Si buscas por
+<a href="https://pages.github.com">Github Pages</a> podras ver amplia informacion al respecto, ademas, mucha gente que usa ya github
+a aprovechado la funcionalidad para montar pequeños sites estaticos.</p>
 </div>
 <div class="paragraph">
-<p>Make a pull request to implement <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
-of couchbase with <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
-and see if it&#8217;s faster than the standard, and not much less than with the <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
+<p>Basicamente es que, todo lo que subas a la rama gh-pages de tu repositorio github, sera visible en el dominio
+<a href="http://username.github.io/repo/file" class="bare">http://username.github.io/repo/file</a> donde username, es tu usuario de github, repo es el nombre del repo donde estas
+subiendo los ficheros a la rama gh-pages y file, es el fichero, que si es un index.html el navegador lo visualiza,
+y lo mismo para los css y js, con lo que ya tienes listo la web.</p>
 </div>
+<div class="paragraph">
+<p>Ademas, proveen de un generador por defecto, <a href="https://help.github.com/articles/about-github-pages-and-jekyll/">Jekyll</a>,
+para generar esas paginas estaticas, a partir de un texto en formato markdown, pero nosotros no vamos a usarlo,
+veremos la alternativa.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_asciidoctor">AsciiDoctor</h3>
+<div class="paragraph">
+<p>Preferimos usar algo que esta entre, markdown y latex, y eso se llama <a href="http://asciidoctor.org/">AsciiDoctor</a> que por
+cierto tambien esta <a href="http://asciidoctor.org/news/2014/02/04/github-asciidoctor-0.1.4-upgrade-5-things-to-know/">soportado</a>
+por GitHub.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_groovy">Groovy</h3>
+<div class="paragraph">
+<p>Igual que mi lenguaje nativo es el español, mi lenguaje nativo en esto de la programacion es Java, y como se trata de
+aprender, ya llevo unos años jugando con groovy, y no voy a desaprovechar la oportunidad para montar el blog usandolo.
+Ya contare en otra ocasion, como me inicie en esto de groovy, y cuales son los lugares donde yo, aprendo.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jbake">Jbake</h3>
+<div class="paragraph">
+<p>Y ya hemos dicho que no ibamos a usar <a href="https://jekyllrb.com/">Jekyll</a> que esta hecho en Ruby, porque lo que nos mola es
+Groovy ;) Pero necesitamos que nuestros txt escritos en AsciiDoctor se transformen en HTML (o XML ya veremos como),
+y sobre todo que lo que escribimos se inserte en esos HTML, para ello usaremos <a href="http://jbake.org/">Jbake</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gradle">Gradle</h3>
+<div class="paragraph">
+<p>Pero bueno, esto necesita automatizarse, al final son una serie de pasos que porque no usar gradle, y como bien
+<a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">cuenta</a> el creador del
+<a href="https://github.com/jbake-org/jbake-gradle-plugin">plugin</a>, es la combinacion perfecta.</p>
+</div>
+<div class="paragraph">
+<p>Un par de apuntes, pues ha quedado algo desactualizado&#8230;&#8203; <a href="http://www.orany.cz/blog/2014/10/17/migrated-to-jbake.html">que
+hace Ornay</a> y el plugin que se encara de subir las paginas a la rama, tambien ha sido actualido,
+<a href="https://plugins.gradle.org/plugin/org.ajoberstar.github-pages">aqui esta</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_freemarker_thymeleaf">Freemarker (Thymeleaf)</h3>
+<div class="paragraph">
+<p>Y esta herramienta es capaz de usar distintos sistemas de templating (en concreto empezaremos con Freemarker, y mas
+adelante lo migraremos a Thymeleaf) para inyectarles los valores obtenidos del txt en asciidoctor, junto con algunas
+variables mas que ayudaran a construir un sistema de blogging que no tiene que enviadiar nada a Jeklly, Wordpress o
+lo que se ponga por delante.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_disqus_discourse">Disqus (Discourse)</h3>
+<div class="paragraph">
+<p>Pero por ultimo, que es un sistema de blog sin la posibilidad de comentarios, pues nada. Para ello todos estos sistmas
+usan <a href="https://disqus.com/">Discus</a> que se intera perfectamente con una linea (casi). Como opcion, intentare migrar a
+<a href="https://www.discourse.org/">Discourse</a> pero eso sera mas adelante.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bola_extra_analitica">Bola extra. Analitica.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Como bola extra, recordar añadir la analitica.</p>
+</div>
+<div class="paragraph">
+<p>Keep on Groovying!</p>
 </div>
 </div>
 </div>
@@ -368,43 +333,43 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&text=Message, serialization and other things&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&text=Blog en GitHub Pages con Jbake y Gradle&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&title=Blog en GitHub Pages con Jbake y Gradle" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&title=Blog en GitHub Pages con Jbake y Gradle" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html&title=Blog en GitHub Pages con Jbake y Gradle" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2016/08/blog-jbake-gradle.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -418,9 +383,13 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
  	        <li><a href='../tags/jvm.html'>jvm</a></li>
- 	        <li><a href='../tags/serilize.html'>serilize</a></li>
+ 	        <li><a href='../tags/groovy.html'>groovy</a></li>
+ 	        <li><a href='../tags/blog.html'>blog</a></li>
+ 	        <li><a href='../tags/github.html'>github</a></li>
+ 	        <li><a href='../tags/jbake.html'>jbake</a></li>
+ 	        <li><a href='../tags/gradle.html'>gradle</a></li>
 
-				<li><a class="icon fa-comment" href="../2018/02/mensajes_serializacion.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2016/08/blog-jbake-gradle.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -489,16 +458,6 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h3>
-                                   <time class="published"
-  							            datetime='feb. 17, 2018'>
-  							            feb. 17, 2018</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>
