@@ -8,7 +8,7 @@
                     <h1>Archive</h1>
                 </header>
                 <#list published_posts as post>
-								<#if (post.lang = "en")>
+								<#if ((post.lang = "en") || (post.lang = "es"))>
 
 									<#if (last_month)??>
 										<#if post.date?string("MMMM yyyy") != last_month>

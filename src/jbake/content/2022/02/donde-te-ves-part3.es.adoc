@@ -3,7 +3,7 @@ Jose Juan Montiel
 2022-02-25
 :jbake-type: post
 :jbake-tags: life, work, ikigai
-:jbake-status: publish
+:jbake-status: published
 :jbake-lang: es
 :source-highlighter: prettify
 :id: donde-te-ves-3
