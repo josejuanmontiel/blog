@@ -12,41 +12,41 @@ Jose Juan Montiel
 == El tiempo pasa...
 ...y me voy a tomar el mio, el que sea necesario, para reflexionar un poco.
 
-Hace mucho, que la vida, eso que sucede mientras nosotros intentamos hacer otras cosas, no me ha permitido pararme a escribir un poco aqui.
+Hace mucho, que la vida, eso que sucede mientras nosotros intentamos hacer otras cosas, no me ha permitido pararme a escribir un poco aquí.
 
-Si, es un blog, con perfil tecnico, y no hablare (mucho) de cosas que no sean tecnicas, pero, si que tengo que reconocer que estos ultimos tres años, entre blockchain y golang, no me ha quedado mucho tiempo libre... y bueno, entre mis hijas que se hacen mayores, la familia, el ocio, con la caravana, el bricolage en casa y como no, la pandemia :) pues, al final se mezcla un poco todo.
+Si, es un blog, con perfil técnico, y no hablare (mucho) de cosas que no sean técnicas, pero, si que tengo que reconocer que estos últimos tres años, entre blockchain y golang, no me ha quedado mucho tiempo libre... y bueno, entre mis hijas que se hacen mayores, la familia, el ocio, con la caravana, el bricolage en casa y como no, la pandemia :) pues, al final se mezcla un poco todo.
 
 == ¿Como vas a organizarlo?
-Voy a empezar una serie de entradas en este blog, en las que voy a contar como voy a hacer un repaso de mi carrera profesional y como lo voy a reflejar en la raiz de este sitio (fuera del blog).
+Voy a empezar una serie de entradas en este blog, en las que voy a contar como quiero hacer un repaso de mi carrera profesional, y contaré como lo voy a reflejar en la raíz de este sitio (fuera del blog).
 
-=== Lo importante es escribrilo
-Porque uno, siempre esta pensando, bueno, cuando no esta actuando, y tomarse el tiempo para escribirlo, permite reflexionar mejor sobre lo que quieres plasmar, y esa retro alimentacion perfila las ideas, las pule, y asi consigues una vision organizada de las mismas, o esa es la teoria.
+=== Lo importante es escribirlo
+La mente esta siempre en marcha, escribir obliga a parar y reflexionar mejor sobre lo que quieres plasmar, y esa retro alimentación perfila las ideas, las pule, y asi consigues una vision organizada de las mismas, o esa es la teoría.
 
-=== Aprovechar para usar cosas que queria probar
-Y bueno, podria limitarme a escribirlo en un papel, pero el hecho de compartirlo, le añade un punto, que hace que tengas que reflexionar mas seriamente... y ya que te pones, porque no aprovechar para acompañar esas reflexiones con algun conocimiento nuevo.
+=== Aprovechar para usar cosas que quería probar
+Y bueno, podría limitarme a escribirlo en un papel, pero el hecho de compartirlo, le añade un punto, que hace que tengas que reflexionar mas seriamente... y ya que te pones, ¿porque no aprovechar para acompañar esas reflexiones con la adquisición de conocimiento nuevo?
 
-Es como suelen decir los que preparan conferencias, el tener que preparar algo para contarlo a los demas, hace que uno mismo lo aprenda mejor. Aqui pasa algo parecido, el añadirle nuevos conocimientos, hace que aun mas, tengas que organizar las ideas mejor.
+Es como suelen decir los que preparan conferencias, el tener que prepararte para contarlo a los demás, hace que uno mismo lo aprenda mejor. Aquí pasa algo parecido, el añadirle nuevos conocimientos, hace que tengas te fuerces a aprenderlo bien, además de organizar las ideas mejor.
 
-Eso si, os contare que hare, y vosotros (si os apatece) lo ireis descubriendo conmigo.
+Eso si, os contare que hare, y vosotros (si os apetece) lo iréis descubriendo por vuestra cuenta.
 
 ==== Manos a la obra
-Desde hace un tiempo, queria darle una prueba a https://ebiten.org[Ebiten] un framework de juegos 2D en Golang (ya sabeis, ultimamente mi mundo ha estado entre blockchain y golang).
+Desde hace un tiempo, quería darle una prueba a https://ebiten.org[Ebiten]: un framework de juegos 2D en Golang. Ciclo de refresco, siempre me llamo la atención en
+los juegos. De hecho, hace 3 años iba con mi hija mayor a clases de percusión, y como me costaba mucho coordinar los golpes al son del metronomo, pense hacer un juego 
+(usando en este caso https://litiengine.com[Litiengine], Java en este caso) para con la ayuda de un buen micro, detectar los golpes y hacer que un "Mario" saltara para golpear con la cabeza unas cajas sordas, que se movían por la pantalla al ritmo de 4/4 (la idea quedo en el baúl, con tantas otras).
 
-De hecho, justo antes de esta epoca (hace 3 años) iba con mi hija mayor a clases de percusion, y como me costaba mucho coordinar los golpes al tempo adecuado, pense hacer un juego (usando en este caso https://litiengine.com[Litiengine] que como veis este es Java) para con un buen micro, detectar los "beats" y hacer que un Mario saltara para golpear con la cabeza unas cajas sordas, que se movian por la pantala al tempo de 4/4 (la idea quedo en el baul, con tantas otras).
+Y bueno, como en GoLang (como en otros lenguajes) se puede compilar en WebAssembly, ¿porque no aprovechar y colocar el juego (aun no he dicho cual, tendrás que descubrirlo) en la web, y hacer que con su ayuda, vaya contando mi historia?
 
-Y bueno, como en GoLang (como en otros lenguajes) se puede compilar en WebAssembly, ¿porque no aprovechar y colocar el juego (aun no he dicho cual, tendras que descubrilo) en la web, y hacer que con su ayuda, vaya contando mi historia?
-
-=== Proximas secciones
+=== Próximas secciones
 Pues la idea es simple, para conseguir encontrar el Ikigai del programador... 
 
-* Reflexion sobre el pasado...
-...haciendo un repaso desde mis origenes: mis primeros pinitos (tardios) con la informatica... hasta llegar a hace unos años.
+* Reflexión sobre el pasado...
+...desde mis orígenes: mis primeros pinitos (tardíos) con la informática... hasta llegar a hace unos años.
 
-* Reflexion sobre el momento actual...
-...momento actual, que incluye hoy por hoy... y los ultimos 3 años aproximadamente.
+* Reflexión sobre el momento actual...
+...que incluye los últimos 3 años aproximadamente.
 
-* Reflexion sobre el futuro...
-...por ultimo, y retomando con el titulo de esta entrada... ¿donde me veo con 50 años? Es una pregunta que hice a varios compañeros, cuando cumpli los 40, para intentar decidir que tendria que hacer estos años, para poder conseguir el objetivo... luego llego la pandemia, y bueno, seguimos tirando. Asi que...
+* Reflexión sobre el futuro...
+...retomando el objetivo del titulo de esta entrada... ¿donde me veo con 50 años? Es una pregunta que hice a varios compañeros, cuando cumplí los 40. La idea era reflexionar sobre donde queria estar, y que tenia que hacer para llegar ahi. Pero, llego la pandemia y seguimos tirando. Asi que...
 
 === ¿Listo para ver el resultado?
 ¿Quieres ver primero https://josejuanmontiel.github.io[**el resultado final**]... o continuas leyendo https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html[la siguiente entrada del blog] para descubrir mas detalles?
