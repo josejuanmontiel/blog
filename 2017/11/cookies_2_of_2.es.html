@@ -170,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='nov. 12, 2017'>
-            nov. 12, 2017</time>
+            datetime='nov 12, 2017'>
+            nov 12, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -208,7 +208,7 @@ navegamos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;form name='f' action="login" method='POST'&gt;
+<pre class="prettyprint highlight"><code data-lang="html">&lt;form name='f' action="login" method='POST'&gt;
    &lt;table&gt;
       &lt;tr&gt;
          &lt;td&gt;User:&lt;/td&gt;
@@ -231,7 +231,7 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @PostMapping("/login")
+<pre class="prettyprint highlight"><code data-lang="java">    @PostMapping("/login")
     public String login(
         @RequestParam(value="username", required=false) String username,
         @RequestParam(value="password", required=false) String password,
@@ -253,7 +253,7 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" /&gt;
+<pre class="prettyprint highlight"><code data-lang="html">&lt;p th:unless="${session == null}" th:text="'User logged: ---' + ${session.user} + '---'" /&gt;
 &lt;p th:text="'isLogged? ' + ${isLogged}" /&gt;</code></pre>
 </div>
 </div>
@@ -262,7 +262,7 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));</code></pre>
+<pre class="prettyprint highlight"><code data-lang="java">    model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -270,7 +270,7 @@ admin/password guardamos en session, con la clave user, el valor del username.</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/logout")
+<pre class="prettyprint highlight"><code data-lang="java">    @GetMapping("/logout")
     public String login(HttpSession session) {
       session.invalidate();
       return "redirect:/login";
@@ -285,7 +285,7 @@ sin refrescar la pagina.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    function loginRemoto() {
+<pre class="prettyprint highlight"><code data-lang="javascript">    function loginRemoto() {
       var username = document.getElementById("username").value; <i class="conum" data-value="1"></i><b>(1)</b>
       var password = document.getElementById("password").value; <i class="conum" data-value="2"></i><b>(2)</b>
 
@@ -362,7 +362,7 @@ devuelvan un "Access-Control-Allow-Origin" con ese host.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Component
+<pre class="prettyprint highlight"><code data-lang="java">    @Component
     public class CorsFilter extends OncePerRequestFilter {
 
         @Override
@@ -396,7 +396,7 @@ login realizado en A. El flujo que describimos al final del primer articulo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
+<pre class="prettyprint highlight"><code data-lang="javascript">    var jsessionid = getJSessionId(http.responseURL); <i class="conum" data-value="5"></i><b>(5)</b>
     document.cookie = "jsessionfroma="+jsessionid;</code></pre>
 </div>
 </div>
@@ -418,7 +418,7 @@ código, aunque ahora estamos navegando desde B) para:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @GetMapping("/isLogged")
+<pre class="prettyprint highlight"><code data-lang="java">    @GetMapping("/isLogged")
     	public String isLogged(@CookieValue(value="jsessionfroma", required=false) String jsessionfroma, <i class="conum" data-value="1"></i><b>(1)</b>
       HttpSession session, Model model) {
     		model.addAttribute("isLogged","admin".equals(session.getAttribute("user")));

@@ -170,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='oct. 19, 2016'>
-            oct. 19, 2016</time>
+            datetime='oct 19, 2016'>
+            oct 19, 2016</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -221,7 +221,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface IconProvider extends IClusterable {
+<pre class="prettyprint highlight"><code data-lang="java">public interface IconProvider extends IClusterable {
 	default Component getIcon(final String id, IconSize size) {
 		return null;
 	}
@@ -233,7 +233,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public abstract interface IconProvider2 extends IClusterable {
+<pre class="prettyprint highlight"><code data-lang="java">public abstract interface IconProvider2 extends IClusterable {
   public abstract Component getIcon(String paramString, IconSize paramIconSize);
 }</code></pre>
 </div>
@@ -246,7 +246,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection</code></pre>
+<pre class="prettyprint highlight"><code data-lang="java">public class SearchingSectionPlugin extends RenderPlugin implements IBrowserSection</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -254,7 +254,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
+<pre class="prettyprint highlight"><code data-lang="java">[ERROR] /hippo-cms/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/SearchingSectionPlugin.java:[63,7]
 	error: SearchingSectionPlugin is not abstract and does not override abstract method getIcon(String,IconSize) in IconProvider</code></pre>
 </div>
 </div>
@@ -292,7 +292,7 @@ Default methods are backported by copying the default methods to a companion cla
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
+<pre class="prettyprint highlight"><code data-lang="bash">diff --git a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
 index 99bdb0e..9b34ce1 100644
 --- a/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
 +++ b/perspectives/src/main/java/org/hippoecm/frontend/plugins/cms/browse/section/BrowsingSectionPlugin.java
@@ -359,7 +359,7 @@ index 450712b..9d09210 100644
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
+<pre class="prettyprint highlight"><code data-lang="bash">[ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[72,38] error: cannot find symbol
 [ERROR] symbol:   method of(Calendar)
 [ERROR] location: interface DateTimePrinter
 [ERROR] hippo-cms/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/list/ReviewedActionsListColumnProviderPlugin.java:[79,38] error: cannot find symbol
@@ -375,7 +375,7 @@ index 450712b..9d09210 100644
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
+<pre class="prettyprint highlight"><code data-lang="bash">diff --git a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
 index 5a97066..ab938b7 100644
 --- a/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java
 +++ b/workflow/frontend/src/main/java/org/hippoecm/frontend/plugins/reviewedactions/RequestsView.java

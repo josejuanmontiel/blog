@@ -170,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='nov. 09, 2017'>
-            nov. 09, 2017</time>
+            datetime='nov 09, 2017'>
+            nov 09, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -226,7 +226,7 @@ a proof of concept. We create a project with the following controller.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @RequestMapping("/cookie1")
+<pre class="prettyprint highlight"><code data-lang="java">    @RequestMapping("/cookie1")
     public String greeting(
     		@RequestParam(value = "rp", required = false) String reqparam, <i class="conum" data-value="1"></i><b>(1)</b>
     		@RequestParam(value = "sp", required = false) String sesparam, <i class="conum" data-value="2"></i><b>(2)</b>
@@ -284,7 +284,7 @@ a cookie that reaches the browser.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">    &lt;p th:text="'Request param: ' + ${rp}" /&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code data-lang="html">    &lt;p th:text="'Request param: ' + ${rp}" /&gt; <i class="conum" data-value="1"></i><b>(1)</b>
     &lt;p th:unless="${session == null}"
     	 th:text="'Session param: ' + ${session.sp}" /&gt; <i class="conum" data-value="2"></i><b>(2)</b>
     &lt;p th:unless="${#ctx.httpServletRequest.getCookies()==null}"

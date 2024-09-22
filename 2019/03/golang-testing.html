@@ -170,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='mar. 09, 2019'>
-            mar. 09, 2019</time>
+            datetime='mar 09, 2019'>
+            mar 09, 2019</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -194,7 +194,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type Doer interface {
+<pre class="prettyprint highlight"><code data-lang="go">type Doer interface {
     DoSomething(int, string) error
 }</code></pre>
 </div>
@@ -204,7 +204,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type doerImpl struct {              <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code data-lang="go">type doerImpl struct {              <i class="conum" data-value="1"></i><b>(1)</b>
 }
 
 func NewDoerService() Doer {        <i class="conum" data-value="2"></i><b>(2)</b>
@@ -251,7 +251,7 @@ func (d *doerImpl) DoSomething(numero int, cadena string) error {   <i class="co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">type User struct {
+<pre class="prettyprint highlight"><code data-lang="go">type User struct {
 	Doer doer.Doer                  <i class="conum" data-value="1"></i><b>(1)</b>
 }
 
@@ -290,7 +290,7 @@ func (u *User) Use() error {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func main() {
+<pre class="prettyprint highlight"><code data-lang="go">func main() {
 	newDoerImpl := doer.NewDoerService()        <i class="conum" data-value="1"></i><b>(1)</b>
 	_ = newDoerImpl.DoSomething(1, "hola")      <i class="conum" data-value="2"></i><b>(2)</b>
 
@@ -330,7 +330,7 @@ func (u *User) Use() error {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-go hljs" data-lang="go">func TestUseReturnsErrorFromDo(t *testing.T) {
+<pre class="prettyprint highlight"><code data-lang="go">func TestUseReturnsErrorFromDo(t *testing.T) {
 	fmt.Println("TestUseReturnsErrorFromDo")
 
 	mockCtrl := gomock.NewController(t)             <i class="conum" data-value="1"></i><b>(1)</b>

@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../2017/11/cookies_1_of_2.html"><p>Cookies (1 of 2)</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2017/11/cookies_1_of_2.html">Cookies (1 of 2)</a></h2>
+                    <h2><a href="../2017/11/cookies_1_of_2.es.html">Cookies (1 de 2)</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='nov. 09, 2017'>
-            nov. 09, 2017</time>
+            datetime='nov 09, 2017'>
+            nov 09, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,11 +182,11 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_previous_step">Previous step</h2>
+<h2 id="_paso_previos">Paso previos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To perform tests under different domains, we use <a href="http://xip.io">xip.io</a>
-In addition to lifting the same code with:</p>
+<p>Para realizar las pruebas bajo disintos dominios, usarmos <a href="http://xip.io">xip.io</a>
+Ademas de levantar el mismo codigo con:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -203,33 +200,33 @@ mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9001"</pre>
 <h2 id="_cookies">Cookies</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>, described in a simple way,
-are the mechanism invented by browsers, to store information sent
-by the servers, and that was maintained between petition and petition, that is, between
-one website served and the next. Also, it had to be reliable, therefore
-one use, was to keep the "session" between different requests to server, something not
-conceived in the HTTP that is "stateless", therefore it was also used for security
-or authentication.</p>
+<p>Las <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>, descrito de una manera simple,
+son el mecanismo que se inventaron los navegadores, para almacenar informacion enviada
+por los servidores, y que se mantuviera entre peticion y peticion, es decir, entre
+una pagina web servida y la siguiente. Ademas, tenia que ser confiable, por tanto
+un uso, fue mantener la "session" entre distintas peticiones a server, algo no
+concebido en el HTTP que es "sin estado", por tanto tambien se uso para la seguridad
+o autenticacion.</p>
 </div>
 <div class="paragraph">
-<p>And to avoid security problems, a server can only issue cookies from its
-domain and a page, you can only read (from javascript) those that belong to your
-domain.</p>
+<p>Y para evitar problemas de seguridad, un server solo puede emitir cookies de su
+dominio y una pagina, solo puede leer (desde javascript) las que pertenecen a su
+dominio.</p>
 </div>
 <div class="sect2">
 <h3 id="_cross_domain_cookies">Cross domain cookies</h3>
 <div class="paragraph">
-<p>The way in which a "page" can communicate with another "page" is something that counts
+<p>La manera en que una "pagina" puede comunicarse con otra "pagina" es algo que cuentan
 <a href="https://stackoverflow.com/questions/6761415/how-to-set-a-cookie-for-another-domain">aqui</a>.
-And <a href="https://subinsb.com/set-same-cookie-on-different-domains">aqui</a> explain it in more detail</p>
+Y <a href="https://subinsb.com/set-same-cookie-on-different-domains">aqui</a> lo explican con mas detalle</p>
 </div>
 <div class="paragraph">
-<p>But as you walk, you learn by walking, we will use SpringBoot to ride
-a proof of concept. We create a project with the following controller.</p>
+<p>Pero como a andar, se aprende andando, vamos a utilizar SpringBoot para montar
+una prueba de concepto. Creamos un proyecto con el siguiente controlador.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @RequestMapping("/cookie1")
+<pre class="prettyprint highlight"><code data-lang="java">    @RequestMapping("/cookie1")
     public String greeting(
     		@RequestParam(value = "rp", required = false) String reqparam, <i class="conum" data-value="1"></i><b>(1)</b>
     		@RequestParam(value = "sp", required = false) String sesparam, <i class="conum" data-value="2"></i><b>(2)</b>
@@ -264,30 +261,30 @@ a proof of concept. We create a project with the following controller.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We received a paramtro for querystring, which we added to the model</td>
+<td>Recibimos un paramtro por querystring, que añadimos al modelo</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We received a paramtro for querystring, which we keep in session</td>
+<td>Recibimos un paramtro por querystring, que guardamos en sesion</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We receive a paramtro for querystring, which we store in a cookie</td>
+<td>Recibimos un paramtro por querystring, que guardamos en una cookie</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If we focus on case 2, it receives a parameter per url, which is stored in the
-server session, and this generates a cookie, the JSESSIONID file that allows
-To establish which hollow of the session of the server, corresponds to the user.</p>
+<p>Si nos centramos en el caso 2, recibe un parametro por url, que almancena en la
+session del servidor, y esto genera una cookie, la fomasa JSESSIONID que permite
+establecer que hueco de la sessiond del servidor, le corresponde al usuario.</p>
 </div>
 <div class="paragraph">
-<p>Case 3 is a generalization of it, where the server in this case generates
-a cookie that reaches the browser.</p>
+<p>El caso 3, es una generalizacion del mismo, donde el servidor en este caso, genera
+una cookie que llega al navegador.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">    &lt;p th:text="'Request param: ' + ${rp}" /&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code data-lang="html">    &lt;p th:text="'Request param: ' + ${rp}" /&gt; <i class="conum" data-value="1"></i><b>(1)</b>
     &lt;p th:unless="${session == null}"
     	 th:text="'Session param: ' + ${session.sp}" /&gt; <i class="conum" data-value="2"></i><b>(2)</b>
     &lt;p th:unless="${#ctx.httpServletRequest.getCookies()==null}"
@@ -301,52 +298,43 @@ a cookie that reaches the browser.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We paint the model parameter</td>
+<td>Pintamos el paramtro del modelo</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We paint the session parameter</td>
+<td>Pintamos el paretro de la sesion</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We paint the parameter of the cookie</td>
+<td>Pintamos el parametro de la cookie</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>We invoke the other domain, only if we are not in the</td>
+<td>Invocamos al otro dominio, solo si no estamos en el</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>In this page, we see how the values stored in the session are painted, and in the cookie.</p>
+<p>En esta pagina, vemos como se pintan los valores de lo almacenado en la sesion, y en la cookie.</p>
 </div>
 <div class="paragraph">
-<p>And now the good starts, when we open: <a href="http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a" class="bare">http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a</a>
-this page apart from setting the values of the ulr in session and in a cookie,
-makes a request to a url of domain B (through an img)
+<p>Y ahora empieza lo bueno, cuando abrimos: <a href="http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a" class="bare">http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a</a>
+esta pagina a parte de setear los valores de la ulr en session y en una cookie,
+hace una peticion a una url del dominio B (a traves de un img)
 <a href="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a" class="bare">http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a</a>
-and we can see the results by watching: <a href="http://b.127.0.0.1.xip.io:9001/setcookie" class="bare">http://b.127.0.0.1.xip.io:9001/setcookie</a></p>
+y podemos observar los resultados viendo: <a href="http://b.127.0.0.1.xip.io:9001/setcookie" class="bare">http://b.127.0.0.1.xip.io:9001/setcookie</a></p>
 </div>
 <div class="paragraph">
-<p>Navigation would be something of this style.</p>
+<p>La navegacion seria algo de este estilo.</p>
 </div>
-<div id="main-classes" class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Flow of cookies navigation</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
+<div id="main-classes" class="imageblock">
 <div class="content">
-<pre>Browser -&gt; DomainA: Parameters are sent
-Browser -&gt; Domain: Parameters are sent
-DomainA -&gt; Browser: Generates cookie
-DomainB -&gt; Browser: Generates cookie</pre>
+<img src="/blog/img/cookie-plantuml-diagram-1.png" alt="Class diagram" width="640" height="480">
 </div>
+<div class="title">Figure 1. Flujo de navegacion de las cookies</div>
 </div>
 <div class="paragraph">
-<p>And here we see the results, which we will comment:</p>
+<p>Y aqui vemos los resultados, que pasamos a comentar:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -354,17 +342,17 @@ DomainB -&gt; Browser: Generates cookie</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In the first request from A, we observe how the JSESSIONID cookie is generated in A,
-that tells us that something has been saved in session in the server, and that value, we observe
-in the browser when painting the value of the object in session sp, which is b. What not yet
-we observe in the page, it is how it receives the cookie that is generated in server, although
-if we would see it in the cookie inspector.</p>
+<p>En la primera peticion desde A, observamos como se genera en A la cookie de JSESSIONID,
+que nos indica que en servidor se ha guardo algo en sesion, y ese valor, lo observamos
+en el navegador al pintar el valor del objeto en session sp, que es b. Lo que aun no
+observamos en la pagina, es como recibe la cookie que se genera en servidor, aunque
+si la veriamos en el inspector de cookies.</p>
 </div>
 <div class="paragraph">
-<p>On the other hand, we observe in the network inspector, how a request is sent to
-domain B, generated by the JSESSIONID cookie in the browser but for domain B.
-In the fourth image we will see how the System.out shows us that querystring arrives
-and it has been stored in session, but beware of domain B.</p>
+<p>Por otro lado, observamos en el inspector de red, como se lanza una peticion al
+dominio B, que nos genera en el navegador la cookie JSESSIONID pero para el dominio B.
+En la cuarta imagen veremos como el System.out nos muestra que llega el querystring
+y se ha almacenado en session, pero ojo la del dominio B.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -372,8 +360,8 @@ and it has been stored in session, but beware of domain B.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In a second recharge, we would see the cookie generated in server A, based on
-to the previous request.</p>
+<p>En una segunda recarga, ya veriamos la cookie generada en el server A, en base
+a la peticion anterior.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -381,12 +369,12 @@ to the previous request.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The curious thing begins now, in a third petition to Domain B directly, without
-parameters. As our controller does nothing if parameters do not arrive, we see,
-when entering domain B, as the browser reads the B domain cookies, generated
-when navigating through A, but with a request to B from an IMG, like the server we
-returns what you have stored in session for us, navigators of your domain.
-And this is, what is generated from another domain, making that request from an image.</p>
+<p>Lo curioso empieza ahora, en una tercera peticion al dominio B directamente, sin
+parametros. Como nuestro controlador no hace nada si no llegan parametros, vemos,
+al entrar al dominio B, como el navegador lee las cookies de dominio B, generadas
+al navegadar por A, pero con una peticion a B desde un IMG, como el servdor nos
+devuelve lo que tiene almacenado en session para nosotros, navegantes de su dominio.
+Y esto es, lo que se genera desde otro dominio, haciendo esa peticion desde una imagen.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -394,69 +382,56 @@ And this is, what is generated from another domain, making that request from an 
 </div>
 </div>
 <div class="paragraph">
-<p>Here we see the System.out</p>
+<p>Aqui vemos el System.out</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_conclusion">Conclusion</h3>
 <div class="paragraph">
-<p>While browsing through domain A, we can "send" to a domain B information,
-that domain B, upon receiving it in that image request, can store it in its
-session for us users that we navigate, so that when we go to the domain
-B, recover it from session and show it to us.</p>
+<p>Mientras se navega por un dominio A, podemos "enviar" a un dominio B informacion,
+que el dominio B, al recibirla en esa peticion de imagen, puede almacenar en su
+sesion para nosotros usuarios que navegamos, para que cuando vayamos al dominio
+B, nos la recupere de sesion y nos la muestre.</p>
 </div>
 <div class="paragraph">
-<p>The next steps would be to try to make a third party services (domain A),
-that we can integrate in our webs (domain B), via APIs JS, "send us from
-that JS "information, that allows us below (from the back in domain B)
-make a request to them (domain A) and recover what the third-party service
-(domain A) stores in your session for us users that we navigate, for
-example that we are logged in your service.</p>
+<p>Los proximos pasos, serian intentar hacer que un servicios de terceros (dominio A),
+que podemos integrar en nuestras webs (dominio B), via APIs JS, "nos envie desde
+ese JS" informacion, que nos permita por debajo (desde el back en el dominio B)
+hacerle una peticion al ellos (dominio A) y recupere lo que el servicio de terceros
+(dominio A) almacena en su session para nosotros usuarios que navegamos, por
+ejemplo que estamos logados en su servicio.</p>
 </div>
-<div id="main-classes" class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigation flow with third-party service</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
+<div id="main-classes" class="imageblock">
 <div class="content">
-<pre>Browser -&gt; DomainB: Step1
-Browser -&gt; DomainA: Step2
-Browser -&gt; DomainA: Step3
-DomainA -&gt; Browser: Step4
-Browser -&gt; Browser: Step5
-Browser -&gt; DomainB: Step6
-DomainB -&gt; DomainA: Step7
-DomainB -&gt; Browser: Step8</pre>
+<img src="/blog/img/cookie-plantuml-diagram-2.png" alt="Class diagram 3rd API" width="640" height="480">
 </div>
+<div class="title">Figure 2. Flujo de navegacion de con servicio de terceros</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Step1: We browse our website</p>
+<p>Step1: Navegamos por nuestra web</p>
 </li>
 <li>
-<p>Step2: API JS calls the third-party service and shows us login</p>
+<p>Step2: El API JS llama al servicio de terceros y nos muestra login</p>
 </li>
 <li>
-<p>Step3: We can do third-party service using JS API</p>
+<p>Step3: Nos logamos en servicio de terceros usando API JS</p>
 </li>
 <li>
-<p>Step4: The third party service generates session cookies</p>
+<p>Step4: El servicio de terceros genera cookie de session</p>
 </li>
 <li>
-<p>Step5: The browser generates an &lt;img&gt; pointing to B, with the information of the JSESSIONID that A generates.</p>
+<p>Step5: El navegador, genera un &lt;img&gt; apuntando a B, con la informacion del JSESSIONID que A nos genera.</p>
 </li>
 <li>
-<p>Step6: That image, generated by the third-party API, on the page that we serve from B, calls us and stores that value in B&#8217;s session.</p>
+<p>Step6: Esa imagen, generada por el API de terceros, en la pagina que servimos desde B, nos llama y almacena en session de B ese valor.</p>
 </li>
 <li>
-<p>Step7: B makes a request to A, from server, using the JSESSIONID of A, to impersonate us that we navigate B, using JS API of A.</p>
+<p>Step7: B realiza peticion a A, desde servidor, usando el JSESSIONID de A, para hacerse pasar por nosotros que navegamos B, usando API JS de A.</p>
 </li>
 <li>
-<p>Step8: We can show to us that we navigate, info provided by A, via backend communication, after logarnos.</p>
+<p>Step8: Podemos mostrar a nosotros que navegamos, info provista por A, via comunicacion backend, tras logarnos.</p>
 </li>
 </ul>
 </div>
@@ -470,43 +445,43 @@ DomainB -&gt; Browser: Step8</pre>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&text=Cookies (1 of 2)&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&text=Cookies (1 de 2)&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&title=Cookies (1 of 2)" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&title=Cookies (1 of 2)" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&title=Cookies (1 of 2)" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -522,7 +497,7 @@ DomainB -&gt; Browser: Step8</pre>
  	        <li><a href='../tags/jvm.html'>jvm</a></li>
  	        <li><a href='../tags/cookies.html'>cookies</a></li>
 
-				<li><a class="icon fa-comment" href="../2017/11/cookies_1_of_2.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2017/11/cookies_1_of_2.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -591,16 +566,6 @@ DomainB -&gt; Browser: Step8</pre>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../2017/11/cookies_1_of_2.html">Cookies (1 of 2)</a></h3>
-                                   <time class="published"
-  							            datetime='nov. 09, 2017'>
-  							            nov. 09, 2017</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>

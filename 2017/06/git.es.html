@@ -170,8 +170,8 @@
     </div>
     <div class="meta">
          <time class="published"
-            datetime='jun. 30, 2017'>
-            jun. 30, 2017</time>
+            datetime='jun 30, 2017'>
+            jun 30, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -197,7 +197,7 @@ varios usuarios.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ~/sandbox-git
+<pre class="prettyprint highlight"><code data-lang="sh">cd ~/sandbox-git
 git init --bare --shared ~/sandbox-git/test-repo.git
 git clone test-repo.git repo-clone1
 git clone test-repo.git repo-clone2</code></pre>
@@ -209,7 +209,7 @@ indicamos un nombre de usuario: User1.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd repo-clone1
+<pre class="prettyprint highlight"><code data-lang="sh">cd repo-clone1
 touch README
 git add .
 git commit --author="User1 &lt;user1@git.com&gt;" -m "Initial commit"
@@ -245,7 +245,7 @@ fichero que creo el otro usuario. Lo comiteamos, luego intentamos push.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone2
+<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone2
 git fetch
 vi README
 git add README
@@ -258,7 +258,7 @@ git push</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">	 ! [rejected]        master -&gt; master (non-fast-forward)
+<pre class="prettyprint highlight"><code data-lang="sh">	 ! [rejected]        master -&gt; master (non-fast-forward)
 	error: failed to push some refs to '/home/jose/sandbox-git/test-repo.git'
 	hint: Updates were rejected because the tip of your current branch is behind
 	hint: its remote counterpart. Integrate the remote changes (e.g.
@@ -285,7 +285,7 @@ No se puede hacer push sino se hace un pull&#8230;&#8203; en este momento el arb
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git pull</code></pre>
+<pre class="prettyprint highlight"><code data-lang="sh">git pull</code></pre>
 </div>
 </div>
 <div class="admonitionblock caution">
@@ -310,7 +310,7 @@ The default behavior has changed since git 2.9
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git pull origin master --allow-unrelated-histories</code></pre>
+<pre class="prettyprint highlight"><code data-lang="sh">git pull origin master --allow-unrelated-histories</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -326,7 +326,7 @@ The default behavior has changed since git 2.9
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push</code></pre>
+<pre class="prettyprint highlight"><code data-lang="sh">git push</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -362,7 +362,7 @@ Mergeamos develop en nuestra rama, y luego mergeamos nuestra rama en develop (ce
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone1
+<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone1
 git flow init
 git flow feature start user1
 
@@ -390,7 +390,7 @@ Pero se nos "olvido" hacer fetch/pull antes de empezar&#8230;&#8203; y aqui empi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git fetch
+<pre class="prettyprint highlight"><code data-lang="sh">git fetch
 git pull origin master</code></pre>
 </div>
 </div>
@@ -407,7 +407,7 @@ git pull origin master</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git flow feature finish</code></pre>
+<pre class="prettyprint highlight"><code data-lang="sh">git flow feature finish</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -440,7 +440,7 @@ Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hech
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push origin develop</code></pre>
+<pre class="prettyprint highlight"><code data-lang="sh">git push origin develop</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -462,7 +462,7 @@ antes de cerrar feature, mergeamos develop en nuestra rama.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone2
+<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone2
 git fetch
 git checkout develop
 git pull
@@ -499,7 +499,7 @@ mergear a menudo con develop, o por lo menos, antes de cerrar la feature.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone2
+<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone2
 git fetch
 git pull origin develop</code></pre>
 </div>
@@ -543,7 +543,7 @@ pero esta vez hacemos un rebase (usando git flow)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ../repo-clone1
+<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone1
 vi feature-user1.txt
 git add  feature-user1.txt
 git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
@@ -566,7 +566,7 @@ Applying: Update develop file feature1</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git flow feature finish</code></pre>
+<pre class="prettyprint highlight"><code data-lang="sh">git flow feature finish</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -579,7 +579,7 @@ Fatal: And branch 'develop' may be fast-forwarded.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git checkout develop
+<pre class="prettyprint highlight"><code data-lang="sh">git checkout develop
 
 Switched to branch 'develop'
 Your branch is behind 'origin/develop' by 2 commits, and can be fast-forwarded.
@@ -614,7 +614,7 @@ You can then complete the finish by running it again:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git mergetool</code></pre>
+<pre class="prettyprint highlight"><code data-lang="sh">git mergetool</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -627,7 +627,7 @@ You can then complete the finish by running it again:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git add feature-user1.txt
+<pre class="prettyprint highlight"><code data-lang="sh">git add feature-user1.txt
 git commit --author="User2 &lt;user2@git.com&gt;" -m "Resolve rebase y merge"
 git push origin develop</code></pre>
 </div>
@@ -654,7 +654,7 @@ llevemoslo a la rama de la feature3, y cuando terminemos, merge con no-ff.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd ~/sandbox-git/repo-clone1
+<pre class="prettyprint highlight"><code data-lang="sh">cd ~/sandbox-git/repo-clone1
 git fetch
 git pull origin develop
 
@@ -692,7 +692,7 @@ en develop como un solo commit.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">vi feature3-another-user2-file.txt
+<pre class="prettyprint highlight"><code data-lang="sh">vi feature3-another-user2-file.txt
 git add feature3-another-user2-file.txt
 git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
 git checkout develop

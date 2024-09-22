@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Blog - Reflexionemos sobre lo pasado</title>
+    <title>Blog - Reflexion sobre el futuro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Jose Juan Montiel">
@@ -165,13 +165,13 @@
    <header>
     <div class="title">
 
-                      <h1><a href="../../2022/02/donde-te-ves-part2.html">Reflexionemos sobre lo pasado (English version)</a></h1>
+                      <h1><a href="../../2024/08/donde-te-ves-part5.html">Reflexion sobre el futuro (English version)</a></h1>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='feb. 18, 2022'>
-            feb. 18, 2022</time>
+            datetime='ago 29, 2024'>
+            ago 29, 2024</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,32 +182,135 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_tras_unos_20_años_trabajando_en_este_mundo">Tras unos 20 años trabajando en este mundo&#8230;&#8203;</h2>
+<h2 id="_y_tras_tras_la_reflexión_volvio_a_pasar_el_tiempo_y">Y tras tras la reflexión, volvio a pasar el tiempo y &#8230;&#8203;</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pues como ya hemos comentado, ahora en esta fase lo que toca es mirar atras&#8230;&#8203; ya son 20 años trabajando&#8230;&#8203; y unos cuantos mas estudiando para llegar al punto profesional donde estoy ahora. Y mas atras, interesado desde pequeño por el mundo de la informatica, gracias a la influencia de mi tio.</p>
+<p>y tuve que seguir actualizando todas estas reflexiones, porque una vez que haces algo, y funciona, porque no seguir con ello.</p>
 </div>
 <div class="paragraph">
-<p>Y esto se puede hacer de muchas formas, una posible: pues con una linea temporal, echando mano de la memoria, intentando marcar los distintos hitos de distinta indole que marcaron mi trayectoria. Porque tengamos en cuenta, que no solo lo laboral, afecta a lo laboral. Al final, aunque hay que manetener separado el trabajo de la vida familar, una cosa termina afectando a la otra.</p>
+<p>Y el caso es que todo esto incluia varios juegos ocultos, uno era el del CV oculto, que por cierto al haber usado "git filter-branch" revisandolo estos dias no parce que funcionara como esperara, pero como de todo se aprende al pasar el tiempo, ya esta resuelto.</p>
 </div>
 <div class="paragraph">
-<p>Asi que, dibujemos esa linea, marquemos los puntos de inflexion, hagamos un repaso sobre:
-* Los empleos por los que he pasado, y las principales tecnologias, he hitos conseguidos.
-* Veamos en cuales de ellos he dado un salto cualitativo en mi aprendizaje.
-* Y cuando he podido enseñar a gente (mas joven o no) ciertas cosas que los hizo crecer a ellos.
-* En cuales, estuve destinado a cliente y mi tareas era, obedecer, hacer lo que otros indicaran.
-* Y por ultimo, cuando algun hito familiar, me hizo replantearme ciertas cosas.</p>
+<p>Y que resulta que paso, pues que una de las lineas de este repaso (curriculum) por las cosas que habia hecho hace ya años (a la fecha en la que escribo casi 7 años) era una brecha de seguridad, o eso decian, el caso es que &#8230;&#8203; imagina que tienes que hacer que una palabra o frase o inclusio lineas de tu repositorio, versiones antiguas incluidas, desaparezcan del git, porque son una brecha de seguridad "git filter-repo" al rescate.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">git filter-repo --commit-callback '
+    commit.committer_date = commit.author_date
+' --force --replace-text replace.txt
+
+git remote add origin https://github.com/josejuanmontiel/josejuanmontiel.github.io.git
+git push -u origin main</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Con este repaso, que sera mas o menos extenso, segun llegues a el (recuerda que el camino depende de ti) podras hacerte una idea mas o menos detallada, de como mi reflexion ha conseguido que yo vea lo que dejo atras, para pensar en el momento en el que estoy (y eso me de paso a ¿donde me veo a los 50?)</p>
+<p>Y ademas, con esas lineas mantienes la fecha original del commit, aunque claro el hash va a cambiar porque va a ser un repo nuevo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">El TEXTO ... ==&gt;
+siguiente linea ==&gt;
+ultima linea ==&gt; Nuevo texto que no es una brecha de seguridad</code></pre>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_listo_para_continuar_en_mis_reflexiones">¿Listo para continuar en mis reflexiones?</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>&#8230;&#8203;pues ya sabes donde seguir leyendo <a href="https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-3.html">las siguiente entrada del blog</a> para ver&#8230;&#8203;</p>
+<p>¿Porque organizamos el fichero de reemplazo de esta forma?, segun la documentacion&#8230;&#8203;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">--replace-text &lt;expressions_file&gt;
+        A file with expressions that, if found, will be replaced. By default, each expression is treated as literal text, but regex: and glob:
+        prefixes are supported. You can end the line with ==&gt; and some replacement text to choose a replacement choice other than the default
+        of ***REMOVED***.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>El caso es que funciona linea a linea, por tanto tenemos que poner por cada linea que forme parte de lo que queremos reemplazar, un "espacio" porque si pusieramos la linea sin el =&#8658; dejando el salto de linea pensando que lo considera, pues nos pondria el <strong><strong>REMOVED</strong></strong> asi que, lo dicho, cada linea se reelmplaza por vacio (o algo) y la linea final con el resultado nuevo que queremos poner.</p>
+</div>
+<div class="paragraph">
+<p>Aqui un resumen de los links:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CV</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/43762338/how-to-remove-file-from-git-history" class="bare">https://stackoverflow.com/questions/43762338/how-to-remove-file-from-git-history</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Busqueda en el git de un texto</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/2928584/how-to-grep-search-through-committed-code-in-the-git-history" class="bare">https://stackoverflow.com/questions/2928584/how-to-grep-search-through-committed-code-in-the-git-history</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>git grep TEXTO $(git rev-list --all)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Rebase</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.jnielson.com/git-rebase-with-merges" class="bare">https://www.jnielson.com/git-rebase-with-merges</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Explicacion git filter-branch</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.maravento.com/2020/05/git-filter-branch-rey-muerto-rey-puesto.html" class="bare">https://www.maravento.com/2020/05/git-filter-branch-rey-muerto-rey-puesto.html</a></p>
+</li>
+<li>
+<p><a href="https://til.simonwillison.net/git/git-filter-repo" class="bare">https://til.simonwillison.net/git/git-filter-repo</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/46950829/how-to-replace-a-string-in-whole-git-history" class="bare">https://stackoverflow.com/questions/46950829/how-to-replace-a-string-in-whole-git-history</a></p>
+</li>
+<li>
+<p><a href="https://gist.github.com/Alesh17/ad73a8c7600139fc0804a0853b2f16c5" class="bare">https://gist.github.com/Alesh17/ad73a8c7600139fc0804a0853b2f16c5</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Nota: como nota final, notar que el rebase en este caso no consigue el objetivo, si el origen de lo que se quiere cambiar esta muy abajo, toca cambiar a manos muchos commit y puede ser tedioso, a parte de que luego con la rama, tocaria generar otro git exportandola solo ella&#8230;&#8203; o algo de ese estilo.</p>
+</div>
+<div class="paragraph">
+<p>Extra: Con</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">git grep TEXTO $(git rev-list --all)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>podemos hacer la busqueda de un texto en todos los commit y si hacemos</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">git filter-repo --invert-paths --path resources/cv/CV_JOSE_JUAN_MONTIEL-2022-Marzo.odt --force</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>podemos borrar el fichero del repositorio.</p>
 </div>
 </div>
 </div>
@@ -218,43 +321,43 @@
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&text=Reflexionemos sobre lo pasado&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&text=Reflexion sobre el futuro&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&title=Reflexionemos sobre lo pasado" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&title=Reflexionemos sobre lo pasado" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html&title=Reflexionemos sobre lo pasado" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -271,7 +374,7 @@
  	        <li><a href='../../tags/work.html'>work</a></li>
  	        <li><a href='../../tags/ikigai.html'>ikigai</a></li>
 
-				<li><a class="icon fa-comment" href="../../2022/02/donde-te-ves-part2.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../../2024/08/donde-te-ves-part5.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -679,8 +782,8 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-82879918-1', 'auto');
   ga('send', 'pageview', {
-    'page': '2022/02/donde-te-ves-part2.es.html',
-    'title': 'Reflexionemos sobre lo pasado'
+    'page': '2024/08/donde-te-ves-part5.es.html',
+    'title': 'Reflexion sobre el futuro'
       });
 </script>
 		<!-- This is called by default since this theme uses highlight.js -->
