@@ -1,0 +1,83 @@
+= Reflexion sobre el futuro
+Jose Juan Montiel
+2024-08-29
+:jbake-type: post
+:jbake-tags: life, work, ikigai
+:jbake-status: published
+:jbake-lang: es
+:source-highlighter: prettify
+:id: donde-te-ves-5
+:icons: font
+
+== Y tras tras la reflexión, volvio a pasar el tiempo y ...
+
+y tuve que seguir actualizando todas estas reflexiones, porque una vez que haces algo, y funciona, porque no seguir con ello.
+
+Y el caso es que todo esto incluia varios juegos ocultos, uno era el del CV oculto, que por cierto al haber usado "git filter-branch" revisandolo estos dias no parce que funcionara como esperara, pero como de todo se aprende al pasar el tiempo, ya esta resuelto.
+
+Y que resulta que paso, pues que una de las lineas de este repaso (curriculum) por las cosas que habia hecho hace ya años (a la fecha en la que escribo casi 7 años) era una brecha de seguridad, o eso decian, el caso es que ... imagina que tienes que hacer que una palabra o frase o inclusio lineas de tu repositorio, versiones antiguas incluidas, desaparezcan del git, porque son una brecha de seguridad "git filter-repo" al rescate.
+
+     
+[source,bash]
+----
+git filter-repo --commit-callback '
+    commit.committer_date = commit.author_date
+' --force --replace-text replace.txt
+
+git remote add origin https://github.com/josejuanmontiel/josejuanmontiel.github.io.git
+git push -u origin main
+----
+
+Y ademas, con esas lineas mantienes la fecha original del commit, aunque claro el hash va a cambiar porque va a ser un repo nuevo.
+
+[source,bash]
+----
+El TEXTO ... ==>
+siguiente linea ==> 
+ultima linea ==> Nuevo texto que no es una brecha de seguridad
+----
+
+¿Porque organizamos el fichero de reemplazo de esta forma?, segun la documentacion...
+
+[source,bash]
+----
+--replace-text <expressions_file>
+        A file with expressions that, if found, will be replaced. By default, each expression is treated as literal text, but regex: and glob:
+        prefixes are supported. You can end the line with ==> and some replacement text to choose a replacement choice other than the default
+        of ***REMOVED***.
+----
+
+El caso es que funciona linea a linea, por tanto tenemos que poner por cada linea que forme parte de lo que queremos reemplazar, un "espacio" porque si pusieramos la linea sin el ==> dejando el salto de linea pensando que lo considera, pues nos pondria el ***REMOVED*** asi que, lo dicho, cada linea se reelmplaza por vacio (o algo) y la linea final con el resultado nuevo que queremos poner.
+
+Aqui un resumen de los links:
+
+* CV
+** https://stackoverflow.com/questions/43762338/how-to-remove-file-from-git-history
+* Busqueda en el git de un texto
+** https://stackoverflow.com/questions/2928584/how-to-grep-search-through-committed-code-in-the-git-history
+*** git grep TEXTO $(git rev-list --all)
+* Rebase
+** https://www.jnielson.com/git-rebase-with-merges
+* Explicacion git filter-branch
+** https://www.maravento.com/2020/05/git-filter-branch-rey-muerto-rey-puesto.html
+** https://til.simonwillison.net/git/git-filter-repo
+** https://stackoverflow.com/questions/46950829/how-to-replace-a-string-in-whole-git-history
+** https://gist.github.com/Alesh17/ad73a8c7600139fc0804a0853b2f16c5
+
+Nota: como nota final, notar que el rebase en este caso no consigue el objetivo, si el origen de lo que se quiere cambiar esta muy abajo, toca cambiar a manos muchos commit y puede ser tedioso, a parte de que luego con la rama, tocaria generar otro git exportandola solo ella... o algo de ese estilo.
+
+Extra: Con 
+
+[source,bash]
+----
+git grep TEXTO $(git rev-list --all) 
+----
+
+podemos hacer la busqueda de un texto en todos los commit y si hacemos
+
+[source,bash]
+----
+git filter-repo --invert-paths --path resources/cv/CV_JOSE_JUAN_MONTIEL-2022-Marzo.odt --force
+----
+
+podemos borrar el fichero del repositorio.
