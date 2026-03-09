@@ -10,3 +10,105 @@ Jose Juan Montiel
 :icons: font
 
 == Another two years more ...
+
+## El mapa de mi curiosidad a los 47: ¿Hacia dónde miro ahora?
+
+Hace unos años me preguntaba dónde me veía a los 50. Hoy, con 47 primaveras y 24 años de código a mis espaldas, 
+la respuesta no es un destino, sino un mapa. Escribir me ayuda a pausar, a pulir las ideas y a darles una visión organizada.
+
+Si en su día el foco fue el *blockchain* y *Golang*, mi "tablero de juego" para los próximos meses ha evolucionado hacia 
+la integración de la Inteligencia Artificial en el día a día y la soberanía digital.
+
+### 🤖 El cerebro del servidor: IA y Agentes
+
+Mi servidor personal (**JA-Server**) se está convirtiendo en un ecosistema cognitivo. 
+No se trata solo de ejecutar código, sino de orquestar modelos:
+
+* **Modelos de lenguaje:** Experimentando con **Qwen** (específicamente su versión *Coder*) para potenciar el desarrollo.
+* **Visión y Multimodalidad:** Integrando **VL-Image** para que el servidor no solo lea datos, sino que "vea".
+* **Entornos de entrenamiento:** Manteniendo vivo el stack de **Jupyter, Python y Go** para seguir ensuciándome las manos con datos.
+
+### 🛠️ Herramientas de soberanía y automatización
+
+Fiel a la filosofía de "cocinarlo uno mismo", mi infraestructura doméstica sigue creciendo:
+
+* **Privacidad y Red:** Desde el infaltable **Pi-hole** y **H.A (Home Assistant)** hasta la gestión de **VPN** y **Auto-backups**.
+* **Contenido y Redes:** Automatizando el flujo de consumo con herramientas para YouTube y presencia en redes descentralizadas como **Mastodon**.
+
+### 🎨 Experimentación: WebRTC, WASM y Lectura
+
+Como siempre me ha gustado aprovechar para probar cosas nuevas mientras aprendo, estoy explorando:
+
+* **Comunicación en tiempo real:** Trabajando con **LiveKit** y **PeerJS** para entender mejor los agentes de voz y video.
+* **El futuro de la Web:** Sigo apostando por **WebAssembly (WASM)**  y generadores estáticos como **Hugo**.
+* **Interfaces de lectura:** Desarrollando formas más eficientes de "Leer y Escuchar", integrando **EPUB Reflow** con tecnologías 
+de **OCR** y **Whisper/Kokoro** para síntesis de voz.
+
+### Conclusión: El Ikigai del programador veterano
+
+Como decía en mis reflexiones anteriores, lo que de verdad mola es mantener las cosas andando en producción, 
+evolucionando mientras todo sigue levantado. A mis 47, mi *Ikigai* sigue siendo ese: aprender algo nuevo cada día, 
+compartirlo para entenderlo mejor  y disfrutar del proceso de construir mi propio ecosistema digital.
+
+
+### 🧠 Entre el Código y la Cognición: ¿Qué nos hace humanos (o IA)?
+
+En mi búsqueda por organizar mis ideas y pulir mi visión profesional, he estado profundizando en lecturas que 
+exploran la frontera entre nuestra mente y los sistemas que construyo en mi **JA-SERVER**. 
+Si vamos a convivir con agentes de IA, conviene entender qué nos diferencia.
+
+#### 1. El Arte de Recordar (y Olvidar)
+
+En mi esquema aparece **Anki** y sistemas de **ML**, lo cual me recuerda mucho a las técnicas de memoria de "Moonwalking with Einstein".
+
+* **La IA y nosotros:** Mientras que mi nodo de **RAG (Retrieval-Augmented Generation)** busca información de forma fría y precisa, 
+los humanos necesitamos "espacializar" el conocimiento para retenerlo.
+
+* **Reflexión:** Construir un sistema de memoria externa (como mi **Knowledge Base** con OCR y Whisper) es, en el fondo, 
+un intento de emular ese "Palacio de la Memoria" que los antiguos usaban para no olvidar lo importante.
+
+#### 2. El Algoritmo del Aprendizaje
+
+Como mencionaba en mis posts anteriores, lo que "mola" es mantener la rueda girando en producción. 
+
+Esto se aplica también a nuestro cerebro:
+
+* **Aprender enseñando:** He comprobado que preparar estas notas para el blog me fuerza a aprender mejor. 
+Es el entrenamiento (training) de mi propio modelo mental.
+
+
+* **Similitudes:** Así como entreno un **Qwen-Coder** en mi servidor, estas lecturas me sugieren que el ser humano 
+es el algoritmo de optimización más complejo que existe. Mi objetivo a los 47 es seguir "ajustando mis pesos" (fine-tuning) cada día.
+
+#### 3. El Futuro: Agentes y Conciencia
+
+En el diagrama he dibujado nodos de **LiveKit Agent** y **PeerJS**. Estamos pasando de herramientas pasivas a agentes que "escuchan y hablan".
+
+* **La brecha:** Aunque mi servidor use **Kokoro** para la voz y **Whisper** para la escucha, la lectura me hace cuestionar: 
+¿Dónde termina el procesamiento de señal y dónde empieza la verdadera comprensión?
+* **Mi apuesta:** Seguiré explorando **WASM** y **Ebiten** para visualizar estos conceptos, porque como bien dije hace años: 
+la mejor forma de entender la tecnología es integrándola en tu propia historia profesional.
+
+
+
+### ## Resumen de Lecturas: Memoria, Cognición e Inteligencia
+
+El texto profundiza en cómo los seres humanos procesamos la información y cómo esa arquitectura mental se asemeja o se distancia de los sistemas artificiales que construimos.
+
+### ### 1. La Memoria como Proceso Creativo
+
+* **No es un archivo estático:** A diferencia de un disco duro, la memoria humana es un acto de reconstrucción constante.
+* **El Palacio de la Memoria:** Se describe el método de "loci" (lugares), una técnica ancestral que utiliza nuestra evolución espacial para almacenar datos abstractos en entornos visuales imaginarios.
+* **Asociación de Ideas:** Recordamos mejor aquello que podemos conectar con conceptos que ya conocemos, creando una red neuronal de significados.
+
+### ### 2. El Aprendizaje y la Pericia
+
+* **La Regla del Esfuerzo:** El aprendizaje profundo no es pasivo; requiere un "desafío óptimo" donde el cerebro debe esforzarse por recuperar la información.
+* **De Novato a Experto:** La diferencia radica en la capacidad de "fragmentar" (*chunking*) la información, permitiendo al experto ver patrones complejos donde el novato solo ve datos aislados.
+* **El papel del olvido:** Curiosamente, el olvido es necesario para filtrar lo irrelevante y permitir que el cerebro generalice conceptos.
+
+### ### 3. Similitudes y Contrastes con la IA
+
+* **Almacenamiento vs. Comprensión:** Mientras que un sistema de IA puede almacenar billones de parámetros, carece (por ahora) de la experiencia sensorial y el contexto emocional que fijan los recuerdos humanos.
+* **Arquitecturas Inspiradas:** Los modelos actuales de IA intentan imitar la plasticidad sináptica y la atención selectiva del cerebro humano para mejorar su eficiencia.
+* **La Intuición:** Se explora cómo lo que llamamos "intuición" es, en realidad, un procesamiento ultrarrápido de patrones basados en experiencias previas almacenadas en la memoria a largo plazo.
