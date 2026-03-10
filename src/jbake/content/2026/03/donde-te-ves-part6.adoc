@@ -1,4 +1,4 @@
-= Reflexion sobre el futuro
+= Reflection on the future
 Jose Juan Montiel
 2024-08-29
 :jbake-type: post
@@ -6,109 +6,105 @@ Jose Juan Montiel
 :jbake-status: published
 :jbake-lang: en
 :source-highlighter: prettify
-:id: donde-te-ves-5
+:id: where-do-you-see-yourself-6
 :icons: font
 
-== Another two years more ...
+== And two more years... 
 
-## El mapa de mi curiosidad a los 47: ¿Hacia dónde miro ahora?
+=== The map of my curiosity, at 47: Where am I looking now? 
 
-Hace unos años me preguntaba dónde me veía a los 50. Hoy, con 47 primaveras y 24 años de código a mis espaldas, 
-la respuesta no es un destino, sino un mapa. Escribir me ayuda a pausar, a pulir las ideas y a darles una visión organizada.
+A few years ago, I wondered where I would see myself at 50. Today, with 47 springs and 24 years of code behind me, that date is approaching (like when I used to tell myself I’d retire at 30 :) and the answer is not a destination, but a map. Writing helps me pause, refine ideas, and give them an organized vision.
 
-Si en su día el foco fue el *blockchain* y *Golang*, mi "tablero de juego" para los próximos meses ha evolucionado hacia 
-la integración de la Inteligencia Artificial en el día a día y la soberanía digital.
+If years ago the focus was *blockchain* and *Golang*, my "game board" for the coming months has evolved toward the integration of Artificial Intelligence—but not the kind everyone sees; I want to know what everything is built upon, to understand the "guts".
 
-### 🤖 El cerebro del servidor: IA y Agentes
+=== 🤖 The server's brain: AI and Agents 
 
-Mi servidor personal (**JA-Server**) se está convirtiendo en un ecosistema cognitivo. 
-No se trata solo de ejecutar código, sino de orquestar modelos:
+In recent months, I have set up a personal server that is becoming a cognitive ecosystem. It is not just about executing code, but about orchestrating models:
 
-* **Modelos de lenguaje:** Experimentando con **Qwen** (específicamente su versión *Coder*) para potenciar el desarrollo.
-* **Visión y Multimodalidad:** Integrando **VL-Image** para que el servidor no solo lea datos, sino que "vea".
-* **Entornos de entrenamiento:** Manteniendo vivo el stack de **Jupyter, Python y Go** para seguir ensuciándome las manos con datos.
+* **Language Models:** Experimenting with **Qwen** (specifically its *Coder* version) to boost development.
+* **Vision and Multimodality:** Integrating **VL-Image** so the server doesn't just read data, but "sees".
+* **Training Environments:** Keeping the **Jupyter, Python, and Go** stack alive to continue getting my hands dirty with data.
 
-### 🛠️ Herramientas de soberanía y automatización
+=== 🛠️ Sovereignty and automation tools 
 
-Fiel a la filosofía de "cocinarlo uno mismo", mi infraestructura doméstica sigue creciendo:
+Faithful to the "cook it yourself" philosophy, my home infrastructure continues to grow:
 
-* **Privacidad y Red:** Desde el infaltable **Pi-hole** y **H.A (Home Assistant)** hasta la gestión de **VPN** y **Auto-backups**.
-* **Contenido y Redes:** Automatizando el flujo de consumo con herramientas para YouTube y presencia en redes descentralizadas como **Mastodon**.
+* **Privacy and Network:** From the essential **Pi-hole** and **H.A (Home Assistant)** to managing **VPNs** and **Auto-backups**.
+* **Content and Networks:** Automating the consumption flow with tools for YouTube and a presence on decentralized networks like **Mastodon**.
 
-### 🎨 Experimentación: WebRTC, WASM y Lectura
+=== 🎨 Experimentation: WebRTC, WASM, and Reading 
 
-Como siempre me ha gustado aprovechar para probar cosas nuevas mientras aprendo, estoy explorando:
+Since I've always liked to try new things while learning, I am exploring:
 
-* **Comunicación en tiempo real:** Trabajando con **LiveKit** y **PeerJS** para entender mejor los agentes de voz y video.
-* **El futuro de la Web:** Sigo apostando por **WebAssembly (WASM)**  y generadores estáticos como **Hugo**.
-* **Interfaces de lectura:** Desarrollando formas más eficientes de "Leer y Escuchar", integrando **EPUB Reflow** con tecnologías 
-de **OCR** y **Whisper/Kokoro** para síntesis de voz.
+* **Real-time communication:** Working with **LiveKit** and **PeerJS** to better understand voice and video agents.
+* **The future of the Web:** I'm still betting on **WebAssembly (WASM)** and static generators like **Hugo**.
+* **Reading interfaces:** Developing more efficient ways to "Read and Listen," integrating "vibe coding" **EPUB Reflow** with **OCR** technologies and **Whisper/Kokoro** for speech synthesis.
 
-### Conclusión: El Ikigai del programador veterano
+=== Conclusion: The veteran programmer's Ikigai 
 
-Como decía en mis reflexiones anteriores, lo que de verdad mola es mantener las cosas andando en producción, 
-evolucionando mientras todo sigue levantado. A mis 47, mi *Ikigai* sigue siendo ese: aprender algo nuevo cada día, 
-compartirlo para entenderlo mejor  y disfrutar del proceso de construir mi propio ecosistema digital.
+As I said in my previous reflections, at 47, my *Ikigai* remains just that: learning something new every day, sharing it to understand it better, and enjoying the process of building my own digital ecosystem.
 
+=== 🧠 Between Code and Cognition: What makes us human (or AI)? 
 
-### 🧠 Entre el Código y la Cognición: ¿Qué nos hace humanos (o IA)?
+In my quest to organize my ideas and polish my professional vision, I have been delving into readings that explore the frontier between our minds and the systems I build on my server. If we are going to coexist with AI agents, it is worth understanding what sets us apart.
 
-En mi búsqueda por organizar mis ideas y pulir mi visión profesional, he estado profundizando en lecturas que 
-exploran la frontera entre nuestra mente y los sistemas que construyo en mi **JA-SERVER**. 
-Si vamos a convivir con agentes de IA, conviene entender qué nos diferencia.
+==== 1. The Art of Remembering (and Forgetting) 
 
-#### 1. El Arte de Recordar (y Olvidar)
+In my diagram, **Anki** and **ML** systems appear, which reminds me a lot of the memory techniques from "Moonwalking with Einstein".
 
-En mi esquema aparece **Anki** y sistemas de **ML**, lo cual me recuerda mucho a las técnicas de memoria de "Moonwalking with Einstein".
+* **AI and us:** While my **RAG (Retrieval-Augmented Generation)** node seeks information in a cold and precise way, humans need to "specialize" knowledge to retain it.
+* **Reflection:** Building an external memory system (like my **Knowledge Base** with OCR and Whisper) is, at its core, an attempt to emulate that "Memory Palace" the ancients used to avoid forgetting what is important.
 
-* **La IA y nosotros:** Mientras que mi nodo de **RAG (Retrieval-Augmented Generation)** busca información de forma fría y precisa, 
-los humanos necesitamos "espacializar" el conocimiento para retenerlo.
+==== 2. The Learning Algorithm 
 
-* **Reflexión:** Construir un sistema de memoria externa (como mi **Knowledge Base** con OCR y Whisper) es, en el fondo, 
-un intento de emular ese "Palacio de la Memoria" que los antiguos usaban para no olvidar lo importante.
+This also applies to our brain:
 
-#### 2. El Algoritmo del Aprendizaje
+* **Learning by teaching:** I have found that preparing these notes for the blog forces me to learn better. It is the training of my own mental model.
+* **Similarities:** Just as I train a **Qwen-Coder** on my server, these readings suggest that the human being is the most complex optimization algorithm in existence. My goal at 47 is to keep "fine-tuning" my weights every day.
 
-Como mencionaba en mis posts anteriores, lo que "mola" es mantener la rueda girando en producción. 
+==== 3. The Future: Agents and Consciousness 
 
-Esto se aplica también a nuestro cerebro:
+In the diagram, I have drawn **LiveKit Agent** and **PeerJS** nodes. We are moving from passive tools to agents that "listen and speak".
 
-* **Aprender enseñando:** He comprobado que preparar estas notas para el blog me fuerza a aprender mejor. 
-Es el entrenamiento (training) de mi propio modelo mental.
+* **The gap:** Although my server uses **Kokoro** for voice and **Whisper** for listening, the reading makes me question: Where does signal processing end and true understanding begin? 
+* **My bet:** I will continue exploring **WASM** and **Ebiten** to visualize these concepts, because as I said years ago: the best way to understand technology is by integrating it into your own professional story.
 
+=== Summary of Readings: Memory, Cognition, and Intelligence 
 
-* **Similitudes:** Así como entreno un **Qwen-Coder** en mi servidor, estas lecturas me sugieren que el ser humano 
-es el algoritmo de optimización más complejo que existe. Mi objetivo a los 47 es seguir "ajustando mis pesos" (fine-tuning) cada día.
+==== **Group 1: The Theoretical Core (Already read)** 
 
-#### 3. El Futuro: Agentes y Conciencia
+These books form the basis of my current knowledge on cognition, memory, and the construction of reality:
 
-En el diagrama he dibujado nodos de **LiveKit Agent** y **PeerJS**. Estamos pasando de herramientas pasivas a agentes que "escuchan y hablan".
+* ***Thinking, Fast and Slow*** – **Daniel Kahneman**: Explains the duality of thought between System 1 (fast and intuitive) and System 2 (slow and analytical), detailing how the brain often makes systematic errors.
+* ***Moonwalking with Einstein*** – **Joshua Foer**: Recounts how to optimize memory through techniques like the "Memory Palace" to transform conscious effort into technical retention.
+* ***How Emotions Are Made*** – **Lisa Feldman Barrett**: Introduces the theory of constructed emotions, arguing that the brain predicts reality and constructs emotions to manage the "body budget".
 
-* **La brecha:** Aunque mi servidor use **Kokoro** para la voz y **Whisper** para la escucha, la lectura me hace cuestionar: 
-¿Dónde termina el procesamiento de señal y dónde empieza la verdadera comprensión?
-* **Mi apuesta:** Seguiré explorando **WASM** y **Ebiten** para visualizar estos conceptos, porque como bien dije hace años: 
-la mejor forma de entender la tecnología es integrándola en tu propia historia profesional.
+==== **Group 2: Practical Expansion Vectors (Recommendations)** 
 
+Suggested books to connect theory with action and mastery:
 
+* ***Atomic Habits*** – **James Clear**: Works as a manual for programming System 1, turning difficult decisions into effortless automatisms.
+* ***Peak: Secrets from the New Science of Expertise*** – **Anders Ericsson**: Provides the scientific basis and the formula for "deliberate practice" to acquire expert skills.
+* ***Make It Stick*** – **Brown, Roediger, and McDaniel**: Explains that learning must require effort ("desirable difficulty") to be lasting, validating techniques like spaced repetition.
 
-### ## Resumen de Lecturas: Memoria, Cognición e Inteligencia
+==== **Group 3: Prediction Neuroscience (Close to Barrett)** 
 
-El texto profundiza en cómo los seres humanos procesamos la información y cómo esa arquitectura mental se asemeja o se distancia de los sistemas artificiales que construimos.
+Books orbiting the idea of the brain as a controlled hallucination machine:
 
-### ### 1. La Memoria como Proceso Creativo
+* ***Being You*** – **Anil Seth**: States that not only emotions, but our entire conscious experience and the "self," are the best guess of a prediction machine.
+* ***Behave*** – **Robert Sapolsky**: An encyclopedic work analyzing the biological context of our actions, from immediate neurobiology to evolution.
 
-* **No es un archivo estático:** A diferencia de un disco duro, la memoria humana es un acto de reconstrucción constante.
-* **El Palacio de la Memoria:** Se describe el método de "loci" (lugares), una técnica ancestral que utiliza nuestra evolución espacial para almacenar datos abstractos en entornos visuales imaginarios.
-* **Asociación de Ideas:** Recordamos mejor aquello que podemos conectar con conceptos que ya conocemos, creando una red neuronal de significados.
+==== **Group 4: Additional Mentions** 
 
-### ### 2. El Aprendizaje y la Pericia
+Books used as examples of fundamental structures:
 
-* **La Regla del Esfuerzo:** El aprendizaje profundo no es pasivo; requiere un "desafío óptimo" donde el cerebro debe esforzarse por recuperar la información.
-* **De Novato a Experto:** La diferencia radica en la capacidad de "fragmentar" (*chunking*) la información, permitiendo al experto ver patrones complejos donde el novato solo ve datos aislados.
-* **El papel del olvido:** Curiosamente, el olvido es necesario para filtrar lo irrelevante y permitir que el cerebro generalice conceptos.
+* ***Why We Sleep*** – **Matthew Walker**: Mentioned as an example of a fundamental book for creating a dense vector space on health and memory.
+* ***On the Origin of Species*** – **Charles Darwin**: Cited as the example of a "Parent Book" that establishes the vocabulary and main axes of a domain (in this case, evolution).
 
-### ### 3. Similitudes y Contrastes con la IA
+=== Conclusion (until next time, maybe at 50?) 
 
-* **Almacenamiento vs. Comprensión:** Mientras que un sistema de IA puede almacenar billones de parámetros, carece (por ahora) de la experiencia sensorial y el contexto emocional que fijan los recuerdos humanos.
-* **Arquitecturas Inspiradas:** Los modelos actuales de IA intentan imitar la plasticidad sináptica y la atención selectiva del cerebro humano para mejorar su eficiencia.
-* **La Intuición:** Se explora cómo lo que llamamos "intuición" es, en realidad, un procesamiento ultrarrápido de patrones basados en experiencias previas almacenadas en la memoria a largo plazo.
+The point is that I like mixing disciplines, and although the focus of my work is technology, I like to understand the human context, and that leads me to read about psychology, neuroscience, philosophy... even carpentry, cooking, or music. I believe that is the key to keeping curiosity alive and continuing to learn every day, regardless of age.
+
+And now without autocomplete, at this age and at this point in my life, and especially with how we have AI right now, I think everything is about to change. It's not that I think from now on AI will do everything alone, but in the short term, I believe if you don't jump on the wagon now, another train might not come by. From my point of view, the key is understanding the guts; that's why I'm starting from the basics, as I've done before.
+
+See you soon.
