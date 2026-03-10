@@ -1,6 +1,6 @@
 = Reflexion sobre el futuro
 Jose Juan Montiel
-2024-08-29
+2026-03-10
 :jbake-type: post
 :jbake-tags: life, work, ikigai
 :jbake-status: published
