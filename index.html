@@ -165,7 +165,7 @@
    <header>
     <div class="title">
 
-                    <h2><a href="2024/08/donde-te-ves-part5.es.html">Reflexion sobre el futuro</a></h2>
+                    <h2><a href="2026/03/donde-te-ves-part6.es.html">Reflexion sobre el futuro</a></h2>
 
     </div>
     <div class="meta">
@@ -182,135 +182,228 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_y_tras_tras_la_reflexión_volvio_a_pasar_el_tiempo_y">Y tras tras la reflexión, volvio a pasar el tiempo y &#8230;&#8203;</h2>
+<h2 id="_y_otros_dos_años_mas">Y otros dos años mas&#8230;&#8203;</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_el_mapa_de_mi_curiosidad_a_los_47_hacia_dónde_miro_ahora">El mapa de mi curiosidad, a los 47: ¿Hacia dónde miro ahora?</h3>
 <div class="paragraph">
-<p>y tuve que seguir actualizando todas estas reflexiones, porque una vez que haces algo, y funciona, porque no seguir con ello.</p>
-</div>
-<div class="paragraph">
-<p>Y el caso es que todo esto incluia varios juegos ocultos, uno era el del CV oculto, que por cierto al haber usado "git filter-branch" revisandolo estos dias no parce que funcionara como esperara, pero como de todo se aprende al pasar el tiempo, ya esta resuelto.</p>
-</div>
-<div class="paragraph">
-<p>Y que resulta que paso, pues que una de las lineas de este repaso (curriculum) por las cosas que habia hecho hace ya años (a la fecha en la que escribo casi 7 años) era una brecha de seguridad, o eso decian, el caso es que &#8230;&#8203; imagina que tienes que hacer que una palabra o frase o inclusio lineas de tu repositorio, versiones antiguas incluidas, desaparezcan del git, porque son una brecha de seguridad "git filter-repo" al rescate.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">git filter-repo --commit-callback '
-    commit.committer_date = commit.author_date
-' --force --replace-text replace.txt
-
-git remote add origin https://github.com/josejuanmontiel/josejuanmontiel.github.io.git
-git push -u origin main</code></pre>
-</div>
+<p>Hace unos años me preguntaba dónde me veía a los 50. Hoy, con 47 primaveras y 24 años de código a mis espaldas, se acerca esa fecha
+(como cuando me decia que me jubilaria a los 30 :) y la respuesta no es un destino, sino un mapa. Escribir me ayuda a pausar,
+a pulir las ideas y a darles una visión organizada <a href="https://compass.moretothat.com/">y no soy el unico</a>.</p>
 </div>
 <div class="paragraph">
-<p>Y ademas, con esas lineas mantienes la fecha original del commit, aunque claro el hash va a cambiar porque va a ser un repo nuevo.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">El TEXTO ... ==&gt;
-siguiente linea ==&gt;
-ultima linea ==&gt; Nuevo texto que no es una brecha de seguridad</code></pre>
+<p>Si hace años el foco fue el <strong>blockchain</strong> y <strong>Golang</strong>, mi "tablero de juego" para los próximos meses ha evolucionado hacia
+la integración de la Inteligencia Artificial, pero no esa que vemos todos, quiero saber sobre que se construye todo, entender las tripas.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_el_cerebro_del_servidor_ia_y_agentes">🤖 El cerebro del servidor: IA y Agentes</h3>
 <div class="paragraph">
-<p>¿Porque organizamos el fichero de reemplazo de esta forma?, segun la documentacion&#8230;&#8203;</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">--replace-text &lt;expressions_file&gt;
-        A file with expressions that, if found, will be replaced. By default, each expression is treated as literal text, but regex: and glob:
-        prefixes are supported. You can end the line with ==&gt; and some replacement text to choose a replacement choice other than the default
-        of ***REMOVED***.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>El caso es que funciona linea a linea, por tanto tenemos que poner por cada linea que forme parte de lo que queremos reemplazar, un "espacio" porque si pusieramos la linea sin el =&#8658; dejando el salto de linea pensando que lo considera, pues nos pondria el <strong><strong>REMOVED</strong></strong> asi que, lo dicho, cada linea se reelmplaza por vacio (o algo) y la linea final con el resultado nuevo que queremos poner.</p>
-</div>
-<div class="paragraph">
-<p>Aqui un resumen de los links:</p>
+<p>En estos meses he montado un servidor personal que se está convirtiendo en un ecosistema cognitivo.
+No se trata solo de ejecutar código, sino de orquestar modelos:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>CV</p>
-<div class="ulist">
-<ul>
+<p><strong>Modelos de lenguaje:</strong> Experimentando con <strong>Qwen</strong> (específicamente su versión <strong>Coder</strong>) para potenciar el desarrollo.</p>
+</li>
 <li>
-<p><a href="https://stackoverflow.com/questions/43762338/how-to-remove-file-from-git-history" class="bare">https://stackoverflow.com/questions/43762338/how-to-remove-file-from-git-history</a></p>
+<p><strong>Visión y Multimodalidad:</strong> Integrando <strong>VL-Image</strong> para que el servidor no solo lea datos, sino que "vea".</p>
+</li>
+<li>
+<p><strong>Entornos de entrenamiento:</strong> Manteniendo vivo el stack de <strong>Jupyter, Python y Go</strong> para seguir ensuciándome las manos con datos.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Busqueda en el git de un texto</p>
+</div>
+<div class="sect2">
+<h3 id="_️_herramientas_de_soberanía_y_automatización">🛠️ Herramientas de soberanía y automatización</h3>
+<div class="paragraph">
+<p>Fiel a la filosofía de "cocinarlo uno mismo", mi infraestructura doméstica sigue creciendo:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://stackoverflow.com/questions/2928584/how-to-grep-search-through-committed-code-in-the-git-history" class="bare">https://stackoverflow.com/questions/2928584/how-to-grep-search-through-committed-code-in-the-git-history</a></p>
+<p><strong>Privacidad y Red:</strong> Desde el infaltable <strong>Pi-hole</strong> y <strong>H.A (Home Assistant)</strong> hasta la gestión de <strong>VPN</strong> y <strong>Auto-backups</strong>.</p>
+</li>
+<li>
+<p><strong>Contenido y Redes:</strong> Automatizando el flujo de consumo con herramientas para YouTube y presencia en redes descentralizadas como <strong>Mastodon</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_experimentación_webrtc_wasm_y_lectura">🎨 Experimentación: WebRTC, WASM y Lectura</h3>
+<div class="paragraph">
+<p>Como siempre me ha gustado aprovechar para probar cosas nuevas mientras aprendo, estoy explorando:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>git grep TEXTO $(git rev-list --all)</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+<p><strong>Comunicación en tiempo real:</strong> Trabajando con <strong>LiveKit</strong> y <strong>PeerJS</strong> para entender mejor los agentes de voz y video.</p>
 </li>
 <li>
-<p>Rebase</p>
+<p><strong>El futuro de la Web:</strong> Sigo apostando por <strong>WebAssembly (WASM)</strong>  y generadores estáticos como <strong>Hugo</strong>.</p>
+</li>
+<li>
+<p><strong>Interfaces de lectura:</strong> Desarrollando formas más eficientes de "Leer y Escuchar", integrando un "vibe coding" <strong>EPUB Reflow</strong> con tecnologías de <strong>OCR</strong> y <strong>Whisper/Kokoro</strong> para síntesis de voz.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusión_el_ikigai_del_programador_veterano">Conclusión: El Ikigai del programador veterano</h3>
+<div class="paragraph">
+<p>Como decía en mis reflexiones anteriores, a mis 47, mi <strong>Ikigai</strong> sigue siendo ese: aprender algo nuevo cada día,
+compartirlo para entenderlo mejor y disfrutar del proceso de construir mi propio ecosistema digital.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_entre_el_código_y_la_cognición_qué_nos_hace_humanos_o_ia">🧠 Entre el Código y la Cognición: ¿Qué nos hace humanos (o IA)?</h3>
+<div class="paragraph">
+<p>En mi búsqueda por organizar mis ideas y pulir mi visión profesional, he estado profundizando en lecturas que
+exploran la frontera entre nuestra mente y los sistemas que construyo en mi servidor.
+Si vamos a convivir con agentes de IA, conviene entender qué nos diferencia.</p>
+</div>
+<div class="sect3">
+<h4 id="_1_el_arte_de_recordar_y_olvidar">1. El Arte de Recordar (y Olvidar)</h4>
+<div class="paragraph">
+<p>En mi esquema aparece <strong>Anki</strong> y sistemas de <strong>ML</strong>, lo cual me recuerda mucho a las técnicas de memoria de "Moonwalking with Einstein".</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.jnielson.com/git-rebase-with-merges" class="bare">https://www.jnielson.com/git-rebase-with-merges</a></p>
+<p><strong>La IA y nosotros:</strong> Mientras que mi nodo de <strong>RAG (Retrieval-Augmented Generation)</strong> busca información de forma fría y precisa,
+los humanos necesitamos "espacializar" el conocimiento para retenerlo.</p>
+</li>
+<li>
+<p><strong>Reflexión:</strong> Construir un sistema de memoria externa (como mi <strong>Knowledge Base</strong> con OCR y Whisper) es, en el fondo,
+un intento de emular ese "Palacio de la Memoria" que los antiguos usaban para no olvidar lo importante.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Explicacion git filter-branch</p>
+</div>
+<div class="sect3">
+<h4 id="_2_el_algoritmo_del_aprendizaje">2. El Algoritmo del Aprendizaje</h4>
+<div class="paragraph">
+<p>Esto se aplica también a nuestro cerebro:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.maravento.com/2020/05/git-filter-branch-rey-muerto-rey-puesto.html" class="bare">https://www.maravento.com/2020/05/git-filter-branch-rey-muerto-rey-puesto.html</a></p>
+<p><strong>Aprender enseñando:</strong> He comprobado que preparar estas notas para el blog me fuerza a aprender mejor.
+Es el entrenamiento (training) de mi propio modelo mental.</p>
 </li>
 <li>
-<p><a href="https://til.simonwillison.net/git/git-filter-repo" class="bare">https://til.simonwillison.net/git/git-filter-repo</a></p>
-</li>
-<li>
-<p><a href="https://stackoverflow.com/questions/46950829/how-to-replace-a-string-in-whole-git-history" class="bare">https://stackoverflow.com/questions/46950829/how-to-replace-a-string-in-whole-git-history</a></p>
-</li>
-<li>
-<p><a href="https://gist.github.com/Alesh17/ad73a8c7600139fc0804a0853b2f16c5" class="bare">https://gist.github.com/Alesh17/ad73a8c7600139fc0804a0853b2f16c5</a></p>
+<p><strong>Similitudes:</strong> Así como entreno un <strong>Qwen-Coder</strong> en mi servidor, estas lecturas me sugieren que el ser humano
+es el algoritmo de optimización más complejo que existe. Mi objetivo a los 47 es seguir "ajustando mis pesos" (fine-tuning) cada día.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_3_el_futuro_agentes_y_conciencia">3. El Futuro: Agentes y Conciencia</h4>
+<div class="paragraph">
+<p>En el diagrama he dibujado nodos de <strong>LiveKit Agent</strong> y <strong>PeerJS</strong>. Estamos pasando de herramientas pasivas a agentes que "escuchan y hablan".</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>La brecha:</strong> Aunque mi servidor use <strong>Kokoro</strong> para la voz y <strong>Whisper</strong> para la escucha, la lectura me hace cuestionar:
+¿Dónde termina el procesamiento de señal y dónde empieza la verdadera comprensión?</p>
+</li>
+<li>
+<p><strong>Mi apuesta:</strong> Seguiré explorando <strong>WASM</strong> y <strong>Ebiten</strong> para visualizar estos conceptos, porque como bien dije hace años:
+la mejor forma de entender la tecnología es integrándola en tu propia historia profesional.</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resumen_de_lecturas_memoria_cognición_e_inteligencia">Resumen de Lecturas: Memoria, Cognición e Inteligencia</h3>
+<div class="sect3">
+<h4 id="_grupo_1_el_núcleo_teórico_los_ya_leídos"><strong>Grupo 1: El Núcleo Teórico (Los ya leídos)</strong></h4>
+<div class="paragraph">
+<p>Estos libros forman la base de mi conocimiento actual sobre cognición, memoria y construcción de la realidad:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><strong>Thinking, Fast and Slow</strong> (Pensar rápido, pensar despacio)</strong> – <strong>Daniel Kahneman</strong>: Explica la dualidad del pensamiento entre el Sistema 1 (rápido e intuitivo) y el Sistema 2 (lento y analítico), detallando cómo el cerebro suele cometer errores sistemáticos.</p>
+</li>
+<li>
+<p><strong><strong>Moonwalking with Einstein</strong> (Los desafíos de la memoria)</strong> – <strong>Joshua Foer</strong>: Narra cómo optimizar la memoria mediante técnicas como el "Palacio de la Memoria" para transformar el esfuerzo consciente en retención técnica.</p>
+</li>
+<li>
+<p><strong><strong>La vida secreta del cerebro</strong> (How Emotions Are Made)</strong> – <strong>Lisa Feldman Barrett</strong>: Introduce la teoría de las emociones construidas, argumentando que el cerebro predice la realidad y construye las emociones para gestionar el "presupuesto corporal".</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grupo_2_vectores_de_expansión_práctica_recomendaciones"><strong>Grupo 2: Vectores de Expansión Práctica (Recomendaciones)</strong></h4>
+<div class="paragraph">
+<p>Libros sugeridos para conectar la teoría con la acción y la maestría:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><strong>Atomic Habits</strong> (Hábitos Atómicos)</strong> – <strong>James Clear</strong>: Funciona como un manual para programar el Sistema 1, convirtiendo decisiones difíciles en automatismos sin esfuerzo.</p>
+</li>
+<li>
+<p><strong><strong>Peak: Secrets from the New Science of Expertise</strong> (Número 1)</strong> – <strong>Anders Ericsson</strong>: Proporciona la base científica y la fórmula de la "práctica deliberada" para adquirir habilidades expertas.</p>
+</li>
+<li>
+<p><strong><strong>Make It Stick</strong> (La ciencia del aprendizaje exitoso)</strong> – <strong>Brown, Roediger y McDaniel</strong>: Explica que el aprendizaje debe costar esfuerzo ("dificultad deseable") para ser duradero, validando técnicas como la repetición espaciada.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grupo_3_neurociencia_de_la_predicción_cercanos_a_barrett"><strong>Grupo 3: Neurociencia de la Predicción (Cercanos a Barrett)</strong></h4>
+<div class="paragraph">
+<p>Libros que orbitan la idea del cerebro como una máquina de alucinación controlada:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><strong>Being You</strong> (La creación del yo)</strong> – <strong>Anil Seth</strong>: Expone que no solo las emociones, sino toda nuestra experiencia consciente y el "yo" son la mejor suposición (<strong>best guess</strong>) de una máquina de predicción.</p>
+</li>
+<li>
+<p><strong><strong>Behave</strong> (Compórtate)</strong> – <strong>Robert Sapolsky</strong>: Una obra enciclopédica que analiza el contexto biológico de nuestras acciones, desde la neurobiología inmediata hasta la evolución.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grupo_4_menciones_adicionales"><strong>Grupo 4: Menciones Adicionales</strong></h4>
+<div class="paragraph">
+<p>Libros usados como ejemplos de estructuras fundamentales:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><strong>Por qué dormimos</strong></strong> – <strong>Matthew Walker</strong>: Mencionado como un ejemplo de libro fundamental para crear un espacio vectorial denso sobre la salud y la memoria.</p>
+</li>
+<li>
+<p><strong><strong>El Origen de las Especies</strong></strong> – <strong>Charles Darwin</strong>: Citado como el ejemplo de "Libro Padre" que establece el vocabulario y los ejes principales de un dominio (en este caso, la evolución).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion_hasta_la_proxima_quizas_a_los_50">Conclusion (hasta la proxima, quizas a los 50?)</h3>
+<div class="paragraph">
+<p>La cuestion es que me gusta mezclar disciplinas, y aunque el foco de mi trabajo es la tecnologia, me gusta entender el contexto humano, y eso me lleva a leer sobre psicologia, neurociencia, filosofia&#8230;&#8203; incluso la carpinteria, la cocina o la musica. Creo que esa es la clave para mantener la curiosidad viva y seguir aprendiendo cada dia, sin importar la edad.</p>
 </div>
 <div class="paragraph">
-<p>Nota: como nota final, notar que el rebase en este caso no consigue el objetivo, si el origen de lo que se quiere cambiar esta muy abajo, toca cambiar a manos muchos commit y puede ser tedioso, a parte de que luego con la rama, tocaria generar otro git exportandola solo ella&#8230;&#8203; o algo de ese estilo.</p>
+<p>Y ahora sin autocompletar, a esta edad y en este punto de mi vida, y sobre todo con como tenemos la IA ahora mismo, creo que todo esta a punto de cambiar, y no es que piense que a partir de ahora todo lo va a hacer la IA sola, pero a corto plazo creo que sino te subes ahora al carro, puede que ya no pase otro tren, y desde mi punto de vista, la clave esta en entender las tripas, por eso estoy empezando desde la base, como hice otras veces.</p>
 </div>
 <div class="paragraph">
-<p>Extra: Con</p>
+<p>Nos vemos pronto.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">git grep TEXTO $(git rev-list --all)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>podemos hacer la busqueda de un texto en todos los commit y si hacemos</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">git filter-repo --invert-paths --path resources/cv/CV_JOSE_JUAN_MONTIEL-2022-Marzo.odt --force</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>podemos borrar el fichero del repositorio.</p>
 </div>
 </div>
 </div>
@@ -321,43 +414,43 @@ ultima linea ==&gt; Nuevo texto que no es una brecha de seguridad</code></pre>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&text=Reflexion sobre el futuro&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2026/03/donde-te-ves-part6.es.html&text=Reflexion sobre el futuro&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2026/03/donde-te-ves-part6.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2026/03/donde-te-ves-part6.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2026/03/donde-te-ves-part6.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2026/03/donde-te-ves-part6.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2026/03/donde-te-ves-part6.es.html&title=Reflexion sobre el futuro" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2024/08/donde-te-ves-part5.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2026/03/donde-te-ves-part6.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -374,7 +467,7 @@ ultima linea ==&gt; Nuevo texto que no es una brecha de seguridad</code></pre>
  	        <li><a href='tags/work.html'>work</a></li>
  	        <li><a href='tags/ikigai.html'>ikigai</a></li>
 
-				<li><a class="icon fa-comment" href="2024/08/donde-te-ves-part5.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="2026/03/donde-te-ves-part6.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>

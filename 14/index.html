@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="../../2018/02/mensajes_serializacion.html"><p>Message, serialization and other things</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,13 +168,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2017/11/cookies_1_of_2.es.html">Cookies (1 de 2)</a></h2>
+                    <h2><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='nov 09, 2017'>
-            nov 09, 2017</time>
+            datetime='feb 17, 2018'>
+            feb 17, 2018</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,258 +185,178 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_paso_previos">Paso previos</h2>
+<h2 id="_messages_serialization_and_other_things">Messages, serialization and other things</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Para realizar las pruebas bajo disintos dominios, usarmos <a href="http://xip.io">xip.io</a>
-Ademas de levantar el mismo codigo con:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9000"
-mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9001"</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cookies">Cookies</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Las <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>, descrito de una manera simple,
-son el mecanismo que se inventaron los navegadores, para almacenar informacion enviada
-por los servidores, y que se mantuviera entre peticion y peticion, es decir, entre
-una pagina web servida y la siguiente. Ademas, tenia que ser confiable, por tanto
-un uso, fue mantener la "session" entre distintas peticiones a server, algo no
-concebido en el HTTP que es "sin estado", por tanto tambien se uso para la seguridad
-o autenticacion.</p>
+<p>I remember one time a colleague told me, something like this: "My boss said, that the one
+manage the string, it handles everything". Taken out of context, it may seem
+pretentious, but do not you get the feeling that most of the programming is
+reduces to "manipulation"?</p>
 </div>
 <div class="paragraph">
-<p>Y para evitar problemas de seguridad, un server solo puede emitir cookies de su
-dominio y una pagina, solo puede leer (desde javascript) las que pertenecen a su
-dominio.</p>
-</div>
-<div class="sect2">
-<h3 id="_cross_domain_cookies">Cross domain cookies</h3>
-<div class="paragraph">
-<p>La manera en que una "pagina" puede comunicarse con otra "pagina" es algo que cuentan
-<a href="https://stackoverflow.com/questions/6761415/how-to-set-a-cookie-for-another-domain">aqui</a>.
-Y <a href="https://subinsb.com/set-same-cookie-on-different-domains">aqui</a> lo explican con mas detalle</p>
+<p>And if you stop to think, today, is not it reduced to communication? To the shipment of
+"messages"? And that&#8217;s where I want to get in this article, to the famous serialization
+and deserialization.</p>
 </div>
 <div class="paragraph">
-<p>Pero como a andar, se aprende andando, vamos a utilizar SpringBoot para montar
-una prueba de concepto. Creamos un proyecto con el siguiente controlador.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="java">    @RequestMapping("/cookie1")
-    public String greeting(
-    		@RequestParam(value = "rp", required = false) String reqparam, <i class="conum" data-value="1"></i><b>(1)</b>
-    		@RequestParam(value = "sp", required = false) String sesparam, <i class="conum" data-value="2"></i><b>(2)</b>
-    		@RequestParam(value = "cp", required = false) String cookiparam, <i class="conum" data-value="3"></i><b>(3)</b>
-    		HttpSession session,
-    		HttpServletResponse response,
-    		Model model) {
-
-    			if (reqparam!=null) model.addAttribute("rp", reqparam); <i class="conum" data-value="1"></i><b>(1)</b>
-    			if (sesparam!=null) session.setAttribute("sp", sesparam); <i class="conum" data-value="2"></i><b>(2)</b>
-    			System.out.println("sp="+sesparam);
-
-    			if (cookiparam!=null) {
-    				Cookie newCookie = new Cookie("cp", cookiparam); <i class="conum" data-value="3"></i><b>(3)</b>
-    				newCookie.setMaxAge(24 * 60 * 60);
-    				response.addCookie(newCookie);
-    			}
-
-    	return "cookie1";
-    }
-
-    public static String getCookieValue(HttpServletRequest req, String cookieName) {
-    	return Arrays.stream(req.getCookies()).
-    			filter(c -&gt; c.getName().equals(cookieName)).
-    			findFirst().
-    			map(Cookie::getValue).
-    			orElse(null);
-    }</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Recibimos un paramtro por querystring, que añadimos al modelo</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Recibimos un paramtro por querystring, que guardamos en sesion</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Recibimos un paramtro por querystring, que guardamos en una cookie</td>
-</tr>
-</table>
+<p>I did not get to experience it, but when I started in the Java world, there was still talk
+of <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">Corba</a> and
+<a href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">RMI</a>.
+I&#8217;m not going to stop much, for that we have the wikipedia, but the first let&#8217;s say
+it served to communicate separate and distinct systems, and the second more "close".</p>
 </div>
 <div class="paragraph">
-<p>Si nos centramos en el caso 2, recibe un parametro por url, que almancena en la
-session del servidor, y esto genera una cookie, la fomasa JSESSIONID que permite
-establecer que hueco de la sessiond del servidor, le corresponde al usuario.</p>
+<p>To what if it arrives, and went to the world to <a href="https://en.wikipedia.org/wiki/SOAP">SOAP</a>.
+If we look back, the "XML was invented" at <a href="https://en.wikipedia.org/wiki/XML#History">1998</a>,
+I even remember doing an interview in my beginnings for the "xml company".
+And in XML, SOAP is based on the transmission of messages. Here begins to stop
+side the "binary" messages to move to XML, with its supposed advantages, and disadvantages.
+Because parsing and loading into XML memory was expensive, agile because you could access
+any part of the message, but expensive.</p>
 </div>
 <div class="paragraph">
-<p>El caso 3, es una generalizacion del mismo, donde el servidor en este caso, genera
-una cookie que llega al navegador.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="html">    &lt;p th:text="'Request param: ' + ${rp}" /&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-    &lt;p th:unless="${session == null}"
-    	 th:text="'Session param: ' + ${session.sp}" /&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-    &lt;p th:unless="${#ctx.httpServletRequest.getCookies()==null}"
-    	 th:text="'Cookie param: ' + ${T(com.example.demo.Cookie1Controller).getCookieValue(#ctx.httpServletRequest,'cp')}" /&gt; <i class="conum" data-value="3"></i><b>(3)</b>
-
-    &lt;img th:if="${#strings.startsWith(#httpServletRequest.getHeader('Host'),'a.')}"
-    		 src="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;amp;sp=session_from_a&amp;amp;cp=cookie_from_a" style="display:none;" /&gt; <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Pintamos el paramtro del modelo</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Pintamos el paretro de la sesion</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Pintamos el parametro de la cookie</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Invocamos al otro dominio, solo si no estamos en el</td>
-</tr>
-</table>
+<p>I do not extend more here, just remember DTD, XSD, XSLT, and a series more than
+acronyms related to the XML world.</p>
 </div>
 <div class="paragraph">
-<p>En esta pagina, vemos como se pintan los valores de lo almacenado en la sesion, y en la cookie.</p>
+<p>But people got tired of the XML soon, in 2000 came the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
+People were tired of schemes, of rigidity, the new millennium wanted flexibility,
+browsers wanted to be able to find what they wanted, without having to load everything.</p>
 </div>
 <div class="paragraph">
-<p>Y ahora empieza lo bueno, cuando abrimos: <a href="http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a" class="bare">http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a</a>
-esta pagina a parte de setear los valores de la ulr en session y en una cookie,
-hace una peticion a una url del dominio B (a traves de un img)
-<a href="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a" class="bare">http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a</a>
-y podemos observar los resultados viendo: <a href="http://b.127.0.0.1.xip.io:9001/setcookie" class="bare">http://b.127.0.0.1.xip.io:9001/setcookie</a></p>
+<p>Let&#8217;s say that the REST, brought the JSON, a format where the "tabulation" gave the format,
+and there was no need for so much label, which reduced the size of the messages,
+but hey, it was still necessary to parse them.</p>
 </div>
 <div class="paragraph">
-<p>La navegacion seria algo de este estilo.</p>
-</div>
-<div id="main-classes" class="imageblock">
-<div class="content">
-<img src="/blog/img/cookie-plantuml-diagram-1.png" alt="Class diagram" width="640" height="480">
-</div>
-<div class="title">Figure 1. Flujo de navegacion de las cookies</div>
+<p>At that time, Google started using <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a> internally,
+a binary specification language. The same thought that in the end, either
+It made a lot of sense that the messages were "human-readable", and even if I could
+there is compression of an XML message in a superior layer, in the end it is effort
+to serialize and deserialize in a "human-readable" way was not an obstacle either
+to not put one field after another.</p>
 </div>
 <div class="paragraph">
-<p>Y aqui vemos los resultados, que pasamos a comentar:</p>
+<p>On the other hand, the <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
+it began to evolve.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="/blog/img/2017/11/a.domain.img1.png" alt="a domain img1">
+<img src="/blog/img/2018/02/glory-of-rest.png" alt="Glory of rest">
 </div>
 </div>
 <div class="paragraph">
-<p>En la primera peticion desde A, observamos como se genera en A la cookie de JSESSIONID,
-que nos indica que en servidor se ha guardo algo en sesion, y ese valor, lo observamos
-en el navegador al pintar el valor del objeto en session sp, que es b. Lo que aun no
-observamos en la pagina, es como recibe la cookie que se genera en servidor, aunque
-si la veriamos en el inspector de cookies.</p>
+<p>And things started to appear like: <a href="https://swagger.io/">Swagger</a> and <a href="https://raml.org/">RAML</a>,
+that end up merging at <a href="https://www.openapis.org/">OPENAPI</a> and things like:
+<a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
+even <a href="http://graphql.org/learn/">GraphQL</a>, which to be the query language
+that we know, part of a language of definition of structures.</p>
 </div>
 <div class="paragraph">
-<p>Por otro lado, observamos en el inspector de red, como se lanza una peticion al
-dominio B, que nos genera en el navegador la cookie JSESSIONID pero para el dominio B.
-En la cuarta imagen veremos como el System.out nos muestra que llega el querystring
-y se ha almacenado en session, pero ojo la del dominio B.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/11/a.domain.img2.png" alt="a domain img2">
-</div>
+<p>In the end, in the Java world, and I suppose that in the rest of languages also, all
+Transmission requires serialization and deserialization (which may be more
+or less complex).</p>
 </div>
 <div class="paragraph">
-<p>En una segunda recarga, ya veriamos la cookie generada en el server A, en base
-a la peticion anterior.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/11/b.domain.img1.png" alt="b domain img1">
-</div>
+<p>For example, the transmission of a large XML to a destination, where it only interests you
+certain data of the same, does not have to serialize it in memory to make a
+On the DOM, a parser can be used <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
+to look for what is needed, and it does not matter the size of the XML, it will take more or less the same,
+because the overhead is produced when it is loaded into memory.</p>
 </div>
 <div class="paragraph">
-<p>Lo curioso empieza ahora, en una tercera peticion al dominio B directamente, sin
-parametros. Como nuestro controlador no hace nada si no llegan parametros, vemos,
-al entrar al dominio B, como el navegador lee las cookies de dominio B, generadas
-al navegadar por A, pero con una peticion a B desde un IMG, como el servdor nos
-devuelve lo que tiene almacenado en session para nosotros, navegantes de su dominio.
-Y esto es, lo que se genera desde otro dominio, haciendo esa peticion desde una imagen.</p>
+<p>In the case of a JSON, those who need their specified getter / setter,
+the parsers that simply load in hash, those that use the reflection, those that
+they do not use it (because the user codes a certain part), those that "precompile" code,
+those who &#8230;&#8203;</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/11/b.domain.img2.png" alt="b domain img2">
-</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="paragraph">
+<p>In the end, in this world of programming, you can never think that you know everything,
+and in IMHO you can always improve, doing things differently.</p>
 </div>
 <div class="paragraph">
-<p>Aqui vemos el System.out</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_conclusion">Conclusion</h3>
-<div class="paragraph">
-<p>Mientras se navega por un dominio A, podemos "enviar" a un dominio B informacion,
-que el dominio B, al recibirla en esa peticion de imagen, puede almacenar en su
-sesion para nosotros usuarios que navegamos, para que cuando vayamos al dominio
-B, nos la recupere de sesion y nos la muestre.</p>
-</div>
-<div class="paragraph">
-<p>Los proximos pasos, serian intentar hacer que un servicios de terceros (dominio A),
-que podemos integrar en nuestras webs (dominio B), via APIs JS, "nos envie desde
-ese JS" informacion, que nos permita por debajo (desde el back en el dominio B)
-hacerle una peticion al ellos (dominio A) y recupere lo que el servicio de terceros
-(dominio A) almacena en su session para nosotros usuarios que navegamos, por
-ejemplo que estamos logados en su servicio.</p>
-</div>
-<div id="main-classes" class="imageblock">
-<div class="content">
-<img src="/blog/img/cookie-plantuml-diagram-2.png" alt="Class diagram 3rd API" width="640" height="480">
-</div>
-<div class="title">Figure 2. Flujo de navegacion de con servicio de terceros</div>
+<p>If we dive a little, we can find some benchmarks. For example in this
+<a href="https://github.com/fabienrenaud/java-json-benchmark">comparatories on libraries</a>
+we can discover the large number of JSON libraries that exist, and their different
+performance, proof that you can always evolve, and when you reach the
+physical limits, you can always do it in another way. In this other
+<a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
+inclyendo protobuf</a> do the analysis, focusing on the number of attributes, of
+the class to be serialized, and they make some interesting considerations of the transformations
+that pass "below", away from the sight of our eyes, commenting on changes between
+JDK 8 and 9.</p>
 </div>
 <div class="ulist">
+<div class="title">We can highlight the following libraries:</div>
 <ul>
 <li>
-<p>Step1: Navegamos por nuestra web</p>
+<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Use a dsl to generate the parser.</p>
 </li>
 <li>
-<p>Step2: El API JS llama al servicio de terceros y nos muestra login</p>
+<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompiling a parser.</p>
 </li>
 <li>
-<p>Step3: Nos logamos en servicio de terceros usando API JS</p>
+<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolution of the well-known library.</p>
 </li>
 <li>
-<p>Step4: El servicio de terceros genera cookie de session</p>
-</li>
-<li>
-<p>Step5: El navegador, genera un &lt;img&gt; apuntando a B, con la informacion del JSESSIONID que A nos genera.</p>
-</li>
-<li>
-<p>Step6: Esa imagen, generada por el API de terceros, en la pagina que servimos desde B, nos llama y almacena en session de B ese valor.</p>
-</li>
-<li>
-<p>Step7: B realiza peticion a A, desde servidor, usando el JSESSIONID de A, para hacerse pasar por nosotros que navegamos B, usando API JS de A.</p>
-</li>
-<li>
-<p>Step8: Podemos mostrar a nosotros que navegamos, info provista por A, via comunicacion backend, tras logarnos.</p>
+<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> A more theoretical approach using Graavl.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>What if we talk about bbdd NSQL or document-oriented ?, as for example CouchBase &#8230;&#8203;?</p>
+</div>
+<div class="paragraph">
+<p>In the end, here using the java API, there is also a serialization / deserialization,
+in the end what is saved is a document, which must (according to API) serialize more or less.</p>
+</div>
+<div class="paragraph">
+<p>In <a href="https://github.com/josejuanmontiel/demo-couchbase">this</a> repo, I have messed around a little with some ideas.</p>
+</div>
+<div class="olist arabic">
+<div class="title">The conclusions?</div>
+<ol class="arabic">
+<li>
+<p>It is clear that the smaller the entity to persist, the sooner it will persist.</p>
+</li>
+<li>
+<p>But not by inserting it into smaller pieces (related to each other)
+Insert before.</p>
+</li>
+<li>
+<p>Both for insertions and queries, if a string is inserted, without going through
+JPA can earn 50% (discounting the serialization to String, remember that
+   arrives in String format from synchro) and 90% in reading approx.</p>
+</li>
+<li>
+<p>A .findOne in spring data jpa, will always be slower than a native one.
+Does the view on the entity type add a delay?</p>
+</li>
+<li>
+<p>Network latency from the server to the bbdd also counts, less data, faster.</p>
+</li>
+<li>
+<p>The servers with SSD vs HDD for bbdd nosql show large differences in performance.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It depends on the use and the problem that you want to address, it can not always make sense,
+serialize to have the "objects" accessible, but let&#8217;s use them.</p>
+</div>
+<div class="sect2">
+<h3 id="_as_an_exercise_for_home">As an exercise for home</h3>
+<div class="paragraph">
+<p>According to the <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> if
+will change the implementation of JsonConverter from Jackson to Jsonite, could win
+30% in the part that the spring data library jpa passes from the object to
+com.couchbase.client.java.document.json.JsonObject.</p>
+</div>
+<div class="paragraph">
+<p>Make a pull request to implement <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
+of couchbase with <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
+and see if it&#8217;s faster than the standard, and not much less than with the <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
 </div>
 </div>
 </div>
@@ -445,43 +368,43 @@ ejemplo que estamos logados en su servicio.</p>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&text=Cookies (1 de 2)&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&text=Message, serialization and other things&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html&title=Cookies (1 de 2)" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -495,9 +418,9 @@ ejemplo que estamos logados en su servicio.</p>
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
  	        <li><a href='../tags/jvm.html'>jvm</a></li>
- 	        <li><a href='../tags/cookies.html'>cookies</a></li>
+ 	        <li><a href='../tags/serilize.html'>serilize</a></li>
 
-				<li><a class="icon fa-comment" href="../2017/11/cookies_1_of_2.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2018/02/mensajes_serializacion.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -566,6 +489,16 @@ ejemplo que estamos logados en su servicio.</p>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h3>
+                                   <time class="published"
+  							            datetime='feb 17, 2018'>
+  							            feb 17, 2018</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>

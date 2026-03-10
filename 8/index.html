@@ -165,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2018/10/moewller.es.html">Uniendo el Model - View - Controller</a></h2>
+                    <h2><a href="../2022/02/donde-te-ves-part1.es.html">¿Donde te ves a los 50 años, laboralmente?</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='oct 21, 2018'>
-            oct 21, 2018</time>
+            datetime='feb 11, 2022'>
+            feb 11, 2022</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,80 +182,81 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_uniendo_el_model_view_controller_parte_12">Uniendo el Model - View - Controller (Parte 1/2)</h2>
+<h2 id="_el_tiempo_pasa">El tiempo pasa&#8230;&#8203;</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Hace tiempo que no escribo, pero sigo dandole vueltas a las cosas. En el ultimo articulo del blog, hablaba sobre serializacion, y en concreto sobre la serializacion de objetos a JSON (tanto para ser expuestos en un servicio REST como para serilizarlas en una base de datos NOSQL).</p>
+<p>&#8230;&#8203;y me voy a tomar el mio, el que sea necesario, para reflexionar un poco.</p>
 </div>
 <div class="paragraph">
-<p>En este articulo, me he panteado una prueba de concepto, que aviso, de momento esta incompleta. La prueba intenta montar una libreria que:</p>
+<p>Hace mucho, que la vida, eso que sucede mientras nosotros intentamos hacer otras cosas, no me ha permitido pararme a escribir un poco aquí.</p>
+</div>
+<div class="paragraph">
+<p>Si, es un blog, con perfil técnico, y no hablare (mucho) de cosas que no sean técnicas, pero, si que tengo que reconocer que estos últimos tres años, entre blockchain y golang, no me ha quedado mucho tiempo libre&#8230;&#8203; y bueno, entre mis hijas que se hacen mayores, la familia, el ocio, con la caravana, el bricolage en casa y como no, la pandemia :) pues, al final se mezcla un poco todo.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_como_vas_a_organizarlo">¿Como vas a organizarlo?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voy a empezar una serie de entradas en este blog, en las que voy a contar como quiero hacer un repaso de mi carrera profesional, y contaré como lo voy a reflejar en la raíz de este sitio (fuera del blog).</p>
+</div>
+<div class="sect2">
+<h3 id="_lo_importante_es_escribirlo">Lo importante es escribirlo</h3>
+<div class="paragraph">
+<p>La mente esta siempre en marcha, escribir obliga a parar y reflexionar mejor sobre lo que quieres plasmar, y esa retro alimentación perfila las ideas, las pule, y asi consigues una vision organizada de las mismas, o esa es la teoría.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_aprovechar_para_usar_cosas_que_quería_probar">Aprovechar para usar cosas que quería probar</h3>
+<div class="paragraph">
+<p>Y bueno, podría limitarme a escribirlo en un papel, pero el hecho de compartirlo, le añade un punto, que hace que tengas que reflexionar mas seriamente&#8230;&#8203; y ya que te pones, ¿porque no aprovechar para acompañar esas reflexiones con la adquisición de conocimiento nuevo?</p>
+</div>
+<div class="paragraph">
+<p>Es como suelen decir los que preparan conferencias, el tener que prepararte para contarlo a los demás, hace que uno mismo lo aprenda mejor. Aquí pasa algo parecido, el añadirle nuevos conocimientos, hace que tengas te fuerces a aprenderlo bien, además de organizar las ideas mejor.</p>
+</div>
+<div class="paragraph">
+<p>Eso si, os contare que hare, y vosotros (si os apetece) lo iréis descubriendo por vuestra cuenta.</p>
+</div>
+<div class="sect3">
+<h4 id="_manos_a_la_obra">Manos a la obra</h4>
+<div class="paragraph">
+<p>Desde hace un tiempo, quería darle una prueba a <a href="https://ebiten.org">Ebiten</a>: un framework de juegos 2D en Golang. Ciclo de refresco, siempre me llamo la atención en
+los juegos. De hecho, hace 3 años iba con mi hija mayor a clases de percusión, y como me costaba mucho coordinar los golpes al son del metronomo, pense hacer un juego
+(usando en este caso <a href="https://litiengine.com">Litiengine</a>, Java en este caso) para con la ayuda de un buen micro, detectar los golpes y hacer que un "Mario" saltara para golpear con la cabeza unas cajas sordas, que se movían por la pantalla al ritmo de 4/4 (la idea quedo en el baúl, con tantas otras).</p>
+</div>
+<div class="paragraph">
+<p>Y bueno, como en GoLang (como en otros lenguajes) se puede compilar en WebAssembly, ¿porque no aprovechar y colocar el juego (aun no he dicho cual, tendrás que descubrirlo) en la web, y hacer que con su ayuda, vaya contando mi historia?</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_próximas_secciones">Próximas secciones</h3>
+<div class="paragraph">
+<p>Pues la idea es simple, para conseguir encontrar el Ikigai del programador&#8230;&#8203;</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Permita mantener la separacion entre entre capas (de un MVC) usando un solo <a href="https://martinfowler.com/eaaCatalog/dataTransferObject.html">DTO</a> en vez de varios y una libreria de mapper, pero que a su vez permita las mismas o casi, ventajas de separacion.</p>
+<p>Reflexión sobre el pasado&#8230;&#8203;
+&#8230;&#8203;desde mis orígenes: mis primeros pinitos (tardíos) con la informática&#8230;&#8203; hasta llegar a hace unos años.</p>
 </li>
 <li>
-<p>Sea capaz de ir realizando la serializacion, en este caso construccion del JSON de manera incremental conforme se setean los valores.</p>
+<p>Reflexión sobre el momento actual&#8230;&#8203;
+&#8230;&#8203;que incluye los últimos 3 años aproximadamente.</p>
+</li>
+<li>
+<p>Reflexión sobre el futuro&#8230;&#8203;
+&#8230;&#8203;retomando el objetivo del titulo de esta entrada&#8230;&#8203; ¿donde me veo con 50 años? Es una pregunta que hice a varios compañeros, cuando cumplí los 40. La idea era reflexionar sobre donde queria estar, y que tenia que hacer para llegar ahi. Pero, llego la pandemia y seguimos tirando. Asi que&#8230;&#8203;</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_listo_para_ver_el_resultado">¿Listo para ver el resultado?</h3>
 <div class="paragraph">
-<p>En <a href="http://github.com/josejuanmontiel/moewller">este</a> repositorio ire colocando los avances.</p>
+<p>¿Quieres ver primero <a href="https://josejuanmontiel.github.io"><strong>el resultado final</strong></a>&#8230;&#8203; o continuas leyendo <a href="https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part2.es.html">la siguiente entrada del blog</a> para descubrir mas detalles?</p>
 </div>
-<div class="paragraph">
-<p>Como nota, mucha gente tambien habla de <a href="https://martinfowler.com/bliki/ValueObject.html">VO</a> y aqui esta la <a href="http://www.adam-bien.com/roller/abien/entry/value_object_vs_data_transfer">difirenica entre ambos</a></p>
-</div>
-<div class="paragraph">
-<p>A continuacion, algunos links para hablar de "Serializacion as a Service"</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/ralfstx/minimal-json">Minimal Json</a></p>
-</li>
-<li>
-<p><a href="https://github.com/FasterXML/aalto-xml">Ultra-high performance non-blocking XML processor (Stax API + extensions)</a></p>
-</li>
-<li>
-<p><a href="https://github.com/beckchr/staxon">Staxon</a></p>
-</li>
-<li>
-<p><a href="https://www.baeldung.com/kryo">Kryo en Baeldung</a></p>
-</li>
-<li>
-<p><a href="https://github.com/EsotericSoftware/kryo">Kryo</a></p>
-</li>
-<li>
-<p><a href="https://github.com/FasterXML/jackson-dataformats-binary">jackson-binary</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/FasterXML/smile-format-specification/blob/master/smile-specification.md">Smile</a></p>
-</li>
-<li>
-<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/protobuf">Protobuf</a></p>
-</li>
-<li>
-<p><a href="https://amzn.github.io/ion-docs/index.html">Ion</a></p>
-</li>
-<li>
-<p><a href="https://www.rfc-editor.org/rfc/rfc7049.txt">Cbor</a></p>
-</li>
-<li>
-<p><a href="https://avro.apache.org/docs/1.8.2/gettingstartedjava.html">Avro Apache</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/avro">Avro FasterXML</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -266,43 +267,43 @@
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&text=Uniendo el Model - View - Controller&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&text=¿Donde te ves a los 50 años, laboralmente?&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&title=¿Donde te ves a los 50 años, laboralmente?" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&title=¿Donde te ves a los 50 años, laboralmente?" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html&title=¿Donde te ves a los 50 años, laboralmente?" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2022/02/donde-te-ves-part1.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -315,12 +316,11 @@
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='../tags/jvm.html'>jvm</a></li>
- 	        <li><a href='../tags/mvc.html'>mvc</a></li>
- 	        <li><a href='../tags/serilize.html'>serilize</a></li>
- 	        <li><a href='../tags/dozer.html'>dozer</a></li>
+ 	        <li><a href='../tags/life.html'>life</a></li>
+ 	        <li><a href='../tags/work.html'>work</a></li>
+ 	        <li><a href='../tags/ikigai.html'>ikigai</a></li>
 
-				<li><a class="icon fa-comment" href="../2018/10/moewller.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2022/02/donde-te-ves-part1.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>

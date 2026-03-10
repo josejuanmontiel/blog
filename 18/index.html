@@ -147,6 +147,9 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <a href="../../2017/11/cookies_1_of_2.html"><p>Cookies (1 of 2)</p></a>
+                      </li>
             </ul>
         </section>
 
@@ -165,13 +168,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2017/06/git.es.html">Git &amp; Merge &amp; Rebase &amp; Flow</a></h2>
+                    <h2><a href="../2017/11/cookies_1_of_2.html">Cookies (1 of 2)</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='jun 30, 2017'>
-            jun 30, 2017</time>
+            datetime='nov 09, 2017'>
+            nov 09, 2017</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -182,554 +185,278 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_git_merge_rebase_flow">Git &amp; Merge &amp; Rebase &amp; Flow</h2>
+<h2 id="_previous_step">Previous step</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En esta ocasion vamos a realizar una serie de operaciones en un repositorio git.
-Intentaremos simular situaciones tipicas de trabajo en grupo, con distintas
-manerasP de enfocar la union de los distintos trabajos.</p>
+<p>To perform tests under different domains, we use <a href="http://xip.io">xip.io</a>
+In addition to lifting the same code with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9000"
+mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=9001"</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cookies">Cookies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a>, described in a simple way,
+are the mechanism invented by browsers, to store information sent
+by the servers, and that was maintained between petition and petition, that is, between
+one website served and the next. Also, it had to be reliable, therefore
+one use, was to keep the "session" between different requests to server, something not
+conceived in the HTTP that is "stateless", therefore it was also used for security
+or authentication.</p>
+</div>
+<div class="paragraph">
+<p>And to avoid security problems, a server can only issue cookies from its
+domain and a page, you can only read (from javascript) those that belong to your
+domain.</p>
 </div>
 <div class="sect2">
-<h3 id="_trabajar_con_dos_ramas_sin_ancestros_comunes">Trabajar con dos ramas sin ancestros comunes.</h3>
+<h3 id="_cross_domain_cookies">Cross domain cookies</h3>
 <div class="paragraph">
-<p>Lo primero, inicializar un repo local, con opcion de que sea compartido por
-varios usuarios.</p>
+<p>The way in which a "page" can communicate with another "page" is something that counts
+<a href="https://stackoverflow.com/questions/6761415/how-to-set-a-cookie-for-another-domain">aqui</a>.
+And <a href="https://subinsb.com/set-same-cookie-on-different-domains">aqui</a> explain it in more detail</p>
+</div>
+<div class="paragraph">
+<p>But as you walk, you learn by walking, we will use SpringBoot to ride
+a proof of concept. We create a project with the following controller.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd ~/sandbox-git
-git init --bare --shared ~/sandbox-git/test-repo.git
-git clone test-repo.git repo-clone1
-git clone test-repo.git repo-clone2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Despues nos vamos al directorio 1, y añadimos un primer fichero, en el commit
-indicamos un nombre de usuario: User1.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd repo-clone1
-touch README
-git add .
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Initial commit"
-git push -u origin master</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Para ver desde consola podemos añadir lo siguiente a ~/.gitconfig bajo [alias]</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-tree = log --graph --full-history --all --color --pretty=tformat:%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>El repo queda entonces asi.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_01.png" alt="git 01">
-</div>
-</div>
-<div class="paragraph">
-<p>Despues nos vamos a la segunda carpeta y solo hacemos "fetch", y creamos el mismo
-fichero que creo el otro usuario. Lo comiteamos, luego intentamos push.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone2
-git fetch
-vi README
-git add README
-git commit --author="User2 &lt;user2@git.com&gt;" -m "Other user change"
-git push</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Pero obtenemos el siguiente error.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">	 ! [rejected]        master -&gt; master (non-fast-forward)
-	error: failed to push some refs to '/home/jose/sandbox-git/test-repo.git'
-	hint: Updates were rejected because the tip of your current branch is behind
-	hint: its remote counterpart. Integrate the remote changes (e.g.
-	hint: 'git pull ...') before pushing again.
-	hint: See the 'Note about fast-forwards' in 'git push --help' for details.</code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-No se puede hacer push sino se hace un pull&#8230;&#8203; en este momento el arbol esta asi&#8230;&#8203;
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_02.png" alt="git 02">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git pull</code></pre>
-</div>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-The default behavior has changed since git 2.9
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>"git merge" used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project. The command has been taught not to allow this by default, with an escape hatch --allow-unrelated-histories option to be used in a rare event that merges histories of two projects that started their lives independently.</p>
-</div>
-<div class="paragraph">
-<p>En este caso, hemos partido de 2 ramas independientes, y el pull de una rama
-(donde ya tenemos un commit) provoca una especie de "merge". En este caso (por
-	no tener ancestros comunes) debemos hacerlo con:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git pull origin master --allow-unrelated-histories</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Y queda esto</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_03.png" alt="git 03">
-</div>
-</div>
-<div class="paragraph">
-<p>Ahora ya podemos hacer:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git push</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Y asi queda el repo:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_04.png" alt="git 04">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_trabajar_en_una_rama_sin_haberla_actualizado">Trabajar en una rama, sin haberla actualizado</h3>
-<div class="paragraph">
-<p>Vamos ahora a probar en el directorio 1, a crear con git-flow una feature, crear un
-nuevo fichero y luego&#8230;&#8203; crear otra feature en el directorio 2, creando otro
-fichero.</p>
-</div>
-<div class="paragraph">
-<p>Luego en el directorio 1, cerramos la feature, luego en el directorio 2,</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Mergeamos develop en nuestra rama, y luego mergeamos nuestra rama en develop (cerrando la feature).
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone1
-git flow init
-git flow feature start user1
+<pre class="prettyprint highlight"><code data-lang="java">    @RequestMapping("/cookie1")
+    public String greeting(
+    		@RequestParam(value = "rp", required = false) String reqparam, <i class="conum" data-value="1"></i><b>(1)</b>
+    		@RequestParam(value = "sp", required = false) String sesparam, <i class="conum" data-value="2"></i><b>(2)</b>
+    		@RequestParam(value = "cp", required = false) String cookiparam, <i class="conum" data-value="3"></i><b>(3)</b>
+    		HttpSession session,
+    		HttpServletResponse response,
+    		Model model) {
 
-vi feature-user1.txt
-git add feature-user1.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Commit in feature-user1"</code></pre>
+    			if (reqparam!=null) model.addAttribute("rp", reqparam); <i class="conum" data-value="1"></i><b>(1)</b>
+    			if (sesparam!=null) session.setAttribute("sp", sesparam); <i class="conum" data-value="2"></i><b>(2)</b>
+    			System.out.println("sp="+sesparam);
+
+    			if (cookiparam!=null) {
+    				Cookie newCookie = new Cookie("cp", cookiparam); <i class="conum" data-value="3"></i><b>(3)</b>
+    				newCookie.setMaxAge(24 * 60 * 60);
+    				response.addCookie(newCookie);
+    			}
+
+    	return "cookie1";
+    }
+
+    public static String getCookieValue(HttpServletRequest req, String cookieName) {
+    	return Arrays.stream(req.getCookies()).
+    			filter(c -&gt; c.getName().equals(cookieName)).
+    			findFirst().
+    			map(Cookie::getValue).
+    			orElse(null);
+    }</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_05.png" alt="git 05">
-</div>
-</div>
-<div class="admonitionblock warning">
+<div class="colist arabic">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Pero se nos "olvido" hacer fetch/pull antes de empezar&#8230;&#8203; y aqui empieza el lio&#8230;&#8203;
-</td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We received a paramtro for querystring, which we added to the model</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We received a paramtro for querystring, which we keep in session</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We receive a paramtro for querystring, which we store in a cookie</td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>If we focus on case 2, it receives a parameter per url, which is stored in the
+server session, and this generates a cookie, the JSESSIONID file that allows
+To establish which hollow of the session of the server, corresponds to the user.</p>
+</div>
+<div class="paragraph">
+<p>Case 3 is a generalization of it, where the server in this case generates
+a cookie that reaches the browser.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git fetch
-git pull origin master</code></pre>
+<pre class="prettyprint highlight"><code data-lang="html">    &lt;p th:text="'Request param: ' + ${rp}" /&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;p th:unless="${session == null}"
+    	 th:text="'Session param: ' + ${session.sp}" /&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+    &lt;p th:unless="${#ctx.httpServletRequest.getCookies()==null}"
+    	 th:text="'Cookie param: ' + ${T(com.example.demo.Cookie1Controller).getCookieValue(#ctx.httpServletRequest,'cp')}" /&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+
+    &lt;img th:if="${#strings.startsWith(#httpServletRequest.getHeader('Host'),'a.')}"
+    		 src="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;amp;sp=session_from_a&amp;amp;cp=cookie_from_a" style="display:none;" /&gt; <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We paint the model parameter</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We paint the session parameter</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We paint the parameter of the cookie</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We invoke the other domain, only if we are not in the</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In this page, we see how the values stored in the session are painted, and in the cookie.</p>
+</div>
+<div class="paragraph">
+<p>And now the good starts, when we open: <a href="http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a" class="bare">http://a.127.0.0.1.xip.io:9000/setcookie?rp=a&amp;sp=a&amp;cp=a</a>
+this page apart from setting the values of the ulr in session and in a cookie,
+makes a request to a url of domain B (through an img)
+<a href="http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a" class="bare">http://b.127.0.0.1.xip.io:9001/cookie1?rp=request_from_a&amp;sp=session_from_a&amp;cp=cookie_from_a</a>
+and we can see the results by watching: <a href="http://b.127.0.0.1.xip.io:9001/setcookie" class="bare">http://b.127.0.0.1.xip.io:9001/setcookie</a></p>
+</div>
+<div class="paragraph">
+<p>Navigation would be something of this style.</p>
+</div>
+<div id="main-classes" class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Flow of cookies navigation</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Browser -&gt; DomainA: Parameters are sent
+Browser -&gt; Domain: Parameters are sent
+DomainA -&gt; Browser: Generates cookie
+DomainB -&gt; Browser: Generates cookie</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ahora (a punto de terminar la historia) tenemos el arbol asi.</p>
+<p>And here we see the results, which we will comment:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="/blog/img/2017/06/git_06.png" alt="git 06">
+<img src="/blog/img/2017/11/a.domain.img1.png" alt="a domain img1">
 </div>
 </div>
 <div class="paragraph">
-<p>Cerramos la feature</p>
+<p>In the first request from A, we observe how the JSESSIONID cookie is generated in A,
+that tells us that something has been saved in session in the server, and that value, we observe
+in the browser when painting the value of the object in session sp, which is b. What not yet
+we observe in the page, it is how it receives the cookie that is generated in server, although
+if we would see it in the cookie inspector.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, we observe in the network inspector, how a request is sent to
+domain B, generated by the JSESSIONID cookie in the browser but for domain B.
+In the fourth image we will see how the System.out shows us that querystring arrives
+and it has been stored in session, but beware of domain B.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/11/a.domain.img2.png" alt="a domain img2">
+</div>
+</div>
+<div class="paragraph">
+<p>In a second recharge, we would see the cookie generated in server A, based on
+to the previous request.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/11/b.domain.img1.png" alt="b domain img1">
+</div>
+</div>
+<div class="paragraph">
+<p>The curious thing begins now, in a third petition to Domain B directly, without
+parameters. As our controller does nothing if parameters do not arrive, we see,
+when entering domain B, as the browser reads the B domain cookies, generated
+when navigating through A, but with a request to B from an IMG, like the server we
+returns what you have stored in session for us, navigators of your domain.
+And this is, what is generated from another domain, making that request from an image.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/blog/img/2017/11/b.domain.img2.png" alt="b domain img2">
+</div>
+</div>
+<div class="paragraph">
+<p>Here we see the System.out</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>While browsing through domain A, we can "send" to a domain B information,
+that domain B, upon receiving it in that image request, can store it in its
+session for us users that we navigate, so that when we go to the domain
+B, recover it from session and show it to us.</p>
+</div>
+<div class="paragraph">
+<p>The next steps would be to try to make a third party services (domain A),
+that we can integrate in our webs (domain B), via APIs JS, "send us from
+that JS "information, that allows us below (from the back in domain B)
+make a request to them (domain A) and recover what the third-party service
+(domain A) stores in your session for us users that we navigate, for
+example that we are logged in your service.</p>
+</div>
+<div id="main-classes" class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigation flow with third-party service</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git flow feature finish</code></pre>
+<pre>Browser -&gt; DomainB: Step1
+Browser -&gt; DomainA: Step2
+Browser -&gt; DomainA: Step3
+DomainA -&gt; Browser: Step4
+Browser -&gt; Browser: Step5
+Browser -&gt; DomainB: Step6
+DomainB -&gt; DomainA: Step7
+DomainB -&gt; Browser: Step8</pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Summary of actions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The feature branch 'feature/user1' was merged into 'develop'</p>
+<p>Step1: We browse our website</p>
 </li>
 <li>
-<p>Feature branch 'feature/user1' has been locally deleted</p>
+<p>Step2: API JS calls the third-party service and shows us login</p>
 </li>
 <li>
-<p>You are now on branch 'develop'</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Subimos develop (por defecto git-flow no hace push), que aun no lo habiamos hecho.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git push origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>quedando el arbol, asi:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_07.png" alt="git 07">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_mantener_rama_actualizada_con_los_cambios_de_develop">Mantener rama actualizada con los cambios de develop</h3>
-<div class="paragraph">
-<p>Ahora nos vamos al directorio 2, nos actualizamos, creamos una feature,
-hacemos algo en el fichero README comiteamos, pero antes de cerrar la feature,
-cambiamos de carpeta 1 y modificamos el README, volvemos al directorio original y
-antes de cerrar feature, mergeamos develop en nuestra rama.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone2
-git fetch
-git checkout develop
-git pull
-
-git flow init
-
-git flow feature start user2
-
-vi feature-user2.txt
-git add  feature-user2.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "Commit in feature-user2"
-
-cd ../repo-clone1
-vi feature-user1.txt
-git add  feature-user1.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
-git push origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Aqui (carpeta 1) todavia no sabemos nada de la feature2, quedando el arbol asi</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_08.png" alt="git 08">
-</div>
-</div>
-<div class="paragraph">
-<p>El "problema" con rebase es que altera las lineas de historia, para bien o para mal.</p>
-</div>
-<div class="paragraph">
-<p>Si seguimos el enfoque clasico, para mantener al dia nuestra feature2, debemos
-mergear a menudo con develop, o por lo menos, antes de cerrar la feature.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone2
-git fetch
-git pull origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Esto, asi escrito realiza un merge directo, pues estamos haciendo pull de otra
-rama (develop) en la de la feature.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Un pull de una rama en otra que no es la suya, equivale a un merge.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_09.png" alt="git 09">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_merge_tras_un_pull_actualizacion_de_una_rama_sobre_otra">Merge, tras un pull (actualizacion), de una rama sobre otra</h3>
-<div class="paragraph">
-<p>Una manera, desde mi punto de vista, mas controlada de enfocar los merge (o
-	bien por tener actualizada una rama, o por mezclarla luego en otra),
-	podria haber sido: un fetch para actualiar, cambiando a develop,
-hacer pull y luego volviendo a la feature y haciendo merge.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_mantener_rama_actualizada_con_un_rebase">Mantener rama actualizada con un rebase.</h3>
-<div class="paragraph">
-<p>Pero, probemos otra vez (vamos a carpeta 1, hacemos cambio en develop y lo subimos),
-pero esta vez hacemos un rebase (usando git flow)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd ../repo-clone1
-vi feature-user1.txt
-git add  feature-user1.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "Update develop file feature1"
-git push origin develop
-cd ../repo-clone2
-git fetch
-git flow feature rebase user2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Will try to rebase 'user2' which is based on 'develop'&#8230;&#8203;
-First, rewinding head to replay your work on top of it&#8230;&#8203;
-Applying: Commit in feature-user2
-Applying: Update develop file feature1</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_10.png" alt="git 10">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git flow feature finish</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Branches 'develop' and 'origin/develop' have diverged.
-Fatal: And branch 'develop' may be fast-forwarded.</p>
-</div>
-<div class="paragraph">
-<p>Esto solo quiere decir que la rama donde estamos tabajando no esta actulzada (similar
-	al primer ejemplo).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git checkout develop
-
-Switched to branch 'develop'
-Your branch is behind 'origin/develop' by 2 commits, and can be fast-forwarded.
-  (use "git pull" to update your local branch)
-
-git pull
-Updating 408fcbf..f76cade
-Fast-forward
- feature-user1.txt | 3 +++
- 1 file changed, 3 insertions(+)
-
-git checkout feature/user2
-Switched to branch 'feature/user2'
-
-git flow feature finish
-Switched to branch 'develop'
-Your branch is up-to-date with 'origin/develop'.
-Auto-merging feature-user1.txt
-CONFLICT (content): Merge conflict in feature-user1.txt
-Automatic merge failed; fix conflicts and then commit the result.
-
-There were merge conflicts. To resolve the merge conflict manually, use:
-    git mergetool
-    git commit
-
-You can then complete the finish by running it again:
-    git flow feature finish user2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>El rebase nos ha generado conflictos, que a la hora de hacer el merge, nos da problemas.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git mergetool</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_11.png" alt="git 11">
-</div>
-</div>
-<div class="paragraph">
-<p>Pues altera la linea de tiempo de la rama donde lo hace. Resolvemos el conflicto y subimos cambios.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">git add feature-user1.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "Resolve rebase y merge"
-git push origin develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Nos queda este arbol</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_12.png" alt="git 12">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_policia_del_arbol_de_git">Policia del arbol de git.</h3>
-<div class="paragraph">
-<p>Si consideramos que una rama se crea para una funcionalidad, y todo el conjunto
-de commits que se relizan en ella, incluyendo los merge desde develop, no deben
-quedar reflejado en el arbolo final tras el merge, --no-ff es nuestro amigo.</p>
-</div>
-<div class="paragraph">
-<p>Creemos una feature3, hagamos algun cambio, hagamos algun cambio en develop,
-llevemoslo a la rama de la feature3, y cuando terminemos, merge con no-ff.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">cd ~/sandbox-git/repo-clone1
-git fetch
-git pull origin develop
-
-cd ~/sandbox-git/repo-clone2
-git fetch
-git pull origin develop
-
-git flow feature start feature3
-vi feature3-user2.txt
-git add feature3-user2.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
-
-cd ~/sandbox-git/repo-clone1
-vi change-in-develop.txt
-git add change-in-develop.txt
-git commit --author="User1 &lt;user1@git.com&gt;" -m "change-in-develop"
-git push origin develop
-
-cd ~/sandbox-git/repo-clone2
-git checkout develop
-git fetch
-git pull
-git checkout feature/feature3
-git merge develop</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>El arbol lo tenemos asi&#8230;&#8203; ahora tras el merge, hagamos otro cambio y reintegremos
-en develop como un solo commit.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_13.png" alt="git 13">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="sh">vi feature3-another-user2-file.txt
-git add feature3-another-user2-file.txt
-git commit --author="User2 &lt;user2@git.com&gt;" -m "File from feature 3"
-git checkout develop
-git merge feature/feature3 --no-ff
-git push origin --delete feature/feature3
-git branch -d feature/feature3</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git_14.png" alt="git 14">
-</div>
-</div>
-<div class="paragraph">
-<p>Observemos como queda limpio la rama develop</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2017/06/git-merge-no-ff.png" alt="git merge no ff">
-</div>
-</div>
-<div class="paragraph">
-<p>Referencias:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa" class="bare">https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa</a></p>
+<p>Step3: We can do third-party service using JS API</p>
 </li>
 <li>
-<p><a href="https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull" class="bare">https://coderwall.com/p/tnoiug/rebase-by-default-when-doing-git-pull</a></p>
+<p>Step4: The third party service generates session cookies</p>
 </li>
 <li>
-<p><a href="https://mislav.net/2013/02/merge-vs-rebase/" class="bare">https://mislav.net/2013/02/merge-vs-rebase/</a></p>
+<p>Step5: The browser generates an &lt;img&gt; pointing to B, with the information of the JSESSIONID that A generates.</p>
 </li>
 <li>
-<p><a href="https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase" class="bare">https://www.atlassian.com/git/articles/git-team-workflows-merge-or-rebase</a></p>
+<p>Step6: That image, generated by the third-party API, on the page that we serve from B, calls us and stores that value in B&#8217;s session.</p>
+</li>
+<li>
+<p>Step7: B makes a request to A, from server, using the JSESSIONID of A, to impersonate us that we navigate B, using JS API of A.</p>
+</li>
+<li>
+<p>Step8: We can show to us that we navigate, info provided by A, via backend communication, after logarnos.</p>
 </li>
 </ul>
 </div>
@@ -743,43 +470,43 @@ git branch -d feature/feature3</code></pre>
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&text=Git &amp; Merge &amp; Rebase &amp; Flow&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&text=Cookies (1 of 2)&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&title=Cookies (1 of 2)" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&title=Cookies (1 of 2)" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/06/git.es.html&title=Git &amp; Merge &amp; Rebase &amp; Flow" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html&title=Cookies (1 of 2)" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/06/git.es.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2017/11/cookies_1_of_2.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -792,12 +519,10 @@ git branch -d feature/feature3</code></pre>
 		<ul class="stats">
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
- 	        <li><a href='../tags/git.html'>git</a></li>
- 	        <li><a href='../tags/merge.html'>merge</a></li>
- 	        <li><a href='../tags/rebase.html'>rebase</a></li>
- 	        <li><a href='../tags/git-flow.html'>git-flow</a></li>
+ 	        <li><a href='../tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='../tags/cookies.html'>cookies</a></li>
 
-				<li><a class="icon fa-comment" href="../2017/06/git.es.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2017/11/cookies_1_of_2.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -866,6 +591,16 @@ git branch -d feature/feature3</code></pre>
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
+                      <li>
+                          <article>
+                              <header>
+                                  <h3><a href="../2017/11/cookies_1_of_2.html">Cookies (1 of 2)</a></h3>
+                                   <time class="published"
+  							            datetime='nov 09, 2017'>
+  							            nov 09, 2017</time>
+                              </header>
+                          </article>
+                      </li>
 
             </ul>
         </section>

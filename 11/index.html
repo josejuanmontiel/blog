@@ -147,9 +147,6 @@
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <a href="../../2018/02/mensajes_serializacion.html"><p>Message, serialization and other things</p></a>
-                      </li>
             </ul>
         </section>
 
@@ -168,13 +165,13 @@
    <header>
     <div class="title">
 
-                    <h2><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h2>
+                    <h2><a href="../2018/10/moewller.es.html">Uniendo el Model - View - Controller</a></h2>
 
     </div>
     <div class="meta">
          <time class="published"
-            datetime='feb 17, 2018'>
-            feb 17, 2018</time>
+            datetime='oct 21, 2018'>
+            oct 21, 2018</time>
             <div class="published eta"></div>
         <span class="author"/><span class="name">Jose Juan Montiel</span><img src="../img/main/avatar.png" alt="Jose Juan Montiel" /></span>
     </div>
@@ -185,179 +182,80 @@
          
     <div id="content">
        <div class="sect1">
-<h2 id="_messages_serialization_and_other_things">Messages, serialization and other things</h2>
+<h2 id="_uniendo_el_model_view_controller_parte_12">Uniendo el Model - View - Controller (Parte 1/2)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I remember one time a colleague told me, something like this: "My boss said, that the one
-manage the string, it handles everything". Taken out of context, it may seem
-pretentious, but do not you get the feeling that most of the programming is
-reduces to "manipulation"?</p>
+<p>Hace tiempo que no escribo, pero sigo dandole vueltas a las cosas. En el ultimo articulo del blog, hablaba sobre serializacion, y en concreto sobre la serializacion de objetos a JSON (tanto para ser expuestos en un servicio REST como para serilizarlas en una base de datos NOSQL).</p>
 </div>
 <div class="paragraph">
-<p>And if you stop to think, today, is not it reduced to communication? To the shipment of
-"messages"? And that&#8217;s where I want to get in this article, to the famous serialization
-and deserialization.</p>
-</div>
-<div class="paragraph">
-<p>I did not get to experience it, but when I started in the Java world, there was still talk
-of <a href="https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture">Corba</a> and
-<a href="https://en.wikipedia.org/wiki/Java_remote_method_invocation">RMI</a>.
-I&#8217;m not going to stop much, for that we have the wikipedia, but the first let&#8217;s say
-it served to communicate separate and distinct systems, and the second more "close".</p>
-</div>
-<div class="paragraph">
-<p>To what if it arrives, and went to the world to <a href="https://en.wikipedia.org/wiki/SOAP">SOAP</a>.
-If we look back, the "XML was invented" at <a href="https://en.wikipedia.org/wiki/XML#History">1998</a>,
-I even remember doing an interview in my beginnings for the "xml company".
-And in XML, SOAP is based on the transmission of messages. Here begins to stop
-side the "binary" messages to move to XML, with its supposed advantages, and disadvantages.
-Because parsing and loading into XML memory was expensive, agile because you could access
-any part of the message, but expensive.</p>
-</div>
-<div class="paragraph">
-<p>I do not extend more here, just remember DTD, XSD, XSLT, and a series more than
-acronyms related to the XML world.</p>
-</div>
-<div class="paragraph">
-<p>But people got tired of the XML soon, in 2000 came the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer#History">REST</a>.
-People were tired of schemes, of rigidity, the new millennium wanted flexibility,
-browsers wanted to be able to find what they wanted, without having to load everything.</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s say that the REST, brought the JSON, a format where the "tabulation" gave the format,
-and there was no need for so much label, which reduced the size of the messages,
-but hey, it was still necessary to parse them.</p>
-</div>
-<div class="paragraph">
-<p>At that time, Google started using <a href="https://en.wikipedia.org/wiki/Protocol_Buffers">Protocol Buffer</a> internally,
-a binary specification language. The same thought that in the end, either
-It made a lot of sense that the messages were "human-readable", and even if I could
-there is compression of an XML message in a superior layer, in the end it is effort
-to serialize and deserialize in a "human-readable" way was not an obstacle either
-to not put one field after another.</p>
-</div>
-<div class="paragraph">
-<p>On the other hand, the <a href="https://martinfowler.com/articles/richardsonMaturityModel.html">piramide REST</a>
-it began to evolve.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/blog/img/2018/02/glory-of-rest.png" alt="Glory of rest">
-</div>
-</div>
-<div class="paragraph">
-<p>And things started to appear like: <a href="https://swagger.io/">Swagger</a> and <a href="https://raml.org/">RAML</a>,
-that end up merging at <a href="https://www.openapis.org/">OPENAPI</a> and things like:
-<a href="https://es.wikipedia.org/wiki/Hateoas">Hateoas</a>, <a href="http://json-schema.org/">Json Schema</a>,
-even <a href="http://graphql.org/learn/">GraphQL</a>, which to be the query language
-that we know, part of a language of definition of structures.</p>
-</div>
-<div class="paragraph">
-<p>In the end, in the Java world, and I suppose that in the rest of languages also, all
-Transmission requires serialization and deserialization (which may be more
-or less complex).</p>
-</div>
-<div class="paragraph">
-<p>For example, the transmission of a large XML to a destination, where it only interests you
-certain data of the same, does not have to serialize it in memory to make a
-On the DOM, a parser can be used <a href="https://docs.oracle.com/javase/tutorial/jaxp/stax/why.html">stax</a>
-to look for what is needed, and it does not matter the size of the XML, it will take more or less the same,
-because the overhead is produced when it is loaded into memory.</p>
-</div>
-<div class="paragraph">
-<p>In the case of a JSON, those who need their specified getter / setter,
-the parsers that simply load in hash, those that use the reflection, those that
-they do not use it (because the user codes a certain part), those that "precompile" code,
-those who &#8230;&#8203;</p>
-</div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_I7XbO-mos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<div class="paragraph">
-<p>In the end, in this world of programming, you can never think that you know everything,
-and in IMHO you can always improve, doing things differently.</p>
-</div>
-<div class="paragraph">
-<p>If we dive a little, we can find some benchmarks. For example in this
-<a href="https://github.com/fabienrenaud/java-json-benchmark">comparatories on libraries</a>
-we can discover the large number of JSON libraries that exist, and their different
-performance, proof that you can always evolve, and when you reach the
-physical limits, you can always do it in another way. In this other
-<a href="https://dzone.com/articles/is-protobuf-5x-faster-than-json-part-ii">comparativa
-inclyendo protobuf</a> do the analysis, focusing on the number of attributes, of
-the class to be serialized, and they make some interesting considerations of the transformations
-that pass "below", away from the sight of our eyes, commenting on changes between
-JDK 8 and 9.</p>
+<p>En este articulo, me he panteado una prueba de concepto, que aviso, de momento esta incompleta. La prueba intenta montar una libreria que:</p>
 </div>
 <div class="ulist">
-<div class="title">We can highlight the following libraries:</div>
 <ul>
 <li>
-<p><a href="https://github.com/ngs-doo/dsl-json">dsl-json</a> Use a dsl to generate the parser.</p>
+<p>Permita mantener la separacion entre entre capas (de un MVC) usando un solo <a href="https://martinfowler.com/eaaCatalog/dataTransferObject.html">DTO</a> en vez de varios y una libreria de mapper, pero que a su vez permita las mismas o casi, ventajas de separacion.</p>
 </li>
 <li>
-<p><a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a> Precompiling a parser.</p>
-</li>
-<li>
-<p><a href="https://github.com/FasterXML/jackson-modules-base/tree/master/afterburner">jackson-afterburner</a> Evolution of the well-known library.</p>
-</li>
-<li>
-<p><a href="https://hk.saowen.com/a/72ed741901f38c208240f605759c82585f0cbc5bd19e3433cca72da1a1423f2c">usando graavl</a> A more theoretical approach using Graavl.</p>
+<p>Sea capaz de ir realizando la serializacion, en este caso construccion del JSON de manera incremental conforme se setean los valores.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>What if we talk about bbdd NSQL or document-oriented ?, as for example CouchBase &#8230;&#8203;?</p>
+<p>En <a href="http://github.com/josejuanmontiel/moewller">este</a> repositorio ire colocando los avances.</p>
 </div>
 <div class="paragraph">
-<p>In the end, here using the java API, there is also a serialization / deserialization,
-in the end what is saved is a document, which must (according to API) serialize more or less.</p>
+<p>Como nota, mucha gente tambien habla de <a href="https://martinfowler.com/bliki/ValueObject.html">VO</a> y aqui esta la <a href="http://www.adam-bien.com/roller/abien/entry/value_object_vs_data_transfer">difirenica entre ambos</a></p>
 </div>
 <div class="paragraph">
-<p>In <a href="https://github.com/josejuanmontiel/demo-couchbase">this</a> repo, I have messed around a little with some ideas.</p>
+<p>A continuacion, algunos links para hablar de "Serializacion as a Service"</p>
 </div>
-<div class="olist arabic">
-<div class="title">The conclusions?</div>
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>It is clear that the smaller the entity to persist, the sooner it will persist.</p>
+<p><a href="https://github.com/ralfstx/minimal-json">Minimal Json</a></p>
 </li>
 <li>
-<p>But not by inserting it into smaller pieces (related to each other)
-Insert before.</p>
+<p><a href="https://github.com/FasterXML/aalto-xml">Ultra-high performance non-blocking XML processor (Stax API + extensions)</a></p>
 </li>
 <li>
-<p>Both for insertions and queries, if a string is inserted, without going through
-JPA can earn 50% (discounting the serialization to String, remember that
-   arrives in String format from synchro) and 90% in reading approx.</p>
+<p><a href="https://github.com/beckchr/staxon">Staxon</a></p>
 </li>
 <li>
-<p>A .findOne in spring data jpa, will always be slower than a native one.
-Does the view on the entity type add a delay?</p>
+<p><a href="https://www.baeldung.com/kryo">Kryo en Baeldung</a></p>
 </li>
 <li>
-<p>Network latency from the server to the bbdd also counts, less data, faster.</p>
+<p><a href="https://github.com/EsotericSoftware/kryo">Kryo</a></p>
 </li>
 <li>
-<p>The servers with SSD vs HDD for bbdd nosql show large differences in performance.</p>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary">jackson-binary</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/FasterXML/smile-format-specification/blob/master/smile-specification.md">Smile</a></p>
 </li>
-</ol>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/protobuf">Protobuf</a></p>
+</li>
+<li>
+<p><a href="https://amzn.github.io/ion-docs/index.html">Ion</a></p>
+</li>
+<li>
+<p><a href="https://www.rfc-editor.org/rfc/rfc7049.txt">Cbor</a></p>
+</li>
+<li>
+<p><a href="https://avro.apache.org/docs/1.8.2/gettingstartedjava.html">Avro Apache</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/FasterXML/jackson-dataformats-binary/tree/master/avro">Avro FasterXML</a></p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>It depends on the use and the problem that you want to address, it can not always make sense,
-serialize to have the "objects" accessible, but let&#8217;s use them.</p>
+</li>
+</ul>
 </div>
-<div class="sect2">
-<h3 id="_as_an_exercise_for_home">As an exercise for home</h3>
-<div class="paragraph">
-<p>According to the <a href="https://github.com/fabienrenaud/java-json-benchmark">benchmark</a> if
-will change the implementation of JsonConverter from Jackson to Jsonite, could win
-30% in the part that the spring data library jpa passes from the object to
-com.couchbase.client.java.document.json.JsonObject.</p>
-</div>
-<div class="paragraph">
-<p>Make a pull request to implement <a href="http://www.baeldung.com/couchbase-sdk-spring">serializacion</a>
-of couchbase with <a href="http://jsoniter.com/java-features.html#static-code-generation">jsoniter</a>
-and see if it&#8217;s faster than the standard, and not much less than with the <a href="https://github.com/couchbase/couchbase-java-client">sdk java</a></p>
-</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -368,43 +266,43 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
 <!-- Social Share Button HTML -->
 
 <!-- Twitter -->
-<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&text=Message, serialization and other things&via=accreativos" target="_blank" class="share-btn twitter">
+<li><a href="//twitter.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&text=Uniendo el Model - View - Controller&via=accreativos" target="_blank" class="share-btn twitter">
     <i class="fa fa-twitter"></i>
     <p>Twitter</p>
 </a></li>
 
 <!-- Google Plus -->
-<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn google-plus">
+<li><a href="//plus.google.com/share?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn google-plus">
     <i class="fa fa-google-plus"></i>
     <p>Google+</p>
 </a></li>
 
 <!-- Facebook -->
-<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn facebook">
+<li><a href="//www.facebook.com/sharer/sharer.php?u=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn facebook">
     <i class="fa fa-facebook"></i>
     <p>Facebook</p>
 </a></li>
 
 <!-- Reddit (url, title) -->
-<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn reddit">
+<li><a href="//reddit.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn reddit">
     <i class="fa fa-reddit-alien"></i>
     <p>Reddit</p>
 </a></li>
 
 <!-- LinkedIn -->
-<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn linkedin">
+<li><a href="//www.linkedin.com/shareArticle?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn linkedin">
     <i class="fa fa-linkedin"></i>
     <p>LinkedIn</p>
 </a></li>
 
 <!-- StumbleUpon (url, title) -->
-<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html&title=Message, serialization and other things" target="_blank" class="share-btn stumbleupon">
+<li><a href="//www.stumbleupon.com/submit?url=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html&title=Uniendo el Model - View - Controller" target="_blank" class="share-btn stumbleupon">
     <i class="fa fa-stumbleupon"></i>
     <p>StumbleUpon</p>
 </a></li>
 
 <!-- Email -->
-<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/02/mensajes_serializacion.html" target="_blank" class="share-btn email">
+<li><a href="mailto:?subject=Check out this post by Jose Juan Montiel&body=https://josejuanmontiel.github.io/blog/2018/10/moewller.es.html" target="_blank" class="share-btn email">
     <i class="fa fa-envelope"></i>
     <p>Email</p>
 </a></li>
@@ -418,9 +316,11 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
     	    <!-- Display the categories associated with this post -->
     	    <li><i class="fa fa-tags">&nbsp;</i>  Tags: </li>
  	        <li><a href='../tags/jvm.html'>jvm</a></li>
+ 	        <li><a href='../tags/mvc.html'>mvc</a></li>
  	        <li><a href='../tags/serilize.html'>serilize</a></li>
+ 	        <li><a href='../tags/dozer.html'>dozer</a></li>
 
-				<li><a class="icon fa-comment" href="../2018/02/mensajes_serializacion.html#disqus_thread"> &nbsp;</a></li>
+				<li><a class="icon fa-comment" href="../2018/10/moewller.es.html#disqus_thread"> &nbsp;</a></li>
  		</ul>
     	
     </footer>
@@ -489,16 +389,6 @@ and see if it&#8217;s faster than the standard, and not much less than with the 
                 <header>
                     <h3>Recent Posts</h3>
                 </header>
-                      <li>
-                          <article>
-                              <header>
-                                  <h3><a href="../2018/02/mensajes_serializacion.html">Message, serialization and other things</a></h3>
-                                   <time class="published"
-  							            datetime='feb 17, 2018'>
-  							            feb 17, 2018</time>
-                              </header>
-                          </article>
-                      </li>
 
             </ul>
         </section>
