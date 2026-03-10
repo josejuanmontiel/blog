@@ -1,0 +1,124 @@
+= Reflexion sobre el futuro
+Jose Juan Montiel
+2024-08-29
+:jbake-type: post
+:jbake-tags: life, work, ikigai
+:jbake-status: published
+:jbake-lang: es
+:source-highlighter: prettify
+:id: donde-te-ves-6
+:icons: font
+
+== Y otros dos años mas...
+
+=== El mapa de mi curiosidad, a los 47: ¿Hacia dónde miro ahora?
+
+Hace unos años me preguntaba dónde me veía a los 50. Hoy, con 47 primaveras y 24 años de código a mis espaldas, se acerca esa fecha 
+(como cuando me decia que me jubilaria a los 30 :) y la respuesta no es un destino, sino un mapa. Escribir me ayuda a pausar, 
+a pulir las ideas y a darles una visión organizada https://compass.moretothat.com/[y no soy el unico].
+
+Si hace años el foco fue el *blockchain* y *Golang*, mi "tablero de juego" para los próximos meses ha evolucionado hacia 
+la integración de la Inteligencia Artificial, pero no esa que vemos todos, quiero saber sobre que se construye todo, entender las tripas.
+
+=== 🤖 El cerebro del servidor: IA y Agentes
+
+En estos meses he montado un servidor personal que se está convirtiendo en un ecosistema cognitivo. 
+No se trata solo de ejecutar código, sino de orquestar modelos:
+
+* **Modelos de lenguaje:** Experimentando con **Qwen** (específicamente su versión *Coder*) para potenciar el desarrollo.
+* **Visión y Multimodalidad:** Integrando **VL-Image** para que el servidor no solo lea datos, sino que "vea".
+* **Entornos de entrenamiento:** Manteniendo vivo el stack de **Jupyter, Python y Go** para seguir ensuciándome las manos con datos.
+
+### 🛠️ Herramientas de soberanía y automatización
+
+Fiel a la filosofía de "cocinarlo uno mismo", mi infraestructura doméstica sigue creciendo:
+
+* **Privacidad y Red:** Desde el infaltable **Pi-hole** y **H.A (Home Assistant)** hasta la gestión de **VPN** y **Auto-backups**.
+* **Contenido y Redes:** Automatizando el flujo de consumo con herramientas para YouTube y presencia en redes descentralizadas como **Mastodon**.
+
+### 🎨 Experimentación: WebRTC, WASM y Lectura
+
+Como siempre me ha gustado aprovechar para probar cosas nuevas mientras aprendo, estoy explorando:
+
+* **Comunicación en tiempo real:** Trabajando con **LiveKit** y **PeerJS** para entender mejor los agentes de voz y video.
+* **El futuro de la Web:** Sigo apostando por **WebAssembly (WASM)**  y generadores estáticos como **Hugo**.
+* **Interfaces de lectura:** Desarrollando formas más eficientes de "Leer y Escuchar", integrando un "vibe coding" **EPUB Reflow** con tecnologías de **OCR** y **Whisper/Kokoro** para síntesis de voz.
+
+### Conclusión: El Ikigai del programador veterano
+
+Como decía en mis reflexiones anteriores, a mis 47, mi *Ikigai* sigue siendo ese: aprender algo nuevo cada día, 
+compartirlo para entenderlo mejor y disfrutar del proceso de construir mi propio ecosistema digital.
+
+### 🧠 Entre el Código y la Cognición: ¿Qué nos hace humanos (o IA)?
+
+En mi búsqueda por organizar mis ideas y pulir mi visión profesional, he estado profundizando en lecturas que 
+exploran la frontera entre nuestra mente y los sistemas que construyo en mi servidor. 
+Si vamos a convivir con agentes de IA, conviene entender qué nos diferencia.
+
+#### 1. El Arte de Recordar (y Olvidar)
+
+En mi esquema aparece **Anki** y sistemas de **ML**, lo cual me recuerda mucho a las técnicas de memoria de "Moonwalking with Einstein".
+
+* **La IA y nosotros:** Mientras que mi nodo de **RAG (Retrieval-Augmented Generation)** busca información de forma fría y precisa, 
+los humanos necesitamos "espacializar" el conocimiento para retenerlo.
+* **Reflexión:** Construir un sistema de memoria externa (como mi **Knowledge Base** con OCR y Whisper) es, en el fondo, 
+un intento de emular ese "Palacio de la Memoria" que los antiguos usaban para no olvidar lo importante.
+
+#### 2. El Algoritmo del Aprendizaje
+
+Esto se aplica también a nuestro cerebro:
+
+* **Aprender enseñando:** He comprobado que preparar estas notas para el blog me fuerza a aprender mejor. 
+Es el entrenamiento (training) de mi propio modelo mental.
+* **Similitudes:** Así como entreno un **Qwen-Coder** en mi servidor, estas lecturas me sugieren que el ser humano 
+es el algoritmo de optimización más complejo que existe. Mi objetivo a los 47 es seguir "ajustando mis pesos" (fine-tuning) cada día.
+
+#### 3. El Futuro: Agentes y Conciencia
+
+En el diagrama he dibujado nodos de **LiveKit Agent** y **PeerJS**. Estamos pasando de herramientas pasivas a agentes que "escuchan y hablan".
+
+* **La brecha:** Aunque mi servidor use **Kokoro** para la voz y **Whisper** para la escucha, la lectura me hace cuestionar: 
+¿Dónde termina el procesamiento de señal y dónde empieza la verdadera comprensión?
+* **Mi apuesta:** Seguiré explorando **WASM** y **Ebiten** para visualizar estos conceptos, porque como bien dije hace años: 
+la mejor forma de entender la tecnología es integrándola en tu propia historia profesional.
+
+### Resumen de Lecturas: Memoria, Cognición e Inteligencia
+
+#### **Grupo 1: El Núcleo Teórico (Los ya leídos)**
+
+Estos libros forman la base de mi conocimiento actual sobre cognición, memoria y construcción de la realidad:
+
+* ***Thinking, Fast and Slow* (Pensar rápido, pensar despacio)** – **Daniel Kahneman**: Explica la dualidad del pensamiento entre el Sistema 1 (rápido e intuitivo) y el Sistema 2 (lento y analítico), detallando cómo el cerebro suele cometer errores sistemáticos.
+* ***Moonwalking with Einstein* (Los desafíos de la memoria)** – **Joshua Foer**: Narra cómo optimizar la memoria mediante técnicas como el "Palacio de la Memoria" para transformar el esfuerzo consciente en retención técnica.
+* ***La vida secreta del cerebro* (How Emotions Are Made)** – **Lisa Feldman Barrett**: Introduce la teoría de las emociones construidas, argumentando que el cerebro predice la realidad y construye las emociones para gestionar el "presupuesto corporal".
+
+#### **Grupo 2: Vectores de Expansión Práctica (Recomendaciones)**
+
+Libros sugeridos para conectar la teoría con la acción y la maestría:
+
+* ***Atomic Habits* (Hábitos Atómicos)** – **James Clear**: Funciona como un manual para programar el Sistema 1, convirtiendo decisiones difíciles en automatismos sin esfuerzo.
+* ***Peak: Secrets from the New Science of Expertise* (Número 1)** – **Anders Ericsson**: Proporciona la base científica y la fórmula de la "práctica deliberada" para adquirir habilidades expertas.
+* ***Make It Stick* (La ciencia del aprendizaje exitoso)** – **Brown, Roediger y McDaniel**: Explica que el aprendizaje debe costar esfuerzo ("dificultad deseable") para ser duradero, validando técnicas como la repetición espaciada.
+
+
+#### **Grupo 3: Neurociencia de la Predicción (Cercanos a Barrett)**
+
+Libros que orbitan la idea del cerebro como una máquina de alucinación controlada:
+
+* ***Being You* (La creación del yo)** – **Anil Seth**: Expone que no solo las emociones, sino toda nuestra experiencia consciente y el "yo" son la mejor suposición (*best guess*) de una máquina de predicción.
+* ***Behave* (Compórtate)** – **Robert Sapolsky**: Una obra enciclopédica que analiza el contexto biológico de nuestras acciones, desde la neurobiología inmediata hasta la evolución.
+
+#### **Grupo 4: Menciones Adicionales**
+
+Libros usados como ejemplos de estructuras fundamentales:
+
+* ***Por qué dormimos*** – **Matthew Walker**: Mencionado como un ejemplo de libro fundamental para crear un espacio vectorial denso sobre la salud y la memoria.
+* ***El Origen de las Especies*** – **Charles Darwin**: Citado como el ejemplo de "Libro Padre" que establece el vocabulario y los ejes principales de un dominio (en este caso, la evolución).
+
+=== Conclusion (hasta la proxima, quizas a los 50?)
+La cuestion es que me gusta mezclar disciplinas, y aunque el foco de mi trabajo es la tecnologia, me gusta entender el contexto humano, y eso me lleva a leer sobre psicologia, neurociencia, filosofia... incluso la carpinteria, la cocina o la musica. Creo que esa es la clave para mantener la curiosidad viva y seguir aprendiendo cada dia, sin importar la edad.
+
+Y ahora sin autocompletar, a esta edad y en este punto de mi vida, y sobre todo con como tenemos la IA ahora mismo, creo que todo esta a punto de cambiar, y no es que piense que a partir de ahora todo lo va a hacer la IA sola, pero a corto plazo creo que sino te subes ahora al carro, puede que ya no pase otro tren, y desde mi punto de vista, la clave esta en entender las tripas, por eso estoy empezando desde la base, como hice otras veces.
+
+Nos vemos pronto.
+

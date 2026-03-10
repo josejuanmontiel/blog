@@ -1,0 +1,110 @@
+= Reflection on the future
+Jose Juan Montiel
+2024-08-29
+:jbake-type: post
+:jbake-tags: life, work, ikigai
+:jbake-status: published
+:jbake-lang: en
+:source-highlighter: prettify
+:id: where-do-you-see-yourself-6
+:icons: font
+
+== And two more years... 
+
+=== The map of my curiosity, at 47: Where am I looking now? 
+
+A few years ago, I wondered where I would see myself at 50. Today, with 47 springs and 24 years of code behind me, that date is approaching (like when I used to tell myself I’d retire at 30 :) and the answer is not a destination, but a map. Writing helps me pause, refine ideas, and give them an organized vision.
+
+If years ago the focus was *blockchain* and *Golang*, my "game board" for the coming months has evolved toward the integration of Artificial Intelligence—but not the kind everyone sees; I want to know what everything is built upon, to understand the "guts".
+
+=== 🤖 The server's brain: AI and Agents 
+
+In recent months, I have set up a personal server that is becoming a cognitive ecosystem. It is not just about executing code, but about orchestrating models:
+
+* **Language Models:** Experimenting with **Qwen** (specifically its *Coder* version) to boost development.
+* **Vision and Multimodality:** Integrating **VL-Image** so the server doesn't just read data, but "sees".
+* **Training Environments:** Keeping the **Jupyter, Python, and Go** stack alive to continue getting my hands dirty with data.
+
+=== 🛠️ Sovereignty and automation tools 
+
+Faithful to the "cook it yourself" philosophy, my home infrastructure continues to grow:
+
+* **Privacy and Network:** From the essential **Pi-hole** and **H.A (Home Assistant)** to managing **VPNs** and **Auto-backups**.
+* **Content and Networks:** Automating the consumption flow with tools for YouTube and a presence on decentralized networks like **Mastodon**.
+
+=== 🎨 Experimentation: WebRTC, WASM, and Reading 
+
+Since I've always liked to try new things while learning, I am exploring:
+
+* **Real-time communication:** Working with **LiveKit** and **PeerJS** to better understand voice and video agents.
+* **The future of the Web:** I'm still betting on **WebAssembly (WASM)** and static generators like **Hugo**.
+* **Reading interfaces:** Developing more efficient ways to "Read and Listen," integrating "vibe coding" **EPUB Reflow** with **OCR** technologies and **Whisper/Kokoro** for speech synthesis.
+
+=== Conclusion: The veteran programmer's Ikigai 
+
+As I said in my previous reflections, at 47, my *Ikigai* remains just that: learning something new every day, sharing it to understand it better, and enjoying the process of building my own digital ecosystem.
+
+=== 🧠 Between Code and Cognition: What makes us human (or AI)? 
+
+In my quest to organize my ideas and polish my professional vision, I have been delving into readings that explore the frontier between our minds and the systems I build on my server. If we are going to coexist with AI agents, it is worth understanding what sets us apart.
+
+==== 1. The Art of Remembering (and Forgetting) 
+
+In my diagram, **Anki** and **ML** systems appear, which reminds me a lot of the memory techniques from "Moonwalking with Einstein".
+
+* **AI and us:** While my **RAG (Retrieval-Augmented Generation)** node seeks information in a cold and precise way, humans need to "specialize" knowledge to retain it.
+* **Reflection:** Building an external memory system (like my **Knowledge Base** with OCR and Whisper) is, at its core, an attempt to emulate that "Memory Palace" the ancients used to avoid forgetting what is important.
+
+==== 2. The Learning Algorithm 
+
+This also applies to our brain:
+
+* **Learning by teaching:** I have found that preparing these notes for the blog forces me to learn better. It is the training of my own mental model.
+* **Similarities:** Just as I train a **Qwen-Coder** on my server, these readings suggest that the human being is the most complex optimization algorithm in existence. My goal at 47 is to keep "fine-tuning" my weights every day.
+
+==== 3. The Future: Agents and Consciousness 
+
+In the diagram, I have drawn **LiveKit Agent** and **PeerJS** nodes. We are moving from passive tools to agents that "listen and speak".
+
+* **The gap:** Although my server uses **Kokoro** for voice and **Whisper** for listening, the reading makes me question: Where does signal processing end and true understanding begin? 
+* **My bet:** I will continue exploring **WASM** and **Ebiten** to visualize these concepts, because as I said years ago: the best way to understand technology is by integrating it into your own professional story.
+
+=== Summary of Readings: Memory, Cognition, and Intelligence 
+
+==== **Group 1: The Theoretical Core (Already read)** 
+
+These books form the basis of my current knowledge on cognition, memory, and the construction of reality:
+
+* ***Thinking, Fast and Slow*** – **Daniel Kahneman**: Explains the duality of thought between System 1 (fast and intuitive) and System 2 (slow and analytical), detailing how the brain often makes systematic errors.
+* ***Moonwalking with Einstein*** – **Joshua Foer**: Recounts how to optimize memory through techniques like the "Memory Palace" to transform conscious effort into technical retention.
+* ***How Emotions Are Made*** – **Lisa Feldman Barrett**: Introduces the theory of constructed emotions, arguing that the brain predicts reality and constructs emotions to manage the "body budget".
+
+==== **Group 2: Practical Expansion Vectors (Recommendations)** 
+
+Suggested books to connect theory with action and mastery:
+
+* ***Atomic Habits*** – **James Clear**: Works as a manual for programming System 1, turning difficult decisions into effortless automatisms.
+* ***Peak: Secrets from the New Science of Expertise*** – **Anders Ericsson**: Provides the scientific basis and the formula for "deliberate practice" to acquire expert skills.
+* ***Make It Stick*** – **Brown, Roediger, and McDaniel**: Explains that learning must require effort ("desirable difficulty") to be lasting, validating techniques like spaced repetition.
+
+==== **Group 3: Prediction Neuroscience (Close to Barrett)** 
+
+Books orbiting the idea of the brain as a controlled hallucination machine:
+
+* ***Being You*** – **Anil Seth**: States that not only emotions, but our entire conscious experience and the "self," are the best guess of a prediction machine.
+* ***Behave*** – **Robert Sapolsky**: An encyclopedic work analyzing the biological context of our actions, from immediate neurobiology to evolution.
+
+==== **Group 4: Additional Mentions** 
+
+Books used as examples of fundamental structures:
+
+* ***Why We Sleep*** – **Matthew Walker**: Mentioned as an example of a fundamental book for creating a dense vector space on health and memory.
+* ***On the Origin of Species*** – **Charles Darwin**: Cited as the example of a "Parent Book" that establishes the vocabulary and main axes of a domain (in this case, evolution).
+
+=== Conclusion (until next time, maybe at 50?) 
+
+The point is that I like mixing disciplines, and although the focus of my work is technology, I like to understand the human context, and that leads me to read about psychology, neuroscience, philosophy... even carpentry, cooking, or music. I believe that is the key to keeping curiosity alive and continuing to learn every day, regardless of age.
+
+And now without autocomplete, at this age and at this point in my life, and especially with how we have AI right now, I think everything is about to change. It's not that I think from now on AI will do everything alone, but in the short term, I believe if you don't jump on the wagon now, another train might not come by. From my point of view, the key is understanding the guts; that's why I'm starting from the basics, as I've done before.
+
+See you soon.
